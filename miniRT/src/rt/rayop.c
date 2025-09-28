@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/05 14:18:05 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/06 00:05:16 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,22 @@ double			ft_intersect_plane(t_data *data,
 double			ft_intersect_square(t_data *data,
 					t_vector3 *dirvec, t_square *square)
 {
-	/* TODO generalize intersection with plane and square */
 	t_vector3	pl_cam_vec;
+	t_vector3	orient;
 	double		denominator;
 	double		step;
 
 	step = INFINITY;
+	orient = square->orient;
+	denominator = dot3(dirvec, &orient);
+	if (denominator < 0.0) 
+	{
+		orient = cmultvec3(-1, &orient);
+		denominator = -denominator;
+	}
 	pl_cam_vec = diffvec3(&square->center, &data->cam->center);
-	denominator = dot3(dirvec, &square->orient);
 	if (denominator > 1e-6)
-		step = dot3(&pl_cam_vec, &square->orient) / denominator;
+		step = dot3(&pl_cam_vec, &orient) / denominator;
 	return (step);
 }
 
@@ -112,42 +118,34 @@ int	ft_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	return (color);
 }
 
-static t_pair_double_int	_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+static double	_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 {
-	t_pair_double_int	pair;
-	double				step;
+	double	step;
+	double	closest_step;
 
-	pair.first = INFINITY;
-	pair.second = FALSE;
 	step = ft_intersect_square(data, dirvec, data->figures->square);
-	if (step >= steprange->first && step <= steprange->second && step < pair.first)
-	{
-		pair.first = step;
-		pair.second = TRUE;
-	}
-	return (pair);
+	closest_step = INFINITY;
+	if (step >= steprange->first && step <= steprange->second && step < closest_step)
+		closest_step = step; 
+	return (closest_step);
 }
 
 int	ft_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 {
 	t_vector3			closest_point;
 	t_vector3			t_mult_dirvec;
+	double				step;
 	int					color;
 	t_vector3			orient;
-	double				size;
-	t_pair_double_int	pair;
 
 	color = data->figures->square->color;
-	orient = data->figures->square->orient;
-	size = data->figures->square->size;
-	pair = _trace_square(data, dirvec, steprange);
-	if (!pair.second)
+	orient = data->figures->square->orient; 
+	step = _trace_square(data, dirvec, steprange);
+	if (isinf(step))
 		return (COLOR_BACKGROUND);
-	t_mult_dirvec = cmultvec3(pair.first, dirvec);
+	t_mult_dirvec = cmultvec3(step, dirvec);
 	closest_point = sumvec3(&data->cam->center, &t_mult_dirvec);
 	
-	/* TODO add hit square point detection */
-
 	t_vector3	rand_vec;
 	t_vector3	sq_vec[4];
 	t_vector3	vertices[4];
@@ -168,29 +166,34 @@ int	ft_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	i = 0;
 	while (i < 4)
 	{
-		sq_vec[i] = cmultvec3(size, &sq_vec[i]);
-		/* this is not sum of vectors, but sum of vector with point */
-		/* due to the fact we have P1 - P0 + P0 = P1 -- the top-left vertex of square etc. */
+		sq_vec[i] = cmultvec3(data->figures->square->size * pow (2, -0.5),
+						&sq_vec[i]);
 		vertices[i] = sumvec3(&sq_vec[i], &data->figures->square->center);
 		++i;
 	}
 
-	/* double	lcheck; */
-	/* double	rcheck; */
+	t_vector3	phit_p1_vec = diffvec3(&vertices[0], &closest_point);
+	t_vector3	phit_p2_vec = diffvec3(&vertices[1], &closest_point);
+	t_vector3	phit_p3_vec = diffvec3(&vertices[2], &closest_point);
+	t_vector3	phit_p4_vec = diffvec3(&vertices[3], &closest_point);
 
-	/* t_vector3	hitp1vec = diffvec3(&closest_point, &vertices[0]); */
-	/* t_vector3	p1p2vec = diffvec3(&vertices[1], &vertices[0]); */
-	/* t_vector3	p2p3vec = diffvec3(&vertices[2], &vertices[1]); */
+	t_vector3	cross1vec = cross3(&phit_p1_vec, &phit_p2_vec);
+	t_vector3	cross2vec = cross3(&phit_p2_vec, &phit_p3_vec);
+	t_vector3	cross3vec = cross3(&phit_p3_vec, &phit_p4_vec);
+	t_vector3	cross4vec = cross3(&phit_p4_vec, &phit_p1_vec);
 
-	/* lcheck = dot3(&hitp1vec, &p1p2vec) / size; */
-	/* rcheck = dot3(&hitp1vec, &p2p3vec) / size; */
-	/* if (lcheck >= 0 && lcheck <= 1 && rcheck >= 0 && rcheck <= 1) */
-	/* { */
-	/* 	printf("lcheck: %f, rcheck: %f\n", lcheck, rcheck); */
-	/* } */	
-	color = light(data, &closest_point, &orient, color);
-	return (color);
-	/* return (COLOR_BACKGROUND); */
+	double	check1 = dot3(&cross1vec, &orient); 
+	double	check2 = dot3(&cross2vec, &orient); 
+	double	check3 = dot3(&cross3vec, &orient); 
+	double	check4 = dot3(&cross4vec, &orient); 
+
+	if ((check1 > 0 && check2 > 0 && check3 > 0 && check4 > 0) ||
+		(check1 < 0 && check2 < 0 && check3 < 0 && check4 < 0))
+	{
+		color = light(data, &closest_point, &orient, color);
+		return (color);
+	}
+	return (COLOR_BACKGROUND);
 }
 
 int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)

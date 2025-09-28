@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:13:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/04 22:39:51 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/06 00:04:08 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ static int	_diffuse_light(t_light *light,
 	t_vector3	lightvec;
 	
 	lightvec = diffvec3(&light->center, point);
-	dot = fmax(0.0, dot3(orient, &lightvec));
+	dot = dot3(orient, &lightvec);
+	if (dot3(orient, &lightvec) < 0.0)
+		dot = -1.0 * dot;
 	denom = hypotvec3(&lightvec) * hypotvec3(orient);
 	return (_calc_diffuse_light(light, scolor, dot / denom));
 }
