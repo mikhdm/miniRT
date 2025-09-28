@@ -97,15 +97,19 @@ OBJS = $(SRCS:.c=.o)
 
 DEPS = $(SRCS:.c=.d)
 
-all: $(NAME)
+all: libft mlx $(NAME)
 
 -include $(DEPS)
 
 $(NAME): $(OBJS)
-	$(MAKE) -C $(MLX_DIR) all
-	$(MAKE) -C $(LIBFT_DIR) all
 	cp $(MLX_DIR)/libmlx.dylib .
 	$(CC) $(CFLAGS) -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(OBJS) -o $(NAME)
+
+libft:
+	$(MAKE) -C $(LIBFT_DIR) all
+
+mlx:
+	$(MAKE) -C $(MLX_DIR) all
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
