@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/29 02:49:26 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/30 04:27:24 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,13 @@ int	ft_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	/* 	return (0x0); */
 
 	/* square condition */
-	t_vector3 plane_vec = diffvec3(&closest_point, &data->figures->plane->center);
-	double plane_vec_length = hypotvec3(&plane_vec);
-	double side = 12.0;
-	if (plane_vec_length*(side/2) > pow(2, 0.5) * side)
-		return (0x0);
+	/* t_vector3 plane_vec = diffvec3(&closest_point, &data->figures->plane->center); */
+	/* double plane_vec_length = hypotvec3(&plane_vec); */
+	/* double side = 12.0; */
+	/* if (plane_vec_length*(side/2) > pow(2, 0.5) * side) */
+	/* 	return (0x0); */
 
-	double intensity = light(data, &closest_point, &data->figures->plane->orient);
-	color = blendargb(color, cmultargb(data->light->color, intensity));
+	color = light(data, &closest_point, &data->figures->plane->orient, color);
 	return (color);
 }
 
@@ -128,9 +127,6 @@ int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	orient = calc_sphere_orient(&closest_point, data->figures->sphere);
 
 	int color = data->figures->sphere->color;
-	// TODO
-	// take intensity * pointlight color + ambient intensity * ambient light color
-	double intensity = light(data, &closest_point, &orient);
-	color = blendargb(color, cmultargb(data->light->color, intensity));
+	color = light(data, &closest_point, &orient, color);
 	return (color);
 }

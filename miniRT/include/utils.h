@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:42:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 21:14:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/30 04:21:27 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 #include "canvas.h"
 #include "linop.h"
 
-typedef struct	t_pair_double
+typedef struct s_pair_double
 {
 	double		first;
 	double		second;
-}				t_pair_double;
+}	t_pair_double;
+
+typedef struct s_pair_double_int
+{
+	double	first;
+	int		second;
+}	t_pair_double_int;
 
 t_pair_double	calc_quad_equation(double a, double b, double c);
 t_vector3		calc_sphere_orient(t_vector3 *point, t_sphere *sphere);

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 17:33:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 23:22:59 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/30 04:22:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct	s_light
 * with orientation vector orient.
 *
 */
-double	light(t_data *data,
-			t_vector3 *point, t_vector3 *orient);
+int light(t_data *data,
+		t_vector3 *point, t_vector3 *orient, int const scolor);
 
 #endif

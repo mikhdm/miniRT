@@ -6,10 +6,11 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 03:46:12 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/28 23:40:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/30 04:23:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "color.h"
 #include <math.h>
 
 int a_component(int argb)
@@ -37,7 +38,12 @@ int argb_color(int a, int r, int g, int b)
 	return(a << 24 | r << 16 | g << 8 | b);
 }
 
-int	blendargb(int argb_left, int argb_right)
+double	linear_color(int color)
+{
+	return pow(color, 2.2);
+}
+
+int	addargb(int argb_left, int argb_right)
 {
 	int	a;
 	int	r;
@@ -51,6 +57,21 @@ int	blendargb(int argb_left, int argb_right)
 	return (argb_color(a, r, g, b));
 }
 
+int	multargb(int argb_left, int argb_right)
+{
+	int	a;
+	int	r;
+	int	g;
+	int	b;
+
+	a = (a_component(argb_left) * a_component(argb_right)) / 255;
+	r = (r_component(argb_left) * r_component(argb_right)) / 255;
+	g = (g_component(argb_left) * g_component(argb_right)) / 255;
+	b = (b_component(argb_left) * b_component(argb_right)) / 255;
+	return (argb_color(a, r, g, b));
+}
+
+
 int	cmultargb(int argb, double const value)
 {
 	int	a;
@@ -62,5 +83,33 @@ int	cmultargb(int argb, double const value)
 	r = r_component(argb) * value;
 	g = g_component(argb) * value;
 	b = b_component(argb) * value;
+	return (argb_color(a, r, g, b));
+}
+
+int	linargb(int argb)
+{
+	int	a;
+	int	r;
+	int	g;
+	int	b;
+
+	a = pow(a_component(argb) / 255.0, GAMMA_COEF) * 255;
+	r = pow(r_component(argb) / 255.0, GAMMA_COEF) * 255;
+	g = pow(g_component(argb) / 255.0, GAMMA_COEF) * 255;
+	b = pow(b_component(argb) / 255.0, GAMMA_COEF) * 255;
+	return (argb_color(a, r, g, b));
+}
+
+int	gammargb(int argb)
+{
+	int	a;
+	int	r;
+	int	g;
+	int	b;
+
+	a = pow(a_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255;
+	r = pow(r_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255;
+	g = pow(g_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255;
+	b = pow(b_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255;
 	return (argb_color(a, r, g, b));
 }

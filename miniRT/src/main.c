@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/29 02:54:27 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/30 04:37:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,9 +178,9 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
 	
-	ambience = (t_ambience) {.intensity = 0.1, .color = 0xd1d1d1};
-	lights = (t_light) {.brightness = 0.9, .color = 0xffffff,
-		.center = (t_vector3) {.x = 0, .y = 20, .z = 1},
+	ambience = (t_ambience) {.intensity = 0.2, .color = 0xcc0000};
+	lights = (t_light) {.brightness = 0.8, .color = 0xffaa00,
+		.center = (t_vector3) {.x = 0, .y = 20, .z = -5},
 		.next = NULL
 	};
 
@@ -196,7 +196,7 @@ int main(void)
 						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 10},
 						.next = NULL};
 
-	sphere = (t_sphere) {.color = 0x0000ff,
+	sphere = (t_sphere) {.color = 0xffff00,
 						.diameter = 5,
 						.center = (t_vector3) {.x = 0, .y = 0, .z = 15},
 						.next = &sphere2};
@@ -240,8 +240,8 @@ int main(void)
 	calc_viewport_test(&data);
 	/* END TEST */
 
-	(void) render_plane(&data, &stepsrange);
-	(void) render_sphere;
+	(void) render_plane;
+	(void) render_sphere(&data, &stepsrange);
 
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	ft_bind_hooks(&data);
