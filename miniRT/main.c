@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/03 15:07:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:41:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int main(int argc, char **argv)
 		init(data, FALSE);
 		render(data, data->cam, &range);
 		screenshot(data, "screenshot.bmp");
+		cleanup(data);
 	}
 	else
 	{

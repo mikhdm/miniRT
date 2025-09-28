@@ -12,7 +12,7 @@
  * data which are more than 1 byte size is stored in little-endian.
  *
  */
-static void set_bitmapfileheader(t_data *data, unsigned char header[14])
+static void	set_bitmapfileheader(t_data *data, unsigned char header[14])
 {
 	int                 size;
 	const unsigned      offset = 54;
@@ -28,7 +28,7 @@ static void set_bitmapfileheader(t_data *data, unsigned char header[14])
 	header[10] = offset;
 }
 
-static void set_bitmapinfoheader(t_data *data, unsigned char header[40])
+static void	set_bitmapinfoheader(t_data *data, unsigned char header[40])
 {
 	ft_memset(header, 0, 40);
 	header[0] = 40;
@@ -44,7 +44,7 @@ static void set_bitmapinfoheader(t_data *data, unsigned char header[40])
 	header[14] = data->bpp;
 }
 
-static void put_image(t_data *data, int fd)
+static void	put_image(t_data *data, int fd)
 {
 	ssize_t         i;
 	ssize_t         j;
@@ -53,7 +53,7 @@ static void put_image(t_data *data, int fd)
 	unsigned char   *line;
 
 	nbytes = data->screen->width * (data->bpp / 8);
-	if(!alloca_to((void*)&line, nbytes))
+	if(!alloca_to((void **)&line, nbytes))
 	{
 		close(fd);
 		exit(ENOMEM);
@@ -77,32 +77,23 @@ static void put_image(t_data *data, int fd)
 	free(line);
 }
 
-static void put(t_data *data,
+static void	put(t_data *data,
 				unsigned char *fileheader,
 				unsigned char *infoheader,
 				char const *filename)
 {
-	int     fd;
-	ssize_t status;
+	int		fd;
+	ssize_t	status;
 
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	if (fd == -1)
-	{
-		ft_perror(ERROR_ERRNO);
-		exit(errno);
-	}
+		ft_pexitfree(ERROR_ERRNO, errno, data);
 	status = write(fd, fileheader, 14);
 	if (status == -1)
-	{
-		ft_perror(ERROR_ERRNO);
-		exit(errno);
-	}
+		ft_pexitfree(ERROR_ERRNO, errno, data);
 	status = write(fd, infoheader, 40);
 	if (status == -1)
-	{
-		ft_perror(ERROR_ERRNO);
-		exit(errno);
-	}
+		ft_pexitfree(ERROR_ERRNO, errno, data);
 	put_image(data, fd);
 	close(fd);
 }
