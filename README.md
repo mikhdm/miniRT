@@ -74,9 +74,13 @@ cmake -B build # build here refers to the outputfolder.
 cmake --build build -j4 # or do make -C build -j4
 ```
 
+Makefile has predefined `mlx` target to wrap those commands above to install MLX42.
+
+
 ### How to build?
 
-- `make` or `make all` - Build the binary.
+- `make` or `make all` - Build the binary and all necessary dependencies.
+- `make mlx` - Build MLX42 library (requires `git` and `cmake`).
 - `make clean` - Remove object and dependencies (-MMD) files.
 - `make fclean` - Run `make clean` as well as remove the main target binary. 
 - `make re` - Run `make fclean` and `make all`.
