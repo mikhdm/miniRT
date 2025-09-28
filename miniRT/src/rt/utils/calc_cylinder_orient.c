@@ -1,7 +1,6 @@
 #include "canvas.h"
 #include "linop.h"
 #include "utils.h"
-#include <stdio.h>
 
 /*
 *

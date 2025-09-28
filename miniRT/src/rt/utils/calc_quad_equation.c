@@ -6,12 +6,26 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 01:11:03 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/23 16:54:32 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 04:43:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include "libft.h"
 #include "utils.h"
+
+static t_pair_double	calc_discriminant_zero(double a, double b, double c)
+{
+	t_pair_double values;
+
+	values = (t_pair_double) {.first = INFINITY, .second = INFINITY};
+	if (ft_fequal(a, 0) && !ft_fequal(b, 0))
+		values.first = -c / b;
+	else
+		values.first = -0.5 * b / a;
+	values.second = values.first;
+	return (values);
+}
 
 t_pair_double	calc_quad_equation(double a, double b, double c)
 {
@@ -20,15 +34,12 @@ t_pair_double	calc_quad_equation(double a, double b, double c)
 	double			q;
 	
 	values = (t_pair_double) {.first = INFINITY, .second = INFINITY};
-	discriminant = fma(b, b, -4 * a * c);
-	if (discriminant < 0)
+	discriminant = b * b - 4 * a * c;
+	if (ft_flt(discriminant, 0))
 		return (values);
-	else if (discriminant == 0)
-	{
-		values.first = -0.5 * b / a; 
-		values.second = values.first;
-	}
-	else if (discriminant > 0)
+	else if (ft_fequal(discriminant, 0))
+		values = calc_discriminant_zero(a, b, c);
+	else if (ft_fgt(discriminant, 0))
 	{
 		if (b > 0)
 			q = -0.5 * (b + sqrt(discriminant));

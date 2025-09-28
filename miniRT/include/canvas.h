@@ -143,7 +143,7 @@ typedef	struct s_data
 /*
 *
 * putpixel - function which put color defined by color param
-* into canvas pointed by x and y. Convertation from canvas to screen is done
+* into canvas pointed by x and y. Converting from canvas to screen is done
 * automatically.
 *
 */
