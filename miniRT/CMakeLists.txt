@@ -60,12 +60,10 @@ src/parsing/serializers/helpers/lst_figure_append.c
 src/parsing/serializers/helpers/serialize_cy_rgb.c
 src/parsing/serializers/helpers/serialize_sq_rgb.c
 src/parsing/serializers/helpers/serialize_pl_rgb.c
-src/parsing/validate.c
 src/parsing/validators/valid_rgb.c
 src/parsing/validators/valid_orient.c
 src/parsing/validators/valid_point3.c
 src/screenshot.c
-src/tests.c
 main.c)
 
 add_library(ft STATIC

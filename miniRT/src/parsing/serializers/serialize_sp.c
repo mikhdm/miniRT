@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:02:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 07:40:41 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:38:37 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include <math.h>
 #include <errno.h>
 
-static void	set_color(t_data *data, char **strs, char **strs_rgb,
-						 t_sphere **sphere)
+static	void	set_color(t_data *data, char **strs, char **strs_rgb,
+					t_sphere **sphere)
 {
-	int		argb;
+	int	argb;
 
 	argb = COLOR_BACKGROUND;
 	if (!serialize_rgb(strs_rgb, &argb))
@@ -34,8 +34,8 @@ static void	set_color(t_data *data, char **strs, char **strs_rgb,
 	strs_rgb = NULL;
 }
 
-static void	set_point(t_data *data, char **strs, char **strs_point,
-						 t_sphere **sphere)
+static	void	set_point(t_data *data, char **strs, char **strs_point,
+					t_sphere **sphere)
 {
 	if (!serialize_point(strs_point, &(*sphere)->center))
 	{
@@ -46,7 +46,7 @@ static void	set_point(t_data *data, char **strs, char **strs_point,
 	strs_point = NULL;
 }
 
-static void	set_figure(t_data *data, char **strs, t_sphere **sphere)
+static	void	set_figure(t_data *data, char **strs, t_sphere **sphere)
 {
 	t_figure	*figure;
 
@@ -62,7 +62,7 @@ static void	set_figure(t_data *data, char **strs, t_sphere **sphere)
 	lst_figure_append(&data->figures, figure);
 }
 
-static void set_sphere(t_data *data, char **strs, t_sphere *sphere)
+static	void	set_sphere(t_data *data, char **strs, t_sphere *sphere)
 {
 	char		**strs_point;
 	char		**strs_rgb;
@@ -84,7 +84,7 @@ static void set_sphere(t_data *data, char **strs, t_sphere *sphere)
 	set_color(data, strs, strs_rgb, &sphere);
 }
 
-t_data  *serialize_sp(t_data *data, char const *line, char **strs)
+t_data	*serialize_sp(t_data *data, char const *line, char **strs)
 {
 	size_t		strslen;
 	t_sphere	*sphere;

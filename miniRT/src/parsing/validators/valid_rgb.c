@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 21:44:44 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 22:00:17 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:34:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@
  */
 short	valid_rgb(const char **strs_rgb, size_t strslen, int *argb)
 {
-	const char *str;
-	size_t 		i;
-	int 		r;
-	int 		g;
-	int 		b;
+	const char	*str = NULL;
+	size_t		i;
+	int			r;
+	int			g;
+	int			b;
 
-	str = NULL;
 	i = 0;
 	while (i < strslen)
 	{

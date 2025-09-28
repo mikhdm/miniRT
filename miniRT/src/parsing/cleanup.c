@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:11:13 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 05:34:29 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:24:53 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx.h"
 #include <unistd.h>
 
-static void	clean_lights(t_data *data)
+static	void	clean_lights(t_data *data)
 {
 	t_light	*curr;
 	t_light	*freeable;
@@ -29,7 +29,7 @@ static void	clean_lights(t_data *data)
 	}
 }
 
-static void clean_cameras(t_data *data)
+static	void	clean_cameras(t_data *data)
 {
 	t_camera	*curr;
 	t_camera	*freeable;
@@ -45,7 +45,7 @@ static void clean_cameras(t_data *data)
 	}
 }
 
-static void clean_figures(t_data *data)
+static	void	clean_figures(t_data *data)
 {
 	t_figure	*curr;
 	t_figure	*freeable;
@@ -61,7 +61,7 @@ static void clean_figures(t_data *data)
 	}
 }
 
-void cleanup(t_data *data)
+void	cleanup(t_data *data)
 {
 	if (!data)
 		return ;

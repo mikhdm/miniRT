@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:03:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 21:17:45 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:37:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ static void	set_figure(t_data *data, char **strs, t_square **square)
 	lst_figure_append(&data->figures, figure);
 }
 
-static void set_square(t_data *data, char **strs, t_square *square)
+static	void	set_square(t_data *data, char **strs, t_square *square)
 {
 	char	**strs_point;
-	char 	**strs_orient;
-	char 	**strs_rgb;
+	char	**strs_orient;
+	char	**strs_rgb;
 
 	set_figure(data, strs, &square);
 	strs_point = ft_split_any(strs[1], ',');
@@ -84,7 +84,7 @@ static void set_square(t_data *data, char **strs, t_square *square)
 	serialize_sq_rgb(data, strs, strs_rgb, &square);
 }
 
-t_data  *serialize_sq(t_data *data, char const *line, char **strs)
+t_data	*serialize_sq(t_data *data, char const *line, char **strs)
 {
 	size_t		strslen;
 	t_square	*square;

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:00:25 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 21:15:36 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:41:25 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include <math.h>
 #include <errno.h>
 
-static void	set_orient(t_data *data, char **strs, char **strs_orient,
-						 t_cylinder **cylinder)
+static	void	set_orient(t_data *data, char **strs, char **strs_orient,
+					t_cylinder **cylinder)
 {
 	if (!serialize_orient(strs_orient, &(*cylinder)->orient))
 	{
@@ -30,8 +30,8 @@ static void	set_orient(t_data *data, char **strs, char **strs_orient,
 	strs_orient = NULL;
 }
 
-static void	set_point(t_data *data, char **strs, char **strs_point,
-						 t_cylinder **cylinder)
+static	void	set_point(t_data *data, char **strs, char **strs_point,
+					t_cylinder **cylinder)
 {
 	if (!serialize_point(strs_point, &(*cylinder)->center))
 	{
@@ -42,7 +42,7 @@ static void	set_point(t_data *data, char **strs, char **strs_point,
 	strs_point = NULL;
 }
 
-static void	set_figure(t_data *data, char **strs, t_cylinder **cylinder)
+static	void	set_figure(t_data *data, char **strs, t_cylinder **cylinder)
 {
 	t_figure	*figure;
 
@@ -58,11 +58,11 @@ static void	set_figure(t_data *data, char **strs, t_cylinder **cylinder)
 	lst_figure_append(&data->figures, figure);
 }
 
-static void set_cylinder(t_data *data, char **strs, t_cylinder *cylinder)
+static	void	set_cylinder(t_data *data, char **strs, t_cylinder *cylinder)
 {
-	char **strs_point;
-	char **strs_orient;
-	char **strs_rgb;
+	char	**strs_point;
+	char	**strs_orient;
+	char	**strs_rgb;
 
 	set_figure(data, strs, &cylinder);
 	strs_point = ft_split_any(strs[1], ',');
@@ -87,7 +87,7 @@ static void set_cylinder(t_data *data, char **strs, t_cylinder *cylinder)
 	serialize_cy_rgb(data, strs, strs_rgb, &cylinder);
 }
 
-t_data  *serialize_cy(t_data *data, char const *line, char **strs)
+t_data	*serialize_cy(t_data *data, char const *line, char **strs)
 {
 	size_t		strslen;
 	t_cylinder	*cylinder;

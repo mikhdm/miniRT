@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 21:51:44 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 19:30:08 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:36:41 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "linop.h"
 #include <stddef.h>
 
-short	valid_orient(const char **strs_orient, size_t strslen, t_vector3 *orient)
+short	valid_orient(const char **strs_orient, size_t strslen,
+			t_vector3 *orient)
 {
 	const char	*str;
 	size_t		i;

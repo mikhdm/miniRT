@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 05:41:52 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:59:34 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 #include <math.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include <stdio.h>
 
-static short    check(int argc, char **argv)
+static	short	check(int argc, char **argv)
 {
-	char *p;
+	char	*p;
 
 	p = NULL;
 	if (argc == 1)
@@ -34,13 +33,11 @@ static short    check(int argc, char **argv)
 	if (argc == 2 || argc == 3)
 	{
 		p = ft_strrchr(argv[1], '.');
-		if ((!p) || (ft_strncmp(p, ".rt", ft_max((ssize_t)ft_strlen(p), 3)) != 0))
+		if (!p || (ft_strcmp(p, ".rt") != 0))
 			ft_pexit(ERROR_SCENE_EXT_WRONG, 255);
 		if (argc == 3)
 		{
-			if (ft_strncmp(argv[2], ARGV_SCREENSHOT,
-			               ft_max((ssize_t) ft_strlen(argv[2]),
-			                    (ssize_t) ft_strlen(ARGV_SCREENSHOT))) != 0)
+			if (ft_strcmp(argv[2], ARGV_SCREENSHOT) != 0)
 				ft_pexit(ERROR_SCREENSHOT_PARAM_WRONG, 255);
 			else
 				return (DO_SCREENSHOT);
@@ -51,11 +48,11 @@ static short    check(int argc, char **argv)
 	exit(255);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data          *data;
-	t_pair_double   range;
-	short           status;
+	t_data			*data;
+	t_pair_double	range;
+	short			status;
 
 	data = NULL;
 	status = check(argc, argv);

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:01:58 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 16:08:21 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:39:42 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include <stddef.h>
 #include <errno.h>
 
-static void	set_orient(t_data *data, char **strs, char **strs_orient,
-						  t_plane **plane)
+static	void	set_orient(t_data *data, char **strs, char **strs_orient,
+					t_plane **plane)
 {
 	if (!serialize_orient(strs_orient, &(*plane)->orient))
 	{
@@ -30,8 +30,8 @@ static void	set_orient(t_data *data, char **strs, char **strs_orient,
 	strs_orient = NULL;
 }
 
-static void	set_point(t_data *data, char **strs, char **strs_point,
-						 t_plane **plane)
+static	void	set_point(t_data *data, char **strs, char **strs_point,
+					t_plane **plane)
 {
 	if (!serialize_point(strs_point, &(*plane)->center))
 	{
@@ -42,7 +42,7 @@ static void	set_point(t_data *data, char **strs, char **strs_point,
 	strs_point = NULL;
 }
 
-static void	set_figure(t_data *data, char **strs, t_plane **plane)
+static	void	set_figure(t_data *data, char **strs, t_plane **plane)
 {
 	t_figure	*figure;
 
@@ -58,11 +58,11 @@ static void	set_figure(t_data *data, char **strs, t_plane **plane)
 	lst_figure_append(&data->figures, figure);
 }
 
-static void	set_plane(t_data *data, char **strs, t_plane *plane)
+static	void	set_plane(t_data *data, char **strs, t_plane *plane)
 {
 	char	**strs_point;
-	char 	**strs_orient;
-	char 	**strs_rgb;
+	char	**strs_orient;
+	char	**strs_rgb;
 
 	set_figure(data, strs, &plane);
 	strs_point = ft_split_any(strs[1], ',');

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 06:36:02 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 06:37:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:41:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 t_vector3	*serialize_point(char **strs_point, t_vector3 *point)
 {
-	size_t strslen;
+	size_t	strslen;
 
 	strslen = ft_strslen(strs_point);
 	if (strslen != 3)

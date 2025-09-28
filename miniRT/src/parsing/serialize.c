@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:28:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 03:20:49 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:30:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ short	one_of(char *value, char const **strs)
 static t_data	*loop(t_data *data, char *line,
 					const char **label, const t_serialize_func func[])
 {
-	short 	set;
+	short	set;
 	char	**strs;
 
 	strs = NULL;
@@ -55,12 +55,12 @@ static t_data	*loop(t_data *data, char *line,
 	return (data);
 }
 
-t_data  *serialize(t_data *data, char *line)
+t_data	*serialize(t_data *data, char *line)
 {
-	const char *label[] = {LABEL_RESOLUTION, LABEL_AMBIENCE, LABEL_CAMERA,
-						   LABEL_LIGHT, LABEL_SPHERE, LABEL_CYLINDER,
-						   LABEL_PLANE, LABEL_TRIANGLE, LABEL_SQUARE, NULL};
-	const t_serialize_func func[] = {&serialize_r, &serialize_a, &serialize_c,
+	const char				*label[] = {LABEL_RESOLUTION, LABEL_AMBIENCE,
+						LABEL_CAMERA, LABEL_LIGHT, LABEL_SPHERE, LABEL_CYLINDER,
+						LABEL_PLANE, LABEL_TRIANGLE, LABEL_SQUARE, NULL};
+	const t_serialize_func	func[] = {&serialize_r, &serialize_a, &serialize_c,
 								  &serialize_l, &serialize_sp, &serialize_cy,
 								  &serialize_pl, &serialize_tr, &serialize_sq,
 								  NULL};
@@ -69,12 +69,11 @@ t_data  *serialize(t_data *data, char *line)
 	return (data);
 }
 
-void serialize_error(int code, int status, t_data *data, char **strs)
+void	serialize_error(int code, int status, t_data *data, char **strs)
 {
 	if (strs)
 		ft_strsfree(strs);
 	if (data)
 		ft_pexitfree(code, status, data);
 	ft_pexit(code, status);
-
 }

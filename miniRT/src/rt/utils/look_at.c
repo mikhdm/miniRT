@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 07:09:35 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 00:20:44 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:27:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "parsing/errors.h"
 #include <stdlib.h>
 #include <errno.h>
-#include <stdio.h>
 
 static void	free_rot_matrix(double **rot, size_t sz)
 {

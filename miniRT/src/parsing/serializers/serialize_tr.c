@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:03:43 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 17:38:58 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:37:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	set_figure(t_data *data, char **strs, t_triangle **triangle)
 static void	set_triangle(t_data *data, char **strs, t_triangle *triangle)
 {
 	char	**strs_rgb;
-	char 	**strs_point;
+	char	**strs_point;
 
 	set_figure(data, strs, &triangle);
 	strs_point = ft_split_any(strs[1], ',');
@@ -85,7 +85,7 @@ static void	set_triangle(t_data *data, char **strs, t_triangle *triangle)
 	set_color(data, strs, strs_rgb, &triangle);
 }
 
-t_data  *serialize_tr(t_data *data, char const *line, char **strs)
+t_data	*serialize_tr(t_data *data, char const *line, char **strs)
 {
 	size_t		strslen;
 	t_triangle	*triangle;

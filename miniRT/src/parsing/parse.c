@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 23:44:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 03:29:58 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:27:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static t_data	*refine(t_data *data)
 
 static t_data	*initialize(t_data *data)
 {
-	*data = (t_data) {.bpp = 0, .length = 0, .endian = 0,
-				   .addr = NULL, .mlx = NULL, .window = NULL,
-				   .img = NULL, .fildes = -1, .screen = NULL,
-				   .cam = NULL, .light = NULL, .ambience = NULL,
-				   .figures = NULL};
+	*data = (t_data){.bpp = 0, .length = 0, .endian = 0,
+		.addr = NULL, .mlx = NULL, .window = NULL,
+		.img = NULL, .fildes = -1, .screen = NULL,
+		.cam = NULL, .light = NULL, .ambience = NULL,
+		.figures = NULL};
 	return (data);
 }
 
@@ -91,10 +91,10 @@ static t_data	*build(int const fildes)
 	return (data);
 }
 
-t_data *parse(char const *path)
+t_data	*parse(char const *path)
 {
-	int     fd;
-	t_data  *data;
+	int		fd;
+	t_data	*data;
 
 	data = NULL;
 	if (!path)

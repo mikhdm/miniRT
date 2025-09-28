@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 17:12:30 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/30 21:21:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:35:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
  */
 short	valid_point3(const char **strs_point, size_t strslen, t_vector3 *point)
 {
-	const char *str;
-	size_t 		i;
+	const char	*str;
+	size_t		i;
 
 	str = NULL;
 	i = 0;

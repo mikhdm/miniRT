@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:01:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 06:37:42 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:40:38 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stddef.h>
 #include <errno.h>
 
-static void	lst_light_append(t_light **head, t_light *new)
+static	void	lst_light_append(t_light **head, t_light *new)
 {
 	t_light	**curr;
 
@@ -33,10 +33,10 @@ static void	lst_light_append(t_light **head, t_light *new)
 	}
 }
 
-static void	set_color(t_data *data, char **strs, char **strs_rgb,
-					  t_light **light)
+static	void	set_color(t_data *data, char **strs, char **strs_rgb,
+					t_light **light)
 {
-	int		argb;
+	int	argb;
 
 	argb = COLOR_BACKGROUND;
 	if (!serialize_rgb(strs_rgb, &argb))
@@ -49,8 +49,8 @@ static void	set_color(t_data *data, char **strs, char **strs_rgb,
 	strs_rgb = NULL;
 }
 
-static void	set_point(t_data *data, char **strs, char **strs_point,
-					  t_light **light)
+static	void	set_point(t_data *data, char **strs, char **strs_point,
+					t_light **light)
 {
 	if (!serialize_point(strs_point, &(*light)->center))
 	{
@@ -61,10 +61,10 @@ static void	set_point(t_data *data, char **strs, char **strs_point,
 	strs_point = NULL;
 }
 
-static void	set_light(t_data *data, char **strs, t_light *light)
+static	void	set_light(t_data *data, char **strs, t_light *light)
 {
-	char **strs_point;
-	char **strs_color;
+	char	**strs_point;
+	char	**strs_color;
 
 	lst_light_append(&(data->light), light);
 	strs_point = ft_split_any(strs[1], ',');

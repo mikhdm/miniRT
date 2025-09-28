@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 14:07:57 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 05:31:03 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:31:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "canvas.h"
 # include "linop.h"
 # include <stddef.h>
-
-t_data	*validate(t_data *data);
 
 short	valid_rgb(const char **strs_rgb, size_t strslen, int *argb);
 short	valid_orient(const char **strs_orient, size_t strslen,
