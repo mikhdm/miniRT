@@ -62,7 +62,7 @@ static int	diffuse_light(t_data *data,
 		}
 		light_vec = normvec3(&light_vec);
 		orient_norm = normvec3(orient);
-		dot = fabs(dot3(&orient_norm, &light_vec));
+		dot = fmax(0.0, dot3(&orient_norm, &light_vec));
 		color = addargb(color, calc_diffuse_light(curr, scolor, dot));
 		curr = curr->next;
 	}
