@@ -150,6 +150,7 @@ void		putpixel(t_data *data, int x, int y, int color);
 *
 */
 t_viewport	calc_viewport(t_data *data, t_camera *cam);
-t_vector3	conv_to_viewport(t_data *data, t_camera *cam, int x, int y);
+t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y);
+t_vector3   look_at(t_camera *cam, t_vector3 *dirvec);
 
 #endif

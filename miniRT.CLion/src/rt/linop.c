@@ -16,12 +16,14 @@
 
 double	dot3(t_vector3 *left, t_vector3 *right)
 {
-	double product;
+	double  x;
+	double  y;
+	double  z;
 
-	product = (left->x*right->x
-				+ left->y*right->y
-				+ left->z*right->z);
-	return (product);
+	x = fma(left->x, right->x, 0);
+	y = fma(left->y, right->y, 0);
+	z = fma(left->z, right->z, 0);
+	return (x + y + z);
 }
 
 t_vector3	cross3(t_vector3 *left, t_vector3 *right)
@@ -61,7 +63,6 @@ t_vector3	cmultvec3(double const value, t_vector3 *vector)
 {
 	t_vector3 cmultvec;
 
-	cmultvec = (t_vector3) {.x = .0, .y = .0, .z = .0};
 	cmultvec.x = value * vector->x;
 	cmultvec.y = value * vector->y;
 	cmultvec.z = value * vector->z;
@@ -70,7 +71,7 @@ t_vector3	cmultvec3(double const value, t_vector3 *vector)
 
 double		hypotvec3(t_vector3 *vec)
 {
-	return (sqrt(dot3(vec, vec)));
+	return (pow(dot3(vec, vec), 0.5));
 }
 
 t_vector3	normvec3(t_vector3 *vec)
@@ -93,4 +94,14 @@ short int	iscollinvec3(t_vector3 *left, t_vector3 *right)
 		fabs(crossvec.z - 0.0) < 1e-14)
 		collinear = TRUE;
 	return (collinear);
+}
+
+t_vector3   mat33multvec3(double *mat[3], t_vector3 *vec)
+{
+	double      tmp[3];
+
+	tmp[0] = vec->x * mat[0][0] + vec->y * mat[1][0] + vec->z * mat[2][0];
+	tmp[1] = vec->x * mat[0][1] + vec->y * mat[1][1] + vec->z * mat[1][2];
+	tmp[2] = vec->x * mat[2][0] + vec->y * mat[2][1] + vec->z * mat[2][2];
+	return ((t_vector3) {.x = tmp[0], .y = tmp[1], .z = tmp[2]});
 }

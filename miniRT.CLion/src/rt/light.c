@@ -16,15 +16,15 @@
 #include "rayop.h"
 #include <math.h>
 
-static int calc_diffuse_light(t_light *spot,
-							  int const scolor, double const dot)
+static int calc_diffuse_light(t_light *spot, t_vector3 *orient,
+							  t_vector3 *lightvec, int const scolor)
 {
-	int 		color;
+	int         color;
 
 	color = linargb(spot->color);
 	color = cmultargb(color, spot->brightness);
 	color = multargb(color, scolor);
-	color = cmultargb(color, dot);
+	color = cmultargb(color, fmax(0.0, dot3(orient, lightvec)));
 	return (color);
 }
 
@@ -41,29 +41,27 @@ static int	diffuse_light(t_data *data,
 						 t_vector3 *point, t_vector3 *orient, int const scolor)
 {
 	int                     color;
-	double		            dot;
-	t_vector3               light_vec;
-	t_vector3               orient_norm;
-	t_pair_double           range;
-	t_pair_figure_double    pair_figure_t;
 	t_light                 *curr;
+	t_vector3               p_shadow;
+	t_pair_figure_double    pair_figure_t;
+	t_vector3               lightvec;
 
-	range = (t_pair_double){.first = 1e-5, .second = 1};
 	curr = data->light;
 	color = COLOR_BLACK;
+	p_shadow = cmultvec3(1e-3, orient);
+	p_shadow = sumvec3(point, &p_shadow);
 	while (curr)
 	{
-		light_vec = diffvec3(&curr->center, point);
-		pair_figure_t = intersect_closest(data, point, &light_vec, &range);
+		lightvec = diffvec3(&curr->center, point);
+		pair_figure_t = intersect_closest(data, &p_shadow, &lightvec,
+									&((t_pair_double){1e-3, 1}));
 		if (pair_figure_t.figure)
 		{
 			curr = curr->next;
 			continue ;
 		}
-		light_vec = normvec3(&light_vec);
-		orient_norm = normvec3(orient);
-		dot = fmax(0.0, dot3(&orient_norm, &light_vec));
-		color = addargb(color, calc_diffuse_light(curr, scolor, dot));
+		lightvec = normvec3(&lightvec);
+		color = addargb(color, calc_diffuse_light(curr, orient, &lightvec, scolor));
 		curr = curr->next;
 	}
 	return (color);

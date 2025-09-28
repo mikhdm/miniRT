@@ -17,7 +17,7 @@
 #include "linop.h"
 #include "utils.h"
 
-void	render(t_data *data, t_vector3 *p0, t_pair_double *range);
+void	render(t_data *data, t_camera *cam, t_pair_double *range);
 
 #endif
 

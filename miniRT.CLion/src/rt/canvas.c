@@ -14,48 +14,82 @@
 #include "linop.h"
 #include "utils.h"
 #include <math.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <stdio.h>
 
 t_viewport	calc_viewport(t_data *data, t_camera *cam)
 {
-	double		fov_radian;
 	t_viewport	viewport;
 
-	fov_radian = deg_to_rad(cam->fov * pow (2, -1));
-	viewport.width = 2 * tan(fov_radian);
+	viewport.width = 2 * tan(deg_to_rad(cam->fov * pow (2, -1)));
 	viewport.height = data->screen->height * (viewport.width * pow(data->screen->width, -1));
 	return (viewport);
 }
 
-t_vector3	conv_to_viewport(t_data *data, t_camera *cam, int x, int y)
+/*
+*
+* canvas_to_viewport - camera position independent ray direction calc.
+*
+*/
+t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y)
 {
 	t_vector3	dirvec;
+	double scale;
 
+	scale = tan(deg_to_rad(cam->fov * pow (2, -1)));
 	dirvec.x = x * (cam->viewport->width * pow(data->screen->width, -1));
 	dirvec.y = y * (cam->viewport->height * pow(data->screen->height, -1));
-	dirvec.z = 1.0;
-	return (dirvec);
+
+	// TODO fix fisheye
+	dirvec.z = (cam->viewport->height * pow(2, -1) * pow(scale, -1));
+	return (normvec3(&dirvec));
 }
 
-t_vector3   look_at(t_data *data, t_camera *cam)
+static void set_rot_mat(double *rot[3], t_vector3 *right, t_vector3 *up, t_camera *cam)
+{
+	rot[0][0] = right->x;
+	rot[1][0] = right->y;
+	rot[2][0] = right->z;
+	rot[0][1] = up->x;
+	rot[1][1] = up->y;
+	rot[2][1] = up->z;
+	rot[0][2] = cam->orient.x;
+	rot[1][2] = cam->orient.y;
+	rot[2][2] = cam->orient.z;
+}
+
+t_vector3   look_at(t_camera *cam, t_vector3 *dirvec)
 {
 	t_vector3   tmp;
 	t_vector3   right;
 	t_vector3   up;
-	double      rot[4][4];
+	t_vector3   rot_dirvec;
+	double      *rot[3];
 
+	rot[0] = malloc(sizeof(double) * 3);
+	rot[1] = malloc(sizeof(double) * 3);
+	rot[2] = malloc(sizeof(double) * 3);
+	if (!(rot[0] && rot[1] && rot[2]))
+		exit(ENOMEM);
 	tmp = (t_vector3){.x = 0, .y = 100, .z = 0};
-	if (iscollinvec3(&tmp, &cam->orient))
-		tmp = (t_vector3){.x = 0, .y = 0, .z = -100};
-	right = cross3(&cam->orient, &tmp);
-	up = cross3(&right, &cam->orient);
-	rot[0] = {cam->orient.x, cam->orient.y, cam->orient.z, 0};
-//	rot[0] = (rot[4][4]){
-//		{cam->orient.x, cam->orient.y, cam->orient.z, 0},
-//		{cam->orient.x, cam->orient.y, cam->orient.z, 0},
-//		{cam->orient.x, cam->orient.y, cam->orient.z, 0},
-//		{cam->center.x, cam->center.y, cam->center.z, 1}
-//	};
-
+	if (!iscollinvec3(&tmp, &cam->orient))
+	{
+		right = cross3(&tmp, &cam->orient);
+		up = cross3(&cam->orient, &right);
+	}
+	else
+	{
+		tmp = (t_vector3){.x = -100, .y = 0, .z = 0};
+		up = cross3(&tmp, &cam->orient);
+		right = cross3(&up, &cam->orient);
+	}
+	up = normvec3(&up);
+	right = normvec3(&right);
+	set_rot_mat(rot, &right, &up, cam);
+	rot_dirvec = mat33multvec3(rot, dirvec);
+	free(*rot);
+	return (rot_dirvec);
 }
 
 void	putpixel(t_data *data, int x, int y, int color)

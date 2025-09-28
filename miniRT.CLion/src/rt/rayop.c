@@ -59,7 +59,7 @@ t_pair_figure_double    intersect_closest(t_data *data, t_vector3 *p0,
 		}
 		curr = curr->next;
 	}
-	if (isinf(pair_figure_t.t))
+	if (!pair_figure_t.figure)
 		return ((t_pair_figure_double) {.figure = NULL, .t = INFINITY});
 	return (pair_figure_t);
 }

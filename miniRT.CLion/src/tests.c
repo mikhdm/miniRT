@@ -132,7 +132,7 @@ static void test_is_polygon_point(t_data *data, t_square *square)
 	t_vector3   *vertices;
 
 	vertices = gen_square_vertices(square);
-	dirvec = conv_to_viewport(data, data->cam, -1000, 300);
+	dirvec = canvas_to_viewport(data, data->cam, -1000, 300);
 	t = intersect_square(&data->cam->center, &dirvec, square);
 	p_hit = calc_ray_point(&data->cam->center, &dirvec, t);
 	printf ("is polygon point test: (%f, %f, %f) ? %d, ",

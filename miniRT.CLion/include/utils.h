@@ -48,4 +48,5 @@ t_vector3       calc_cylinder_orient(t_cylinder *cylinder,
 									 t_vector3 *dirvec,
 									 double t);
 t_vector3       calc_faceted_orient(t_vector3 *dirvec, t_vector3 *orient);
+
 #endif

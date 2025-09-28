@@ -65,10 +65,10 @@ int main(void)
 
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
 
-	cam = (t_camera) {.center = (t_vector3) {.x = 0, .y = 0, .z = -5},
-					.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
+	cam = (t_camera) {.center = (t_vector3) {.x = 5, .y = 10, .z = 20},
+					.orient = (t_vector3) {.x = -1/sqrt(6), .y = -1/sqrt(6), .z = -2/sqrt(6)},
 					.viewport = NULL,
-					.fov = 60};
+					.fov = 90};
 
 	data = (t_data) {.mlx = NULL, .window = NULL, .img = NULL,
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
@@ -82,7 +82,7 @@ int main(void)
 					.center = (t_vector3) {.x = -1.5, .y = 2, .z = 3},
 					.next = &light3};
 	lights = (t_light) {.brightness = 1.0, .color = 0xffffff,
-		.center = (t_vector3) {.x = -4, .y = 1, .z = 0},
+		.center = (t_vector3) {.x = 0, .y = 10, .z = 5},
 		.next = NULL};
 
 	data.light = &lights;
@@ -96,13 +96,13 @@ int main(void)
 						.center = (t_vector3) {.x = -1, .y = -0.5, .z = 11}};
 
 	sphere = (t_sphere) {
-						.color = 0x00ffff,
-						.diameter = 3,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 4}};
+						.color = 0xcc0000,
+						.diameter = 6,
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 2}};
 
 	plane = (t_plane) {
 						.color = 0xffff00,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 0},
+						.center = (t_vector3) {.x = 0, .y = -1, .z = 0},
 						.orient = (t_vector3) {.x = 0,
 												.y = 1,
 												.z = 0}};
@@ -113,17 +113,17 @@ int main(void)
 						.orient = (t_vector3) {.x = 0, .y = -1, .z = 0},
 						.size = 10.0};
 	cylinder = (t_cylinder) {
-						.color = 0xffff00,
-						.center = (t_vector3) {.x = 1, .y = 0, .z = 4},
-						.orient = (t_vector3) {.x = 0, .y = 1, .z = 0},
-						.diameter = 2,
+						.color = 0xff0000,
+						.center = (t_vector3) {.x = 0, .y = 2, .z = 5},
+						.orient = (t_vector3) {.x = 1, .y = 0, .z = 0},
+						.diameter = 3,
 						.height = 7.0};
 
 	cylinder2 = (t_cylinder) {
 			.color = 0x00ffff,
-			.center = (t_vector3) {.x = -2, .y = 0, .z = 4},
-			.orient = (t_vector3) {.x = 0, .y = -1, .z = 0},
-			.diameter = 2,
+			.center = (t_vector3) {.x = 0, .y = 1, .z = 5},
+			.orient = (t_vector3) {.x = 0, .y = 1, .z = 0},
+			.diameter = 3,
 			.height = 7.0};
 
 	triangle = (t_triangle) {
@@ -133,18 +133,18 @@ int main(void)
 						.z = (t_vector3) {.x = 0, .y = 10, .z = 20}
 	};
 
-	figure6 = (t_figure) {.content = &cylinder, .next = NULL, .label = LABEL_CYLINDER};
-    figure5 = (t_figure) {.content = &cylinder2, .next = &figure6, .label = LABEL_CYLINDER};
+	figure6 = (t_figure) {.content = &cylinder2, .next = NULL, .label = LABEL_CYLINDER};
+    figure5 = (t_figure) {.content = &plane, .next = &figure6, .label = LABEL_PLANE};
 //	figure4 = (t_figure) {.content = &triangle, .next = &figure5, .label = LABEL_TRIANGLE};
 //	figure3 = (t_figure) {.content = &plane, .next = &figure4, .label = LABEL_PLANE};
 //
 //	figure2 = (t_figure) {.content = &sphere2, .next = &figure3, .label = LABEL_SPHERE};
-	figure1 = (t_figure) {.content = &sphere, .next = &figure5, .label=LABEL_SPHERE};
+	figure1 = (t_figure) {.content = &cylinder, .next = &figure5, .label=LABEL_CYLINDER};
 	data.figures = &figure1;
 	init(&data);
 	test(&data);
 	range = (t_pair_double) {.first = 1.0, .second = INFINITY};
-	render(&data, &data.cam->center, &range);
+	render(&data, data.cam, &range);
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	bind_hooks(&data);
 	mlx_loop(data.mlx);

@@ -29,9 +29,10 @@ double		dot3(t_vector3 *left, t_vector3 *right);
 double		hypotvec3(t_vector3 *vec);
 t_vector3	diffvec3(t_vector3 *left, t_vector3 *right);
 t_vector3	sumvec3(t_vector3 *left, t_vector3 *right);
-t_vector3	cmultvec3(double const value, t_vector3 *vector);
+t_vector3	cmultvec3(double value, t_vector3 *vector);
 t_vector3	normvec3(t_vector3 *vec);
 t_vector3	cross3(t_vector3 *left, t_vector3 *right);
 short int	iscollinvec3(t_vector3 *left, t_vector3 *right);
+t_vector3   mat33multvec3(double *mat[3], t_vector3 *vec);
 
 #endif 
