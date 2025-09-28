@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:03:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 03:16:03 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 20:37:04 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,11 @@ static	void	set_square(t_data *data, char **strs, t_square *square)
 	serialize_sq_rgb(data, strs, strs_rgb, &square);
 }
 
-t_data	*serialize_sq(t_data *data, char const *line, char **strs)
+t_data	*serialize_sq(t_data *data, char **strs)
 {
 	size_t		strslen;
 	t_square	*square;
 
-	line += ft_strlen(LABEL_SQUARE);
-	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_SQUARE, 255, data, strs);
 	strslen = ft_strslen(strs);
 	if (strslen != 5)
 		serialize_error(ERROR_SYNTAX_SQUARE, 255, data, strs);

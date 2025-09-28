@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:58:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 05:08:58 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 20:36:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,10 @@ static void	set_ambience(t_data *data, char **strs)
 	ft_strsfree(strsrgb);
 }
 
-t_data	*serialize_a(t_data *data, char const *line, char **strs)
+t_data	*serialize_a(t_data *data, char **strs)
 {
 	t_ambience	*ambience;
 
-	line += ft_strlen(LABEL_AMBIENCE);
-	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
 	if (data->ambience)
 		serialize_error(ERROR_DUPLICATE_AMBIENCE, 255, data, strs);
 	if (!alloca_to((void **)&ambience, sizeof(t_ambience)))

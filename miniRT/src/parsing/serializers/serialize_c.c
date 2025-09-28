@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:59:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 21:41:31 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 20:36:20 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,11 @@ static void	set_camera(t_data *data, char **strs, t_camera *cam)
 		serialize_error(ERROR_INVALID_CAMERA, 255, data, strs);
 }
 
-t_data	*serialize_c(t_data *data, char const *line, char **strs)
+t_data	*serialize_c(t_data *data, char **strs)
 {
 	size_t		strslen;
 	t_camera	*cam;
 
-	line += ft_strlen(LABEL_CAMERA);
-	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
 	strslen = ft_strslen(strs);
 	if (strslen != 4)
 		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);

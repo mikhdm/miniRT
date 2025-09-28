@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:01:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/06 17:21:21 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 20:36:33 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,11 @@ static	void	set_light(t_data *data, char **strs, t_light *light)
 	set_color(data, strs, strs_color, &light);
 }
 
-t_data	*serialize_l(t_data *data, char const *line, char **strs)
+t_data	*serialize_l(t_data *data, char **strs)
 {
 	size_t	strslen;
 	t_light	*light;
 
-	line += ft_strlen(LABEL_LIGHT);
-	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_LIGHT, 255, data, strs);
 	strslen = ft_strslen(strs);
 	if (strslen != 4)
 		serialize_error(ERROR_SYNTAX_LIGHT, 255, data, strs);

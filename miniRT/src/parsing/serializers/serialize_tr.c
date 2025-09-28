@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:03:43 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 03:16:51 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 20:37:11 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,11 @@ static void	set_triangle(t_data *data, char **strs, t_triangle *triangle)
 	set_color(data, strs, strs_rgb, &triangle);
 }
 
-t_data	*serialize_tr(t_data *data, char const *line, char **strs)
+t_data	*serialize_tr(t_data *data, char **strs)
 {
 	size_t		strslen;
 	t_triangle	*triangle;
 
-	line += ft_strlen(LABEL_TRIANGLE);
-	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_TRIANGLE, 255, data, strs);
 	strslen = ft_strslen(strs);
 	if (strslen != 5)
 		serialize_error(ERROR_SYNTAX_TRIANGLE, 255, data, strs);

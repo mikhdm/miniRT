@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:00:25 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 03:15:34 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 20:36:26 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,11 @@ static	void	set_cylinder(t_data *data, char **strs, t_cylinder *cylinder)
 	serialize_cy_rgb(data, strs, strs_rgb, &cylinder);
 }
 
-t_data	*serialize_cy(t_data *data, char const *line, char **strs)
+t_data	*serialize_cy(t_data *data, char **strs)
 {
 	size_t		strslen;
 	t_cylinder	*cylinder;
 
-	line += ft_strlen(LABEL_CYLINDER);
-	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_CYLINDER, 255, data, strs);
 	strslen = ft_strslen(strs);
 	if (strslen != 6)
 		serialize_error(ERROR_SYNTAX_CYLINDER, 255, data, strs);

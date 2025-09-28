@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:35:30 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 03:52:10 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 20:36:48 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	set_screen(t_data *data, char **strs, int *w, int *h)
 		.title = WINDOW_TITLE};
 }
 
-t_data	*serialize_r(t_data *data, char const *line, char **strs)
+t_data	*serialize_r(t_data *data, char **strs)
 {
 	size_t		max_w;
 	size_t		max_h;
@@ -56,9 +56,6 @@ t_data	*serialize_r(t_data *data, char const *line, char **strs)
 
 	max_w = 0;
 	max_h = 0;
-	line += ft_strlen(LABEL_RESOLUTION);
-	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_RESOLUTION, 255, data, strs);
 	if (data->screen)
 		serialize_error(ERROR_DUPLICATE_RESOLUTION, 255, data, strs);
 	mlx_get_screen_size(data->mlx, (int *)&max_w, (int *)&max_h);

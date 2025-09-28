@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:01:58 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 00:39:42 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 20:36:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,11 @@ static	void	set_plane(t_data *data, char **strs, t_plane *plane)
 	serialize_pl_rgb(data, strs, strs_rgb, &plane);
 }
 
-t_data	*serialize_pl(t_data *data, char const *line, char **strs)
+t_data	*serialize_pl(t_data *data, char **strs)
 {
 	size_t	strslen;
 	t_plane	*plane;
 
-	line += ft_strlen(LABEL_PLANE);
-	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_PLANE, 255, data, strs);
 	strslen = ft_strslen(strs);
 	if (strslen != 4)
 		serialize_error(ERROR_SYNTAX_PLANE, 255, data, strs);
