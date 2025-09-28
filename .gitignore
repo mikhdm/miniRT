@@ -1,3 +1,6 @@
 .DS_Store
 .idea/
 *.swiftsourceinfo
+compile_commands.json
+build/
+.cache/
