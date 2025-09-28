@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:28:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 16:43:35 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 17:08:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ double	intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane)
 	t_vector3	co;
 	double		denom;
 
-	/* t_vector3	ori = calc_faceted_orient(dirvec, &plane->orient); */
-
 	t = INFINITY;
 	co = diffvec3(&plane->center, p0);
 	denom = dot3(dirvec, &plane->orient);
 	if (ft_fgt(fabs(denom), 0))
 	{
 		t = dot3(&co, &plane->orient) / denom;
+		if (ft_fgt(t, 0) || ft_fequal(t, 0))
+			return (t);
 	}
-	return (t);
+	return (INFINITY);
 }
 
 double	intersect_square(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
