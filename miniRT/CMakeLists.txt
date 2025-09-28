@@ -37,8 +37,8 @@ src/rt/shade.c
 src/parsing/parse.c
 src/parsing/errors.c
 src/parsing/serialize.c
-src/parsing/serializers/serialize_R.c
-src/parsing/serializers/serialize_A.c
+src/parsing/serializers/serialize_r.c
+src/parsing/serializers/serialize_a.c
 src/parsing/serializers/serialize_c.c
 src/parsing/serializers/serialize_l.c
 src/parsing/serializers/serialize_sp.c

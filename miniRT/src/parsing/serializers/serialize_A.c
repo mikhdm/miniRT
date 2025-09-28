@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serialize_A.c                                      :+:      :+:    :+:   */
+/*   serialize_a.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:58:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 23:34:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/29 19:39:34 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,51 @@
 #include "parsing/validate.h"
 #include <errno.h>
 
-static void set_ambience(t_data *data, char **strs)
+static void	set_color(t_data *data, char **strs, char **strsrgb,
+				t_ambience **ambience)
+{
+	size_t	strslen;
+	int		argb;
+
+	argb = COLOR_BACKGROUND;
+	strslen = ft_strslen(strsrgb);
+	if (strslen != 3)
+	{
+		ft_strsfree(strsrgb);
+		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
+	}
+	if (!valid_rgb((const char **)strsrgb, strslen, &argb))
+	{
+		ft_strsfree(strsrgb);
+		serialize_error(ERROR_INVALID_AMBIENCE, 255, data, strs);
+	}
+	(*ambience)->color = argb;
+	ft_strsfree(strsrgb);
+}
+
+static void	set_ambience(t_data *data, char **strs, t_ambience **ambience)
 {
 	size_t		strslen;
-	t_ambience	*ambience;
-	char 		**strs_rgb;
-	int			argb;
+	char		**strsrgb;
 
-	ambience = NULL;
-	strs_rgb = NULL;
-	argb = COLOR_BACKGROUND;
+	strsrgb = NULL;
 	strslen = ft_strslen(strs);
 	if (strslen != 2)
 		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
-	if (!alloca_to((void**)&ambience, sizeof(t_ambience)))
-		serialize_error(ERROR_ERRNO, errno, data, strs);
 	if (!ft_isfloatable(strs[0]))
 		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
-	ambience->intensity = ft_atof(strs[0]);
-
-	/* TODO fix split */
-	strs_rgb = ft_split(strs[1], ',');
-
-	if (!strs_rgb)
+	(*ambience)->intensity = ft_atof(strs[0]);
+	strsrgb = ft_split_any(strs[1], ',');
+	if (!strsrgb)
 		serialize_error(ERROR_ERRNO, errno, data, strs);
-	if (ft_strslen(strs_rgb) != 3)
-		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
-	if (!valid_rgb((const char **)strs_rgb, strslen, &argb))
-		serialize_error(ERROR_INVALID_AMBIENCE, 255, data, strs);
-	ambience->color = argb;
-	data->ambience = ambience;
+	set_color(data, strs, strsrgb, &ambience);
+	data->ambience = *ambience;
 }
 
-t_data  *serialize_A(t_data *data, char const *line)
+t_data	*serialize_a(t_data *data, char const *line)
 {
-	char	**strs;
+	char		**strs;
+	t_ambience	*ambience;
 
 	line += ft_strlen(LABEL_AMBIENCE);
 	if (!ft_isspace(*line))
@@ -60,6 +70,8 @@ t_data  *serialize_A(t_data *data, char const *line)
 	strs = ft_splitf(line, &ft_isspace);
 	if (!strs)
 		serialize_error(ERROR_ERRNO, errno, data, NULL);
-	set_ambience(data, strs);
+	if (!alloca_to((void **)&ambience, sizeof(t_ambience)))
+		serialize_error(ERROR_ERRNO, errno, data, strs);
+	set_ambience(data, strs, &ambience);
 	return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/24 02:04:50 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/29 19:35:51 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 
 # define DO_SCREENSHOT      1
 # define DO_WINDOW          2
+
+# define WINDOW_TITLE		"miniRT"
 
 typedef struct		s_screen
 {
