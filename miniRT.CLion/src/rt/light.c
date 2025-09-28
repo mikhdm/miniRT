@@ -48,11 +48,11 @@ static int	diffuse_light(t_data *data,
 
 	curr = data->light;
 	color = COLOR_BLACK;
-	p_shadow = cmultvec3(1e-3, orient);
-	p_shadow = sumvec3(point, &p_shadow);
 	while (curr)
 	{
 		lightvec = diffvec3(&curr->center, point);
+		p_shadow = cmultvec3(1e-3, &lightvec);
+		p_shadow = sumvec3(point, &p_shadow);
 		pair_figure_t = intersect_closest(data, &p_shadow, &lightvec,
 									&((t_pair_double){1e-3, 1}));
 		if (pair_figure_t.figure)

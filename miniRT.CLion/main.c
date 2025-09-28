@@ -22,6 +22,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void test(t_data *data);
+
 static void init(t_data *data, short windowed)
 {
 	data->mlx = mlx_init();
@@ -53,6 +55,8 @@ static short    processing(int argc, char **argv)
 		return (DO_WINDOW);
 	if (argc == 3)
 	{
+		// TODO check error on incorrect file path first
+		// TODO check .rt extension
 		if (ft_strncmp(argv[2], ARGV_SCREENSHOT,
 		               imax((ssize_t)ft_strlen(argv[2]),
 		                    (ssize_t)ft_strlen(ARGV_SCREENSHOT))) != 0)
@@ -80,13 +84,14 @@ int main(int argc, char **argv)
 		init(data, FALSE);
 		render(data, data->cam,
 		 &((t_pair_double){.first = 1.0, .second = INFINITY}));
-		screenshot(data);
+		screenshot(data, "screenshot.bmp");
 		cleanup(data);
 	}
 	else
 	{
 		data = parse(argv[1]);
 		init(data, TRUE);
+		test(data);
 		render(data, data->cam,
 		       &((t_pair_double){.first = 1.0, .second = INFINITY}));
 		mlx_put_image_to_window(data->mlx,

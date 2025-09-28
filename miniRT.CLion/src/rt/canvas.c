@@ -41,7 +41,7 @@ t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y)
 	dirvec.y = y * (cam->viewport->height * pow(data->screen->height, -1));
 
 	// TODO fix fisheye
-	dirvec.z = (cam->viewport->height * pow(2, -1) * pow(scale, -1));
+	dirvec.z = cam->viewport->height * pow(2, -1) * pow(scale, -1);
 	return (normvec3(&dirvec));
 }
 

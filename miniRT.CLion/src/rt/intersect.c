@@ -25,7 +25,7 @@ double	intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane)
 	t = INFINITY;
 	co = diffvec3(&plane->center, p0);
 	denom = dot3(dirvec, &plane->orient);
-	if (fabs(denom) > 1e-6)
+	if (fabs(denom)> 1e-6)
 		t = dot3(&co, &plane->orient) / denom;
 	return (t);
 }
