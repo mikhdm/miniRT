@@ -56,7 +56,12 @@ This project depends on [MLX42](https://github.com/codam-coding-college/MLX42.gi
 ##### GLFW
 
 To install glfw on MacOS run:
-```brew install glfw``` or use precompiled binaries from the [official website](https://www.glfw.org/download.html).
+
+```bash
+brew install glfw
+``` 
+
+or use precompiled binaries from the [official website](https://www.glfw.org/download.html).
 
 ##### MLX42
 
