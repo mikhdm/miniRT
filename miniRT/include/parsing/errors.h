@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 02:50:53 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/30 16:13:23 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/02 23:23:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef enum e_error
 	ERROR_INVALID_PLANE,
 	ERROR_INVALID_TRIANGLE,
 	ERROR_INVALID_SQUARE,
+	ERROR_EMPTY_RESOLUTION,
+	ERROR_EMPTY_AMBIENCE,
+	ERROR_EMPTY_CAMERA,
 }   t_error;
 
 void    ft_perror(int code);

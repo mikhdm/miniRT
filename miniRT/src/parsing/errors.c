@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:14:04 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 18:14:15 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/02 23:23:43 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -54,6 +54,9 @@ void    ft_perror(int code)
 						    "Invalid plane values",
 						    "Invalid triangle values",
 						    "Invalid square values",
+							"Resolution is not set",
+							"Ambience is not set,
+							"Cameras are not set",
 						    };
 	int	size;
 

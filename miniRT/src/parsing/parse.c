@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 23:44:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 18:37:30 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/02 23:23:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ static t_data	*refine(t_data *data)
 		*(cam->viewport) = calc_viewport(data, cam);
 		cam = cam->next;
 	}
+	if (!data->screen)
+		ft_pexitfree(ERROR_EMPTY_RESOLUTION, 255, data);
+	if (!data->ambience)
+		ft_pexitfree(ERROR_EMPTY_AMBIENCE, 255, data);
+	if (!data->cam)
+		ft_pexitfree(ERROR_EMPTY_CAMERA, 255, data);
 	return (data);
 }
 
