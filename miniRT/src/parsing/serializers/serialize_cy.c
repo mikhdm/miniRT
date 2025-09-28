@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:00:25 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 15:23:37 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/01 20:14:30 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,6 @@
 #include "parsing/errors.h"
 #include "parsing/serialize.h"
 #include <errno.h>
-
-static void	set_color(t_data *data, char **strs, char **strs_rgb,
-						 t_cylinder **cylinder)
-{
-	int		argb;
-
-	argb = COLOR_BACKGROUND;
-	if (!serialize_rgb(strs_rgb, &argb))
-	{
-		ft_strsfree(strs_rgb);
-		serialize_error(ERROR_INVALID_CYLINDER, 255, data, strs);
-	}
-	(*cylinder)->color = argb;
-	ft_strsfree(strs_rgb);
-	strs_rgb = NULL;
-}
 
 static void	set_orient(t_data *data, char **strs, char **strs_orient,
 						 t_cylinder **cylinder)
@@ -67,7 +51,7 @@ static void	set_figure(t_data *data, char **strs, t_cylinder **cylinder)
 		free(*cylinder);
 		serialize_error(ERROR_ERRNO, errno, data, strs);
 	}
-	figure->label = LABEL_SPHERE;
+	figure->label = LABEL_CYLINDER;
 	figure->next = NULL;
 	figure->content = *cylinder;
 	lst_figure_append(&data->figures, figure);
@@ -97,7 +81,7 @@ static void set_cylinder(t_data *data, char **strs, t_cylinder *cylinder)
 	strs_rgb = ft_split_any(strs[5], ',');
 	if (!strs_rgb)
 		serialize_error(ERROR_ERRNO, errno, data, strs);
-	set_color(data, strs, strs_rgb, &cylinder);
+	serialize_cy_rgb(data, strs, strs_rgb, &cylinder);
 }
 
 t_data  *serialize_cy(t_data *data, char const *line, char **strs)

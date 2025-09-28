@@ -20,9 +20,9 @@ double	dot3(t_vector3 *left, t_vector3 *right)
 	double  y;
 	double  z;
 
-	x = fma(left->x, right->x, 0);
-	y = fma(left->y, right->y, 0);
-	z = fma(left->z, right->z, 0);
+	x = left->x * right->x;
+	y = left->y * right->y;
+	z = left->z * right->z;
 	return (x + y + z);
 }
 
