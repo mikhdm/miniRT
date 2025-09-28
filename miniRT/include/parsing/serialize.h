@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:29:05 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 20:15:10 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/02 16:06:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void		serialize_cy_rgb(t_data *data, char **strs, char **strs_rgb,
 						 t_cylinder **cylinder);
 void		serialize_sq_rgb(t_data *data, char **strs, char **strs_rgb,
 						 t_square **square);
+void		serialize_pl_rgb(t_data *data, char **strs, char **strs_rgb,
+					   t_plane **plane);
 
 #endif

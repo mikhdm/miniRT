@@ -36,6 +36,7 @@ src/rt/render.c
 src/rt/shade.c
 src/parsing/parse.c
 src/parsing/errors.c
+src/parsing/cleanup.c
 src/parsing/serialize.c
 src/parsing/serializers/serialize_r.c
 src/parsing/serializers/serialize_a.c
@@ -52,6 +53,7 @@ src/parsing/serializers/helpers/serialize_rgb.c
 src/parsing/serializers/helpers/lst_figure_append.c
 src/parsing/serializers/helpers/serialize_cy_rgb.c
 src/parsing/serializers/helpers/serialize_sq_rgb.c
+src/parsing/serializers/helpers/serialize_pl_rgb.c
 src/parsing/validate.c
 src/parsing/validators/valid_rgb.c
 src/parsing/validators/valid_orient.c

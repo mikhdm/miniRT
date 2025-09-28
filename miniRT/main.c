@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/30 16:13:23 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/02 18:13:03 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "screenshot.h"
 #include "parsing/errors.h"
 #include "parsing/parse.h"
+#include "parsing/cleanup.h"
 #include "libft.h"
 #include "mlx.h"
 #include <math.h>
@@ -65,7 +66,6 @@ int main(int argc, char **argv)
 		init(data, FALSE);
 		render(data, data->cam, &range);
 		screenshot(data, "screenshot.bmp");
-		cleanup(data);
 	}
 	else
 	{
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 		mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
 		bind_hooks(data);
 		mlx_loop(data->mlx);
-		/* TODO cleanup */
 	}
+	cleanup(data);
 	return (0);
 }
