@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/27 04:52:16 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/27 12:41:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int main(void)
 	
 	ambience = (t_ambience) {.intensity = 0.2, .color = 0xd1d1d1};
 	lights = (t_light) {.brightness = 0.8, .color = 0xd2d2d2,
-		.center = (t_vector3) {.x = 1, .y = 20, .z = 2},
+		.center = (t_vector3) {.x = 0, .y = 0, .z = 2},
 		.next = NULL
 	};
 
