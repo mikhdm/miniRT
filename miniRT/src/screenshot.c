@@ -75,7 +75,6 @@ static void	put_image_line(t_data *data, int fd, ssize_t i, unsigned char *line)
 	{
 		idx = (i * img->width + j) * data->bpp;
 		step = j * data->bpp; 
-
 		// BMP expects BGRA order
 		line[step + 0] = img->pixels[idx + 2];
 		line[step + 1] = img->pixels[idx + 1];
