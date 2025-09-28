@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 18:01:38 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/14 22:41:36 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 07:06:43 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ static void test_is_polygon_point(t_data *data, t_square *square)
 
 	vertices = gen_square_vertices(square);
 	dirvec = canvas_to_viewport(data, data->cam, -1000, 300);
-	t = intersect_square(&data->cam->center, &dirvec, square);
+	t = intersect_square(data, &data->cam->center, &dirvec, square);
 	p_hit = calc_ray_point(&data->cam->center, &dirvec, t);
 	printf ("is polygon point test: (%f, %f, %f) ? %d, ",
 		 p_hit.x, p_hit.y, p_hit.z,

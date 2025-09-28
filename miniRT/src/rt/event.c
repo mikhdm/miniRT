@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:20:33 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 05:00:05 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 06:50:15 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	hook_keypress(int keycode, t_data *data)
 	{
 		mlx_reset_image(data);
 		render(data, get_cam(data, POS_CAM_NEXT),
-		 &(t_pair_double){.first = 1.0, .second = INFINITY});
+			&(t_pair_double){.first = 1.0, .second = INFINITY});
 		mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
 	}
 	return (keycode);

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 05:14:53 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 07:10:51 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ void		putpixel(t_data *data, int x, int y, int color);
 */
 t_viewport	calc_viewport(t_data *data, t_camera *cam);
 t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y);
-t_vector3	look_at(t_camera *cam, t_vector3 *dirvec);
 void		init(t_data *data, short windowed);
 
 #endif

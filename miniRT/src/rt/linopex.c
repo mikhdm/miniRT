@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 06:17:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 06:19:16 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 06:26:53 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <math.h>
 
-double		hypotvec3(t_vector3 *vec)
+double	hypotvec3(t_vector3 *vec)
 {
 	return (pow(dot3(vec, vec), 0.5));
 }
@@ -34,16 +34,16 @@ short int	iscollinvec3(t_vector3 *left, t_vector3 *right)
 
 	collinear = FALSE;
 	crossvec = cross3(left, right);
-	if (fabs(crossvec.x - 0.0) < 1e-14 &&
-		fabs(crossvec.y - 0.0) < 1e-14 &&
-		fabs(crossvec.z - 0.0) < 1e-14)
+	if (ft_fequal(crossvec.x, 0)
+		&& ft_fequal(crossvec.y, 0)
+		&& ft_fequal(crossvec.z, 0))
 		collinear = TRUE;
 	return (collinear);
 }
 
-t_vector3   mat33multvec3(double *mat[3], t_vector3 *vec)
+t_vector3	mat33multvec3(double *mat[3], t_vector3 *vec)
 {
-	double      tmp[3];
+	double	tmp[3];
 
 	tmp[0] = vec->x * mat[0][0] + vec->y * mat[1][0] + vec->z * mat[2][0];
 	tmp[1] = vec->x * mat[0][1] + vec->y * mat[1][1] + vec->z * mat[1][2];

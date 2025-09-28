@@ -27,8 +27,10 @@ src/rt/utils/isdir.c
 src/rt/utils/skip_spaces_str.c
 src/rt/utils/mlx_reset_image.c
 src/rt/utils/get_cam.c
+src/rt/utils/look_at.c
 src/rt/canvas.c
 src/rt/color.c
+src/rt/colorex.c
 src/rt/event.c
 src/rt/intersect.c
 src/rt/light.c

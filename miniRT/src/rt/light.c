@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:13:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 18:47:30 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 06:41:19 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "rayop.h"
 #include <math.h>
 
-static int calc_diffuse_light(t_light *spot, t_vector3 *orient,
-							  t_vector3 *lightvec, int const scolor)
+static int	calc_d_light(t_light *spot, t_vector3 *orient,
+				t_vector3 *lightvec, int const scolor)
 {
-	int         color;
+	int	color;
 
 	color = linargb(spot->color);
 	color = cmultargb(color, spot->brightness);
@@ -28,7 +28,7 @@ static int calc_diffuse_light(t_light *spot, t_vector3 *orient,
 	return (color);
 }
 
-static int    ambient_light(t_data *data, int const scolor)
+static int	ambient_light(t_data *data, int const scolor)
 {
 	int	acolor;
 
@@ -38,41 +38,41 @@ static int    ambient_light(t_data *data, int const scolor)
 }
 
 static int	diffuse_light(t_data *data,
-						 t_vector3 *point, t_vector3 *orient, int const scolor)
+				t_vector3 *point, t_vector3 *orient, int const scolor)
 {
-	int                     color;
-	t_light                 *curr;
-	t_vector3               p_shadow;
-	t_pair_figure_double    pair_figure_t;
-	t_vector3               lightvec;
+	int						color;
+	t_light					*curr;
+	t_vector3				p_shadow;
+	t_pair_figure_double	pair_figure_t;
+	t_vector3				lightvec;
 
 	curr = data->light;
 	color = COLOR_BLACK;
 	while (curr)
 	{
 		lightvec = diffvec3(&curr->center, point);
-		p_shadow = cmultvec3(1e-4, &lightvec);
+		p_shadow = cmultvec3(1e-3, &lightvec);
 		p_shadow = sumvec3(point, &p_shadow);
 		pair_figure_t = intersect_closest(data, &p_shadow, &lightvec,
-									&((t_pair_double){1e-4, 1}));
+				&((t_pair_double){1e-3, 1}));
 		if (pair_figure_t.figure)
 		{
 			curr = curr->next;
 			continue ;
 		}
 		lightvec = normvec3(&lightvec);
-		color = addargb(color, calc_diffuse_light(curr, orient, &lightvec, scolor));
+		color = addargb(color, calc_d_light(curr, orient, &lightvec, scolor));
 		curr = curr->next;
 	}
 	return (color);
 }
 
-int light(t_data *data,
+int	light(t_data *data,
 		t_vector3 *point, t_vector3 *orient, int const scolor)
 {
-	int ambient_color;
-	int diffuse_color;
-	int surface_color;
+	int	ambient_color;
+	int	diffuse_color;
+	int	surface_color;
 
 	surface_color = linargb(scolor);
 	ambient_color = ambient_light(data, surface_color);

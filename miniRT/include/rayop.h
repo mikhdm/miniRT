@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:24:38 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 05:19:27 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 07:05:41 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_pair_figure_double	intersect_closest(t_data *data,
 							t_vector3 *p0,
 							t_vector3 *dirvec,
 							t_pair_double *range);
-double					intersect(t_vector3 *p0,
+double					intersect(t_data *data,
+							t_vector3 *p0,
 							t_vector3 *dirvec,
 							t_figure *figure);
 /*

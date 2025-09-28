@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:32:05 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 06:08:10 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 06:55:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render(t_data *data, t_camera *cam, t_pair_double *range)
 		while (x < data->screen->width / 2)
 		{
 			dirvec = canvas_to_viewport(data, cam, x, y);
-			dirvec = look_at(cam, &dirvec);
+			dirvec = look_at(data, cam, &dirvec);
 			color = trace(data, &cam->center, &dirvec, range);
 			putpixel(data, x, y, color);
 			++x;

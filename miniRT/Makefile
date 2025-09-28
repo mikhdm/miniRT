@@ -38,6 +38,7 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
         src/rt/utils/skip_spaces_str.c \
 		src/rt/utils/mlx_reset_image.c \
 		src/rt/utils/get_cam.c \
+		src/rt/utils/look_at.c \
         src/parsing/parse.c \
         src/parsing/errors.c \
         src/parsing/cleanup.c \
@@ -64,6 +65,7 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
         src/parsing/validators/valid_point3.c \
         src/rt/canvas.c \
         src/rt/color.c \
+        src/rt/colorex.c \
         src/rt/event.c \
         src/rt/intersect.c \
         src/rt/light.c \

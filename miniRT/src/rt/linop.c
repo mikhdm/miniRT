@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:31:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 06:21:20 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 06:24:23 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 double	dot3(t_vector3 *left, t_vector3 *right)
 {
-	double  x;
-	double  y;
-	double  z;
+	double	x;
+	double	y;
+	double	z;
 
 	x = left->x * right->x;
 	y = left->y * right->y;
@@ -41,7 +41,7 @@ t_vector3	diffvec3(t_vector3 *left, t_vector3 *right)
 {
 	t_vector3	diffvec;
 
-	diffvec = (t_vector3) {.x = .0, .y = .0, .z = .0};
+	diffvec = (t_vector3){.x = .0, .y = .0, .z = .0};
 	diffvec.x = left->x - right->x;
 	diffvec.y = left->y - right->y;
 	diffvec.z = left->z - right->z;
@@ -52,7 +52,7 @@ t_vector3	sumvec3(t_vector3 *left, t_vector3 *right)
 {
 	t_vector3	sumvec;
 
-	sumvec = (t_vector3) {.x = .0, .y = .0, .z = .0};
+	sumvec = (t_vector3){.x = .0, .y = .0, .z = .0};
 	sumvec.x = left->x + right->x;
 	sumvec.y = left->y + right->y;
 	sumvec.z = left->z + right->z;
@@ -61,7 +61,7 @@ t_vector3	sumvec3(t_vector3 *left, t_vector3 *right)
 
 t_vector3	cmultvec3(double const value, t_vector3 *vector)
 {
-	t_vector3 cmultvec;
+	t_vector3	cmultvec;
 
 	cmultvec.x = value * vector->x;
 	cmultvec.y = value * vector->y;
