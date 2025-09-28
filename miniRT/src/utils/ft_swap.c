@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/18 20:42:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/20 23:33:22 by rmander          ###   ########.fr       */
+/*   Created: 2021/04/20 23:32:37 by rmander           #+#    #+#             */
+/*   Updated: 2021/04/20 23:33:51 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
-
-typedef struct t_pair_double
+void	ft_swap_double(double *left, double *right)
 {
-	double first;
-	double second;
-}	t_pair_double;
+	double tmp;
 
-t_pair_double	calc_quad_equation(double a, double b, double c);
-void			ft_swap_double(double *left, double *right);
-
-#endif
+	tmp = *left;
+	*left = *right;
+	*right = tmp;
+}

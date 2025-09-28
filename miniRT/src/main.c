@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/19 02:36:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 00:33:29 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam};
 	sphere = (t_sphere) {.color = 0xff0000,
-						.diameter = 4,
-						.center = (t_vector3) {.x = 5, .y = 5, .z = 10}};
+						.diameter = 50,
+						.center = (t_vector3) {.x = 150, .y = 50, .z = 10}};
 	ft_init(&meta);
 	
 	/* LOG */
@@ -112,19 +112,20 @@ int main(void)
 	quad_equation_test();
 	/* END TEST */
 	
-	int x = -1 * meta.screen->width / 2;
+	int x = -meta.screen->width / 2;
 	int y;
 	int	color;
-	t_vector3 distvec;
-	t_pair_double stepsrange = {.first = 1, .second = INFINITY};
-	while (x < meta.screen->width / 2 - 1)
+	t_vector3 dirvec;
+	t_pair_double stepsrange;
+
+	stepsrange = (t_pair_double) {.first = 1.0, .second = INFINITY};
+	while (x < (meta.screen->width / 2 - 1))
 	{
-		y = -1 * meta.screen->height / 2;
+		y = -meta.screen->height / 2 + 1;
 		while (y < meta.screen->height / 2)
 		{
-			distvec = ft_conv_to_viewport(&meta, x, y);
-			printf("distvec: (%f, %f, %f)\n", distvec.x, distvec.y, distvec.z);
-			color = ft_trace_sphere(&meta, &distvec, &sphere, &stepsrange); 
+			dirvec = ft_conv_to_viewport(&meta, x, y);
+			color = ft_trace_sphere(&meta, &dirvec, &sphere, &stepsrange); 
 			ft_putpixel(&meta, x, y, color);
 			++y;
 		}

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:29:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/19 02:34:56 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/20 23:50:40 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@
 #include <stdio.h>
 #include <math.h>
 
-
 t_vector3	ft_conv_to_viewport(t_meta *meta, int x, int y)
 {
 	t_vector3	plane;
 	
-	(void) meta;
-	plane = (t_vector3) {.x = .0, .y = .0, .z = .0};
-	plane.x = x * 1.0;
-	plane.y = y * 1.0;
+	/* TODO add FOV dependent logic */
+	plane.x = x * 800 / meta->screen->width;
+	plane.y = y * 600 / meta->screen->height;
 	plane.z = 1.0;
 	return (plane);
 }
