@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:02:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 07:39:01 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/01 07:40:41 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void set_sphere(t_data *data, char **strs, t_sphere *sphere)
 	set_figure(data, strs, &sphere);
 	strs_point = ft_split_any(strs[1], ',');
 	if (!strs_point)
-		serialize_error(ERROR_SYNTAX_SPHERE, 255, data, strs);
+		serialize_error(ERROR_ERRNO, errno, data, strs);
 	set_point(data, strs, strs_point, &sphere);
 	if (!ft_isfloatable(strs[2]))
 		serialize_error(ERROR_SYNTAX_SPHERE, 255, data, strs);
@@ -80,7 +80,7 @@ static void set_sphere(t_data *data, char **strs, t_sphere *sphere)
 		serialize_error(ERROR_INVALID_SPHERE, 255, data, strs);
 	strs_rgb = ft_split_any(strs[3], ',');
 	if (!strs_rgb)
-		serialize_error(ERROR_SYNTAX_SPHERE, 255, data, strs);
+		serialize_error(ERROR_ERRNO, errno, data, strs);
 	set_color(data, strs, strs_rgb, &sphere);
 }
 
