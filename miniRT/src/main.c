@@ -6,12 +6,10 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/23 16:52:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/23 21:38:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <float.h>
 #include <stdio.h>
 #include <math.h>
 #include "mlx.h"
@@ -20,7 +18,6 @@
 #include "ray.h" 
 #include "event.h"
 #include "utils.h"
-
 
 static void	ft_init(t_meta *meta)
 {
@@ -80,7 +77,6 @@ void	quad_equation_test(void)
 }
 /* END TESTFUNC */
 
-
 /* TESTFUNC */
 void	deg_to_rad_test(void)
 {
@@ -100,7 +96,6 @@ void	calc_viewport_test(t_meta *meta)
 	printf("projection plane width = %f, height = %f\n", viewport.width, viewport.height);
 }
 /* END TESTFUNC */
-
 
 int main(void)
 {
