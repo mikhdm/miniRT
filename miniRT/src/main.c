@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/30 04:47:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/01 21:37:20 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static void	render_plane(t_data *data, t_pair_double *stepsrange)
 	int				color;
 	t_vector3		dirvec;
 
-	// TODO check zero inclusion due to canvas coordinate system
 	y = -data->screen->height / 2 + 1;
 	while (y < data->screen->height / 2)
 	{
@@ -92,6 +91,28 @@ static void	render_plane(t_data *data, t_pair_double *stepsrange)
 			++x;
 		}
 		++y;
+	}
+}
+
+static void	render_square(t_data *data, t_pair_double *stepsrange)
+{
+	int				x;
+	int				y;
+	int				color;
+	t_vector3		dirvec;
+
+	y = data->screen->height / 2;
+	while (y > -data->screen->height / 2)
+	{
+		x = -data->screen->width / 2;
+		while (x < data->screen->width / 2)
+		{
+			dirvec = ft_conv_to_viewport(data, x, y);
+			color = ft_trace_square(data, &dirvec, stepsrange);
+			ft_putpixel(data, x, y, color);
+			++x;
+		}
+		--y;
 	}
 }
 
@@ -245,8 +266,7 @@ int main(void)
 	calc_viewport_test(&data);
 	/* END TEST */
 
-	(void) render_plane;
-	(void) render_sphere(&data, &stepsrange);
+	(void) render_plane(&data, &stepsrange);
 
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	ft_bind_hooks(&data);

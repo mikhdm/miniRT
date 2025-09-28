@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/30 05:28:33 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/01 23:39:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,51 +52,78 @@ t_pair_double	ft_intersect_sphere(t_data *data, t_vector3 *dirvec, t_sphere *sph
 	return (values);
 }
 
+/*
+*
+* _trace_plane - calculates t (closest_step) param of hit point.
+*	first -> t value, second - intersected or not;
+*
+*/
+static t_pair_double_int	_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+{
+	t_pair_double_int	pair;
+	double				step;
+
+	pair.first = INFINITY;
+	pair.second = FALSE;
+	step = ft_intersect_plane(data, dirvec, data->figures->plane);
+	if (step >= steprange->first && step <= steprange->second && step < pair.first)
+	{
+		pair.first = step;
+		pair.second = TRUE;
+	}
+	return (pair);
+}
+
 int	ft_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 {
-	double			closest_step;
-	t_vector3		closest_point;
-	t_vector3		cmult_dirvec;
-	double			step;
-	short int		intersected;
-	int				color;
+	t_vector3			closest_point;
+	t_vector3			t_mult_dirvec;
+	int					color;
+	t_pair_double_int	pair;
 
-	closest_step = INFINITY;
-	intersected = FALSE;
-	step = ft_intersect_plane(data, dirvec, data->figures->plane);
-	if (step >= steprange->first && step <= steprange->second
-		&& step < closest_step)
-	{
-		closest_step = step;
-		intersected = TRUE;
-	}
-	if (intersected == FALSE)
-		return (0x0);
-	
 	color = data->figures->plane->color;
-	cmult_dirvec = cmultvec3(closest_step, dirvec);
-	closest_point = sumvec3(&data->cam->center, &cmult_dirvec);
-
-	/* disk condition */
-	/* t_vector3 plane_vec = diffvec3(&closest_point, &data->figures->plane->center); */
-	/* double plane_vec_length = hypotvec3(&plane_vec); */
-	/* double radius = 0.6; */
-	/* if (plane_vec_length > radius * radius) */
-	/* 	return (0x0); */
-
-	/* square condition */
-	double const	side = 10;
-	t_vector3		plane_vec = diffvec3(&closest_point, &data->figures->plane->center);
-	t_vector3		point_bottom = (t_vector3) {
-									.x = data->figures->plane->center.x,
-									.y = data->figures->plane->center.y + side / 2,
-									.z = data->figures->plane->center.z,
-									};
-	/* double side = 12.0; */
-	/* if (plane_vec_length*(side/2) > pow(2, 0.5) * side) */
-	/* 	return (0x0); */
-
+	pair = _trace_plane(data, dirvec, steprange);
+	if (!pair.second)
+		return (COLOR_BACKGROUND);
+	t_mult_dirvec = cmultvec3(pair.first, dirvec);
+	closest_point = sumvec3(&data->cam->center, &t_mult_dirvec);
 	color = light(data, &closest_point, &data->figures->plane->orient, color);
+	return (color);
+}
+
+static t_pair_double_int	_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+{
+	t_pair_double_int	pair;
+	double				step;
+
+	pair.first = INFINITY;
+	pair.second = FALSE;
+	step = ft_intersect_plane(data, dirvec, data->figures->square);
+	if (step >= steprange->first && step <= steprange->second && step < pair.first)
+	{
+		pair.first = step;
+		pair.second = TRUE;
+	}
+	return (pair);
+}
+
+int	ft_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+{
+	t_vector3			closest_point;
+	t_vector3			t_mult_dirvec;
+	int					color;
+	t_pair_double_int	pair;
+
+	color = data->figures->square->color;
+	pair = _trace_square(data, dirvec, steprange);
+	if (!pair.second)
+		return (COLOR_BACKGROUND);
+	t_mult_dirvec = cmultvec3(pair.first, dirvec);
+	closest_point = sumvec3(&data->cam->center, &t_mult_dirvec);
+	
+	/* TODO add hit square point detection*/
+
+	color = light(data, &closest_point, &data->figures->square->orient, color);
 	return (color);
 }
 
@@ -108,6 +135,7 @@ int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	t_vector3		orient;
 	t_pair_double	steps;
 	t_vector3		cmult_dirvec;
+	int				color;
 
 	closest_step = INFINITY;
 	intersected = FALSE;
@@ -131,7 +159,7 @@ int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	closest_point = sumvec3(&data->cam->center, &cmult_dirvec);
 	orient = calc_sphere_orient(&closest_point, data->figures->sphere);
 
-	int color = data->figures->sphere->color;
+	color = data->figures->sphere->color;
 	color = light(data, &closest_point, &orient, color);
 	return (color);
 }

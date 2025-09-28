@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/29 00:14:43 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/01 23:23:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "linop.h"
 #include "light.h"
+
+# define COLOR_BACKGROUND 0x0
 
 typedef struct	s_screen
 {
