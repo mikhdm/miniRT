@@ -6,10 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:38:19 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 17:46:21 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 19:31:41 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "canvas.h"
+#include "rayop.h"
+#include "utils.h"
 
 static int	_trace(t_data *data,
 				t_vector3 *dirvec, t_pair_double *range)
@@ -22,7 +25,6 @@ int	trace_sphere(t_data *data,
 	t_vector3		closest_point;
 	t_vector3		orient;
 	t_pair_double	steps;
-	t_vector3		cmult_dirvec;
 	int				color;
 
 	closest_step = INFINITY;
@@ -43,8 +45,7 @@ int	trace_sphere(t_data *data,
 	if (intersected == FALSE)
 		return (0x0);
 	
-	cmult_dirvec = cmultvec3(closest_step, dirvec);
-	closest_point = sumvec3(&data->cam->center, &cmult_dirvec);
+	closest_point = calc_ray_point(data, dirvec, closest_step); 
 	orient = calc_sphere_orient(&closest_point, data->figures->sphere);
 
 	color = data->figures->sphere->color;
