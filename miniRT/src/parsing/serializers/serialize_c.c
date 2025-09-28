@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:59:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 05:11:33 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/31 07:02:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@
 #include <stddef.h>
 #include <errno.h>
 
-static void lst_cam_append(t_camera *head, t_camera *new)
+static void	lst_cam_append(t_camera **head, t_camera *new)
 {
-	t_camera **curr;
+	t_camera	**curr;
 
-	curr = &head;
+	curr = head;
 	if (!*curr)
 		*curr = new;
 	else
 	{
 		while ((*curr)->next)
-			curr = &(head->next);
+			curr = &((*head)->next);
 		(*curr)->next = new;
 	}
 }
@@ -56,7 +56,7 @@ static void	set_point(t_data *data, char **strs, char **strs_point,
 static void	set_orient(t_data *data, char **strs, char **strs_orient,
 					   t_camera **cam)
 {
-	size_t strslen;
+	size_t	strslen;
 
 	strslen = ft_strslen(strs_orient);
 	if (strslen != 3)
@@ -72,18 +72,13 @@ static void	set_orient(t_data *data, char **strs, char **strs_orient,
 	ft_strsfree(strs_orient);
 }
 
-static void set_camera(t_data *data, char **strs)
+static void	set_camera(t_data *data, char **strs, t_camera *cam)
 {
-	t_camera	*cam;
 	char		**strs_point;
-	char 		**strs_orient;
-	char 		*str_fov;
+	char		**strs_orient;
+	char		*str_fov;
 
-	cam = NULL;
-	if (!(alloca_to((void **)&cam, sizeof(t_camera))))
-		serialize_error(ERROR_ERRNO, errno, data, strs);
-	cam->next = NULL;
-	lst_cam_append(data->cam, cam);
+	lst_cam_append(&(data->cam), cam);
 	strs_point = ft_split_any(strs[1], ',');
 	if (!strs_point)
 		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
@@ -97,11 +92,14 @@ static void set_camera(t_data *data, char **strs)
 		if (!ft_isdigit(*str_fov++))
 			serialize_error(ERROR_INVALID_CAMERA, 255, data, strs);
 	cam->fov = ft_atoi(strs[3]);
+	if ((cam->fov < 0) || (cam->fov > 180))
+		serialize_error(ERROR_INVALID_CAMERA, 255, data, strs);
 }
 
-t_data  *serialize_c(t_data *data, char const *line, char **strs)
+t_data	*serialize_c(t_data *data, char const *line, char **strs)
 {
 	size_t		strslen;
+	t_camera	*cam;
 
 	line += ft_strlen(LABEL_CAMERA);
 	if (!ft_isspace(*line))
@@ -109,6 +107,11 @@ t_data  *serialize_c(t_data *data, char const *line, char **strs)
 	strslen = ft_strslen(strs);
 	if (strslen != 4)
 		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
-	set_camera(data, strs);
+	cam = NULL;
+	if (!(alloca_to((void **)&cam, sizeof(t_camera))))
+		serialize_error(ERROR_ERRNO, errno, data, strs);
+	cam->next = NULL;
+	cam->viewport = NULL;
+	set_camera(data, strs, cam);
 	return (data);
 }

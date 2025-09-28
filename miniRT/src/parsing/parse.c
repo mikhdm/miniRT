@@ -33,7 +33,6 @@ static t_data	*build(int const fildes)
 	}
 	data = initialize(data);
 	data->fildes = fildes;
-	/* READING, VALIDATION AND SERIALIZATION */
 	while (get_next_line(fildes, &line) != SIG_EOF)
 	{
 		line = skip_spaces_str(line);

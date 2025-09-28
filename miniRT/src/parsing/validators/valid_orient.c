@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 21:51:44 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 22:02:06 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/31 05:14:40 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ short valid_orient(const char **strs_orient, size_t strslen, t_vector3 *orient)
 		str = strs_orient[i++];
 		if (!str || !*str)
 			return (FALSE);
-		while (*str)
-			if (!ft_isfloatable(str))
-				return (FALSE);
+		if (!ft_isfloatable(str))
+			return (FALSE);
 	}
 	orient->x = ft_atof(strs_orient[0]);
 	orient->y = ft_atof(strs_orient[1]);
