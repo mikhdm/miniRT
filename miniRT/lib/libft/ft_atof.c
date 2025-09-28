@@ -6,16 +6,16 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 05:18:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/27 17:17:49 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/27 17:23:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <math.h>
 
-static double   ft_powf(double v, long p)
+static double	ft_powf(double v, long p)
 {
-	double r;
+	double	r;
 
 	r = 1;
 	if (p < 0)
@@ -29,25 +29,25 @@ static double   ft_powf(double v, long p)
 	return (r);
 }
 
-static double   ft_atof_infnan(char *str)
+static double	ft_atof_infnan(char *str)
 {
-	double value;
+	double	value;
 
 	value = 0.0;
 	if (ft_strncmp(str, "-inf", 4) == 0)
 		value = -INFINITY;
 	else if (ft_strncmp(str, "inf", 3) == 0)
 		value = INFINITY;
-	else if (ft_strncmp(str, "nan", 3) == 0 ||
-	         (ft_strncmp(str, "-nan", 4) == 0))
+	else if (ft_strncmp(str, "nan", 3) == 0
+		|| (ft_strncmp(str, "-nan", 4) == 0))
 		value = NAN;
 	return (value);
 }
 
-static double   ft_atof_basic(char **string, short neg, long i)
+static double	ft_atof_basic(char **string, short neg, long i)
 {
-	double  value;
-	char    *str;
+	double	value;
+	char	*str;
 
 	str = *string;
 	value = ft_atoi(str);
@@ -72,10 +72,10 @@ static double   ft_atof_basic(char **string, short neg, long i)
 	return (value);
 }
 
-static double   ft_atof_exp(char **string, double value, short neg)
+static double	ft_atof_exp(char **string, double value, short neg)
 {
-	int     exp;
-	char    *str;
+	int		exp;
+	char	*str;
 
 	str = *string;
 	if (*str == 'e' && fabs(value) != 0)
@@ -91,12 +91,12 @@ static double   ft_atof_exp(char **string, double value, short neg)
 	return (value);
 }
 
-double  ft_atof(const char *str)
+double	ft_atof(const char *str)
 {
-	double  value;
-	short   neg;
-	char    *strl;
-	char    *strp;
+	double	value;
+	short	neg;
+	char	*strl;
+	char	*strp;
 
 	neg = FALSE;
 	while (ft_isspace(*str))
@@ -112,7 +112,7 @@ double  ft_atof(const char *str)
 		free(strl);
 		return (value);
 	}
-	if (*strl == '-')
+	if (*strl == '-' && *(strl + 1) != '-')
 		neg = TRUE;
 	value = ft_atof_basic(&strl, neg, 0);
 	value = ft_atof_exp(&strl, value, neg);
