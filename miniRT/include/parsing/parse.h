@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:10:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 18:10:44 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:25:03 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-#include "canvas.h"
+# include "canvas.h"
 
 /*
 *
@@ -21,6 +21,6 @@
 * correct data from scene file.
 *
 */
-t_data  *parse(char const *path);
+t_data	*parse(char const *path);
 
 #endif

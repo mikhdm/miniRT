@@ -6,15 +6,15 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/03 11:42:13 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:14:53 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CANVAS_H
 # define CANVAS_H
 
-#include "linop.h"
-#include "libft.h"
+# include "linop.h"
+# include "libft.h"
 
 # define COLOR_BACKGROUND 0x2dc3fa
 # define COLOR_BLACK 0x0
@@ -34,26 +34,26 @@
 
 # define WINDOW_TITLE		"miniRT"
 
-typedef struct		s_screen
+typedef struct s_screen
 {
 	int			width;
 	int			height;
-	char*		title;
+	char		*title;
 }				t_screen;
 
-typedef struct		s_viewport
+typedef struct s_viewport
 {
 	double		width;
 	double		height;
 }				t_viewport;
 
-typedef struct	s_ambience
+typedef struct s_ambience
 {
 	double		intensity;
 	int			color;
 }				t_ambience;
 
-typedef struct	s_light
+typedef struct s_light
 {
 	double			brightness;
 	int				color;
@@ -61,31 +61,31 @@ typedef struct	s_light
 	struct s_light	*next;
 }					t_light;
 
-typedef struct 		s_camera
+typedef struct s_camera
 {
-	double 			fov;
+	double			fov;
 	short			active;
-	t_vector3 		center;
-	t_vector3 		orient;
-	t_viewport      *viewport;
+	t_vector3		center;
+	t_vector3		orient;
+	t_viewport		*viewport;
 	struct s_camera	*next;
 }					t_camera;
 
-typedef struct		s_sphere
+typedef struct s_sphere
 {
 	int				color;
 	double			diameter;
 	t_vector3		center;
 }					t_sphere;
 
-typedef struct		s_plane
+typedef struct s_plane
 {
 	int				color;
 	t_vector3		center;
 	t_vector3		orient;
 }					t_plane;
 
-typedef struct		s_square
+typedef struct s_square
 {
 	int				color;
 	double			size;
@@ -93,7 +93,7 @@ typedef struct		s_square
 	t_vector3		orient;
 }					t_square;
 
-typedef struct		s_cylinder
+typedef struct s_cylinder
 {
 	int					color;
 	double				diameter;
@@ -102,7 +102,7 @@ typedef struct		s_cylinder
 	t_vector3			orient;
 }						t_cylinder;
 
-typedef struct			s_triangle
+typedef struct s_triangle
 {
 	t_vector3			x;
 	t_vector3			y;
@@ -110,29 +110,29 @@ typedef struct			s_triangle
 	int					color;
 }						t_triangle;
 
-typedef struct  s_figure
+typedef struct s_figure
 {
-    char            *label;
-    void            *content;
-    struct s_figure *next;
+	char			*label;
+	void			*content;
+	struct s_figure	*next;
 
-}              t_figure;
+}					t_figure;
 
 /*
 *
 * t_data - structure to store all parsed data & window meta information.
 *
 */
-typedef	struct s_data
+typedef struct s_data
 {
-    int			bpp;
-    int         length;
-    int         endian;
-    char		*addr;
+	int			bpp;
+	int			length;
+	int			endian;
+	char		*addr;
 	void		*mlx;
 	void		*window;
 	void		*img;
-	int         fildes;
+	int			fildes;
 	t_screen	*screen;
 	t_camera	*cam;
 	t_light		*light;
@@ -156,7 +156,7 @@ void		putpixel(t_data *data, int x, int y, int color);
 */
 t_viewport	calc_viewport(t_data *data, t_camera *cam);
 t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y);
-t_vector3   look_at(t_camera *cam, t_vector3 *dirvec);
-void        init(t_data *data, short windowed);
+t_vector3	look_at(t_camera *cam, t_vector3 *dirvec);
+void		init(t_data *data, short windowed);
 
 #endif

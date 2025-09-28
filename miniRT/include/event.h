@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:30:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 18:07:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:16:34 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENT_H
 # define EVENT_H
 
-#include "canvas.h"
+# include "canvas.h"
 
 typedef enum e_event {
 	X11_KEY_PRESS = 2,
@@ -53,7 +53,6 @@ typedef enum e_event {
 	X11_LAST_EVENT
 }	t_event;
 
-
 typedef enum e_mask {
 	MASK_NO_EVENT = 0L,
 	MASK_KEY_PRESS = 1L<<0,
@@ -81,8 +80,7 @@ typedef enum e_mask {
 	MASK_PROPERTY_CHANGE = 1L<<22,
 	MASK_COLORMAP_CHANGE = 1L<<23,
 	MASK_OWNER_GRABBUTTON = 1L<<24
-} 	t_mask;
-
+}	t_mask;
 
 typedef enum e_key {
 	KEY_ESC = 53,

@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 02:50:53 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 23:23:39 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:24:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERRORS_H
 # define ERRORS_H
 
-#include "canvas.h"
+# include "canvas.h"
 
 # define ERROR_HEADER   "ERROR\n"
 # define ERROR_ERRNO    (-1)
@@ -49,10 +49,10 @@ typedef enum e_error
 	ERROR_EMPTY_AMBIENCE,
 	ERROR_EMPTY_CAMERA,
 	ERROR_SYNTAX
-}   t_error;
+}	t_error;
 
-void    ft_perror(int code);
-void    ft_pexit(int code, int status);
-void    ft_pexitfree(int code, int status, t_data *data);
+void	ft_perror(int code);
+void	ft_pexit(int code, int status);
+void	ft_pexitfree(int code, int status, t_data *data);
 
 #endif

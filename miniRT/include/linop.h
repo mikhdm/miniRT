@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:22:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/04 22:30:26 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:17:55 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ t_vector3	cmultvec3(double value, t_vector3 *vector);
 t_vector3	normvec3(t_vector3 *vec);
 t_vector3	cross3(t_vector3 *left, t_vector3 *right);
 short int	iscollinvec3(t_vector3 *left, t_vector3 *right);
-t_vector3   mat33multvec3(double *mat[3], t_vector3 *vec);
+t_vector3	mat33multvec3(double *mat[3], t_vector3 *vec);
 
 #endif 

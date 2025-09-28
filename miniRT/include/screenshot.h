@@ -3,6 +3,6 @@
 
 # define ARGV_SCREENSHOT "--save"
 
-void    screenshot(t_data *data, char const *filename);
+void	screenshot(t_data *data, char const *filename);
 
-# endif
+#endif

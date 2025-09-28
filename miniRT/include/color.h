@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 03:57:38 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/30 04:24:16 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:15:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define COLOR_H
 
 # define GAMMA_COEF 2.2
-# define GAMMA_REVERSE_COEF (1.0 / 2.2)
+# define GAMMA_REVERSE_COEF 0.4545
 
 int		a_component(int argb);
 int		r_component(int argb);

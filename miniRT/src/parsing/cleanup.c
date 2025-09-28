@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:11:13 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 04:27:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:34:29 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void cleanup(t_data *data)
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 	if (data->window)
-		mlx_destroy_window(data->mlx, data->img);
+		mlx_destroy_window(data->mlx, data->window);
 	if (data->fildes != -1)
 		close(data->fildes);
 	free(data);

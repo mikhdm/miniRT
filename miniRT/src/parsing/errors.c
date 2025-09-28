@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:14:04 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 03:12:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:32:25 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ void    ft_perror(int code)
 		"Cameras are not set", "Incorrect syntax"};
 
 	if ((code != ERROR_ERRNO)
-		&& (code < 0 || code >= (sizeof(errors) / sizeof(*errors))))
+		&& (code < 0 || code >= (int)(sizeof(errors) / sizeof(*errors))))
 		return ;
 	ft_putstr_fd(ERROR_HEADER, STDERR);
 	if (code == ERROR_ERRNO)

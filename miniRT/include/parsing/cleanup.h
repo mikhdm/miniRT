@@ -6,15 +6,15 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:10:42 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 18:10:44 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 05:23:54 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLEANUP_H
 # define CLEANUP_H
 
-#include "canvas.h"
+# include "canvas.h"
 
-void    cleanup(t_data *data);
+void	cleanup(t_data *data);
 
 #endif
