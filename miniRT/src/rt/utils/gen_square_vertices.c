@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:27:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 16:22:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 03:22:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_vector3	*gen_square_vertices(t_square *square)
 	t_vector3	sq_vecs[4];
 	size_t		i;
 
-	vertices = malloc(sizeof(t_vector3) * 4);
+	vertices = NULL;
 	if (!alloca_to((void **)&vertices, sizeof(t_vector3) * 4))
 		return (NULL);
 	set_square_vectors(square, sq_vecs);
