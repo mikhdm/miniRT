@@ -19,7 +19,7 @@ static t_data	*initialize(t_data *data)
 	return (data);
 }
 
-static t_data *build(int const fildes)
+static t_data	*build(int const fildes)
 {
 	t_data	*data;
 	char	*line;

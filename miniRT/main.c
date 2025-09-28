@@ -16,6 +16,7 @@
 #include "screenshot.h"
 #include "parsing/errors.h"
 #include "parsing/parse.h"
+#include "libft.h"
 #include "mlx.h"
 #include <math.h>
 #include <stddef.h>
@@ -32,12 +33,12 @@ static short    check(int argc, char **argv)
 	if (argc == 2 || argc == 3)
 	{
 		p = ft_strrchr(argv[1], '.');
-		if ((!p) || (ft_strncmp(p, ".rt", imax((ssize_t)ft_strlen(p), 3)) != 0))
+		if ((!p) || (ft_strncmp(p, ".rt", ft_max((ssize_t)ft_strlen(p), 3)) != 0))
 			ft_pexit(ERROR_SCENE_EXT_WRONG, 255);
 		if (argc == 3)
 		{
 			if (ft_strncmp(argv[2], ARGV_SCREENSHOT,
-			               imax((ssize_t) ft_strlen(argv[2]),
+			               ft_max((ssize_t) ft_strlen(argv[2]),
 			                    (ssize_t) ft_strlen(ARGV_SCREENSHOT))) != 0)
 				ft_pexit(ERROR_SCREENSHOT_PARAM_WRONG, 255);
 			else

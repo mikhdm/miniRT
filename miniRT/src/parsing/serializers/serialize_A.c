@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:58:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 22:19:21 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/28 23:34:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ static void set_ambience(t_data *data, char **strs)
 	if (!ft_isfloatable(strs[0]))
 		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
 	ambience->intensity = ft_atof(strs[0]);
+
+	/* TODO fix split */
 	strs_rgb = ft_split(strs[1], ',');
+
 	if (!strs_rgb)
 		serialize_error(ERROR_ERRNO, errno, data, strs);
 	if (ft_strslen(strs_rgb) != 3)
