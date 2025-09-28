@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 18:33:07 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/10 19:05:57 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,22 @@
 #include "libft.h"
 #include <math.h>
 
-
-static double	_t(t_data *data,
+double	intersect(t_data *data,
 			t_vector3 *dirvec, t_figure *figure)
 {
+	double	t;
+	
+	t = INFINITY;
 	if (ft_strcmp(figure->content->label, LABEL_SPHERE) == 0)
-		t = trace_sphere(data, dirvec, figure->content);
+		t = intersect_sphere(data, dirvec, figure->content);
 	else if (ft_strcmp(figure->content->label, LABEL_PLANE) == 0)
-		t = trace_plane(data, dirvec, figure->content);
+		t = intersect_plane(data, dirvec, figure->content);
 	else if (ft_strcmp(figure->content->label, LABEL_SQUARE) == 0)
-		t = trace_square(data, dirvec, figure->content);
+		t = intersect_square(data, dirvec, figure->content);
 	else if (ft_strcmp(figure->content->label, LABEL_TRIANGLE) == 0)
-		t = trace_triangle(data, dirvec, figure->content);
+		t = intersect_triangle(data, dirvec, figure->content);
 	else if (ft_strcmp(figure->content->label, LABEL_CYLINDER) == 0)
-		t = trace_cylinder(data, dirvec, figure->content);
+		t = intersect_cylinder(data, dirvec, figure->content);
 	return (t);
 }
 
@@ -65,10 +67,10 @@ int	trace(t_data *data,
 	t_figure		figure;
 
 	curr = data->figures;
-	t_min = INFINITY;
+	min_t = INFINITY;
 	while (curr)
 	{
-		t = _t(data, dirvec, curr);
+		t = intersect(data, dirvec, curr);
 		if (t >= range.first && t <= range.second && t < min_t)
 		{
 			min_t = t;
@@ -76,5 +78,7 @@ int	trace(t_data *data,
 		}
 		curr = curr->next;
 	}
+	if (!isinf(min_t))
+		return (COLOR_BACKGROUND);
 	return (shade(data, dirvec, figure, min_t));
 }

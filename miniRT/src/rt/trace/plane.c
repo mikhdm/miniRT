@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:38:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 17:46:18 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/10 22:37:43 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	trace_plane(t_data *data,
 	pair = _trace(data, dirvec, steprange);
 	if (!pair.second)
 		return (COLOR_BACKGROUND);
+
 	t_mult_dirvec = cmultvec3(pair.first, dirvec);
 	closest_point = sumvec3(&data->cam->center, &t_mult_dirvec);
 	color = light(data, &closest_point, &data->figures->plane->orient, color);

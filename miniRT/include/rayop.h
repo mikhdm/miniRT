@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:24:38 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 17:55:49 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/10 18:58:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "linop.h"
 #include "utils.h"
 
+double	intersect(t_data *data,
+			t_vector3 *dirvec, t_figure *figure);
 int		shade(t_data *data,
 			t_figure *figure, t_vector3 *dirvec, double t);
 int		trace(t_data *data,

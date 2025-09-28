@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:28:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 19:32:18 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/10 22:37:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ double			intersect_plane(t_data *data,
 {
 	t_vector3	pl_cam_vec;
 	double		denominator;
-	double		step;
+	double		t;
 
-	step = INFINITY;
+	t = INFINITY;
 	pl_cam_vec = diffvec3(&plane->center, &data->cam->center);
 	denominator = dot3(dirvec, &plane->orient);
 	if (denominator > 1e-6)
-		step = dot3(&pl_cam_vec, &plane->orient) / denominator;
-	return (step);
+		t = dot3(&pl_cam_vec, &plane->orient) / denominator;
+	return (t);
 }
 
 double			intersect_square(t_data *data,
@@ -36,11 +36,12 @@ double			intersect_square(t_data *data,
 	t_vector3	pl_cam_vec;
 	t_vector3	orient;
 	double		denominator;
-	double		step;
+	double		t;
 
-	step = INFINITY;
+	t = INFINITY;
 	orient = square->orient;
 	denominator = dot3(dirvec, &orient);
+	/* TODO maybe not */
 	if (denominator < 0.0) 
 	{
 		orient = cmultvec3(-1, &orient);
@@ -48,8 +49,8 @@ double			intersect_square(t_data *data,
 	}
 	pl_cam_vec = diffvec3(&square->center, &data->cam->center);
 	if (denominator > 1e-6)
-		step = dot3(&pl_cam_vec, &orient) / denominator;
-	return (step);
+		t = dot3(&pl_cam_vec, &orient) / denominator;
+	return (t);
 }
 
 double			intersect_triangle(t_data *data,

@@ -6,16 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:38:19 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 19:32:16 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/10 22:37:32 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "rayop.h"
 #include "utils.h"
-
-static int	_trace(t_data *data,
-				t_vector3 *dirvec, t_pair_double *range)
 
 int	trace_sphere(t_data *data,
 		t_vector3 *dirvec, t_pair_double *range)
