@@ -6,33 +6,47 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:13:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 18:05:59 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 20:45:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "light.h"
 #include "rt.h"
+#include "linop.h"
 
 static double	_calc(t_light *light,
 						t_vector3 *point, t_vector3 *orient)
 {
-	/* TODO */
+	t_vector3	lightvec;
+	double		intensity;
+	double		dot;
+	
+	intensity = .0;
+	lightvec = diffvec3(&light->center, point);
+	dot = dot3(orient, &lightvec);
+	intensity = light->intensity * dot / (hypotvec3(&lightvec) * hypotvec3(orient));
+	return (intensity);
 }
 
-double	light(t_ambience *ambience, t_light *lights,
+double	light(t_meta *meta,
 			t_vector3 *point, t_vector3 *orient)
 {
-	double intensity;
+	double	intensity;
+	double	curr;	
 	t_light *head;
 
-	head = lights;
+	head = meta->light;
 	intensity = .0;
-	if (ambience)
-		intencity += ambience->intencity;
+	curr = .0;
+	if (meta->ambience)
+		intensity += meta->ambience->intensity;
 	while (head)
 	{
-		intencity += _calc(head, point, orient); 
+		curr = _calc(head, point, orient);
+		/* TODO how to handle inner light */
+		if (curr > 0)
+			intensity += curr;
 		head = head->next;
 	}
-	return (intencity);
+	return (intensity);
 }

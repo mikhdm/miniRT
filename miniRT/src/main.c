@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/24 18:40:30 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 20:40:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,21 @@ void	calc_viewport_test(t_meta *meta)
 }
 /* END TESTFUNC */
 
+/* TESTFUNC */
+void	calc_sphere_orient_test(t_sphere *sphere)
+{
+	t_vector3	point;
+	t_vector3	orient;
+	double		radius;
+
+	radius = sphere->diameter / 2;
+	
+	point = (t_vector3) {.x = sphere->center.x + radius, .y = sphere->center.y + radius, .z = sphere->center.z + radius}; 
+	orient = calc_sphere_orient(&point, &sphere); 
+	printf("sphere orient: (%f, %f, %f)\n", orient.x, orient.y, orient.z);
+}
+/* END TESTFUNC */
+
 int main(void)
 {
 	t_meta		meta;
@@ -139,6 +154,10 @@ int main(void)
 
 	/* TEST */
 	calc_viewport_test(&meta);
+	/* END TEST */
+
+	/* TEST */
+	calc_sphere_orient_test(&sphere);
 	/* END TEST */
 	
 	int x = -meta.screen->width / 2;

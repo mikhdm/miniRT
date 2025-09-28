@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/23 17:02:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 20:04:20 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "linop.h"
 #include "figure.h"
 #include "utils.h"
+#include "light.h"
 
 t_pair_double	ft_intersect_sphere(
 					t_meta *meta,
@@ -46,6 +47,8 @@ int	ft_trace_sphere(
 {
 	double 			closest_step;
 	short int		intersected;
+	t_vector3		closest_point;
+	t_vector3		orient;
 	t_pair_double	steps;
 
 	closest_step = INFINITY;
@@ -65,5 +68,8 @@ int	ft_trace_sphere(
 	}
 	if (intersected == FALSE)
 		return (0x0);
-	return (sphere->color);
+	closest_point = sumvec3(&meta->cam->center,
+						cmultvec3((double const)closest_step, dirvec));
+	orient = calc_sphere_orient(&closest_point, sphere);
+	return (sphere->color * light(meta, &closest_point, &orient));
 }

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:31:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/23 17:02:58 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 19:28:28 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_vector3	cmultvec3(double const value, t_vector3 *vector)
 	return (cmultvec);
 }
 
-double		hypot3(double x, double y, double z)
+double		hypotvec3(t_vector3 *vec)
 {
-	return (sqrt(x*x + y*y + z*z));
+	return (sqrt(vec->x*vec->x + vec->y*vec->y + vec->z*vec->z));
 }

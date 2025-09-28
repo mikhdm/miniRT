@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 17:51:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 20:42:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RT_H
 
 #include "linop.h"
+#include "light.h"
 
 /*
 *
@@ -67,6 +68,8 @@ typedef	struct s_meta
 	t_screen	*screen;
 	t_viewport	*viewport;
 	t_camera	*cam;
+	t_light		*light;
+	t_ambience	*ambience;
 }	t_meta;
 
 /*

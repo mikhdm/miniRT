@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:22:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/23 16:05:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 19:28:55 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_vector3
 }	t_vector3;
 
 double		dot3(t_vector3 *left, t_vector3 *right);
-double		hypot3(double x, double y, double z);
+double		hypotvec3(t_vector3 *vec);
 t_vector3	diffvec3(t_vector3 *left, t_vector3 *right);
 t_vector3	sumvec3(t_vector3 *left, t_vector3 *right);
 t_vector3	cmultvec3(double const value, t_vector3 *vector);
