@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "canvas.h"
 #include "linop.h"
 #include "libft.h"
 #include <math.h>

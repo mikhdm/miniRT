@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:16:08 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 17:08:45 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 17:59:12 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	shade_square(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 	square = (t_square *)pair_figure_t->figure->content;
 	color = square->color;
 	p_hit = calc_ray_point(p0, dirvec, pair_figure_t->t);
-	orient = calc_faceted_orient(dirvec, &square->orient);
+	orient = calc_faceted_orient(dirvec, &(square->orient));
 	return (light(data, &p_hit, &orient, color));
 }
 

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 23:44:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 00:27:47 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/06 18:15:21 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,23 @@ static t_data	*initialize(t_data *data)
 
 static t_data	*populate(t_data *data)
 {
-	char	*line;
-	char	*start;
+	char		*line;
+	char		*start;
+	int			state;
 
 	line = NULL;
-	start = NULL;
-	while (get_next_line(data->fildes, &line) != SIG_EOF)
+	while (TRUE)
 	{
+		state = get_next_line(data->fildes, &line);
 		start = skip_spaces_str(line);
 		if (*start && *start != '#')
 			data = serialize(data, start);
 		free(line);
 		line = NULL;
 		start = NULL;
+		if ((state == SIG_EOF) || (state == SIG_ERROR))
+			break ;
 	}
-	free(line);
-	line = NULL;
-	start = NULL;
 	return (data);
 }
 
