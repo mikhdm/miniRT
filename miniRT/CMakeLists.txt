@@ -44,6 +44,7 @@ main.c)
 
 add_library(ft STATIC
 lib/libft/ft_atoi.c
+lib/libft/ft_atof.c
 lib/libft/ft_bzero.c
 lib/libft/ft_calloc.c
 lib/libft/ft_isalnum.c
