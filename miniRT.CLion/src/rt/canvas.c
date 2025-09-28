@@ -16,7 +16,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <stdio.h>
 
 t_viewport	calc_viewport(t_data *data, t_camera *cam)
 {

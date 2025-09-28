@@ -6,7 +6,7 @@ set(CMAKE_C_STANDARD 99)
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -L.. -lmlx -framework OpenGL -framework AppKit")
 
 include_directories(include)
-include_directories(include/parser)
+include_directories(include/parsing)
 include_directories(lib/libft)
 include_directories(lib/mlx)
 include_directories(lib/libft/get_next_line)
@@ -26,6 +26,7 @@ add_executable(miniRT
         src/rt/utils/calc_triangle_orient.c
         src/rt/utils/calc_cylinder_orient.c
         src/rt/utils/calc_faceted_orient.c
+        src/rt/utils/imax.c
         src/rt/canvas.c
         src/rt/color.c
         src/rt/event.c
@@ -35,10 +36,12 @@ add_executable(miniRT
         src/rt/rayop.c
         src/rt/render.c
         src/rt/shade.c
-        src/parser/reading.c
-        src/parser/errors.c
-        src/tests.c
+        src/parsing/parse.c
+        src/parsing/errors.c
+        src/parsing/serialize.c
+        src/parsing/validate.c
         src/screenshot.c
+        src/tests.c
         main.c)
 
 add_library(ft STATIC

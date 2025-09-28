@@ -13,18 +13,18 @@
 #include "canvas.h"
 #include "event.h"
 #include "render.h"
+#include "screenshot.h"
+#include "parsing/errors.h"
+#include "parsing/parse.h"
 #include "mlx.h"
 #include <math.h>
 #include <stddef.h>
+#include <stdlib.h>
+#include <errno.h>
 
-static void	init(t_data *data)
+static void init(t_data *data, short windowed)
 {
 	data->mlx = mlx_init();
-	data->window = mlx_new_window(
-							data->mlx,
-							data->screen->width,
-							data->screen->height,
-							data->screen->title);
 	data->img = mlx_new_image(
 							data->mlx,
 							data->screen->width,
@@ -34,131 +34,61 @@ static void	init(t_data *data)
 							&data->bpp,
 							&data->length,
 							&data->endian);
+	if (windowed)
+		data->window = mlx_new_window(
+				data->mlx,
+				data->screen->width,
+				data->screen->height,
+				data->screen->title);
 }
 
-void test(t_data *data);
-
-t_data *parse()
+static short    processing(int argc, char **argv)
 {
-	t_data  data;
+	if (argc == 2)
+		return (DO_WINDOW);
+	if (argc == 3)
+	{
+		if (ft_strncmp(argv[2], ARGV_SCREENSHOT,
+		               imax((ssize_t)ft_strlen(argv[2]),
+		                    (ssize_t)ft_strlen(ARGV_SCREENSHOT)) != 0))
+		{
+			ft_perror(ERROR_SCREENSHOT_PARAM_WRONG);
+			exit(-1);
+		}
+		else
+			return (DO_SCREENSHOT);
+	}
+	ft_perror(ERROR_PATH_PARAM_EMPTY);
+	exit(-1);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
-	t_data			data;
-	t_screen		screen;
-	t_camera		cam;
-	t_sphere		sphere;
-	t_sphere		sphere2;
-	t_plane			plane;
-	t_square		square;
-	t_triangle      triangle;
-	t_cylinder      cylinder;
-	t_cylinder      cylinder2;
-	t_figure		figure1;
-	t_figure		figure2;
-	t_figure		figure3;
-	t_figure		figure4;
-	t_figure		figure5;
-	t_figure        figure6;
-	t_pair_double	range;
-	t_light			lights;
-	t_light			light2;
-	t_light         light3;
-	t_ambience		ambience;
-	t_viewport      viewport;
+	t_data      *data;
+	short       status;
 
-	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
-
-	cam = (t_camera) {.center = (t_vector3) {.x = 5, .y = 10, .z = 20},
-					.orient = (t_vector3) {.x = -1/sqrt(6), .y = -1/sqrt(6), .z = -2/sqrt(6)},
-					.viewport = NULL,
-					.fov = 90};
-
-	data = (t_data) {.mlx = NULL, .window = NULL, .img = NULL,
-					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
-					.screen = &screen, .cam = &cam};
-	
-	ambience = (t_ambience) {.intensity = 0.2, .color = 0xffffff};
-	light3 = (t_light) {.brightness = 1.0, .color = 0xffffff,
-					    .center = (t_vector3) {.x = 0, .y = 1, .z = 0},
-					    .next = NULL};
-	light2 = (t_light) {.brightness = 1.0, .color = 0xffffff,
-					.center = (t_vector3) {.x = -1.5, .y = 2, .z = 3},
-					.next = &light3};
-	lights = (t_light) {.brightness = 1.0, .color = 0xffffff,
-		.center = (t_vector3) {.x = 0, .y = 10, .z = 5},
-		.next = NULL};
-
-	data.light = &lights;
-	data.ambience = &ambience;
-	viewport = calc_viewport(&data, data.cam);
-	data.cam->viewport = &viewport;
-
-	sphere2 = (t_sphere) {
-						.color = 0xaa0000,
-						.diameter = 2,
-						.center = (t_vector3) {.x = -1, .y = -0.5, .z = 11}};
-
-	sphere = (t_sphere) {
-						.color = 0xcc0000,
-						.diameter = 6,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 2}};
-
-	plane = (t_plane) {
-						.color = 0xffff00,
-						.center = (t_vector3) {.x = 0, .y = -1, .z = 0},
-						.orient = (t_vector3) {.x = 0,
-												.y = 1,
-												.z = 0}};
-
-	square = (t_square) {
-						.color = 0x0000ff,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 0},
-						.orient = (t_vector3) {.x = 0, .y = -1, .z = 0},
-						.size = 10.0};
-	cylinder = (t_cylinder) {
-						.color = 0xff0000,
-						.center = (t_vector3) {.x = 0, .y = 2, .z = 5},
-						.orient = (t_vector3) {.x = 1, .y = 0, .z = 0},
-						.diameter = 3,
-						.height = 7.0};
-
-	cylinder2 = (t_cylinder) {
-			.color = 0x00ffff,
-			.center = (t_vector3) {.x = 0, .y = 1, .z = 5},
-			.orient = (t_vector3) {.x = 0, .y = 1, .z = 0},
-			.diameter = 3,
-			.height = 7.0};
-
-	triangle = (t_triangle) {
-						.color = 0xffff00,
-						.x = (t_vector3) {.x = 0, .y = 20, .z = 0},
-						.y = (t_vector3) {.x = 0, .y = 0, .z = 0},
-						.z = (t_vector3) {.x = 0, .y = 10, .z = 20}
-	};
-
-	figure6 = (t_figure) {.content = &cylinder2, .next = NULL, .label = LABEL_CYLINDER};
-    figure5 = (t_figure) {.content = &plane, .next = &figure6, .label = LABEL_PLANE};
-//	figure4 = (t_figure) {.content = &triangle, .next = &figure5, .label = LABEL_TRIANGLE};
-//	figure3 = (t_figure) {.content = &plane, .next = &figure4, .label = LABEL_PLANE};
-//
-//	figure2 = (t_figure) {.content = &sphere2, .next = &figure3, .label = LABEL_SPHERE};
-	figure1 = (t_figure) {.content = &cylinder, .next = &figure5, .label=LABEL_CYLINDER};
-	data.figures = &figure1;
-
-
-
-
-	parse(path);
-
-
-	init(&data);
-	test(&data);
-	range = (t_pair_double) {.first = 1.0, .second = INFINITY};
-	render(&data, data.cam, &range);
-	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
-	bind_hooks(&data);
-	mlx_loop(data.mlx);
+	data = NULL;
+	status = processing(argc, argv);
+	if (status == DO_SCREENSHOT)
+	{
+		data = parse(argv[1]);
+		init(data, FALSE);
+		render(data, data->cam,
+		 &((t_pair_double){.first = 1.0, .second = INFINITY}));
+		screenshot(data);
+		cleanup(data);
+	}
+	else
+	{
+		data = parse(argv[1]);
+		init(data, TRUE);
+		render(data, data->cam,
+		       &((t_pair_double){.first = 1.0, .second = INFINITY}));
+		mlx_put_image_to_window(data->mlx,
+						        data->window,
+						        data->img, 0, 0);
+		bind_hooks(data);
+		mlx_loop(data->mlx);
+	}
 	return (0);
 }

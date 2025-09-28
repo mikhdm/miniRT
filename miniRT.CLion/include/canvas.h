@@ -29,7 +29,10 @@
 # define LABEL_AMBIENCE		"A"
 # define LABEL_RESOLUTION	"R"
 
-# define NUM_LABELS		9
+# define NUM_LABELS         9
+
+# define DO_SCREENSHOT      1
+# define DO_WINDOW          2
 
 typedef struct		s_screen
 {
