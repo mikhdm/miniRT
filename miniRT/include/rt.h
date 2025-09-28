@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/12 21:49:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/13 23:26:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef	struct	s_meta
     int         endian;
 }               t_meta;
 
+void	ft_initmeta(t_meta *meta);
 void	ft_putpixel(void **img, int x, int y, int color);
 
-int		ft_hook_close(int keycode, t_meta *meta);
 
 #endif

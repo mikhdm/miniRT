@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/04/12 21:43:16 by rmander          ###   ########.fr        #
+#    Updated: 2021/04/13 22:51:39 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = ./mlx
 LIBFT_DIR = ./libft
-SRCS = ./src/main.c ./src/rt/event.c
+SRCS = ./src/main.c ./src/rt/event.c ./src/rt/meta.c
 INCLUDES = ./include/rt.h
 OBJS = $(SRCS:.c=.o)
 

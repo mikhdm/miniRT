@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:30:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/12 22:19:37 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/13 23:26:29 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,13 @@ typedef enum e_mask {
 	MASK_COLORMAP_CHANGE = 1L<<23,
 	MASK_OWNER_GRABBUTTON = 1L<<24
 } 	t_mask;
+
+
+typedef enum e_key {
+	KEY_ESC = 53,
+}	t_key;
+
+int	ft_hook_close(int keycode, t_meta *meta);
+int	ft_hook_keypress(int keycode, t_meta *meta);
 
 #endif
