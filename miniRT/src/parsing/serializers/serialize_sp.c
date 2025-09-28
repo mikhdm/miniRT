@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:02:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 00:38:37 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 03:20:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static	void	set_sphere(t_data *data, char **strs, t_sphere *sphere)
 	if (!ft_isfloatable(strs[2]))
 		serialize_error(ERROR_SYNTAX_SPHERE, 255, data, strs);
 	sphere->diameter = ft_atof(strs[2]);
-	if (ft_flt(sphere->diameter, 0) || isinf(sphere->diameter)
+	if (ft_flt(sphere->diameter, 1e-10) || isinf(sphere->diameter)
 		|| isnan(sphere->diameter))
 		serialize_error(ERROR_INVALID_SPHERE, 255, data, strs);
 	strs_rgb = ft_split_any(strs[3], ',');

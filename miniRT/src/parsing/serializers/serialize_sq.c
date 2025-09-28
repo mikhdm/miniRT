@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:03:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 00:37:44 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 03:16:03 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static	void	set_square(t_data *data, char **strs, t_square *square)
 	if (!ft_isfloatable(strs[3]))
 		serialize_error(ERROR_SYNTAX_SQUARE, 255, data, strs);
 	square->size = ft_atof(strs[3]);
-	if (ft_flt(square->size, 0) || isnan(square->size) || isinf(square->size))
+	if (ft_flt(square->size, 1e-10) || isnan(square->size) || isinf(square->size))
 		serialize_error(ERROR_INVALID_SQUARE, 255, data, strs);
 	strs_rgb = ft_split_any(strs[4], ',');
 	if (!strs_rgb)

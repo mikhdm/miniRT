@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:00:25 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/05 00:41:25 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 03:15:34 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static	void	set_cylinder(t_data *data, char **strs, t_cylinder *cylinder)
 		serialize_error(ERROR_SYNTAX_CYLINDER, 255, data, strs);
 	cylinder->diameter = ft_atof(strs[3]);
 	cylinder->height = ft_atof(strs[4]);
-	if (ft_flt(cylinder->diameter, 0) || ft_flt(cylinder->height, 0)
+	if (ft_flt(cylinder->diameter, 1e-10) || ft_flt(cylinder->height, 1e-10)
 		|| isinf(cylinder->diameter) || isnan(cylinder->diameter)
 		|| isinf(cylinder->height) || isinf(cylinder->height))
 		serialize_error(ERROR_INVALID_CYLINDER, 255, data, strs);
