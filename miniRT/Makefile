@@ -12,7 +12,7 @@
 
 NAME = miniRT
 CC = clang
-CFLAGS = -glldb -Wall -Wextra -Werror -O3 -MMD
+CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -O3 -MMD
 
 LIBFT_DIR = ./lib/libft
 LIBMLX42_DIR = ./lib/MLX42
@@ -92,7 +92,8 @@ $(NAME): $(OBJS)
 		-L$(LIBFT_DIR) -lft \
 		 -I./include \
 		 -I$(LIBMLX42_DIR)/include \
-		-L$(GLFW_DIR) -lglfw \
+         -I$(GLFW_DIR)/../include \
+		-L$(GLFW_DIR) -lglfw3 \
         -L$(LIBMLX42_DIR)/build -lmlx42 \
 		$(OBJS) -o $(NAME)
 
@@ -100,7 +101,13 @@ libft:
 	$(MAKE) -C $(LIBFT_DIR) all
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I ./include -I $(LIBFT_DIR) -I$(LIBFT_DIR)/get_next_line -I $(LIBMLX42_DIR)/include -c $< -o $@
+	$(CC) $(CFLAGS) \
+        -I ./include \
+         -I $(LIBFT_DIR) \
+         -I$(LIBFT_DIR)/get_next_line \
+         -I $(LIBMLX42_DIR)/include \
+         -I$(GLFW_DIR)/../include \
+         -c $< -o $@
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean

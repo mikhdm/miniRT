@@ -128,8 +128,6 @@ typedef struct s_figure
 typedef struct s_data
 {
 	int			bpp;
-	int			length;
-	int			endian;
 	void		*mlx;
 	void		*window;
 	void		*img;

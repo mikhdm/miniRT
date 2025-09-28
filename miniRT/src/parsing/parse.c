@@ -44,8 +44,7 @@ static t_data	*refine(t_data *data)
 
 static t_data	*initialize(t_data *data)
 {
-	*data = (t_data){.bpp = 0, .length = 0, .endian = 0,
-        .mlx = NULL, .window = NULL,
+	*data = (t_data){.bpp = 0, .mlx = NULL, .window = NULL,
 		.img = NULL, .fildes = -1, .screen = NULL,
 		.cam = NULL, .light = NULL, .ambience = NULL,
 		.figures = NULL};
