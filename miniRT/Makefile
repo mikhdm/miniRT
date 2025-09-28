@@ -12,7 +12,7 @@
 
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -MMD -Ofast -I./include -I./lib/libft -I./lib/libft/get_next_line -I./lib/mlx
+CFLAGS = -Wall -Wextra -Werror -MMD -Ofast -I ./include -I ./lib/libft -I ./lib/libft/get_next_line -I ./lib/mlx
 
 LIBFT_DIR = ./lib/libft
 MLX_DIR = ./lib/mlx
@@ -123,4 +123,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re mlx libft
+.PHONY: all clean fclean re

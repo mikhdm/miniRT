@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:28:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/07 04:29:46 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/07 17:19:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,13 @@ double	intersect_triangle(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 	t_vector3	p_hit;
 	short		check;
 	t_vector3	orient;
+	t_vector3	centroid;
 
 	orient = calc_triangle_orient(triangle);
-	t = intersected_planar(p0, dirvec, &(triangle->x), &orient);
+	centroid.x = (triangle->x.x + triangle->y.x + triangle->z.x) / 3.0;
+	centroid.y = (triangle->x.y + triangle->y.y + triangle->z.y) / 3.0;
+	centroid.z = (triangle->x.z + triangle->y.z + triangle->z.z) / 3.0;
+	t = intersected_planar(p0, dirvec, &centroid, &orient);
 	if (isinf(t))
 		return (INFINITY);
 	p_hit = calc_ray_point(p0, dirvec, t);
