@@ -6,11 +6,12 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/21 00:33:29 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 04:38:43 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <float.h>
 #include <stdio.h>
 #include <math.h>
 #include "mlx.h"
@@ -78,25 +79,24 @@ void	quad_equation_test()
 }
 /* END TESTFUNC */
 
-
 int main(void)
 {
 	t_meta		meta;
-	t_screen 	screen; 
+	t_screen 	screen;
 	t_camera	cam;
 	t_vector3	*plane;
 	t_sphere	sphere;
 	
 	plane = NULL;
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
-	cam = (t_camera) {.center = (t_vector3) {.x = .0, .y = .0, .z = .0},
+	cam = (t_camera) {.center = (t_vector3) {.x = .0, .y = .0, .z = 0.0},
 					.orient = (t_vector3) {.x = 0, .y = 0, .z = 1}};
 	meta = (t_meta) {.mlx = NULL, .window = NULL, .img = NULL,
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam};
 	sphere = (t_sphere) {.color = 0xff0000,
-						.diameter = 50,
-						.center = (t_vector3) {.x = 150, .y = 50, .z = 10}};
+						.diameter = 80,
+						.center = (t_vector3) {.x = 150, .y = 150, .z = 10}};
 	ft_init(&meta);
 	
 	/* LOG */
@@ -119,7 +119,7 @@ int main(void)
 	t_pair_double stepsrange;
 
 	stepsrange = (t_pair_double) {.first = 1.0, .second = INFINITY};
-	while (x < (meta.screen->width / 2 - 1))
+	while (x < meta.screen->width / 2)
 	{
 		y = -meta.screen->height / 2 + 1;
 		while (y < meta.screen->height / 2)

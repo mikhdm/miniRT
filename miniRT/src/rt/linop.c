@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:31:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/18 19:24:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 04:38:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ double	dot3(t_vector3 *left, t_vector3 *right)
 {
 	double product;
 
-	product = (left->x*right->x 
+	product = (left->x*right->x
 				+ left->y*right->y
 				+ left->z*right->z);
 	return (product);

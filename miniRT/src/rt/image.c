@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:29:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/20 23:50:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 03:44:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ t_vector3	ft_conv_to_viewport(t_meta *meta, int x, int y)
 	t_vector3	plane;
 	
 	/* TODO add FOV dependent logic */
-	plane.x = x * 800 / meta->screen->width;
-	plane.y = y * 600 / meta->screen->height;
+	(void) meta;
+	plane.x = x * 1.0;
+	plane.y = y * 1.0;
 	plane.z = 1.0;
 	return (plane);
 }
@@ -37,10 +38,6 @@ void	ft_putpixel(t_meta *meta, int x, int y, int color)
 
 	screen_x = meta->screen->width / 2 + x;
 	screen_y = meta->screen->height / 2 - y;
-
-	/* LOG */
-	printf("(%d, %d)\n", screen_x, screen_y);
-	/* END LOG */
 
     dest = meta->addr + (screen_y * meta->length + screen_x * (meta->bpp / 8));
 	*(unsigned int*)dest = color;

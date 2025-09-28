@@ -6,11 +6,12 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/21 00:33:33 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 04:35:28 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <float.h>
 #include <stdio.h>
 #include "libft.h"
 #include "rt.h"
@@ -29,10 +30,11 @@ t_pair_double	ft_intersect_sphere(
 	
 	radius = sphere->diameter / 2;
 	sp_cam_vec = diffvec3(&meta->cam->center, &sphere->center);
+
 	values = calc_quad_equation(
 			dot3(dirvec, dirvec),
 			2 * dot3(dirvec, &sp_cam_vec),
-			dot3(&sp_cam_vec, &sp_cam_vec) - radius * radius);
+			dot3(&sp_cam_vec, &sp_cam_vec) - pow(radius, 2));
 	return (values);
 }
 
@@ -49,13 +51,13 @@ int	ft_trace_sphere(
 	closest_step = INFINITY;
 	intersected = FALSE;
 	steps = ft_intersect_sphere(meta, dirvec, sphere);
-	if (steprange->first <= steps.first && steps.first <= steprange->second
+	if (steps.first >= steprange->first && steps.first <= steprange->second
 		&& steps.first < closest_step)
 	{
 		closest_step = steps.first;
 		intersected = TRUE;
 	}
-	if (steprange->first <= steps.second && steps.second <= steprange->second
+	if (steps.second >= steprange->first && steps.second <= steprange->second
 		&& steps.second < closest_step)
 	{
 		closest_step = steps.second;

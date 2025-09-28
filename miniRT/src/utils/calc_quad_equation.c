@@ -6,11 +6,12 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 01:11:03 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/20 23:43:03 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 03:38:34 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <float.h>
 #include "utils.h"
 
 t_pair_double	calc_quad_equation(double a, double b, double c)
@@ -37,7 +38,5 @@ t_pair_double	calc_quad_equation(double a, double b, double c)
 		values.first = q / a;
 		values.second = c / q;
 	}
-	if (values.first > values.second)
-		ft_swap_double(&values.first, &values.second);
 	return (values);
 }
