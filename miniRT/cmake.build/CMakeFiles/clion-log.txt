@@ -1,4 +1,0 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc -G "CodeBlocks - Unix Makefiles" /Users/rmander/Dev/42/miniRT/miniRT
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/rmander/Dev/42/miniRT/miniRT/cmake.build
