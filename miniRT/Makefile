@@ -16,6 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -O3 -MMD
 
 LIBFT_DIR = ./lib/libft
 LIBMLX42_DIR = ./lib/MLX42
+LIBMLX42_REPO = https://github.com/codam-coding-college/MLX42.git
 GLFW_DIR = /usr/local/lib
 
 SRCS =  src/rt/utils/calc_quad_equation.c \
@@ -80,7 +81,7 @@ OBJS = $(SRCS:.c=.o)
 
 DEPS = $(SRCS:.c=.d)
 
-all: libft $(NAME)
+all: libft mlx $(NAME)
 
 -include $(DEPS)
 
@@ -100,6 +101,13 @@ $(NAME): $(OBJS)
 libft:
 	$(MAKE) -C $(LIBFT_DIR) all
 
+mlx:
+    # Cloning and building MLX42.
+    # This target requires git and cmake to be installed.
+	git clone $(LIBMLX42_REPO) $(LIBMLX42_DIR)
+	cmake -S $(LIBMLX42_DIR) -B $(LIBMLX42_DIR)/build
+	cmake --build $(LIBMLX42_DIR)/build --config Release -j4
+
 %.o: %.c
 	$(CC) $(CFLAGS) \
         -I ./include \
@@ -111,6 +119,7 @@ libft:
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
+	rm -rf $(LIBMLX42_DIR)
 	rm -f $(OBJS)
 	rm -f $(DEPS) 
 
