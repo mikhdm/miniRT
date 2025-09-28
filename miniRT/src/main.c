@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/01 21:37:20 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/03 23:36:57 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,27 +94,27 @@ static void	render_plane(t_data *data, t_pair_double *stepsrange)
 	}
 }
 
-static void	render_square(t_data *data, t_pair_double *stepsrange)
-{
-	int				x;
-	int				y;
-	int				color;
-	t_vector3		dirvec;
+/* static void	render_square(t_data *data, t_pair_double *stepsrange) */
+/* { */
+/* 	int				x; */
+/* 	int				y; */
+/* 	int				color; */
+/* 	t_vector3		dirvec; */
 
-	y = data->screen->height / 2;
-	while (y > -data->screen->height / 2)
-	{
-		x = -data->screen->width / 2;
-		while (x < data->screen->width / 2)
-		{
-			dirvec = ft_conv_to_viewport(data, x, y);
-			color = ft_trace_square(data, &dirvec, stepsrange);
-			ft_putpixel(data, x, y, color);
-			++x;
-		}
-		--y;
-	}
-}
+/* 	y = data->screen->height / 2; */
+/* 	while (y > -data->screen->height / 2) */
+/* 	{ */
+/* 		x = -data->screen->width / 2; */
+/* 		while (x < data->screen->width / 2) */
+/* 		{ */
+/* 			dirvec = ft_conv_to_viewport(data, x, y); */
+/* 			color = ft_trace_square(data, &dirvec, stepsrange); */
+/* 			ft_putpixel(data, x, y, color); */
+/* 			++x; */
+/* 		} */
+/* 		--y; */
+/* 	} */
+/* } */
 
 /* TESTFUNC */
 void	linop_test(void)
@@ -123,20 +123,25 @@ void	linop_test(void)
 	t_vector3 vec2 = (t_vector3) {.x = -1.0, .y = 2.0, .z = 20.0};
 
 	t_vector3 vec3 = diffvec3(&vec1, &vec2);
-	printf("difference: (%f, %f, %f) - (%f, %f, %f) = (%f, %f, %f)\n", 
+	printf("difference: (%f, %f, %f) - (%f, %f, %f) = (%f, %f, %f)\n",
 		vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z, vec3.x, vec3.y, vec3.z);
 
 	double scalar = dot3(&vec1, &vec2);
-	printf("dot: <(%f, %f, %f), (%f, %f, %f)> = %f\n", 
+	printf("dot: <(%f, %f, %f), (%f, %f, %f)> = %f\n",
 		vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z, scalar);
 
 	t_vector3 vec4 = sumvec3(&vec1, &vec2);
-	printf("sum: (%f, %f, %f) + (%f, %f, %f) = (%f, %f, %f)\n", 
+	printf("sum: (%f, %f, %f) + (%f, %f, %f) = (%f, %f, %f)\n",
 		vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z, vec4.x, vec4.y, vec4.z);
 	
 	t_vector3 vec5 = cmultvec3(scalar, &vec1);
 	printf("mult by constant: %f * (%f, %f, %f) = (%f, %f, %f) \n",
-		scalar, vec1.x, vec1.y, vec1.z, vec5.x, vec5.y, vec5.z); 
+		scalar, vec1.x, vec1.y, vec1.z, vec5.x, vec5.y, vec5.z);
+	
+	t_vector3 vec6 = cross3(&vec1, &vec2);
+	printf("cross: (%f, %f, %f) x (%f, %f, %f) = (%f, %f, %f), length: || %f ||\n",
+			vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z,
+			vec6.x, vec6.y, vec6.z, hypotvec3(&vec6));
 }
 /* END TESTFUNC */
 
@@ -207,7 +212,7 @@ int main(void)
 					.next = NULL};
 
 	lights = (t_light) {.brightness = 1.0, .color = 0x00ffff,
-		.center = (t_vector3) {.x = 0, .y = 0, .z = -2},
+		.center = (t_vector3) {.x = 0, .y = 10, .z = -2},
 		.next = &light2};
 
 	data.light = &lights;
@@ -266,7 +271,9 @@ int main(void)
 	calc_viewport_test(&data);
 	/* END TEST */
 
-	(void) render_plane(&data, &stepsrange);
+	// (void) render_plane(&data, &stepsrange);
+	render_sphere(&data, &stepsrange);
+	(void) render_plane;
 
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	ft_bind_hooks(&data);

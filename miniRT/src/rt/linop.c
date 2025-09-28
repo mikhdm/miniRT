@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:31:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/27 22:44:00 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/03 22:43:19 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ double	dot3(t_vector3 *left, t_vector3 *right)
 				+ left->y*right->y
 				+ left->z*right->z);
 	return (product);
+}
+
+t_vector3	cross3(t_vector3 *left, t_vector3 *right)
+{
+	t_vector3	crossvec;
+
+	crossvec = (t_vector3) {.x = .0, .y = .0, .z = .0};
+	crossvec.x = left->y * right->z - left->z * right->y;
+	crossvec.y = right->x * left->z - left->x * right->z;
+	crossvec.z = left->x * right->y - right->x * left->y;
+	return (crossvec);
 }
 
 t_vector3	diffvec3(t_vector3 *left, t_vector3 *right)

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/01 23:39:18 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/03 22:52:33 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 
 #include <stdio.h>
 
+/* double			ft_intersect_triangle(t_data *data, */
+/* 					t_vector3 *dirvec, t_triangle *triangle) */
+/* { */
+/* } */
+
 double			ft_intersect_plane(t_data *data,
 					t_vector3 *dirvec, t_plane *plane)
 {
@@ -32,6 +37,22 @@ double			ft_intersect_plane(t_data *data,
 	denominator = dot3(dirvec, &plane->orient);
 	if (denominator > 1e-6)
 		step = dot3(&pl_cam_vec, &plane->orient) / denominator;
+	return (step);
+}
+
+double			ft_intersect_square(t_data *data,
+					t_vector3 *dirvec, t_square *square)
+{
+	/* TODO generalize intersection with plane and square */
+	t_vector3	pl_cam_vec;
+	double		denominator;
+	double		step;
+
+	step = INFINITY;
+	pl_cam_vec = diffvec3(&square->center, &data->cam->center);
+	denominator = dot3(dirvec, &square->orient);
+	if (denominator > 1e-6)
+		step = dot3(&pl_cam_vec, &square->orient) / denominator;
 	return (step);
 }
 
@@ -98,7 +119,7 @@ static t_pair_double_int	_trace_square(t_data *data, t_vector3 *dirvec, t_pair_d
 
 	pair.first = INFINITY;
 	pair.second = FALSE;
-	step = ft_intersect_plane(data, dirvec, data->figures->square);
+	step = ft_intersect_square(data, dirvec, data->figures->square);
 	if (step >= steprange->first && step <= steprange->second && step < pair.first)
 	{
 		pair.first = step;
