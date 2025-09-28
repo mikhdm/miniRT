@@ -1,0 +1,29 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/miniRT.dir/main.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/canvas.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/color.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/event.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/intersect.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/light.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/linop.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/rayop.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/render.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/shade.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/deg_to_rad.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/rad_to_deg.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/swap_double.c.o"
+  "CMakeFiles/miniRT.dir/src/tests.c.o"
+  "miniRT"
+  "miniRT.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/miniRT.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

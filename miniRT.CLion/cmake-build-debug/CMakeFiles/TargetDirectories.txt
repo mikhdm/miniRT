@@ -1,0 +1,4 @@
+/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/ft.dir
+/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/miniRT.dir

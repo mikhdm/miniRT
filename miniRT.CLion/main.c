@@ -6,18 +6,16 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/14 18:45:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/14 22:05:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
-#include "light.h"
 #include "event.h"
 #include "render.h"
 #include "mlx.h"
 #include <math.h>
 #include <stddef.h>
-#include <stdio.h>
 
 static void	init(t_data *data)
 {
@@ -52,17 +50,16 @@ int main(void)
 	t_figure		figure1;
 	t_figure		figure2;
 	t_figure		figure3;
+	t_figure		figure4;
 	t_viewport		viewport;
 	t_pair_double	range;
 	t_light			lights;
 	t_light			light2;
 	t_ambience		ambience;
 	const char		*labels[NUM_LABELS + 1] = {LABEL_SPHERE, LABEL_PLANE, LABEL_SQUARE, LABEL_CYLINDER,
-													LABEL_TRIANGLE, LABEL_CAMERA, LABEL_LIGHT, LABEL_LIGHT
+													LABEL_TRIANGLE, LABEL_CAMERA, LABEL_LIGHT, LABEL_LIGHT,
 													LABEL_AMBIENCE, NULL};
 
-	(void)labels;
-	
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
 
 	cam = (t_camera) {.center = (t_vector3) {.x = .0, .y = .0, .z = 0.0},
@@ -78,7 +75,6 @@ int main(void)
 	light2 = (t_light) {.brightness = 1.0, .color = 0xffff00,
 					.center = (t_vector3) {.x = -2, .y = 2, .z = 10},
 					.next = NULL};
-
 	lights = (t_light) {.brightness = 1.0, .color = 0x00ff00,
 		.center = (t_vector3) {.x = 0, .y = 0, .z = 2},
 		.next = NULL};
@@ -93,42 +89,35 @@ int main(void)
 	data.viewport = &viewport;
 
 	sphere2 = (t_sphere) {
-						.label = LABEL_SPHERE,
 						.color = 0x00ff00,
-						.diameter = 2,
-						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 10}};
+						.diameter = 3,
+						.center = (t_vector3) {.x = -5, .y = 2, .z = 10}};
 
 	sphere = (t_sphere) {
-						.label = LABEL_SPHERE,
 						.color = 0xffffff,
 						.diameter = 5,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 15}};
+						.center = (t_vector3) {.x = 5, .y = 2, .z = 10}};
 
 	plane = (t_plane) {
-						.label = LABEL_PLANE,
 						.color = 0xff00ff,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 6},
+						.center = (t_vector3) {.x = 0, .y = 5, .z = 1},
 						.orient = (t_vector3) {.x = 0,
-												.y = 5/sqrt(50),
-												.z = 5/sqrt(50)}};
+												.y = 1/sqrt(2),
+												.z = 1/sqrt(2)}};
 
 	square = (t_square) {
-						.label = LABEL_SQUARE,
 						.color = 0xff0000,
 						.center = (t_vector3) {.x = 0, .y = 2, .z = 20},
 						.orient = (t_vector3) {.x = 0, .y = .0, .z = 1},
 						.size = 8.0};
 	
-	figure3 = (t_figure) {.content = &sphere2, .next = NULL};
-	figure2 = (t_figure) {.content = &plane, .next = &figure3};
-	(void)figure2;
-	figure1 = (t_figure) {.content = &sphere, .next = NULL};
-
+	figure3 = (t_figure) {.content = &sphere2, .next = &figure4, .label=LABEL_SPHERE};
+	figure2 = (t_figure) {.content = &plane, .next = &figure3, .label=LABEL_PLANE};
+	figure4 = (t_figure) {.content = &square, .next = NULL, .label=LABEL_SQUARE};
+	figure1 = (t_figure) {.content = &sphere, .next = &figure2, .label=LABEL_SPHERE};
 	data.figures = &figure1;
-
 	init(&data);
-	// test(&data);
-
+	test(&data);
 	range = (t_pair_double) {.first = 1.0, .second = INFINITY};
 	render(&data, &range);
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
