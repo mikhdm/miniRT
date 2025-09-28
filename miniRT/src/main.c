@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/29 00:14:42 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/29 02:54:27 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int main(void)
 	
 	ambience = (t_ambience) {.intensity = 0.1, .color = 0xd1d1d1};
 	lights = (t_light) {.brightness = 0.9, .color = 0xffffff,
-		.center = (t_vector3) {.x = 0, .y = 10, .z = 1},
+		.center = (t_vector3) {.x = 0, .y = 20, .z = 1},
 		.next = NULL
 	};
 
@@ -201,8 +201,8 @@ int main(void)
 						.center = (t_vector3) {.x = 0, .y = 0, .z = 15},
 						.next = &sphere2};
 
-	plane = (t_plane) {.color = 0xcccccc,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 2},
+	plane = (t_plane) {.color = 0xff00ff,
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 6},
 						.orient = (t_vector3) {.x = 0,
 												.y = 5/sqrt(50),
 												.z = 5/sqrt(50)},
@@ -240,8 +240,8 @@ int main(void)
 	calc_viewport_test(&data);
 	/* END TEST */
 
-	(void) render_plane;
-	render_sphere(&data, &stepsrange);
+	(void) render_plane(&data, &stepsrange);
+	(void) render_sphere;
 
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	ft_bind_hooks(&data);
