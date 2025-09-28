@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/21 04:38:43 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 04:47:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam};
 	sphere = (t_sphere) {.color = 0xff0000,
-						.diameter = 80,
-						.center = (t_vector3) {.x = 150, .y = 150, .z = 10}};
+						.diameter = 2.8,
+						.center = (t_vector3) {.x = 1, .y = 1, .z = 5}};
 	ft_init(&meta);
 	
 	/* LOG */

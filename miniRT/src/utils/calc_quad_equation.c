@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 01:11:03 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/21 03:38:34 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 04:42:03 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_pair_double	calc_quad_equation(double a, double b, double c)
 	double			q;
 	
 	values = (t_pair_double) {.first = INFINITY, .second = INFINITY};
-	discriminant = fma(b, b, -4 * a * c);
+	// discriminant = fma(b, b, -4 * a * c);
+	discriminant = b*b - 4 *a *c;
 	if (discriminant < 0)
 		return (values);
 	else if (discriminant == 0)

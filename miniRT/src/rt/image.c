@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:29:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/21 03:44:05 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/21 04:43:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_vector3	ft_conv_to_viewport(t_meta *meta, int x, int y)
 	
 	/* TODO add FOV dependent logic */
 	(void) meta;
-	plane.x = x * 1.0;
-	plane.y = y * 1.0;
+	plane.x = x * 1.0 / meta->screen->width;
+	plane.y = y * 1.0 / meta->screen->height;
 	plane.z = 1.0;
 	return (plane);
 }
