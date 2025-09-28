@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:07:35 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/27 17:30:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/28 20:12:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,27 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <sys/types.h>
 
 # define FALSE 0
 # define TRUE 1
+
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
+
 # define IN 0
 # define OUT 1
+
 # define STDOUT 0
 # define STDIN 1
 # define STDERR 2
+
+# define ST_EMPTY 0
+# define ST_DOT 1
+# define ST_DOTLEFT 2
+# define ST_DOTRIGHT 4
+# define ST_EXPSIGN 8
+# define ST_EXPVAL 16
 
 typedef struct s_list
 {
@@ -74,6 +85,8 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+ssize_t				ft_max(ssize_t left, ssize_t right);
+ssize_t				ft_min(ssize_t left, ssize_t right);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);

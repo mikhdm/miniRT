@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsfree.c                                      :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 03:02:29 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 18:12:08 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/28 20:10:36 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/28 20:10:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <sys/types.h>
 
-void	ft_strsfree(char **strs)
+ssize_t	ft_max(ssize_t left, ssize_t right)
 {
-	char	**s;
-
-	s = strs;
-	while (*s)
-		free(*s++);
-	free(strs);
+	if (left > right)
+		return (left);
+	return (right);
 }
