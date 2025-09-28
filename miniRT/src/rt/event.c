@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/12 22:19:34 by rmander          ###   ########.fr       */
+/*   Created: 2021/04/12 21:20:33 by rmander           #+#    #+#             */
+/*   Updated: 2021/04/12 22:08:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int main(void)
+int ft_hook_close(int keycode, t_meta *meta)
 {
-	t_meta	meta;
-	
-	meta = (t_meta) {.mlx = NULL, .window = NULL, .img = NULL, .addr = NULL, .bpp = 0, .length = 0, .endian = 0};
-
-	meta.mlx = mlx_init();
-	meta.window = mlx_new_window(meta.mlx, 800, 600, "Super Mega Ray Tracer Ever :)");
-	// TODO 
-	mlx_hook(meta.window, X11_BUTTON_PRESS, MASK_STRUCTURE_NOTIFY, ft_hook_close, &meta);
-	mlx_loop(meta.window);
-	return (0);
+	mlx_destroy_window(meta->mlx, meta->window);
+	return (keycode);
 }
