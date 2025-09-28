@@ -48,7 +48,7 @@ static int	diffuse_light(t_data *data,
 	t_pair_figure_double    pair_figure_t;
 	t_light                 *curr;
 
-	range = (t_pair_double){.first = 1e-2, .second = 1};
+	range = (t_pair_double){.first = 1e-5, .second = 1};
 	curr = data->light;
 	color = COLOR_BLACK;
 	while (curr)

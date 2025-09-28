@@ -40,7 +40,7 @@ double   intersect(t_vector3 *p0, t_vector3 *dirvec, t_figure *figure)
 	return (t);
 }
 
-t_pair_figure_double    intersect_closest(t_data *data,t_vector3 *p0,
+t_pair_figure_double    intersect_closest(t_data *data, t_vector3 *p0,
 									   t_vector3 *dirvec, t_pair_double *range)
 {
 	double                  t;

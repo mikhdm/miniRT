@@ -49,6 +49,7 @@ int main(void)
 	t_square		square;
 	t_triangle      triangle;
 	t_cylinder      cylinder;
+	t_cylinder      cylinder2;
 	t_figure		figure1;
 	t_figure		figure2;
 	t_figure		figure3;
@@ -64,7 +65,7 @@ int main(void)
 
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
 
-	cam = (t_camera) {.center = (t_vector3) {.x = 0, .y = 0, .z = 1},
+	cam = (t_camera) {.center = (t_vector3) {.x = 0, .y = 0, .z = -4},
 					.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
 					.fov = 60};
 
@@ -72,7 +73,7 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
 	
-	ambience = (t_ambience) {.intensity = 0.1, .color = 0xff0000};
+	ambience = (t_ambience) {.intensity = 0.2, .color = 0xffffff};
 	light3 = (t_light) {.brightness = 1.0, .color = 0xffffff,
 					    .center = (t_vector3) {.x = 0, .y = 1, .z = 0},
 					    .next = NULL};
@@ -80,7 +81,7 @@ int main(void)
 					.center = (t_vector3) {.x = -1.5, .y = 2, .z = 3},
 					.next = &light3};
 	lights = (t_light) {.brightness = 1.0, .color = 0xffffff,
-		.center = (t_vector3) {.x = 0, .y = 0, .z = 3},
+		.center = (t_vector3) {.x = 0, .y = 2, .z = 2},
 		.next = NULL};
 
 	data.light = &lights;
@@ -96,50 +97,50 @@ int main(void)
 						.center = (t_vector3) {.x = -1, .y = -0.5, .z = 11}};
 
 	sphere = (t_sphere) {
-						.color = 0xffff00,
-						.diameter = 2,
-						.center = (t_vector3) {.x = -2, .y = 2, .z = 16.5}};
+						.color = 0x00ffff,
+						.diameter = 3,
+						.center = (t_vector3) {.x = 5, .y = 0, .z = 4}};
 
 	plane = (t_plane) {
 						.color = 0xffff00,
-						.center = (t_vector3) {.x = 0, .y = -1, .z = 2},
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 0},
 						.orient = (t_vector3) {.x = 0,
-												.y = -1,
+												.y = 1,
 												.z = 0}};
 
 	square = (t_square) {
 						.color = 0x0000ff,
-						.center = (t_vector3) {.x = 3, .y = 1, .z = 5},
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 0},
 						.orient = (t_vector3) {.x = 0, .y = -1, .z = 0},
-						.size = 2.0};
+						.size = 10.0};
 	cylinder = (t_cylinder) {
-						.color = 0xff0000,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 10},
-						.orient = (t_vector3) {.x = -1/sqrt(7.25), .y = 0, .z = 2.5/sqrt(7.25)},
-						.diameter = 5,
+						.color = 0xffff00,
+						.center = (t_vector3) {.x = 1, .y = 0, .z = 4},
+						.orient = (t_vector3) {.x = 0, .y = 1, .z = 0},
+						.diameter = 2,
 						.height = 7.0};
 
-//	cylinder2 = (t_cylinder) {
-//			.color = 0x00ff00,
-//			.center = (t_vector3) {.x = 0, .y = 0, .z = 12},
-//			.orient = (t_vector3) {.x = 2/sqrt(14), .y = 1/sqrt(14), .z = 3/sqrt(14)},
-//			.diameter = 3,
-//			.height = 7.0};
+	cylinder2 = (t_cylinder) {
+			.color = 0x00ffff,
+			.center = (t_vector3) {.x = -2, .y = 0, .z = 4},
+			.orient = (t_vector3) {.x = 0, .y = -1, .z = 0},
+			.diameter = 2,
+			.height = 7.0};
 
 	triangle = (t_triangle) {
 						.color = 0xffff00,
-						.x = (t_vector3) {.x = -2, .y = 2, .z = 16},
-						.y = (t_vector3) {.x = -1, .y = 2, .z = 16},
-						.z = (t_vector3) {.x = -1, .y = 3, .z = 8}
+						.x = (t_vector3) {.x = 0, .y = 20, .z = 0},
+						.y = (t_vector3) {.x = 0, .y = 0, .z = 0},
+						.z = (t_vector3) {.x = 0, .y = 10, .z = 20}
 	};
 
-//	figure6 = (t_figure) {.content = &cylinder, .next = NULL, .label = LABEL_CYLINDER};
-//	figure5 = (t_figure) {.content = &square, .next = &figure6, .label = LABEL_SQUARE};
+	figure6 = (t_figure) {.content = &cylinder, .next = NULL, .label = LABEL_CYLINDER};
+    figure5 = (t_figure) {.content = &cylinder2, .next = &figure6, .label = LABEL_CYLINDER};
 //	figure4 = (t_figure) {.content = &triangle, .next = &figure5, .label = LABEL_TRIANGLE};
 //	figure3 = (t_figure) {.content = &plane, .next = &figure4, .label = LABEL_PLANE};
 //
 //	figure2 = (t_figure) {.content = &sphere2, .next = &figure3, .label = LABEL_SPHERE};
-	figure1 = (t_figure) {.content = &cylinder, .next = NULL, .label=LABEL_CYLINDER};
+	figure1 = (t_figure) {.content = &sphere, .next = &figure5, .label=LABEL_SPHERE};
 	data.figures = &figure1;
 	init(&data);
 	test(&data);

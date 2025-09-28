@@ -32,7 +32,7 @@ t_vector3	conv_to_viewport(t_data *data, int x, int y)
 
 	dirvec.x = x * (data->viewport->width / data->screen->width);
 	dirvec.y = y * (data->viewport->height / data->screen->height);
-	dirvec.z = 1.0; // TODO how to deal with orientation vector of camera?
+	dirvec.z = 1.0;
 	return (dirvec);
 }
 
