@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 23:44:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 18:09:13 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/02 18:37:30 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,19 @@
 #include <errno.h>
 #include <stdlib.h>
 
-static t_data	*postproc(t_data *data)
+static t_data	*refine(t_data *data)
 {
+	t_camera	*cam;
 
+	cam = data->cam;
+	while (cam)
+	{
+		if (!(alloca_to((void **)&cam->viewport, sizeof(t_viewport))))
+			ft_pexitfree(ERROR_ERRNO, errno, data);
+		*(cam->viewport) = calc_viewport(data, cam);
+		cam = cam->next;
+	}
+	return (data);
 }
 
 static t_data	*initialize(t_data *data)
@@ -71,7 +81,7 @@ static t_data	*build(int const fildes)
 	data = initialize(data);
 	data->fildes = fildes;
 	data = populate(data);
-	data = postproc(data);
+	data = refine(data);
 	return (data);
 }
 
