@@ -38,11 +38,6 @@ int argb_color(int a, int r, int g, int b)
 	return(a << 24 | r << 16 | g << 8 | b);
 }
 
-double	linear_color(int color)
-{
-	return pow(color, 2.2);
-}
-
 int	addargb(int argb_left, int argb_right)
 {
 	int	a;
@@ -79,10 +74,10 @@ int	cmultargb(int argb, double const value)
 	int	g;
 	int	b;
 
-	a = a_component(argb) * value;
-	r = r_component(argb) * value;
-	g = g_component(argb) * value;
-	b = b_component(argb) * value;
+	a = (int)(a_component(argb) * value);
+	r = (int)(r_component(argb) * value);
+	g = (int)(g_component(argb) * value);
+	b = (int)(b_component(argb) * value);
 	return (argb_color(a, r, g, b));
 }
 
@@ -93,10 +88,10 @@ int	linargb(int argb)
 	int	g;
 	int	b;
 
-	a = pow(a_component(argb) / 255.0, GAMMA_COEF) * 255;
-	r = pow(r_component(argb) / 255.0, GAMMA_COEF) * 255;
-	g = pow(g_component(argb) / 255.0, GAMMA_COEF) * 255;
-	b = pow(b_component(argb) / 255.0, GAMMA_COEF) * 255;
+	a = (int)(pow(a_component(argb) / 255.0, GAMMA_COEF) * 255);
+	r = (int)(pow(r_component(argb) / 255.0, GAMMA_COEF) * 255);
+	g = (int)(pow(g_component(argb) / 255.0, GAMMA_COEF) * 255);
+	b = (int)(pow(b_component(argb) / 255.0, GAMMA_COEF) * 255);
 	return (argb_color(a, r, g, b));
 }
 
@@ -107,9 +102,9 @@ int	gammargb(int argb)
 	int	g;
 	int	b;
 
-	a = pow(a_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255;
-	r = pow(r_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255;
-	g = pow(g_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255;
-	b = pow(b_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255;
+	a = (int)(pow(a_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255);
+	r = (int)(pow(r_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255);
+	g = (int)(pow(g_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255);
+	b = (int)(pow(b_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255);
 	return (argb_color(a, r, g, b));
 }

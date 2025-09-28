@@ -21,6 +21,8 @@ canvas.h
 ../include/render.h
 canvas.h
 ../include/canvas.h
+linop.h
+../include/linop.h
 utils.h
 ../include/utils.h
 
@@ -36,15 +38,15 @@ stdlib.h
 
 ../lib/mlx/mlx.h
 
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/main.c
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/main.c
 canvas.h
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/canvas.h
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/canvas.h
 event.h
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/event.h
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/event.h
 render.h
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/render.h
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/render.h
 mlx.h
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/mlx.h
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/mlx.h
 math.h
 -
 stddef.h

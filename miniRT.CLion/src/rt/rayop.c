@@ -18,75 +18,85 @@
 #include "libft.h"
 #include <math.h>
 
-static double   intersect(t_data *data,
-			t_vector3 *dirvec, t_figure *figure)
+double   intersect(t_vector3 *p0, t_vector3 *dirvec, t_figure *figure)
 {
 	double	t;
 
 	t = INFINITY;
 	if (ft_strncmp(figure->label, LABEL_SPHERE, ft_strlen(LABEL_SPHERE)) == 0)
-		t = intersect_sphere(data, dirvec, (t_sphere *)figure->content);
+		t = intersect_sphere(p0, dirvec, (t_sphere *)figure->content);
 	else if (ft_strncmp(figure->label, LABEL_PLANE,
 					 ft_strlen(LABEL_PLANE)) == 0)
-		t = intersect_plane(data, dirvec, (t_plane *)figure->content);
+		t = intersect_plane(p0, dirvec, (t_plane *)figure->content);
 	else if (ft_strncmp(figure->label, LABEL_SQUARE,
 					 ft_strlen(LABEL_SQUARE)) == 0)
-		t = intersect_square(data, dirvec, (t_square *)figure->content);
+		t = intersect_square(p0, dirvec, (t_square *)figure->content);
 	else if (ft_strncmp(figure->label, LABEL_TRIANGLE,
 					 ft_strlen(LABEL_TRIANGLE)) == 0)
-		t = intersect_triangle(data, dirvec, (t_triangle *)figure->content);
+		t = intersect_triangle(p0, dirvec, (t_triangle *)figure->content);
 	else if (ft_strncmp(figure->label, LABEL_CYLINDER,
 					 ft_strlen(LABEL_CYLINDER)) == 0)
-		t = intersect_cylinder(data, dirvec, (t_cylinder *)figure->content);
+		t = intersect_cylinder(p0, dirvec, (t_cylinder *)figure->content);
 	return (t);
 }
 
-int	shade(t_data *data,
-		t_figure *figure, t_vector3 *dirvec, double t)
+t_pair_figure_double    intersect_closest(t_data *data,t_vector3 *p0,
+									   t_vector3 *dirvec, t_pair_double *range)
 {
-	int	color;
+	double                  t;
+	t_pair_figure_double    pair_figure_t;
+	t_figure                *curr;
+
+	curr = data->figures;
+	pair_figure_t = (t_pair_figure_double) {.figure = NULL, .t = INFINITY};
+	while (curr)
+	{
+		t = intersect(p0, dirvec, curr);
+		if (t >= range->first && t <= range->second && t < pair_figure_t.t)
+		{
+			pair_figure_t.t = t;
+			pair_figure_t.figure = curr;
+		}
+		curr = curr->next;
+	}
+	if (isinf(pair_figure_t.t))
+		return ((t_pair_figure_double) {.figure = NULL, .t = INFINITY});
+	return (pair_figure_t);
+}
+
+int	shade(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
+			t_pair_figure_double *pair_figure_t)
+{
+	int         color;
+	t_figure    *figure;
 
 	color = COLOR_BACKGROUND;
+	figure = pair_figure_t->figure;
 	if (ft_strncmp(figure->label, LABEL_SPHERE,
 				ft_strlen(LABEL_SPHERE)) == 0)
-		color = shade_sphere(data, (t_sphere *)figure->content, dirvec, t);
+		color = shade_sphere(data, p0, dirvec, pair_figure_t);
 	else if (ft_strncmp(figure->label, LABEL_PLANE,
 					 ft_strlen(LABEL_PLANE)) == 0)
-		color = shade_plane(data, (t_plane *)figure->content, dirvec, t);
+		color = shade_plane(data, p0, dirvec, pair_figure_t);
 	else if (ft_strncmp(figure->label, LABEL_SQUARE,
 					 ft_strlen(LABEL_SQUARE)) == 0)
-		color = shade_square(data, (t_square *)figure->content, dirvec, t);
+		color = shade_square(data, p0, dirvec, pair_figure_t);
 	else if (ft_strncmp(figure->label, LABEL_TRIANGLE,
 					 ft_strlen(LABEL_TRIANGLE)) == 0)
-		color = shade_triangle(data, (t_triangle *)figure->content, dirvec, t);
+		color = shade_triangle(data, p0, dirvec, pair_figure_t);
 	else if (ft_strncmp(figure->label, LABEL_CYLINDER,
 					 ft_strlen(LABEL_CYLINDER)) == 0)
-		color = shade_cylinder(data, (t_cylinder *)figure->content, dirvec, t);
+		color = shade_cylinder(data, p0, dirvec, pair_figure_t);
 	return (color);
 }
 
 
-int	trace(t_data *data,
-		t_vector3 *dirvec, t_pair_double *range)
+int	trace(t_data* data, t_vector3 *p0, t_vector3 *dirvec, t_pair_double *range)
 {
-	double			t;
-	double			min_t;
-	t_figure		*curr;
-	t_figure		figure;
+	t_pair_figure_double    pair_figure_t;
 
-	curr = data->figures;
-	min_t = INFINITY;
-	while (curr)
-	{
-		t = intersect(data, dirvec, curr);
-		if (t >= range->first && t <= range->second && t < min_t)
-		{
-			min_t = t;
-			figure = *curr;
-		}
-		curr = curr->next;
-	}
-	if (isinf(min_t))
+	pair_figure_t = intersect_closest(data, p0, dirvec, range);
+	if (isinf(pair_figure_t.t))
 		return (COLOR_BACKGROUND);
-	return (shade(data, &figure, dirvec, min_t));
+	return (shade(data, p0, dirvec, &pair_figure_t));
 }

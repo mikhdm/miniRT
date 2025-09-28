@@ -1,4 +1,4 @@
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/ft.dir
-/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/ft.dir
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir

@@ -1,4 +1,10 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc -G "CodeBlocks - Unix Makefiles" /Users/rmander/Dev/42/miniRT/miniRT.CLion
+-- The C compiler identification is AppleClang 11.0.0.11000033
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug
+-- Build files have been written to: /Users/rmander/Dev/42/miniRT/miniRT.CLion/cmake-build-debug

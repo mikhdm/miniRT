@@ -13,6 +13,7 @@
 #include "color.h"
 #include "canvas.h"
 #include "linop.h"
+#include <math.h>
 
 /*
 *
@@ -23,7 +24,8 @@ static int	ambient_light(t_ambience *ambience, int const scolor)
 {
 	int	acolor;
 
-	acolor = cmultargb(linargb(ambience->color), ambience->intensity);
+	acolor = linargb(ambience->color);
+	acolor = cmultargb(acolor, ambience->intensity);
 	return (multargb(acolor, scolor));
 }
 
@@ -31,21 +33,21 @@ static int calc_diffuse_light(t_light *light,
 				int const scolor, double const dot)
 {
 	t_light		*curr;
-	int 		currcolor;
-	int			lightcolor;
+	int 		curr_color;
+	int			sum_color;
 
 	curr = light;
-	lightcolor = 0;
+	sum_color = COLOR_BACKGROUND;
 	while (curr)
 	{
-		currcolor = cmultargb(linargb(curr->color), curr->brightness);
-		currcolor = multargb(scolor, currcolor);
-		currcolor = cmultargb(currcolor, dot);
-		lightcolor = addargb(lightcolor, currcolor);
+		curr_color = linargb(curr->color);
+		curr_color = cmultargb(curr_color, curr->brightness);
+		curr_color = multargb(curr_color, scolor);
+		curr_color = cmultargb(curr_color, dot);
+		sum_color = addargb(sum_color, curr_color);
 		curr = curr->next;
 	}
-	return (lightcolor);
-
+	return (sum_color);
 }
 
 static int	diffuse_light(t_light *light,
@@ -54,15 +56,14 @@ static int	diffuse_light(t_light *light,
 		int const scolor)
 {
 	double		dot;
-	double		denom;
-	t_vector3	lightvec;
+	t_vector3	light_vec;
+	t_vector3   orient_norm;
 	
-	lightvec = diffvec3(&light->center, point);
-	dot = dot3(orient, &lightvec);
-	if (dot3(orient, &lightvec) < 0.0)
-		dot = -1.0 * dot;
-	denom = hypotvec3(&lightvec) * hypotvec3(orient);
-	return (calc_diffuse_light(light, scolor, dot / denom));
+	light_vec = diffvec3(&light->center, point);
+	light_vec = normvec3(&light_vec);
+	orient_norm = normvec3(orient);
+	dot = fmax(0.0, dot3(&orient_norm, &light_vec));
+	return (calc_diffuse_light(light, scolor, dot));
 }
 
 int light(t_data *data,
@@ -70,8 +71,10 @@ int light(t_data *data,
 {
 	int ambient_color;
 	int	diffuse_color;
-	
-	ambient_color = ambient_light(data->ambience, linargb(scolor));
-	diffuse_color = diffuse_light(data->light, point, orient, linargb(scolor));
+	int surface_color;
+
+	surface_color = linargb(scolor);
+	ambient_color = ambient_light(data->ambience, surface_color);
+	diffuse_color = diffuse_light(data->light, point, orient, surface_color);
 	return (gammargb(addargb(ambient_color, diffuse_color)));
 }

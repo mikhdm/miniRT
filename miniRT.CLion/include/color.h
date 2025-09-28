@@ -14,7 +14,7 @@
 # define COLOR_H
 
 # define GAMMA_COEF 2.2
-# define GAMMA_REVERSE_COEF (1 / 2.2)
+# define GAMMA_REVERSE_COEF (1.0 / 2.2)
 
 int		a_component(int argb);
 int		r_component(int argb);
@@ -25,6 +25,6 @@ int		linargb(int argb);
 int		gammargb(int argb);
 int		addargb(int argb_left, int argb_right);
 int		multargb(int argb_left, int argb_right);
-int		cmultargb(int argb, double const value);
+int		cmultargb(int argb, double value);
 
 #endif

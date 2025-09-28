@@ -15,7 +15,7 @@
 #include "rayop.h"
 #include "utils.h"
 
-void	render(t_data *data, t_pair_double *range)
+void	render(t_data *data, t_vector3 *p0, t_pair_double *range)
 {
 	int				x;
 	int				y;
@@ -29,7 +29,7 @@ void	render(t_data *data, t_pair_double *range)
 		while (x < data->screen->width / 2)
 		{
 			dirvec = conv_to_viewport(data, x, y);
-			color = trace(data, &dirvec, range);
+			color = trace(data, p0, &dirvec, range);
 			putpixel(data, x, y, color);
 			++x;
 		}
