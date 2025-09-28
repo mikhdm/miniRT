@@ -49,6 +49,7 @@ src/parsing/serializers/serialize_sq.c
 src/parsing/validate.c
 src/parsing/validators/valid_rgb.c
 src/parsing/validators/valid_orient.c
+src/parsing/validators/valid_point3.c
 src/screenshot.c
 src/tests.c
 main.c)

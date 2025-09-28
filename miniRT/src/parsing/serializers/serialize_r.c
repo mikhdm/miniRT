@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:35:30 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/29 21:33:32 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/30 19:03:17 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	set_screen(t_data *data, char **strs, int *w, int *h)
 	str = NULL;
 	if (!alloca_to((void **)&screen, sizeof(t_screen)))
 		serialize_error(ERROR_ERRNO, errno, data, strs);
+	data->screen = screen;
 	strslen = ft_strslen(strs);
 	if (strslen != 2)
 		serialize_error(ERROR_SYNTAX_RESOLUTION, 255, data, strs);
@@ -43,9 +44,8 @@ static void	set_screen(t_data *data, char **strs, int *w, int *h)
 	}
 	*w = ft_atoi(strs[0]);
 	*h = ft_atoi(strs[1]);
-	*screen = (t_screen){.width = (int)*w, .height = (int)*h,
+	*(data->screen) = (t_screen){.width = (int)*w, .height = (int)*h,
 		.title = WINDOW_TITLE};
-	data->screen = screen;
 }
 
 t_data	*serialize_r(t_data *data, char const *line)
@@ -73,5 +73,6 @@ t_data	*serialize_r(t_data *data, char const *line)
 		data->screen->width = (int)max_w;
 	if ((size_t)data->screen->height > max_h)
 		data->screen->height = (int)max_h;
+	ft_strsfree(strs);
 	return (data);
 }

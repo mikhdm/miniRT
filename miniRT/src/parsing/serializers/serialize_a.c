@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:58:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/29 22:55:31 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/30 19:25:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 #include "parsing/validate.h"
 #include <errno.h>
 
-static void	set_color(t_data *data, char **strs, char **strsrgb,
-				t_ambience **ambience)
+static void	set_color(t_data *data, char **strs, char **strsrgb)
 {
 	size_t	strslen;
 	int		argb;
@@ -36,7 +35,7 @@ static void	set_color(t_data *data, char **strs, char **strsrgb,
 		ft_strsfree(strsrgb);
 		serialize_error(ERROR_INVALID_AMBIENCE, 255, data, strs);
 	}
-	(*ambience)->color = argb;
+	data->ambience->color = argb;
 	ft_strsfree(strsrgb);
 }
 
@@ -46,19 +45,19 @@ static void	set_ambience(t_data *data, char **strs, t_ambience **ambience)
 	char		**strsrgb;
 
 	strslen = ft_strslen(strs);
+	data->ambience = *ambience;
 	if (strslen != 2)
 		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
 	if (!ft_isfloatable(strs[0]))
 		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
-	(*ambience)->intensity = ft_atof(strs[0]);
-	if (ft_flt((*ambience)->intensity, 0)
-		|| ft_fgt((*ambience)->intensity, 1))
+	data->ambience->intensity = ft_atof(strs[0]);
+	if (ft_flt(data->ambience->intensity, 0)
+		|| ft_fgt(data->ambience->intensity, 1))
 		serialize_error(ERROR_INVALID_AMBIENCE, 255, data, strs);
 	strsrgb = ft_split_any(strs[1], ',');
 	if (!strsrgb)
 		serialize_error(ERROR_ERRNO, errno, data, strs);
-	set_color(data, strs, strsrgb, ambience);
-	data->ambience = *ambience;
+	set_color(data, strs, strsrgb);
 }
 
 t_data	*serialize_a(t_data *data, char const *line)
@@ -77,5 +76,6 @@ t_data	*serialize_a(t_data *data, char const *line)
 	if (!alloca_to((void **)&ambience, sizeof(t_ambience)))
 		serialize_error(ERROR_ERRNO, errno, data, strs);
 	set_ambience(data, strs, &ambience);
+	ft_strsfree(strs);
 	return (data);
 }
