@@ -36,6 +36,28 @@ t_vector3	conv_to_viewport(t_data *data, t_camera *cam, int x, int y)
 	return (dirvec);
 }
 
+t_vector3   look_at(t_data *data, t_camera *cam)
+{
+	t_vector3   tmp;
+	t_vector3   right;
+	t_vector3   up;
+	double      rot[4][4];
+
+	tmp = (t_vector3){.x = 0, .y = 100, .z = 0};
+	if (iscollinvec3(&tmp, &cam->orient))
+		tmp = (t_vector3){.x = 0, .y = 0, .z = -100};
+	right = cross3(&cam->orient, &tmp);
+	up = cross3(&right, &cam->orient);
+	rot[0] = {cam->orient.x, cam->orient.y, cam->orient.z, 0};
+//	rot[0] = (rot[4][4]){
+//		{cam->orient.x, cam->orient.y, cam->orient.z, 0},
+//		{cam->orient.x, cam->orient.y, cam->orient.z, 0},
+//		{cam->orient.x, cam->orient.y, cam->orient.z, 0},
+//		{cam->center.x, cam->center.y, cam->center.z, 1}
+//	};
+
+}
+
 void	putpixel(t_data *data, int x, int y, int color)
 {
 	char    *dest;
