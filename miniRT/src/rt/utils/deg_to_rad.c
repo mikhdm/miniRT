@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   deg_to_rad.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 23:32:37 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/20 23:33:51 by rmander          ###   ########.fr       */
+/*   Created: 2021/04/23 15:24:55 by rmander           #+#    #+#             */
+/*   Updated: 2021/04/26 21:00:26 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swap_double(double *left, double *right)
-{
-	double tmp;
+#include <math.h>
 
-	tmp = *left;
-	*left = *right;
-	*right = tmp;
+double	deg_to_rad(double deg)
+{
+	return (deg * M_PI * pow(180, -1));
 }

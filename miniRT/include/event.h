@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:30:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/18 17:36:01 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 21:13:42 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENT_H
 # define EVENT_H
 
-#include "rt.h"
+#include "canvas.h"
 
 typedef enum e_event {
 	X11_KEY_PRESS = 2,
@@ -88,7 +88,7 @@ typedef enum e_key {
 	KEY_ESC = 53,
 }	t_key;
 
-int	ft_hook_close(int keycode, t_meta *meta);
-int	ft_hook_keypress(int keycode, t_meta *meta);
+int	ft_hook_close(int keycode, t_data *data);
+int	ft_hook_keypress(int keycode, t_data *data);
 
 #endif

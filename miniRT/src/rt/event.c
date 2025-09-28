@@ -6,30 +6,27 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:20:33 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/17 01:47:44 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 21:47:59 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "mlx.h"
 #include "event.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "canvas.h"
+#include "mlx.h"
 
-int	ft_hook_close(int keycode, t_meta *meta)
+int	ft_hook_close(int keycode, t_data *data)
 {
 	(void) keycode;
-	(void) meta;
-	// TODO check why mlx_destroy_window does segmentation fault
+	(void) data;
 	exit(0);
 }
 
-int ft_hook_keypress(int keycode, t_meta *meta)
+int ft_hook_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESC)
-		if (meta->window)
+		if (data->window)
 		{
-			mlx_destroy_window(meta->mlx, meta->window);
+			mlx_destroy_window(data->mlx, data->window);
 		}
 	exit(0);
 }

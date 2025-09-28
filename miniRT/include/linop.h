@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:22:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 19:28:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 21:15:27 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 */
 typedef struct s_vector3
 {
-	double x;
-	double y;
-	double z;
+	double		x;
+	double		y;
+	double		z;
 }	t_vector3;
 
 double		dot3(t_vector3 *left, t_vector3 *right);

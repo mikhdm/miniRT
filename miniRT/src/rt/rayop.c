@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   rayop.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 20:52:20 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 22:35:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <float.h>
-#include <stdio.h>
-#include "libft.h"
-#include "rt.h"
+#include "canvas.h"
 #include "linop.h"
-#include "figure.h"
-#include "utils.h"
 #include "light.h"
+#include "utils.h"
+#include <math.h>
 
-t_pair_double	ft_intersect_sphere(
-					t_meta *meta,
-					t_vector3 *dirvec,
-					t_sphere *sphere)
+t_pair_double	ft_intersect_sphere(t_data *data, t_vector3 *dirvec, t_sphere *sphere)
 {
 	double			radius;
 	t_vector3		sp_cam_vec;
 	t_pair_double	values;
 	
 	radius = sphere->diameter / 2;
-	sp_cam_vec = diffvec3(&meta->cam->center, &sphere->center);
+	sp_cam_vec = diffvec3(&data->cam->center, &sphere->center);
 
 	values = calc_quad_equation(
 			dot3(dirvec, dirvec),
@@ -39,11 +32,7 @@ t_pair_double	ft_intersect_sphere(
 	return (values);
 }
 
-int	ft_trace_sphere(
-		t_meta *meta,
-		t_vector3 *dirvec,
-		t_sphere *sphere,
-		t_pair_double *steprange)
+int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 {
 	double 			closest_step;
 	short int		intersected;
@@ -54,7 +43,7 @@ int	ft_trace_sphere(
 
 	closest_step = INFINITY;
 	intersected = FALSE;
-	steps = ft_intersect_sphere(meta, dirvec, sphere);
+	steps = ft_intersect_sphere(data, dirvec, data->figures->sphere);
 	if (steps.first >= steprange->first && steps.first <= steprange->second
 		&& steps.first < closest_step)
 	{
@@ -69,9 +58,8 @@ int	ft_trace_sphere(
 	}
 	if (intersected == FALSE)
 		return (0x0);
-
 	cmult_dirvec = cmultvec3((double const)closest_step, dirvec); 
-	closest_point = sumvec3(&meta->cam->center, &cmult_dirvec);
-	orient = calc_sphere_orient(&closest_point, sphere);
-	return (sphere->color * light(meta, &closest_point, &orient));
+	closest_point = sumvec3(&data->cam->center, &cmult_dirvec);
+	orient = calc_sphere_orient(&closest_point, data->figures->sphere);
+	return (data->figures->sphere->color * light(data, &closest_point, &orient));
 }

@@ -6,27 +6,37 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 17:33:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 20:49:33 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 22:24:14 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIGHT_H
 # define LIGHT_H
 
+#include "canvas.h"
 #include "linop.h"
 
-typedef struct s_ambience
+typedef struct	s_ambience
 {
-	double	intensity;
-	int		color;
-}	t_ambience;
+	double		intensity;
+	int			color;
+}				t_ambience;
 
-typedef struct s_light
+typedef struct	s_light
 {
-	double			intensity;
+	double			brightness;
 	int				color;
-	struct s_light	*next;
 	t_vector3		center;	
-}	t_light;
+	struct s_light	*next;
+}					t_light;
+
+/*
+*
+* light - calculates intensity of light at point on a surface
+* with orientation vector orient.
+*
+*/
+double	light(t_data *data,
+			t_vector3 *point, t_vector3 *orient);
 
 #endif

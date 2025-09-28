@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   rad_to_deg.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/03 23:48:53 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/17 01:58:26 by rmander          ###   ########.fr       */
+/*   Created: 2021/04/26 21:00:03 by rmander           #+#    #+#             */
+/*   Updated: 2021/04/26 21:00:24 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include <math.h>
 
-#endif
+double rad_to_deg(double rad)
+{
+	return (rad * 180 * pow(M_PI, -1));
+}

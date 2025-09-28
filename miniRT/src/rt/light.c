@@ -6,12 +6,12 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:13:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 20:45:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 22:24:16 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "light.h"
-#include "rt.h"
+#include "canvas.h"
 #include "linop.h"
 
 static double	_calc(t_light *light,
@@ -24,22 +24,22 @@ static double	_calc(t_light *light,
 	intensity = .0;
 	lightvec = diffvec3(&light->center, point);
 	dot = dot3(orient, &lightvec);
-	intensity = light->intensity * dot / (hypotvec3(&lightvec) * hypotvec3(orient));
+	intensity = light->brightness * dot / (hypotvec3(&lightvec) * hypotvec3(orient));
 	return (intensity);
 }
 
-double	light(t_meta *meta,
+double	light(t_data *data,
 			t_vector3 *point, t_vector3 *orient)
 {
 	double	intensity;
 	double	curr;	
 	t_light *head;
 
-	head = meta->light;
+	head = data->light;
 	intensity = .0;
 	curr = .0;
-	if (meta->ambience)
-		intensity += meta->ambience->intensity;
+	if (data->ambience)
+		intensity += data->ambience->intensity;
 	while (head)
 	{
 		curr = _calc(head, point, orient);

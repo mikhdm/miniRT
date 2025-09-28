@@ -6,13 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:31:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 19:28:28 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 21:42:02 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include "rt.h"
+#include "canvas.h"
 #include "linop.h"
+#include <math.h>
 
 double	dot3(t_vector3 *left, t_vector3 *right)
 {

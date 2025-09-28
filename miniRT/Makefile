@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/04/25 20:40:44 by rmander          ###   ########.fr        #
+#    Updated: 2021/04/26 23:01:11 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,16 @@ MLX_DIR = ./lib/mlx
 LIBFT_DIR = ./lib/libft
 MLX_DYLIB = ./lib/mlx/libmlx.dylib 
 DYLIB = ./libmlx.dylib
-SRCS = ./src/rt/image.c ./src/rt/event.c ./src/rt/linop.c ./src/rt/ray.c \
-	   ./src/utils/calc_quad_equation.c ./src/utils/ft_swap.c \
-	   ./src/utils/deg_to_rad.c ./src/utils/calc_sphere_orient.c ./src/rt/light.c ./src/main.c
-INCLUDES = 	./include/rt.h ./mlx/mlx.h ./include/event.h \
-			./include/parser.h ./include/figure.h ./include/linop.h \
-			./include/ray.h ./include/utils.h ./include/light.h
+SRCS =  ./src/rt/utils/calc_quad_equation.c ./src/rt/utils/ft_swap_double.c \
+		./src/rt/utils/deg_to_rad.c ./src/rt/utils/rad_to_deg.c \
+		./src/rt/utils/calc_sphere_orient.c \
+		./src/rt/linop.c ./src/rt/event.c ./src/rt/rayop.c \
+		./src/rt/light.c ./src/rt/canvas.c \
+		./src/main.c
+INCLUDES = ./mlx/mlx.h \
+		   ./include/canvas.h ./include/utils.h ./include/event.h \
+		   ./include/linop.h ./include/rayop.h \
+		   ./include/light.h
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

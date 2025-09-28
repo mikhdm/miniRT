@@ -6,36 +6,69 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 20:40:18 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 22:55:51 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <math.h>
-#include "mlx.h"
 #include "rt.h"
 #include "linop.h"
 #include "ray.h" 
 #include "event.h"
 #include "utils.h"
+#include "mlx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
-static void	ft_init(t_meta *meta)
+static void	ft_init(t_data *data)
 {
-	meta->mlx = mlx_init();
-	meta->window = mlx_new_window(
-							meta->mlx,
-							meta->screen->width,
-							meta->screen->height,
-							meta->screen->title);
-	meta->img = mlx_new_image(
-							meta->mlx,
-							meta->screen->width,
-							meta->screen->height); 
-	meta->addr = mlx_get_data_addr(
-							meta->img,
-							&meta->bpp,
-							&meta->length,
-							&meta->endian);
+	data->mlx = mlx_init();
+	data->window = mlx_new_window(
+							data->mlx,
+							data->screen->width,
+							data->screen->height,
+							data->screen->title);
+	data->img = mlx_new_image(
+							data->mlx,
+							data->screen->width,
+							data->screen->height); 
+	data->addr = mlx_get_data_addr(
+							data->img,
+							&data->bpp,
+							&data->length,
+							&data->endian);
+}
+
+static void	ft_bind_hooks(t_data *data)
+{
+	mlx_hook(data->window,
+		X11_DESTROY_NOTIFY, MASK_NO_EVENT, ft_hook_close, &data);
+	mlx_hook(data->window,
+		X11_KEY_PRESS, MASK_NO_EVENT, ft_hook_keypress, &data);
+}
+
+static void render_sphere(t_data *data, t_pair_double *stepsrange)
+{
+	int				x;
+	int				y;
+	int				color;
+	t_vector3		dirvec;
+	t_pair_double	stepsrange;
+
+	// TODO check zero inclusion due to canvas coordinate system
+	y = -data.screen->height / 2 + 1;
+	while (y < data.screen->height / 2)
+	{
+		x = -data.screen->width / 2;
+		while (x < data.screen->width / 2)
+		{
+			dirvec = ft_conv_to_viewport(&data, x, y);
+			color = ft_trace_sphere(&data, &dirvec, &stepsrange); 
+			ft_putpixel(&data, x, y, color);
+			++x;
+		}
+		++y;
+	}
 }
 
 /* TESTFUNC */
@@ -88,11 +121,11 @@ void	deg_to_rad_test(void)
 /* END TESTFUNC */
 
 /* TESTFUNC */
-void	calc_viewport_test(t_meta *meta)
+void	calc_viewport_test(t_data *data)
 {
 	t_viewport	viewport;
 
-	viewport = calc_viewport(meta);
+	viewport = calc_viewport(data);
 	printf("projection plane width = %f, height = %f\n", viewport.width, viewport.height);
 }
 /* END TESTFUNC */
@@ -114,30 +147,53 @@ void	calc_sphere_orient_test(t_sphere *sphere)
 
 int main(void)
 {
-	t_meta		meta;
+	t_data		data;
 	t_screen 	screen;
 	t_camera	cam;
 	t_sphere	sphere;
+	t_sphere	sphere2;
+	t_figure	figures;
 	t_viewport	viewport;
 	
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
+
 	cam = (t_camera) {.center = (t_vector3) {.x = .0, .y = .0, .z = 0.0},
 					.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
 					.fov = 30};
-	meta = (t_meta) {.mlx = NULL, .window = NULL, .img = NULL,
+
+	data = (t_data) {.mlx = NULL, .window = NULL, .img = NULL,
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
-	viewport = calc_viewport(&meta);
-	meta.viewport = &viewport;
 
-	sphere = (t_sphere) {.color = 0xff0000,
+	viewport = calc_viewport(&data);
+
+	data.viewport = &viewport;
+
+	sphere2 = (t_sphere) {.color = 0xff0000,
 						.diameter = 2,
-						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 30}};
-	ft_init(&meta);
+						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 30},
+						.next = NULL};
+
+	sphere = (t_sphere) {.color = 0x00ff00,
+						.diameter = 3,
+						.center = (t_vector3) {.x = 0, .y = -0.5, .z = 30},
+						.next = &sphere2};
+
+	figures = (t_figures) {.sphere = sphere,
+							.plane = NULL,
+							.cylinder = NULL,
+							.triangle = NULL,
+							.square = NULL};
+	data.figures = &figures;
+
+	stepsrange = (t_pair_double) {.first = 1.0, .second = INFINITY};
+
+	ft_init(&data);
+	ft_bind_hooks(&data);
 	
 	/* LOG */
 	printf("bpp: %d;\nline length: %d;\nendian: %d;\n",
-		meta.bpp, meta.length, meta.endian); 
+		data.bpp, data.length, data.endian); 
 	/* END LOG */
 
 	/* TEST */
@@ -153,38 +209,16 @@ int main(void)
 	/* END TEST */
 
 	/* TEST */
-	calc_viewport_test(&meta);
+	calc_viewport_test(&data);
 	/* END TEST */
 
 	/* TEST */
 	calc_sphere_orient_test(&sphere);
 	/* END TEST */
+
+	render_sphere(&data, &stepsrange);
 	
-	int x = -meta.screen->width / 2;
-	int y;
-	int	color;
-	t_vector3 dirvec;
-	t_pair_double stepsrange;
-
-	stepsrange = (t_pair_double) {.first = 1.0, .second = INFINITY};
-	while (x < meta.screen->width / 2)
-	{
-		y = -meta.screen->height / 2 + 1;
-		while (y < meta.screen->height / 2)
-		{
-			dirvec = ft_conv_to_viewport(&meta, x, y);
-			color = ft_trace_sphere(&meta, &dirvec, &sphere, &stepsrange); 
-			ft_putpixel(&meta, x, y, color);
-			++y;
-		}
-		++x;
-	}
-
-	mlx_hook(meta.window,
-		X11_DESTROY_NOTIFY, MASK_NO_EVENT, ft_hook_close, &meta);
-	mlx_hook(meta.window,
-		X11_KEY_PRESS, MASK_NO_EVENT, ft_hook_keypress, &meta);
-	mlx_put_image_to_window(meta.mlx, meta.window, meta.img, 0, 0);
-	mlx_loop(meta.mlx);
+	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
+	mlx_loop(data.mlx);
 	return (0);
 }
