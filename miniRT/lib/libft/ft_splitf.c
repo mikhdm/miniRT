@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 20:28:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/23 20:48:14 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/23 20:48:24 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stddef.h>
 
-static size_t	ft_split_strslen(char const *str, short (*f)(char))
+static size_t	ft_splitf_strslen(char const *str, short (*f)(char))
 {
 	size_t	cnt;
 	int		flag;
@@ -35,7 +35,7 @@ static size_t	ft_split_strslen(char const *str, short (*f)(char))
 	return (cnt);
 }
 
-static size_t	ft_split_strlen(char const *str, short (*f)(char))
+static size_t	ft_splitf_strlen(char const *str, short (*f)(char))
 {
 	size_t	cnt;
 
@@ -48,12 +48,12 @@ static size_t	ft_split_strlen(char const *str, short (*f)(char))
 	return (cnt);
 }
 
-static char	*ft_split_strdup(char const *str, short (*f)(char))
+static char	*ft_splitf_strdup(char const *str, short (*f)(char))
 {
 	char	*s;
 	char	*start;
 
-	s = malloc(sizeof(char) * (ft_split_strlen(str, f) + 1));
+	s = malloc(sizeof(char) * (ft_splitf_strlen(str, f) + 1));
 	if (!s)
 		return (NULL);
 	start = s;
@@ -63,7 +63,7 @@ static char	*ft_split_strdup(char const *str, short (*f)(char))
 	return (start);
 }
 
-static void	ft_split_free(char **strs, size_t cnt)
+static void	ft_splitf_free(char **strs, size_t cnt)
 {
 	while (cnt--)
 		free(strs[cnt]);
@@ -76,17 +76,17 @@ char	**ft_splitf(char const *s, short (*f)(char))
 	char	**strs;
 
 	i = 0;
-	strs = malloc(sizeof(char *) * (ft_split_strslen(s, f) + 1));
+	strs = malloc(sizeof(char *) * (ft_splitf_strslen(s, f) + 1));
 	if (!strs)
 		return (NULL);
 	while (*s)
 	{
 		if (!(*f)(*s))
 		{
-			strs[i] = ft_split_strdup(s, f);
+			strs[i] = ft_splitf_strdup(s, f);
 			if (!strs[i++])
 			{
-				ft_split_free(strs, i);
+				ft_splitf_free(strs, i);
 				return (NULL);
 			}
 			while (*s && !((*f)(*s)))
