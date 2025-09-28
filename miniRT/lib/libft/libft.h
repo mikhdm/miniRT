@@ -66,6 +66,8 @@ char				**ft_split(char const *s, char c);
 char                **ft_splitf(char const *s, int (*f)(int));
 size_t              ft_strslen(char **strs);
 void                ft_strsfree(char **strs);
+char                *ft_strlower(char **str);
+char                *ft_strupper(char **str);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);

@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.c                                         :+:      :+:    :+:   */
+/*   ft_strlower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 14:07:30 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/26 17:20:39 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/27 00:24:11 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/27 00:30:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "canvas.h"
+#include "libft.h"
 
-t_data  *validate(t_data *data)
+char    *ft_strlower(char **str)
 {
-	/* TODO check data empty */
-	/* TODO check all items empty */
-	return (data);
+	char *strp;
+
+	strp = *str;
+	while (*strp)
+	{
+		*strp = (char)ft_tolower(*strp);
+		++strp;
+	}
+	return (*str);
 }
