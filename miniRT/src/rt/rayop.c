@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/04 22:39:48 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/05 14:18:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,13 @@ int	ft_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	t_vector3			closest_point;
 	t_vector3			t_mult_dirvec;
 	int					color;
+	t_vector3			orient;
+	double				size;
 	t_pair_double_int	pair;
 
 	color = data->figures->square->color;
+	orient = data->figures->square->orient;
+	size = data->figures->square->size;
 	pair = _trace_square(data, dirvec, steprange);
 	if (!pair.second)
 		return (COLOR_BACKGROUND);
@@ -145,19 +149,48 @@ int	ft_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	/* TODO add hit square point detection */
 
 	t_vector3	rand_vec;
-	t_vector3	cross_rand_orient_vec;
+	t_vector3	sq_vec[4];
+	t_vector3	vertices[4];
+	size_t		i;
 
-	rand_vec = (t_vector3) {.x = 1, .y = 0, .z = 0};
-	if (iscollinvec3(&rand_vec, &data->figures->square->orient)) 
-		rand_vec = (t_vector3) {.x = 0, .y = 1, .z = 0};
+	rand_vec = (t_vector3) {.x = 1000, .y = 0, .z = 0};
+	if (iscollinvec3(&rand_vec, &orient)) 
+		rand_vec = (t_vector3) {.x = 0, .y = 1000, .z = 0};
 
-	cross_rand_orient_vec = cross3(&rand_vec, data->figures->square->orient);
-	cross_rand_orient_vec = normvec3(&cross_rand_orient_vec);
+	sq_vec[0] = cross3(&rand_vec, &orient);
+	sq_vec[1] = cross3(&sq_vec[0], &orient);
 
-	/* TODO calc all vectors for square (2 and 2 opposite) */
+	sq_vec[0] = normvec3(&sq_vec[0]);
+	sq_vec[1] = normvec3(&sq_vec[1]);
+	sq_vec[2] = cmultvec3(-1.0, &sq_vec[0]);
+	sq_vec[3] = cmultvec3(-1.0, &sq_vec[1]);
 
-	color = light(data, &closest_point, &data->figures->square->orient, color);
+	i = 0;
+	while (i < 4)
+	{
+		sq_vec[i] = cmultvec3(size, &sq_vec[i]);
+		/* this is not sum of vectors, but sum of vector with point */
+		/* due to the fact we have P1 - P0 + P0 = P1 -- the top-left vertex of square etc. */
+		vertices[i] = sumvec3(&sq_vec[i], &data->figures->square->center);
+		++i;
+	}
+
+	/* double	lcheck; */
+	/* double	rcheck; */
+
+	/* t_vector3	hitp1vec = diffvec3(&closest_point, &vertices[0]); */
+	/* t_vector3	p1p2vec = diffvec3(&vertices[1], &vertices[0]); */
+	/* t_vector3	p2p3vec = diffvec3(&vertices[2], &vertices[1]); */
+
+	/* lcheck = dot3(&hitp1vec, &p1p2vec) / size; */
+	/* rcheck = dot3(&hitp1vec, &p2p3vec) / size; */
+	/* if (lcheck >= 0 && lcheck <= 1 && rcheck >= 0 && rcheck <= 1) */
+	/* { */
+	/* 	printf("lcheck: %f, rcheck: %f\n", lcheck, rcheck); */
+	/* } */	
+	color = light(data, &closest_point, &orient, color);
 	return (color);
+	/* return (COLOR_BACKGROUND); */
 }
 
 int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)

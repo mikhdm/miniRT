@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/04 22:39:50 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/05 14:16:53 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,27 +94,27 @@ static void	render_plane(t_data *data, t_pair_double *stepsrange)
 	}
 }
 
-/* static void	render_square(t_data *data, t_pair_double *stepsrange) */
-/* { */
-/* 	int				x; */
-/* 	int				y; */
-/* 	int				color; */
-/* 	t_vector3		dirvec; */
+static void	render_square(t_data *data, t_pair_double *stepsrange)
+{
+	int				x;
+	int				y;
+	int				color;
+	t_vector3		dirvec;
 
-/* 	y = data->screen->height / 2; */
-/* 	while (y > -data->screen->height / 2) */
-/* 	{ */
-/* 		x = -data->screen->width / 2; */
-/* 		while (x < data->screen->width / 2) */
-/* 		{ */
-/* 			dirvec = ft_conv_to_viewport(data, x, y); */
-/* 			color = ft_trace_square(data, &dirvec, stepsrange); */
-/* 			ft_putpixel(data, x, y, color); */
-/* 			++x; */
-/* 		} */
-/* 		--y; */
-/* 	} */
-/* } */
+	y = data->screen->height / 2;
+	while (y > -data->screen->height / 2)
+	{
+		x = -data->screen->width / 2;
+		while (x < data->screen->width / 2)
+		{
+			dirvec = ft_conv_to_viewport(data, x, y);
+			color = ft_trace_square(data, &dirvec, stepsrange);
+			ft_putpixel(data, x, y, color);
+			++x;
+		}
+		--y;
+	}
+}
 
 /* TESTFUNC */
 void	linop_test(void)
@@ -192,6 +192,7 @@ int main(void)
 	t_sphere		sphere;
 	t_sphere		sphere2;
 	t_plane			plane;
+	t_square		square;
 	t_figure		figures;
 	t_viewport		viewport;
 	t_pair_double	stepsrange;
@@ -209,14 +210,14 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
 	
-	ambience = (t_ambience) {.intensity = 0.2, .color = 0x000000};
+	ambience = (t_ambience) {.intensity = 0.2, .color = 0xff0000};
 	
-	light2 = (t_light) {.brightness = 1.0, .color = 0xdddd00,
-					.center = (t_vector3) {.x = 0, .y = 5, .z = -2},
+	light2 = (t_light) {.brightness = 1.0, .color = 0xffffff,
+					.center = (t_vector3) {.x = 0, .y = -5, .z = -2},
 					.next = NULL};
 
-	lights = (t_light) {.brightness = 1.0, .color = 0x00ffff,
-		.center = (t_vector3) {.x = 0, .y = 10, .z = -2},
+	lights = (t_light) {.brightness = 0.8, .color = 0x00ffff,
+		.center = (t_vector3) {.x = 0, .y = -10, .z = 1},
 		.next = &light2};
 
 	data.light = &lights;
@@ -243,11 +244,17 @@ int main(void)
 												.z = 5/sqrt(50)},
 						.next = NULL};
 
+	square = (t_square) {.color = 0xffffff,
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 10},
+						.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
+						.size = 10,
+						.next = NULL};
+
 	figures = (t_figure) {.sphere = &sphere,
 							.plane = &plane,
 							.cylinder = NULL,
 							.triangle = NULL,
-							.square = NULL};
+							.square = &square};
 	data.figures = &figures;
 
 	stepsrange = (t_pair_double) {.first = 1.0, .second = INFINITY};
@@ -276,8 +283,9 @@ int main(void)
 	/* END TEST */
 
 	// (void) render_plane(&data, &stepsrange);
-	render_sphere(&data, &stepsrange);
+	(void) render_sphere;
 	(void) render_plane;
+	render_square(&data, &stepsrange);
 
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	ft_bind_hooks(&data);
