@@ -29,7 +29,7 @@ static t_data *build(int const fildes)
 	if (!alloca_to((void**)&data, sizeof(t_data)))
 	{
 		close(fildes);
-		exit(ENOMEM);
+		ft_pexit(ERROR_ERRNO, errno);
 	}
 	data = initialize(data);
 	data->fildes = fildes;
