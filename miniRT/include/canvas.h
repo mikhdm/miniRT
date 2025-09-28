@@ -130,7 +130,6 @@ typedef struct s_data
 	int			bpp;
 	int			length;
 	int			endian;
-	char		*addr;
 	void		*mlx;
 	void		*window;
 	void		*img;
@@ -144,20 +143,11 @@ typedef struct s_data
 
 /*
 *
-* putpixel - function which put color defined by color param
-* into canvas pointed by x and y. Converting from canvas to screen is done
-* automatically.
-*
-*/
-void		putpixel(t_data *data, int x, int y, int color);
-
-/*
-*
 *	calc_viewport - calculates width & height of a viewport.
 *
 */
 t_viewport	calc_viewport(t_data *data, t_camera *cam);
 t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y);
-void		init(t_data *data, short windowed);
+void		init(t_data *data);
 
 #endif

@@ -12,10 +12,10 @@
 
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -MMD -Ofast -I ./include -I ./lib/libft -I ./lib/libft/get_next_line -I ./lib/mlx
+CFLAGS = -Wall -Wextra -Werror -O3 -MMD
 
 LIBFT_DIR = ./lib/libft
-MLX_DIR = ./lib/mlx
+LIBMLX42_DIR = ./lib/MLX42
 
 SRCS =  src/rt/utils/calc_quad_equation.c \
         src/rt/utils/calc_ray_point.c \
@@ -75,54 +75,39 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
         src/screenshot.c \
         main.c
 		
-INCLUDES = 	./lib/mlx/mlx.h \
-			./lib/libft/libft.h \
-			./lib/libft/get_next_line.h \
-			./include/utils.h \
-		   	./include/canvas.h \
-		   	./include/color.h \
-			./include/event.h \
-		   	./include/intersect.h \
-			./include/linop.h \
-			./include/rayop.h \
-			./include/render.h \
-			./include/screenshot.h \
-			./include/shade.h \
-			./include/light.h \
-			./include/parsing/errors.h \
-			./include/parsing/parse.h \
-			./include/parsing/serialize.h
-		   
 OBJS = $(SRCS:.c=.o)
 
 DEPS = $(SRCS:.c=.d)
 
-all: libft mlx $(NAME)
+all: libft $(NAME)
 
 -include $(DEPS)
 
 $(NAME): $(OBJS)
-	cp $(MLX_DIR)/libmlx.dylib .
-	$(CC) $(CFLAGS) -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(OBJS) -o $(NAME)
+
+	# MacOS flags
+	$(CC) $(CFLAGS) \
+		-framework Cocoa -framework OpenGL -framework IOKit \
+		-L$(LIBFT_DIR) -lft \
+		 -I./include \
+		 -I$(LIBMLX42_DIR)/include \
+		-lglfw \
+		-l:$(LIBMLX42_DIR)/build/libmlx42.a
+		$(OBJS) -o $(NAME)
 
 libft:
 	$(MAKE) -C $(LIBFT_DIR) all
 
-mlx:
-	$(MAKE) -C $(MLX_DIR) all
-
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I ./include -I $(LIBFT_DIR) -I$(LIBFT_DIR)/get_next_line -I $(LIBMLX42_DIR)/include -c $< -o $@
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(MLX_DIR) clean
 	rm -f $(OBJS)
 	rm -f $(DEPS) 
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f ./libmlx.dylib 
 	rm -f $(NAME)
 
 re: fclean all

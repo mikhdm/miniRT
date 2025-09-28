@@ -18,7 +18,7 @@
 #include "parsing/parse.h"
 #include "parsing/cleanup.h"
 #include "libft.h"
-#include "mlx.h"
+#include "MLX42/MLX42.h"
 #include <math.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	if (status == DO_SCREENSHOT)
 	{
 		data = parse(argv[1]);
-		init(data, FALSE);
+		init(data);
 		render(data, data->cam, &range);
 		screenshot(data, "screenshot.bmp");
 		cleanup(data);
@@ -68,9 +68,9 @@ int	main(int argc, char **argv)
 	else
 	{
 		data = parse(argv[1]);
-		init(data, TRUE);
+		init(data);
 		render(data, data->cam, &range);
-		mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
+		mlx_image_to_window(data->mlx, data->img, 0, 0);
 		bind_hooks(data);
 		mlx_loop(data->mlx);
 	}

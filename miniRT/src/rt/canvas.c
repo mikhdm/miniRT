@@ -14,10 +14,10 @@
 #include "linop.h"
 #include "utils.h"
 #include "libft.h"
-#include "mlx.h"
-#include <math.h>
+#include "MLX42/MLX42.h"
 #include <stdlib.h>
 #include <errno.h>
+#include <math.h>
 
 static t_vector3	get_dirvec(t_vector3 *viewpoint)
 {
@@ -71,35 +71,11 @@ t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y)
 	return (normvec3(&dirvec));
 }
 
-void	init(t_data *data, short windowed)
+void	init(t_data *data)
 {
-	data->mlx = mlx_init();
+	data->mlx = mlx_init(data->screen->width, data->screen->height, "miniRT", true);
 	data->img = mlx_new_image(
 			data->mlx,
 			data->screen->width,
 			data->screen->height);
-	data->addr = mlx_get_data_addr(
-			data->img,
-			&data->bpp,
-			&data->length,
-			&data->endian);
-	if (windowed)
-		data->window = mlx_new_window(
-				data->mlx,
-				data->screen->width,
-				data->screen->height,
-				data->screen->title);
-}
-
-void	putpixel(t_data *data, int x, int y, int color)
-{
-	char	*dest;
-	int		screen_x;
-	int		screen_y;
-
-	screen_x = data->screen->width / 2 + x;
-	screen_y = data->screen->height / 2 - y;
-	dest = (data->addr
-			+ (screen_y * data->length + screen_x * (data->bpp / 8)));
-	*(unsigned int *)dest = color;
 }

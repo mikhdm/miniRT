@@ -14,6 +14,7 @@
 #include "linop.h"
 #include "rayop.h"
 #include "utils.h"
+#include "MLX42/MLX42.h"
 
 void	render(t_data *data, t_camera *cam, t_pair_double *range)
 {
@@ -33,7 +34,7 @@ void	render(t_data *data, t_camera *cam, t_pair_double *range)
 			dirvec = canvas_to_viewport(data, cam, x, y);
 			dirvec = look_at(data, cam, &dirvec);
 			color = trace(data, &cam->center, &dirvec, range);
-			putpixel(data, x, y, color);
+			mlx_put_pixel(data, x, y, color);
 			++x;
 		}
 		--y;

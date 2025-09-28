@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Ofast -MMD
+CFLAGS = -Wall -Wextra -Werror -O3 -MMD
 
 NAME = libft.a
 

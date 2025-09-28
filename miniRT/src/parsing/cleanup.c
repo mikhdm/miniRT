@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "canvas.h"
-#include "mlx.h"
+#include "MLX42/MLX42.h"
 #include <unistd.h>
 
 static	void	clean_lights(t_data *data)
@@ -76,9 +76,9 @@ void	cleanup(t_data *data)
 	if (data->figures)
 		clean_figures(data);
 	if (data->img)
-		mlx_destroy_image(data->mlx, data->img);
+		mlx_delete_image(data->mlx, data->img);
 	if (data->window)
-		mlx_destroy_window(data->mlx, data->window);
+		mlx_close_window(data->mlx);
 	if (data->fildes != -1)
 		close(data->fildes);
 	free(data);

@@ -15,7 +15,7 @@
 #include "parsing/errors.h"
 #include "parsing/serialize.h"
 #include "libft.h"
-#include "mlx.h"
+#include "MLX42/MLX42.h"
 #include <errno.h>
 #include <unistd.h>
 
@@ -58,7 +58,7 @@ t_data	*serialize_r(t_data *data, char **strs)
 	max_h = 0;
 	if (data->screen)
 		serialize_error(ERROR_DUPLICATE_RESOLUTION, 255, data, strs);
-	mlx_get_screen_size(data->mlx, (int *)&max_w, (int *)&max_h);
+	mlx_get_monitor_size(0, (int *)&max_w, (int *)&max_h);
 	set_screen(data, strs, (int *)&w, (int *)&h);
 	if (data->screen->width < 1 || data->screen->height < 1)
 		serialize_error(ERROR_INVALID_RESOLUTION, 255, data, strs);
