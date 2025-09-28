@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 01:19:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/23 05:04:41 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/29 17:46:15 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ typedef struct s_vars
 
 int					get_next_line(int fd, char **line);
 
-char				*ft_strdup_until(const char *s1, const char sym);
-size_t				ft_strlen_until(const char *s, const char sym);
 int					ft_exit(t_item **data, t_vars *v, char **line, int signal);
 t_item				*ft_setnode(t_vars *v, t_item **data, char **line);
 

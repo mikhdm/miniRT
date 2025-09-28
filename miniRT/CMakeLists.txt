@@ -97,10 +97,12 @@ lib/libft/ft_strupper.c
 lib/libft/ft_strlower.c
 lib/libft/ft_strchr.c
 lib/libft/ft_strdup.c
+lib/libft/ft_strdup_until.c
 lib/libft/ft_strjoin.c
 lib/libft/ft_strlcat.c
 lib/libft/ft_strlcpy.c
 lib/libft/ft_strlen.c
+lib/libft/ft_strlen_until.c
 lib/libft/ft_strmapi.c
 lib/libft/ft_strncmp.c
 lib/libft/ft_strnstr.c

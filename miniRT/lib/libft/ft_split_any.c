@@ -1,72 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_any.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/12 21:46:20 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/29 17:45:09 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/29 16:55:01 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/29 18:32:03 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
 
-static size_t	ft_split_strslen(char const *str, char c)
+size_t	ft_split_any_strslen(char const *str, char c)
 {
 	size_t	cnt;
-	int		flag;
 
-	cnt = 0;
-	flag = OUT;
+	cnt = 1;
 	while (*str)
 	{
-		if (*str != c)
-		{
-			if (flag == OUT)
-				++cnt;
-			flag = IN;
-		}
-		else
-			flag = OUT;
+		if (*str == c)
+			++cnt;
 		++str;
 	}
 	return (cnt);
 }
 
-static void	ft_split_free(char **strs, size_t cnt)
+static void	*ft_split_any_free(char **strs, size_t cnt)
 {
 	while (cnt--)
 		free(strs[cnt]);
 	free(strs);
+	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_any(char const *s, char c)
 {
-	size_t	i;
-	char	**strs;
+	size_t		i;
+	char		**strs;
+	const char	*start;
 
 	i = 0;
-	strs = malloc(sizeof(char *) * (ft_split_strslen(s, c) + 1));
+	start = s;
+	strs = malloc(sizeof(char *) * (ft_split_any_strslen(s, c) + 1));
 	if (!strs)
 		return (NULL);
 	while (*s)
 	{
-		if (*s != c)
+		if (*s++ == c)
 		{
-			strs[i] = ft_strdup_until(s, c);
-			if (!strs[i++])
-			{
-				ft_split_free(strs, i);
-				return (NULL);
-			}
-			while (*s && *s != c)
-				s++;
+			strs[i] = ft_strdup_until(start, c);
+			if (!strs[i])
+				return (ft_split_any_free(strs, i));
+			++i;
+			start = s;
 		}
-		else
-			s++;
 	}
-	strs[i] = NULL;
+	strs[i] = ft_strdup_until(start, c);
+	if (!strs[i])
+		return (ft_split_any_free(strs, i));
+	strs[++i] = NULL;
 	return (strs);
 }

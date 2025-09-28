@@ -6,41 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 04:03:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/23 05:04:36 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/29 17:45:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "../libft.h"
 #include <stdlib.h>
-
-size_t	ft_strlen_until(const char *s, const char sym)
-{
-	size_t	i;
-
-	i = 0;
-	while (*s && (*s != sym))
-	{
-		++i;
-		++s;
-	}
-	return (i);
-}
-
-char	*ft_strdup_until(const char *s1, const char sym)
-{
-	char	*dup;
-	char	*d;
-
-	dup = malloc((ft_strlen_until(s1, sym) + 1) * sizeof(char));
-	if (!dup)
-		return (NULL);
-	d = dup;
-	while (*s1 && *s1 != sym)
-		*dup++ = *s1++;
-	*dup = '\0';
-	return (d);
-}
 
 int	ft_exit(t_item **data, t_vars *v, char **line, int signal)
 {
