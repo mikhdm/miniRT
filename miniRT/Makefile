@@ -12,7 +12,7 @@
 
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I./include -I./lib/libft -I./lib/mlx 
+CFLAGS = -Wall -Wextra -Werror -I./include -I./lib/libft -I./lib/libft/get_next_line -I./lib/mlx
 
 LIBFT_DIR = ./lib/libft
 

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 01:19:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/21 23:10:02 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/23 03:49:31 by mikhaylen        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@
 
 # define SIG_OK 1
 # define SIG_EOF 0
-# define SIG_ERROR -1
+# define SIG_ERROR (-1)
 
 # define READ_EOF 0
-# define READ_ERROR -1
+# define READ_ERROR (-1)
 
-typedef struct		s_data
+typedef struct s_item
 {
 	int				fd;
 	char			*part;
-	struct s_data	*next;
-}					t_data;
+	struct s_item	*next;
+}					t_item;
 
-typedef struct		s_vars
+typedef struct s_vars
 {
 	ssize_t			length;
 	int				fd;
@@ -41,13 +41,14 @@ typedef struct		s_vars
 	char			*part;
 	char			*tmp;
 	char			*endl;
-	t_data			*node;
+	t_item			*node;
 }					t_vars;
 
 int					get_next_line(int fd, char **line);
 
 char				*ft_strdup_until(const char *s1, const char sym);
 size_t				ft_strlen_until(const char *s, const char sym);
-int					ft_exit(t_data **data, t_vars *v, char **line, int signal);
-t_data				*ft_setnode(t_vars *v, t_data **data, char **line);
+int					ft_exit(t_item **data, t_vars *v, char **line, int signal);
+t_item				*ft_setnode(t_vars *v, t_item **data, char **line);
+
 #endif

@@ -2,10 +2,12 @@
 #include "utils.h"
 #include "parsing/errors.h"
 #include "parsing/parse.h"
+#include "get_next_line.h"
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include <math.h>
 
@@ -20,7 +22,18 @@ static t_data *build(int const fildes)
 		exit(ENOMEM);
 	}
 
-	/* TODO */
+	char *line;
+
+	line = NULL;
+	while (get_next_line(fildes, &line) != SIG_EOF)
+	{
+		printf("%s\n", line);
+		free(line);
+		line = NULL;
+	}
+	free(line);
+	line = NULL;
+	close(fildes);
 	/* MOCK DATA */
 
 	t_screen		*screen;

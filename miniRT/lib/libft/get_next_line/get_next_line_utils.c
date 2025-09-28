@@ -6,25 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 04:03:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/21 23:15:58 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/23 04:26:11 by mikhaylen        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../libft.h"
 #include <stdlib.h>
-
-static t_data	*ft_newnode(t_vars *v, t_data **data)
-{
-	v->node = *data;
-	*data = malloc(sizeof(t_data));
-	if (!*data)
-		return (NULL);
-	(*data)->part = v->part;
-	(*data)->fd = v->fd;
-	(*data)->next = v->node;
-	v->node = *data;
-	return (v->node);
-}
 
 size_t	ft_strlen_until(const char *s, const char sym)
 {
@@ -54,10 +42,10 @@ char	*ft_strdup_until(const char *s1, const char sym)
 	return (d);
 }
 
-int	ft_exit(t_data **data, t_vars *v, char **line, int signal)
+int	ft_exit(t_item **data, t_vars *v, char **line, int signal)
 {
-	t_data	**curr;
-	t_data	*tmp;
+	t_item	**curr;
+	t_item	*tmp;
 
 	curr = data;
 	tmp = NULL;
@@ -81,13 +69,30 @@ int	ft_exit(t_data **data, t_vars *v, char **line, int signal)
 	return (signal);
 }
 
-t_data	*ft_setnode(t_vars *v, t_data **data, char **line)
+static void	ft_setnewnode(t_vars *v, t_item **data)
+{
+	v->node = *data;
+	*data = malloc(sizeof(t_item));
+	if (!*data)
+		return ;
+	(*data)->part = v->part;
+	(*data)->fd = v->fd;
+	(*data)->next = v->node;
+	v->node = *data;
+}
+
+t_item	*ft_setnode(t_vars *v, t_item **data, char **line)
 {
 	v->node = *data;
 	while (v->node && (v->node->fd != v->fd))
 		v->node = v->node->next;
 	if (!v->node)
-		return (ft_newnode(v, data));
+	{
+		ft_setnewnode(v, data);
+		if (!*data)
+			return (NULL);
+		return (v->node);
+	}
 	v->tmp = *line;
 	*line = ft_strjoin(v->node->part, *line);
 	if (!*line)

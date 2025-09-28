@@ -46,6 +46,7 @@ $(NAME): $(DEPS)
 
 clean:
 	rm -f *.o
+	rm -f get_next_line/*.o
 
 fclean: clean
 	rm -f $(NAME)
