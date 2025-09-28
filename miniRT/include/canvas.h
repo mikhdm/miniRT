@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 22:34:01 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 23:22:32 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ typedef struct	s_figure
 	t_triangle	*triangle;
 }				t_figure;
 
+
+typedef struct s_ambience	t_ambience;
+typedef struct s_light		t_light;
 /*
 *
 * t_data - structure to store all parsed data & window meta information.

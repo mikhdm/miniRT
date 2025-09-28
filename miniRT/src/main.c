@@ -6,13 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 22:55:51 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 23:23:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "canvas.h"
 #include "linop.h"
-#include "ray.h" 
+#include "rayop.h" 
 #include "event.h"
 #include "utils.h"
 #include "mlx.h"
@@ -53,18 +53,17 @@ static void render_sphere(t_data *data, t_pair_double *stepsrange)
 	int				y;
 	int				color;
 	t_vector3		dirvec;
-	t_pair_double	stepsrange;
 
 	// TODO check zero inclusion due to canvas coordinate system
-	y = -data.screen->height / 2 + 1;
-	while (y < data.screen->height / 2)
+	y = -data->screen->height / 2 + 1;
+	while (y < data->screen->height / 2)
 	{
-		x = -data.screen->width / 2;
-		while (x < data.screen->width / 2)
+		x = -data->screen->width / 2;
+		while (x < data->screen->width / 2)
 		{
-			dirvec = ft_conv_to_viewport(&data, x, y);
-			color = ft_trace_sphere(&data, &dirvec, &stepsrange); 
-			ft_putpixel(&data, x, y, color);
+			dirvec = ft_conv_to_viewport(data, x, y);
+			color = ft_trace_sphere(data, &dirvec, stepsrange);
+			ft_putpixel(data, x, y, color);
 			++x;
 		}
 		++y;
@@ -140,20 +139,21 @@ void	calc_sphere_orient_test(t_sphere *sphere)
 	radius = sphere->diameter / 2;
 	
 	point = (t_vector3) {.x = sphere->center.x + radius, .y = sphere->center.y + radius, .z = sphere->center.z + radius}; 
-	orient = calc_sphere_orient(&point, &sphere); 
+	orient = calc_sphere_orient(&point, sphere); 
 	printf("sphere orient: (%f, %f, %f)\n", orient.x, orient.y, orient.z);
 }
 /* END TESTFUNC */
 
 int main(void)
 {
-	t_data		data;
-	t_screen 	screen;
-	t_camera	cam;
-	t_sphere	sphere;
-	t_sphere	sphere2;
-	t_figure	figures;
-	t_viewport	viewport;
+	t_data			data;
+	t_screen		screen;
+	t_camera		cam;
+	t_sphere		sphere;
+	t_sphere		sphere2;
+	t_figure		figures;
+	t_viewport		viewport;
+	t_pair_double	stepsrange;
 	
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
 
@@ -179,7 +179,7 @@ int main(void)
 						.center = (t_vector3) {.x = 0, .y = -0.5, .z = 30},
 						.next = &sphere2};
 
-	figures = (t_figures) {.sphere = sphere,
+	figures = (t_figure) {.sphere = &sphere,
 							.plane = NULL,
 							.cylinder = NULL,
 							.triangle = NULL,
@@ -189,7 +189,6 @@ int main(void)
 	stepsrange = (t_pair_double) {.first = 1.0, .second = INFINITY};
 
 	ft_init(&data);
-	ft_bind_hooks(&data);
 	
 	/* LOG */
 	printf("bpp: %d;\nline length: %d;\nendian: %d;\n",
@@ -219,6 +218,7 @@ int main(void)
 	render_sphere(&data, &stepsrange);
 	
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
+	ft_bind_hooks(&data);
 	mlx_loop(data.mlx);
 	return (0);
 }

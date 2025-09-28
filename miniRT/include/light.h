@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 17:33:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 22:24:14 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/26 23:22:59 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "canvas.h"
 #include "linop.h"
+
+typedef struct s_data	t_data;
 
 typedef struct	s_ambience
 {
