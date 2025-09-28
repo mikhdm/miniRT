@@ -6,25 +6,28 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:29:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/17 22:05:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/18 20:26:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "linop.h"
+#include "figure.h"
+#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 
-t_vector3	*ft_conv_to_viewport(t_meta *meta, int x, int y)
+t_vector3	ft_conv_to_viewport(t_meta *meta, int x, int y)
 {
-	t_vector	*plane;
-
-	plane = malloc(sizeof(t_vector3));
-	if (!plane)
-		return (NULL);
-	plane->x = x * 1.0;
-	plane->y = y * 1.0;
-	plane->z = 0.0;
+	t_vector3	plane;
+	
+	(void) meta;
+	plane = (t_vector3) {.x = .0, .y = .0, .z = .0};
+	plane.x = x * 1.0;
+	plane.y = y * 1.0;
+	plane.z = 0.0;
 	return (plane);
 }
 

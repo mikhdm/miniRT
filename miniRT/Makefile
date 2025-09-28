@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/04/17 03:30:48 by rmander          ###   ########.fr        #
+#    Updated: 2021/04/18 20:28:13 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = ./mlx
 LIBFT_DIR = ./libft
-SRCS = ./src/main.c ./src/rt/image.c ./src/rt/event.c
-INCLUDES = ./include/rt.h ./mlx/mlx.h ./include/event.h ./include/parser.h ./include/figure.h
+SRCS = ./src/main.c ./src/rt/image.c ./src/rt/event.c ./src/rt/linop.c ./src/rt/ray.c
+INCLUDES = 	./include/rt.h ./mlx/mlx.h ./include/event.h \
+			./include/parser.h ./include/figure.h ./include/linop.h \
+			./include/ray.h
 MLX_DYLIB = ./mlx/libmlx.dylib 
 DYLIB = ./libmlx.dylib
 OBJS = $(SRCS:.c=.o)

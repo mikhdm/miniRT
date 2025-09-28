@@ -6,24 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/17 22:05:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/18 20:38:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 
-/*
-*
-* t_vector3d - structure to store 3D space vector
-*
-*/
-typedef struct s_vector3
-{
-	double x;
-	double y;
-	double z;
-}	t_vector3;
+#include "linop.h"
 
 /*
 *
@@ -51,7 +41,6 @@ typedef struct s_camera
 	t_vector3 orient;
 }	t_camera;
 
-
 /*
 *
 * t_meta - structure to store pointers to window, image, etc.
@@ -66,11 +55,9 @@ typedef	struct s_meta
 	void		*mlx;
 	void		*window;
 	void		*img;
-	double		fov;
 	t_screen	*screen;
 	t_camera	*cam;
 }	t_meta;
-
 
 /*
 *
@@ -80,6 +67,6 @@ typedef	struct s_meta
 *
 */
 void		ft_putpixel(t_meta *meta, int x, int y, int color);
-t_vector3	*ft_conv_to_viewport(t_meta *meta, int x, int y);
+t_vector3	ft_conv_to_viewport(t_meta *meta, int x, int y);
 
 #endif

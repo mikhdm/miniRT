@@ -6,12 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:30:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/13 23:26:29 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/18 17:36:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENT_H
 # define EVENT_H
+
+#include "rt.h"
 
 typedef enum e_event {
 	X11_KEY_PRESS = 2,

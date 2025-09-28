@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:35:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/17 21:29:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/18 18:17:51 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIGURE_H
 # define FIGURE_H
 
-#include "rt.h"
+#include "linop.h"
 
 typedef struct s_sphere
 {
