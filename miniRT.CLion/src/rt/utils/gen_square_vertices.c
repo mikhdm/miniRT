@@ -12,6 +12,7 @@
 
 #include "canvas.h"
 #include "linop.h"
+#include "utils.h"
 #include <stddef.h>
 #include <stdlib.h>
 #include <math.h>
@@ -38,7 +39,7 @@ t_vector3	*gen_square_vertices(t_square *square)
 	size_t		i;
 
 	vertices = malloc(sizeof(t_vector3) * 4);
-	if (!vertices)
+	if (!alloca_to((void**)&vertices, sizeof(t_vector3) * 4))
 		return (NULL);
 	set_square_vectors(square, sq_vecs);
 	i = 0;

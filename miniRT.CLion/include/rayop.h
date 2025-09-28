@@ -26,7 +26,15 @@ double	intersect(t_data *data,
 *
 */
 int		shade(t_data *data,
-			t_figure *figure, t_vector3 *dirvec, double t);
+		   t_figure *figure, t_vector3 *dirvec, double t);
 int		trace(t_data *data,
-			t_vector3 *dirvec, t_pair_double *range);
+		   t_vector3 *dirvec, t_pair_double *range);
+/*
+*
+* light - calculates intensity of light at point on a surface
+* with orientation vector orient.
+*
+*/
+int     light(t_data *data,
+			  t_vector3 *point, t_vector3 *orient, int scolor);
 #endif

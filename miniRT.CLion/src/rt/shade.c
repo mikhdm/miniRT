@@ -12,8 +12,10 @@
 
 #include "canvas.h"
 #include "linop.h"
-#include "light.h"
+#include "rayop.h"
 #include "utils.h"
+#include <stdlib.h>
+#include <errno.h>
 
 int	shade_sphere(t_data *data,
 		t_sphere *sphere, t_vector3 *dirvec, double t)
@@ -46,13 +48,15 @@ int	shade_square(t_data *data,
 	t_vector3	p_hit;
 	t_vector3	*vertices;
 
-	color = square->color; 
+	color = square->color;
 	p_hit = calc_ray_point(data, dirvec, t);
-	vertices = gen_square_vertices(square);  
+	vertices = gen_square_vertices(square);
+	if (!vertices)
+		exit(ENOMEM);
 	if (is_polygon_point(&p_hit, vertices, &square->orient, 4))
 		color = light(data, &p_hit, &square->orient, color);
+	free(vertices);
 	return (color);
-
 }
 
 int	shade_triangle(t_data *data,
@@ -65,7 +69,6 @@ int	shade_triangle(t_data *data,
 	(void)t;
 	return (COLOR_BACKGROUND);
 }
-
 
 int shade_cylinder(t_data *data,
 		t_cylinder *cylinder, t_vector3 *dirvec, double t)

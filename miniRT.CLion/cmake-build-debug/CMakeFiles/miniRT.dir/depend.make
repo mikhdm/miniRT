@@ -3,7 +3,6 @@
 
 CMakeFiles/miniRT.dir/main.c.o: ../include/canvas.h
 CMakeFiles/miniRT.dir/main.c.o: ../include/event.h
-CMakeFiles/miniRT.dir/main.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/main.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/main.c.o: ../include/render.h
 CMakeFiles/miniRT.dir/main.c.o: ../include/utils.h
@@ -12,7 +11,6 @@ CMakeFiles/miniRT.dir/main.c.o: ../lib/mlx/mlx.h
 CMakeFiles/miniRT.dir/main.c.o: ../main.c
 
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../lib/libft/libft.h
@@ -23,14 +21,12 @@ CMakeFiles/miniRT.dir/src/rt/color.c.o: ../src/rt/color.c
 
 CMakeFiles/miniRT.dir/src/rt/event.c.o: ../include/canvas.h
 CMakeFiles/miniRT.dir/src/rt/event.c.o: ../include/event.h
-CMakeFiles/miniRT.dir/src/rt/event.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/event.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/event.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/event.c.o: ../lib/mlx/mlx.h
 CMakeFiles/miniRT.dir/src/rt/event.c.o: ../src/rt/event.c
 
 CMakeFiles/miniRT.dir/src/rt/intersect.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/intersect.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/intersect.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/intersect.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/rt/intersect.c.o: ../lib/libft/libft.h
@@ -38,20 +34,16 @@ CMakeFiles/miniRT.dir/src/rt/intersect.c.o: ../src/rt/intersect.c
 
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/canvas.h
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/color.h
-CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../src/rt/light.c
 
-CMakeFiles/miniRT.dir/src/rt/linop.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/linop.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/linop.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/linop.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/linop.c.o: ../src/rt/linop.c
 
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../include/canvas.h
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../include/intersect.h
-CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../include/shade.h
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../include/utils.h
@@ -59,7 +51,6 @@ CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../src/rt/rayop.c
 
 CMakeFiles/miniRT.dir/src/rt/render.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/render.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/render.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/render.c.o: ../include/rayop.h
 CMakeFiles/miniRT.dir/src/rt/render.c.o: ../include/utils.h
@@ -67,8 +58,8 @@ CMakeFiles/miniRT.dir/src/rt/render.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/render.c.o: ../src/rt/render.c
 
 CMakeFiles/miniRT.dir/src/rt/shade.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/shade.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/shade.c.o: ../include/linop.h
+CMakeFiles/miniRT.dir/src/rt/shade.c.o: ../include/rayop.h
 CMakeFiles/miniRT.dir/src/rt/shade.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/rt/shade.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/shade.c.o: ../src/rt/shade.c
@@ -77,20 +68,17 @@ CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.o: ../src/rt/utils/alloca_to.c
 
 CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o: ../src/rt/utils/calc_quad_equation.c
 
 CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o: ../src/rt/utils/calc_ray_point.c
 
 CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o: ../include/rayop.h
 CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o: ../include/utils.h
@@ -100,13 +88,12 @@ CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o: ../src/rt/utils/calc_
 CMakeFiles/miniRT.dir/src/rt/utils/deg_to_rad.c.o: ../src/rt/utils/deg_to_rad.c
 
 CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o: ../include/linop.h
+CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o: ../src/rt/utils/gen_square_vertices.c
 
 CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o: ../include/canvas.h
-CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o: ../lib/libft/libft.h
@@ -118,7 +105,6 @@ CMakeFiles/miniRT.dir/src/rt/utils/swap_double.c.o: ../src/rt/utils/swap_double.
 
 CMakeFiles/miniRT.dir/src/tests.c.o: ../include/canvas.h
 CMakeFiles/miniRT.dir/src/tests.c.o: ../include/intersect.h
-CMakeFiles/miniRT.dir/src/tests.c.o: ../include/light.h
 CMakeFiles/miniRT.dir/src/tests.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/tests.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/tests.c.o: ../lib/libft/libft.h

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include <float.h>
 #include "utils.h"
 
 t_pair_double	calc_quad_equation(double a, double b, double c)

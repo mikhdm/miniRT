@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 project(miniRT C)
 
 set(CMAKE_C_STANDARD 99)
+# set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror")
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -L.. -lmlx -framework OpenGL -framework AppKit")
 
 include_directories(include)
@@ -83,4 +84,5 @@ lib/libft/ft_toupper.c
         )
 
 find_library(LIBFT ft cmake-build-debug)
+find_library(LIBMLX mlx)
 target_link_libraries(miniRT LINK_PUBLIC ${LIBFT})

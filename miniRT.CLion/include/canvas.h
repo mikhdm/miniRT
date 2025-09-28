@@ -14,7 +14,6 @@
 # define CANVAS_H
 
 #include "linop.h"
-#include "light.h"
 #include "libft.h"
 
 # define COLOR_BACKGROUND 0x0
@@ -43,6 +42,20 @@ typedef struct		s_viewport
 	double		width;
 	double		height;
 }				t_viewport;
+
+typedef struct	s_ambience
+{
+	double		intensity;
+	int			color;
+}				t_ambience;
+
+typedef struct	s_light
+{
+	double			brightness;
+	int				color;
+	t_vector3		center;
+	struct s_light	*next;
+}					t_light;
 
 typedef struct 		s_camera
 {
@@ -91,7 +104,7 @@ typedef struct			s_triangle
 	int					color;
 }						t_triangle;
 
-typedef struct s_figure
+typedef struct  s_figure
 {
     char            *label;
     void            *content;
@@ -99,8 +112,6 @@ typedef struct s_figure
 
 }              t_figure;
 
-typedef struct s_ambience	t_ambience;
-typedef struct s_light		t_light;
 /*
 *
 * t_data - structure to store all parsed data & window meta information.

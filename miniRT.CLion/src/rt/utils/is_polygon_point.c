@@ -10,15 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "canvas.h"
 #include "linop.h"
 #include "utils.h"
 #include "libft.h"
 #include <stddef.h>
 #include <stdlib.h>
-
-#include <stdio.h>
+#include <errno.h>
 
 static t_vector3	*is_polygon_point_crosses(t_vector3 *p_vertex_vecs,
 										   size_t size)
@@ -70,7 +67,7 @@ short int	is_polygon_point(t_vector3 *p_hit,
 
 	check = FALSE;
 	if (!alloca_to((void**)&p_vertex_vecs, sizeof(t_vector3) * size))
-		return (FALSE);
+		exit(ENOMEM);
 	i = 0;
 	while (i < size)
 	{
@@ -81,7 +78,7 @@ short int	is_polygon_point(t_vector3 *p_hit,
 	if (!cross_vecs)
 	{
 		free(p_vertex_vecs);
-		return (FALSE);
+		exit(ENOMEM);
 	}
 	check = is_polygon_point_check(cross_vecs, size, orient);
 	free(p_vertex_vecs);

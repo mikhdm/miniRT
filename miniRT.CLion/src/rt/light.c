@@ -10,13 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "light.h"
 #include "color.h"
 #include "canvas.h"
 #include "linop.h"
-#include "libft.h"
-#include <math.h>
-#include <stdlib.h>
 
 /*
 *

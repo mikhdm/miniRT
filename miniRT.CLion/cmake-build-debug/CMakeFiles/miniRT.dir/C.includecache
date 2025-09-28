@@ -9,26 +9,20 @@
 ../include/canvas.h
 linop.h
 ../include/linop.h
-light.h
-../include/light.h
 libft.h
 ../include/libft.h
 
-../include/intersect.h
+../include/event.h
 canvas.h
 ../include/canvas.h
-linop.h
+
 ../include/linop.h
+
+../include/render.h
+canvas.h
+../include/canvas.h
 utils.h
 ../include/utils.h
-
-../include/light.h
-canvas.h
-../include/canvas.h
-linop.h
-../include/linop.h
-
-../include/linop.h
 
 ../include/utils.h
 canvas.h
@@ -40,15 +34,19 @@ linop.h
 stdlib.h
 -
 
-/Users/rmander/Desktop/miniRT/src/tests.c
+../lib/mlx/mlx.h
+
+/Users/rmander/Desktop/miniRT/main.c
 canvas.h
-/Users/rmander/Desktop/miniRT/src/canvas.h
-linop.h
-/Users/rmander/Desktop/miniRT/src/linop.h
-intersect.h
-/Users/rmander/Desktop/miniRT/src/intersect.h
-utils.h
-/Users/rmander/Desktop/miniRT/src/utils.h
-stdio.h
+/Users/rmander/Desktop/miniRT/canvas.h
+event.h
+/Users/rmander/Desktop/miniRT/event.h
+render.h
+/Users/rmander/Desktop/miniRT/render.h
+mlx.h
+/Users/rmander/Desktop/miniRT/mlx.h
+math.h
+-
+stddef.h
 -
 

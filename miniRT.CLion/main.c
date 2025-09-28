@@ -75,8 +75,8 @@ int main(void)
 	light2 = (t_light) {.brightness = 1.0, .color = 0xffff00,
 					.center = (t_vector3) {.x = -2, .y = 2, .z = 10},
 					.next = NULL};
-	lights = (t_light) {.brightness = 1.0, .color = 0x00ff00,
-		.center = (t_vector3) {.x = 0, .y = 0, .z = 2},
+	lights = (t_light) {.brightness = 1.0, .color = 0xff00ff,
+		.center = (t_vector3) {.x = 10, .y = 0, .z = 2},
 		.next = NULL};
 
 	(void) light2;
@@ -95,12 +95,12 @@ int main(void)
 
 	sphere = (t_sphere) {
 						.color = 0xffffff,
-						.diameter = 5,
-						.center = (t_vector3) {.x = 5, .y = 2, .z = 10}};
+						.diameter = 3,
+						.center = (t_vector3) {.x = 0, .y = 2, .z = 10}};
 
 	plane = (t_plane) {
-						.color = 0xff00ff,
-						.center = (t_vector3) {.x = 0, .y = 5, .z = 1},
+						.color = 0xffffff,
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 1},
 						.orient = (t_vector3) {.x = 0,
 												.y = 1/sqrt(2),
 												.z = 1/sqrt(2)}};
@@ -111,10 +111,13 @@ int main(void)
 						.orient = (t_vector3) {.x = 0, .y = .0, .z = 1},
 						.size = 8.0};
 	
-	figure3 = (t_figure) {.content = &sphere2, .next = &figure4, .label=LABEL_SPHERE};
-	figure2 = (t_figure) {.content = &plane, .next = &figure3, .label=LABEL_PLANE};
-	figure4 = (t_figure) {.content = &square, .next = NULL, .label=LABEL_SQUARE};
+	// figure3 = (t_figure) {.content = &sphere2, .next = &figure4, .label=LABEL_SPHERE};
+	// figure4 = (t_figure) {.content = &square, .next = NULL, .label=LABEL_SQUARE};
+	(void) figure3;
+	(void) figure4;
+	(void) labels;
 	figure1 = (t_figure) {.content = &sphere, .next = &figure2, .label=LABEL_SPHERE};
+	figure2 = (t_figure) {.content = &plane, .next = NULL, .label=LABEL_PLANE};
 	data.figures = &figure1;
 	init(&data);
 	test(&data);
