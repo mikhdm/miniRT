@@ -47,6 +47,7 @@ int main(void)
 	t_sphere		sphere2;
 	t_plane			plane;
 	t_square		square;
+	t_cylinder      cylinder;
 	t_figure		figure1;
 	t_figure		figure2;
 	t_figure		figure3;
@@ -60,7 +61,7 @@ int main(void)
 													LABEL_TRIANGLE, LABEL_CAMERA, LABEL_LIGHT, LABEL_LIGHT,
 													LABEL_AMBIENCE, NULL};
 
-	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
+	screen = (t_screen) {.width = 1280, .height = 1024, .title = "miniRT"};
 
 	cam = (t_camera) {.center = (t_vector3) {.x = .0, .y = .0, .z = 0.0},
 					.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
@@ -110,14 +111,20 @@ int main(void)
 						.center = (t_vector3) {.x = 0, .y = 2, .z = 20},
 						.orient = (t_vector3) {.x = 0, .y = .0, .z = 1},
 						.size = 8.0};
+	cylinder = (t_cylinder) {
+						.color = 0xcc0000,
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 10},
+						.orient = (t_vector3) {.x = 0, .y = 1, .z = 0},
+						.diameter = 3,
+						.height = 10.0};
 	
 	// figure3 = (t_figure) {.content = &sphere2, .next = &figure4, .label=LABEL_SPHERE};
 	// figure4 = (t_figure) {.content = &square, .next = NULL, .label=LABEL_SQUARE};
 	(void) figure3;
 	(void) figure4;
 	(void) labels;
-	figure1 = (t_figure) {.content = &sphere, .next = &figure2, .label=LABEL_SPHERE};
-	figure2 = (t_figure) {.content = &plane, .next = NULL, .label=LABEL_PLANE};
+	figure1 = (t_figure) {.content = &cylinder, .next = NULL, .label=LABEL_CYLINDER};
+	// figure2 = (t_figure) {.content = &plane, .next = NULL, .label=LABEL_PLANE};
 	data.figures = &figure1;
 	init(&data);
 	test(&data);

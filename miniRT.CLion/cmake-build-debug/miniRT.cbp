@@ -305,6 +305,9 @@
 		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/alloca_to.c">
 			<Option target="miniRT"/>
 		</Unit>
+		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/calc_min_t.c">
+			<Option target="miniRT"/>
+		</Unit>
 		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/calc_quad_equation.c">
 			<Option target="miniRT"/>
 		</Unit>

@@ -38,5 +38,6 @@ short int		is_polygon_point(t_vector3 *p_hit,
 double			rad_to_deg(double rad);
 void			swap_double(double *left, double *right);
 short int       alloca_to(void **ptr, size_t size);
+double          calc_min_t(t_pair_double values);
 
 #endif

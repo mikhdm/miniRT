@@ -1694,6 +1694,33 @@ src/rt/utils/alloca_to.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.s
 .PHONY : src/rt/utils/alloca_to.c.s
 
+src/rt/utils/calc_min_t.o: src/rt/utils/calc_min_t.c.o
+
+.PHONY : src/rt/utils/calc_min_t.o
+
+# target to build an object file
+src/rt/utils/calc_min_t.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.o
+.PHONY : src/rt/utils/calc_min_t.c.o
+
+src/rt/utils/calc_min_t.i: src/rt/utils/calc_min_t.c.i
+
+.PHONY : src/rt/utils/calc_min_t.i
+
+# target to preprocess a source file
+src/rt/utils/calc_min_t.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.i
+.PHONY : src/rt/utils/calc_min_t.c.i
+
+src/rt/utils/calc_min_t.s: src/rt/utils/calc_min_t.c.s
+
+.PHONY : src/rt/utils/calc_min_t.s
+
+# target to generate assembly for a file
+src/rt/utils/calc_min_t.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.s
+.PHONY : src/rt/utils/calc_min_t.c.s
+
 src/rt/utils/calc_quad_equation.o: src/rt/utils/calc_quad_equation.c.o
 
 .PHONY : src/rt/utils/calc_quad_equation.o
@@ -2118,6 +2145,9 @@ help:
 	@echo "... src/rt/utils/alloca_to.o"
 	@echo "... src/rt/utils/alloca_to.i"
 	@echo "... src/rt/utils/alloca_to.s"
+	@echo "... src/rt/utils/calc_min_t.o"
+	@echo "... src/rt/utils/calc_min_t.i"
+	@echo "... src/rt/utils/calc_min_t.s"
 	@echo "... src/rt/utils/calc_quad_equation.o"
 	@echo "... src/rt/utils/calc_quad_equation.i"
 	@echo "... src/rt/utils/calc_quad_equation.s"

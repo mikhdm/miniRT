@@ -20,6 +20,7 @@ add_executable(miniRT
         src/rt/utils/gen_square_vertices.c
         src/rt/utils/alloca_to.c
         src/rt/utils/is_polygon_point.c
+        src/rt/utils/calc_min_t.c
         src/rt/canvas.c
         src/rt/color.c
         src/rt/event.c

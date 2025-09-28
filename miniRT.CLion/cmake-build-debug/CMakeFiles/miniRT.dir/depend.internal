@@ -67,6 +67,12 @@ CMakeFiles/miniRT.dir/src/rt/shade.c.o
 CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.o
  ../lib/libft/libft.h
  /Users/rmander/Desktop/miniRT/src/rt/utils/alloca_to.c
+CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.o
+ ../include/canvas.h
+ ../include/linop.h
+ ../include/utils.h
+ ../lib/libft/libft.h
+ /Users/rmander/Desktop/miniRT/src/rt/utils/calc_min_t.c
 CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o
  ../include/canvas.h
  ../include/linop.h

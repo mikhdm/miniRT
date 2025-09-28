@@ -75,8 +75,7 @@ int shade_cylinder(t_data *data,
 {
 	/* TODO */
 	(void)data;
-	(void)cylinder;
 	(void)dirvec;
 	(void)t;
-	return (COLOR_BACKGROUND);
+	return (cylinder->color);
 }

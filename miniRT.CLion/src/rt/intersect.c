@@ -14,9 +14,10 @@
 #include "linop.h"
 #include "utils.h"
 #include <math.h>
+#include <stdio.h>
 
 double			intersect_plane(t_data *data,
-					t_vector3 *dirvec, t_plane *plane)
+						 t_vector3 *dirvec, t_plane *plane)
 {
 	t_vector3	pl_cam_vec;
 	double		denominator;
@@ -31,7 +32,7 @@ double			intersect_plane(t_data *data,
 }
 
 double			intersect_square(t_data *data,
-					t_vector3 *dirvec, t_square *square)
+						  t_vector3 *dirvec, t_square *square)
 {
 	t_vector3	pl_cam_vec;
 	t_vector3	orient;
@@ -54,7 +55,7 @@ double			intersect_square(t_data *data,
 }
 
 double			intersect_triangle(t_data *data,
-					t_vector3 *dirvec, t_triangle *triangle)
+							t_vector3 *dirvec, t_triangle *triangle)
 {
 	/* TODO */
 	(void)data;
@@ -63,36 +64,59 @@ double			intersect_triangle(t_data *data,
 	return (1);
 }
 
-double	intersect_sphere(t_data *data,
-					t_vector3 *dirvec, t_sphere *sphere)
+ double	intersect_sphere(t_data *data,
+						t_vector3 *dirvec, t_sphere *sphere)
 {
 	double			radius;
-	t_vector3		sp_cam_vec;
+	t_vector3		co;
 	t_pair_double	values;
 	
 	radius = sphere->diameter / 2;
-	sp_cam_vec = diffvec3(&data->cam->center, &sphere->center);
+	co = diffvec3(&data->cam->center, &sphere->center);
 	values = calc_quad_equation(
 			dot3(dirvec, dirvec),
-			2 * dot3(dirvec, &sp_cam_vec),
-			dot3(&sp_cam_vec, &sp_cam_vec) - pow(radius, 2));
-	if (values.first > values.second)
-		swap_double(&values.first, &values.second);
-	if (values.first < 0)
-	{
-	    values.first = values.second;
-        if (values.first < 0)
-            return (INFINITY);
-    }
-	return (values.first);
-}				
+			2 * dot3(dirvec, &co),
+			dot3(&co, &co) - pow(radius, 2));
+	return (calc_min_t(values));
+}
 
-double	intersect_cylinder(t_data *data,
-			t_vector3	*dirvec, t_cylinder *cylinder)
+double  intersect_cylinder(t_data *data,
+						  t_vector3 *dirvec, t_cylinder *cylinder)
 {
-	/* TODO */
-	(void)data;
-	(void)dirvec;
-	(void)cylinder;
-	return (1);
+	double          radius;
+	t_vector3       co;
+	t_pair_double   values_t;
+
+	radius = cylinder->diameter / 2;
+	co = diffvec3(&data->cam->center, &cylinder->center);
+	values_t = calc_quad_equation(
+	dot3(dirvec, dirvec) - pow(dot3(&cylinder->orient, dirvec), 2.0),
+	2 * (dot3(&co, dirvec) -
+			dot3(dirvec, &cylinder->orient) * dot3(&co, &cylinder->orient)),
+	dot3(&co, &co) - pow(dot3(&co, &cylinder->orient), 2.0) - pow(radius, 2.0));
+
+	t_vector3 p_hit;
+	double t_hit;
+	t_vector3 axis_vec;
+	t_vector3 p_hit_vec;
+	double p_hit_proj_len;
+
+	p_hit_proj_len = INFINITY;
+	t_hit = INFINITY;
+	if (isinf(values_t.first) && isinf(values_t.second))
+		return (INFINITY);
+	else if (!isinf(values_t.first) && isinf(values_t.second))
+		t_hit = values_t.first;
+	else if (isinf(values_t.first) && !isinf(values_t.second))
+		t_hit = values_t.second;
+	else if (!isinf(values_t.first) && !isinf(values_t.second))
+		t_hit = fmin(values_t.first, values_t.second);
+
+	p_hit = calc_ray_point(data, dirvec, t_hit);
+	p_hit_vec = diffvec3(&p_hit, &cylinder->center);
+	axis_vec = cmultvec3(cylinder->height, &cylinder->orient);
+	p_hit_proj_len = dot3(&p_hit_vec, &axis_vec) / cylinder->height;
+	if (p_hit_proj_len >= -1 && p_hit_proj_len <= 1)
+		return (t_hit);
+	return (INFINITY);
 }

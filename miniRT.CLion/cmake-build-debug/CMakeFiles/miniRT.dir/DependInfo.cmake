@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/rmander/Desktop/miniRT/src/rt/render.c" "/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/render.c.o"
   "/Users/rmander/Desktop/miniRT/src/rt/shade.c" "/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/shade.c.o"
   "/Users/rmander/Desktop/miniRT/src/rt/utils/alloca_to.c" "/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.o"
+  "/Users/rmander/Desktop/miniRT/src/rt/utils/calc_min_t.c" "/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.o"
   "/Users/rmander/Desktop/miniRT/src/rt/utils/calc_quad_equation.c" "/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o"
   "/Users/rmander/Desktop/miniRT/src/rt/utils/calc_ray_point.c" "/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o"
   "/Users/rmander/Desktop/miniRT/src/rt/utils/calc_sphere_orient.c" "/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o"

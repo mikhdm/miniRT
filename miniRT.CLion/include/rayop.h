@@ -17,8 +17,6 @@
 #include "linop.h"
 #include "utils.h"
 
-double	intersect(t_data *data,
-			t_vector3 *dirvec, t_figure *figure);
 /*
 *
 * shade - function calculates color with light and shadows 

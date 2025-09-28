@@ -122,12 +122,12 @@ CMakeFiles/ft.dir/clean:
 CMakeFiles/miniRT.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles --progress-num=48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68 "Built target miniRT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles --progress-num=48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69 "Built target miniRT"
 .PHONY : CMakeFiles/miniRT.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/miniRT.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles 21
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/miniRT.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/miniRT.dir/rule

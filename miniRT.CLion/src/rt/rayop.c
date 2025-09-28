@@ -18,7 +18,7 @@
 #include "libft.h"
 #include <math.h>
 
-double	intersect(t_data *data,
+static double   intersect(t_data *data,
 			t_vector3 *dirvec, t_figure *figure)
 {
 	double	t;
