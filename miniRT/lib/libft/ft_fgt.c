@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsfree.c                                      :+:      :+:    :+:   */
+/*   ft_fgt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 03:02:29 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 18:12:08 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/29 21:53:09 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/29 22:16:16 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	ft_strsfree(char **strs)
+short	ft_fgt(double left, double right)
 {
-	char	**s;
-
-	s = strs;
-	while (*s)
-		free(*s++);
-	free(strs);
-	strs = NULL;
+	if ((left > right) && !ft_fequal(left, right))
+		return (TRUE);
+	return (FALSE);
 }

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsfree.c                                      :+:      :+:    :+:   */
+/*   ft_fequal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 03:02:29 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 18:12:08 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/29 21:48:21 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/29 21:49:12 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
+#include <float.h>
+#include <math.h>
 
-void	ft_strsfree(char **strs)
+short	ft_fequal(double left, double right)
 {
-	char	**s;
-
-	s = strs;
-	while (*s)
-		free(*s++);
-	free(strs);
-	strs = NULL;
+	if (fabs(left - right) < DBL_EPSILON)
+		return (TRUE);
+	return (FALSE);
 }

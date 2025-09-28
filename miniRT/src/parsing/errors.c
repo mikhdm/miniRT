@@ -21,7 +21,11 @@ void    ft_perror(int code)
 						    "Incorrect triangle line syntax",
 						    "Incorrect square line syntax",
 						    "Invalid resolution values",
-						    "Invalid ambience values"};
+						    "Duplicate resolution",
+						    "Invalid ambience values",
+						    "Duplicate ambience",
+						    "Invalid camera values",
+						    };
 	int	size;
 
 	size = sizeof(errors) / sizeof(*errors);

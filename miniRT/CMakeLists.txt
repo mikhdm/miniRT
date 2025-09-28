@@ -90,6 +90,7 @@ lib/libft/ft_putendl_fd.c
 lib/libft/ft_putnbr_fd.c
 lib/libft/ft_putstr_fd.c
 lib/libft/ft_split.c
+lib/libft/ft_split_any.c
 lib/libft/ft_splitf.c
 lib/libft/ft_strslen.c
 lib/libft/ft_strsfree.c
@@ -111,6 +112,9 @@ lib/libft/ft_strtrim.c
 lib/libft/ft_substr.c
 lib/libft/ft_tolower.c
 lib/libft/ft_toupper.c
+lib/libft/ft_fequal.c
+lib/libft/ft_flt.c
+lib/libft/ft_fgt.c
 lib/libft/get_next_line/get_next_line.c
 lib/libft/get_next_line/get_next_line_utils.c
 )
