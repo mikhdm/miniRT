@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 07:09:35 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 07:21:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 17:20:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "parsing/errors.h"
 #include <stdlib.h>
 #include <errno.h>
+#include <stdio.h>
 
 static double	**get_rot_matrix(t_data *data, t_vector3 *right, t_vector3 *up,
 					t_camera *cam)
@@ -29,14 +30,24 @@ static double	**get_rot_matrix(t_data *data, t_vector3 *right, t_vector3 *up,
 	rot[2] = malloc(sizeof(double) * 3);
 	if (!(rot[0] && rot[1] && rot[2]))
 		ft_pexitfree(ERROR_ERRNO, errno, data);
+	/* rot[0][0] = right->x; */
+	/* rot[1][0] = right->y; */
+	/* rot[2][0] = right->z; */
+	/* rot[0][1] = up->x; */
+	/* rot[1][1] = up->y; */
+	/* rot[2][1] = up->z; */
+	/* rot[0][2] = cam->orient.x; */
+	/* rot[1][2] = cam->orient.y; */
+	/* rot[2][2] = cam->orient.z; */
+
 	rot[0][0] = right->x;
-	rot[1][0] = right->y;
-	rot[2][0] = right->z;
-	rot[0][1] = up->x;
+	rot[0][1] = right->y;
+	rot[0][2] = right->z;
+	rot[1][0] = up->x;
 	rot[1][1] = up->y;
-	rot[2][1] = up->z;
-	rot[0][2] = cam->orient.x;
-	rot[1][2] = cam->orient.y;
+	rot[1][2] = up->z;
+	rot[2][0] = cam->orient.x;
+	rot[2][1] = cam->orient.y;
 	rot[2][2] = cam->orient.z;
 	return (rot);
 }
@@ -57,7 +68,8 @@ t_vector3	look_at(t_data *data, t_camera *cam, t_vector3 *dirvec)
 	}
 	else
 	{
-		tmp = (t_vector3){.x = -100, .y = 0, .z = 0};
+		/* TODO check this presizely */
+		tmp = (t_vector3){.x = 100, .y = 0, .z = 0};
 		up = cross3(&tmp, &cam->orient);
 		right = cross3(&up, &cam->orient);
 	}
