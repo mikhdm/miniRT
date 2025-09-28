@@ -14,7 +14,6 @@
 #include "libft.h"
 #include "parsing/errors.h"
 #include "parsing/serialize.h"
-#include <errno.h>
 
 t_data  *serialize(t_data *data, char *line)
 {
