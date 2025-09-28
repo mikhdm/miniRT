@@ -77,7 +77,7 @@ static char		*ft_read(t_vars *v)
 	return (ft_read_rawline(v, &rawline));
 }
 
-static	int		post_read_handle(t_vars *v, t_data **data, char **line)
+static	int ft_post_processing(t_vars *v, t_data **data, char **line)
 {
 	if (v->endl)
 	{
