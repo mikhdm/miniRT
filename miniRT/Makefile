@@ -12,13 +12,10 @@
 
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I./include -I./lib/libft -I./lib/libft/get_next_line -I./lib/mlx
+CFLAGS = -Wall -Wextra -Werror -MMD -std=c99 -O2 -I./include -I./lib/libft -I./lib/libft/get_next_line -I./lib/mlx
 
 LIBFT_DIR = ./lib/libft
-
 MLX_DIR = ./lib/mlx
-MLX_DYLIB = ./lib/mlx/libmlx.dylib 
-DYLIB = ./libmlx.dylib
 
 SRCS =  src/rt/utils/calc_quad_equation.c \
         src/rt/utils/calc_ray_point.c \
@@ -93,34 +90,34 @@ INCLUDES = 	./lib/mlx/mlx.h \
 			./include/light.h \
 			./include/parsing/errors.h \
 			./include/parsing/parse.h \
-			./include/parsing/serialize.h \
-			./include/parsing/validate.h
+			./include/parsing/serialize.h
 		   
 OBJS = $(SRCS:.c=.o)
 
+DEPS = $(SRCS:.c=.d)
+
 all: $(NAME)
 
-$(NAME): mlx libft $(OBJS)
-	mv $(MLX_DYLIB) $(DYLIB)
-	$(CC) $(CFLAGS) -L. -lmlx -L$(LIBFT_DIR) -lft -framework OpenGL -framework AppKit $(OBJS) -o $(NAME)
+-include $(DEPS)
 
-mlx:
-	$(MAKE) -j1 -C $(MLX_DIR) all
-
-libft:
+$(NAME): $(OBJS)
+	$(MAKE) -C $(MLX_DIR) all
 	$(MAKE) -C $(LIBFT_DIR) all
+	cp $(MLX_DIR)/libmlx.dylib .
+	$(CC) $(CFLAGS) -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx $(OBJS) -o $(NAME)
 
-%.o: %.c $(INCLUDES)
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -j 1 -C $(MLX_DIR) clean
-	rm -f $(DYLIB)
+	$(MAKE) -C $(MLX_DIR) clean
 	rm -f $(OBJS)
+	rm -f $(DEPS) 
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	rm -f ./libmlx.dylib 
 	rm -f $(NAME)
 
 re: fclean all

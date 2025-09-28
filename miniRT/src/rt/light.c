@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:13:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 21:23:56 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 03:08:53 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ static int	diffuse_light(t_data *data,
 	while (curr)
 	{
 		lightvec = diffvec3(&curr->center, point);
-		p_shadow = cmultvec3(1e-3, &lightvec);
+		p_shadow = cmultvec3(1e-4, &lightvec);
 		p_shadow = sumvec3(point, &p_shadow);
 		pair_figure_t = intersect_closest(data, &p_shadow, &lightvec,
-				&((t_pair_double){1e-3, 1}));
+				&((t_pair_double){1e-4, 1}));
 		if (pair_figure_t.figure)
 		{
 			curr = curr->next;
