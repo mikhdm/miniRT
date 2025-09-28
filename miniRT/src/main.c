@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 23:23:01 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/27 04:52:16 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "linop.h"
 #include "rayop.h" 
 #include "event.h"
+#include "color.h"
 #include "utils.h"
 #include "mlx.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
+#include <stdio.h>
 
 static void	ft_init(t_data *data)
 {
@@ -63,6 +65,8 @@ static void render_sphere(t_data *data, t_pair_double *stepsrange)
 		{
 			dirvec = ft_conv_to_viewport(data, x, y);
 			color = ft_trace_sphere(data, &dirvec, stepsrange);
+			if (color < 0)
+				printf("%d\n", color);
 			ft_putpixel(data, x, y, color);
 			++x;
 		}
@@ -129,21 +133,6 @@ void	calc_viewport_test(t_data *data)
 }
 /* END TESTFUNC */
 
-/* TESTFUNC */
-void	calc_sphere_orient_test(t_sphere *sphere)
-{
-	t_vector3	point;
-	t_vector3	orient;
-	double		radius;
-
-	radius = sphere->diameter / 2;
-	
-	point = (t_vector3) {.x = sphere->center.x + radius, .y = sphere->center.y + radius, .z = sphere->center.z + radius}; 
-	orient = calc_sphere_orient(&point, sphere); 
-	printf("sphere orient: (%f, %f, %f)\n", orient.x, orient.y, orient.z);
-}
-/* END TESTFUNC */
-
 int main(void)
 {
 	t_data			data;
@@ -154,29 +143,40 @@ int main(void)
 	t_figure		figures;
 	t_viewport		viewport;
 	t_pair_double	stepsrange;
+	t_light			lights;
+	t_ambience		ambience;
 	
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
 
 	cam = (t_camera) {.center = (t_vector3) {.x = .0, .y = .0, .z = 0.0},
 					.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
-					.fov = 30};
+					.fov = 60};
 
 	data = (t_data) {.mlx = NULL, .window = NULL, .img = NULL,
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
+	
+	ambience = (t_ambience) {.intensity = 0.2, .color = 0xd1d1d1};
+	lights = (t_light) {.brightness = 0.8, .color = 0xd2d2d2,
+		.center = (t_vector3) {.x = 1, .y = 20, .z = 2},
+		.next = NULL
+	};
+
+	data.light = &lights;
+	data.ambience = &ambience;
 
 	viewport = calc_viewport(&data);
 
 	data.viewport = &viewport;
 
-	sphere2 = (t_sphere) {.color = 0xff0000,
+	sphere2 = (t_sphere) {.color = 0x00ff00,
 						.diameter = 2,
-						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 30},
+						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 10},
 						.next = NULL};
 
-	sphere = (t_sphere) {.color = 0x00ff00,
-						.diameter = 3,
-						.center = (t_vector3) {.x = 0, .y = -0.5, .z = 30},
+	sphere = (t_sphere) {.color = 0xcc0000,
+						.diameter = 4,
+						.center = (t_vector3) {.x = 0, .y = 1, .z = 10},
 						.next = &sphere2};
 
 	figures = (t_figure) {.sphere = &sphere,
@@ -209,10 +209,6 @@ int main(void)
 
 	/* TEST */
 	calc_viewport_test(&data);
-	/* END TEST */
-
-	/* TEST */
-	calc_sphere_orient_test(&sphere);
 	/* END TEST */
 
 	render_sphere(&data, &stepsrange);

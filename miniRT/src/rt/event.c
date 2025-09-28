@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:20:33 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 23:26:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/27 04:40:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ int	ft_hook_close(int keycode, t_data *data)
 int ft_hook_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESC)
-		if (data->window)
-			mlx_destroy_window(data->mlx, data->window);
-	exit(0);
+	{
+		(void) data;
+		/* if (data->window) */
+		/* 	mlx_destroy_window(data->mlx, data->window); */
+		exit(0);
+	}
+	return (keycode);
 }

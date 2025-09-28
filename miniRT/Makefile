@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/04/27 01:13:36 by rmander          ###   ########.fr        #
+#    Updated: 2021/04/27 03:58:55 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,12 @@ SRCS =  ./src/rt/utils/calc_quad_equation.c ./src/rt/utils/ft_swap_double.c \
 		./src/rt/utils/deg_to_rad.c ./src/rt/utils/rad_to_deg.c \
 		./src/rt/utils/calc_sphere_orient.c \
 		./src/rt/linop.c ./src/rt/event.c ./src/rt/rayop.c \
-		./src/rt/light.c ./src/rt/canvas.c \
+		./src/rt/color.c ./src/rt/light.c ./src/rt/canvas.c \
 		./src/main.c
 INCLUDES = ./mlx/mlx.h \
 		   ./include/canvas.h ./include/utils.h ./include/event.h \
 		   ./include/linop.h ./include/rayop.h \
-		   ./include/light.h
+		   ./include/light.h ./include/color.h
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

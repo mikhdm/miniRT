@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 23:22:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/27 04:49:04 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 #include "light.h"
 #include "utils.h"
 #include "libft.h"
+#include "color.h"
 #include <math.h>
+
+#include <stdio.h>
 
 t_pair_double	ft_intersect_sphere(t_data *data, t_vector3 *dirvec, t_sphere *sphere)
 {
@@ -59,8 +62,18 @@ int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	}
 	if (intersected == FALSE)
 		return (0x0);
-	cmult_dirvec = cmultvec3((double const)closest_step, dirvec); 
+	
+	cmult_dirvec = cmultvec3(closest_step, dirvec);
 	closest_point = sumvec3(&data->cam->center, &cmult_dirvec);
 	orient = calc_sphere_orient(&closest_point, data->figures->sphere);
-	return ((data->figures->sphere->color) * light(data, &closest_point, &orient));
+
+	int color = data->figures->sphere->color; 
+	double l = light(data, &closest_point, &orient);
+
+	int a = a_component(color) * l;
+	int r = r_component(color) * l;
+	int g = g_component(color) * l;
+	int b = b_component(color) * l;
+	
+	return (argb_color(a, r, g, b));
 }
