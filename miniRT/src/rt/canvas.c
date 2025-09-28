@@ -71,8 +71,10 @@ t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y)
 	return (normvec3(&dirvec));
 }
 
-void	init(t_data *data)
+void	init(t_data *data, short headless)
 {
+	if (headless)
+		mlx_set_setting(MLX_HEADLESS, true);
 	data->mlx = mlx_init(data->screen->width, data->screen->height, "miniRT", true);
 	data->img = mlx_new_image(
 			data->mlx,

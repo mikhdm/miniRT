@@ -148,6 +148,6 @@ typedef struct s_data
 */
 t_viewport	calc_viewport(t_data *data, t_camera *cam);
 t_vector3	canvas_to_viewport(t_data *data, t_camera *cam, int x, int y);
-void		init(t_data *data);
+void		init(t_data *data, short headless);
 
 #endif

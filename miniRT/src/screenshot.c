@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include "MLX42/MLX42.h"
 
 /*
  *
@@ -68,7 +69,8 @@ static void	put_image_line(t_data *data, int fd, ssize_t i, unsigned char *line)
 	ft_bzero(line, nbytes);
 	while (j < data->screen->width * (data->bpp / 8))
 	{
-		color = *(unsigned int *)(data->addr + (i * data->length + j));
+		mlx_image_t *img = (mlx_image_t *)data->img;
+		color = *(unsigned int *)((img->pixels + (i * data->length + j)));
 		line[j] = color;
 		line[j + 1] = color >> 8;
 		line[j + 2] = color >> 16;

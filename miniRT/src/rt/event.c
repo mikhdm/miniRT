@@ -19,38 +19,42 @@
 #include <math.h>
 #include <stdlib.h>
 
-static int	hook_close(void *param)
+static void	hook_close(void *param)
 {
-	exit(0);
+    t_data *data = (t_data *)param;
+    mlx_close_window(data->mlx);
+    mlx_terminate(data->mlx);
+    exit(0);
 }
 
-static int	hook_keypress(int keycode, t_data *data)
+static void	hook_keypress(mlx_key_data_t keydata, void *param)
 {
-	if (keycode == KEY_ESC)
-	{
-		cleanup(data);
-		exit(0);
-	}
-	else if (keycode == KEY_LEFT)
-	{
-		mlx_reset_image(data);
-		render(data, get_cam(data, POS_CAM_PREV),
-			   &(t_pair_double){.first = 1.0, .second = INFINITY});
-		mlx_image_to_window(data->mlx, data->img, 0, 0);
-	}
-	else if (keycode == KEY_RIGHT)
-	{
-		mlx_reset_image(data);
-		render(data, get_cam(data, POS_CAM_NEXT),
-			&(t_pair_double){.first = 1.0, .second = INFINITY});
-		mlx_image_to_window(data->mlx, data->img, 0, 0);
-	}
-	return (keycode);
+    t_data *data = (t_data *)param;
+
+    const keys_t keycode = keydata.key;
+    if (keycode == MLX_KEY_ESCAPE)
+    {
+        cleanup(data);
+        exit(0);
+    }
+    else if (keycode == MLX_KEY_LEFT)
+    {
+        mlx_reset_image(data);
+        render(data, get_cam(data, POS_CAM_PREV),
+               &(t_pair_double){.first = 1.0, .second = INFINITY});
+        mlx_image_to_window(data->mlx, data->img, 0, 0);
+    }
+    else if (keycode == MLX_KEY_RIGHT)
+    {
+        mlx_reset_image(data);
+        render(data, get_cam(data, POS_CAM_NEXT),
+            &(t_pair_double){.first = 1.0, .second = INFINITY});
+        mlx_image_to_window(data->mlx, data->img, 0, 0);
+    }
 }
 
 void	bind_hooks(t_data *data)
 {
-	mlx_close_hook(data->mlx, &hook_close, data);
-	mlx_key_hook(data->mlx,
-		X11_KEY_PRESS, MASK_NO_EVENT, &hook_keypress, data);
+    mlx_close_hook(data->mlx, hook_close, data);
+    mlx_key_hook(data->mlx, hook_keypress, data);
 }

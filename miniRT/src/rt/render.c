@@ -34,7 +34,7 @@ void	render(t_data *data, t_camera *cam, t_pair_double *range)
 			dirvec = canvas_to_viewport(data, cam, x, y);
 			dirvec = look_at(data, cam, &dirvec);
 			color = trace(data, &cam->center, &dirvec, range);
-			mlx_put_pixel(data, x, y, color);
+			mlx_put_pixel(data->img, x, y, color);
 			++x;
 		}
 		--y;

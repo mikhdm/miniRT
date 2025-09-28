@@ -11,11 +11,12 @@
 # **************************************************************************** #
 
 NAME = miniRT
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O3 -MMD
+CC = clang
+CFLAGS = -glldb -Wall -Wextra -Werror -O3 -MMD
 
 LIBFT_DIR = ./lib/libft
 LIBMLX42_DIR = ./lib/MLX42
+GLFW_DIR = /usr/local/lib
 
 SRCS =  src/rt/utils/calc_quad_equation.c \
         src/rt/utils/calc_ray_point.c \
@@ -91,8 +92,8 @@ $(NAME): $(OBJS)
 		-L$(LIBFT_DIR) -lft \
 		 -I./include \
 		 -I$(LIBMLX42_DIR)/include \
-		-lglfw \
-		-l:$(LIBMLX42_DIR)/build/libmlx42.a
+		-L$(GLFW_DIR) -lglfw \
+        -L$(LIBMLX42_DIR)/build -lmlx42 \
 		$(OBJS) -o $(NAME)
 
 libft:

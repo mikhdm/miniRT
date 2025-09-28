@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror -O3 -MMD
 
 NAME = libft.a
