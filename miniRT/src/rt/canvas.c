@@ -6,18 +6,18 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:29:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/07 04:29:46 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/07 13:21:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "linop.h"
 #include "utils.h"
+#include "libft.h"
 #include "mlx.h"
 #include <math.h>
 #include <stdlib.h>
 #include <errno.h>
-#include "libft.h"
 
 static t_vector3	get_dirvec(t_vector3 *viewpoint)
 {
