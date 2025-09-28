@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   canvas.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
+/*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/30 16:13:23 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/03 11:42:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	s_light
 typedef struct 		s_camera
 {
 	double 			fov;
+	short			active;
 	t_vector3 		center;
 	t_vector3 		orient;
 	t_viewport      *viewport;

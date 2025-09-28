@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:14:04 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 23:23:43 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/03 12:07:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@
 void    ft_perror(int code)
 {
 	const char *errors[] = {"Empty path",
-						    "Scene is not provided",
+							"Scene is not provided",
 						    "Screenshot param is incorrect",
 						    "Incorrect number of arguments",
 						    "Incorrect scene extension",
@@ -55,9 +55,8 @@ void    ft_perror(int code)
 						    "Invalid triangle values",
 						    "Invalid square values",
 							"Resolution is not set",
-							"Ambience is not set,
-							"Cameras are not set",
-						    };
+							"Ambience is not set",
+							"Cameras are not set"};
 	int	size;
 
 	size = sizeof(errors) / sizeof(*errors);

@@ -25,6 +25,8 @@ src/rt/utils/calc_cylinder_orient.c
 src/rt/utils/calc_faceted_orient.c
 src/rt/utils/isdir.c
 src/rt/utils/skip_spaces_str.c
+src/rt/utils/mlx_reset_image.c
+src/rt/utils/get_cam.c
 src/rt/canvas.c
 src/rt/color.c
 src/rt/event.c

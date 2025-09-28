@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:59:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 07:06:36 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/03 11:45:21 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,10 @@ t_data	*serialize_c(t_data *data, char const *line, char **strs)
 	if (!(alloca_to((void **)&cam, sizeof(t_camera))))
 		serialize_error(ERROR_ERRNO, errno, data, strs);
 	cam->next = NULL;
+	if (!data->cam)
+		cam->active = TRUE;
+	else
+		cam->active = FALSE;
 	cam->viewport = NULL;
 	set_camera(data, strs, cam);
 	return (data);

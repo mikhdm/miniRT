@@ -6,14 +6,19 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:20:33 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 19:11:24 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/03 16:03:53 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event.h"
 #include "canvas.h"
+#include "render.h"
+#include "utils.h"
+#include "parsing/cleanup.h"
 #include "mlx.h"
+#include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 static int	hook_close(int keycode, t_data *data)
 {
@@ -26,10 +31,24 @@ static int	hook_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESC)
 	{
-		(void) data;
-		/* if (data->window) */
-		/* 	mlx_destroy_window(data->mlx, data->window); */
+		// cleanup(data);
+		if (data->window)
+			mlx_destroy_window(data->mlx, data->window);
 		exit(0);
+	}
+	else if (keycode == KEY_LEFT)
+	{
+		mlx_reset_image(data);
+		render(data, get_cam(data, POS_CAM_PREV),
+			   &(t_pair_double){.first = 1.0, .second = INFINITY});
+		mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
+	}
+	else if (keycode == KEY_RIGHT)
+	{
+		mlx_reset_image(data);
+		render(data, get_cam(data, POS_CAM_NEXT),
+		 &(t_pair_double){.first = 1.0, .second = INFINITY});
+		mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
 	}
 	return (keycode);
 }
@@ -37,7 +56,7 @@ static int	hook_keypress(int keycode, t_data *data)
 void	bind_hooks(t_data *data)
 {
 	mlx_hook(data->window,
-		X11_DESTROY_NOTIFY, MASK_NO_EVENT, &hook_close, &data);
+		X11_DESTROY_NOTIFY, MASK_NO_EVENT, &hook_close, data);
 	mlx_hook(data->window,
-		X11_KEY_PRESS, MASK_NO_EVENT, &hook_keypress, &data);
+		X11_KEY_PRESS, MASK_NO_EVENT, &hook_keypress, data);
 }

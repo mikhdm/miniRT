@@ -86,6 +86,8 @@ typedef enum e_mask {
 
 typedef enum e_key {
 	KEY_ESC = 53,
+	KEY_LEFT = 123,
+	KEY_RIGHT = 124
 }	t_key;
 
 void	bind_hooks(t_data *data);

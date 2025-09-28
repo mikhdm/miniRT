@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:42:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/24 02:04:50 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/03 14:41:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "canvas.h"
 #include "linop.h"
 #include <sys/types.h>
+
+# define POS_CAM_NEXT	1
+# define POS_CAM_PREV	(-1)
 
 typedef struct s_pair_double
 {
@@ -49,8 +52,9 @@ t_vector3       calc_cylinder_orient(t_cylinder *cylinder,
 									 t_vector3 *dirvec,
 									 double t);
 t_vector3       calc_faceted_orient(t_vector3 *dirvec, t_vector3 *orient);
-ssize_t         imax(ssize_t left, ssize_t right);
 short           isdir(int fildes);
-char      *skip_spaces_str(char *str);
+char			*skip_spaces_str(char *str);
+void			mlx_reset_image(t_data *data);
+t_camera		*get_cam(t_data *data, short position);
 
 #endif
