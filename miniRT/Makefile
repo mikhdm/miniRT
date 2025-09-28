@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/04/24 18:22:51 by rmander          ###   ########.fr        #
+#    Updated: 2021/04/25 17:38:28 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS = ./src/rt/image.c ./src/rt/event.c ./src/rt/linop.c ./src/rt/ray.c \
 	   ./src/utils/deg_to_rad.c ./src/rt/light.c ./src/main.c
 INCLUDES = 	./include/rt.h ./mlx/mlx.h ./include/event.h \
 			./include/parser.h ./include/figure.h ./include/linop.h \
-			./include/ray.h ./include/utils.h
+			./include/ray.h ./include/utils.h ./include/light.h
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
