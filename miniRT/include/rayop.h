@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:24:38 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/05 02:34:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/06 21:22:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 #include "linop.h"
 #include "utils.h"
 
-t_pair_double	ft_intersect_sphere(t_data *data,
+t_pair_double	intersect_sphere(t_data *data,
 					t_vector3 *distvec, t_sphere *sphere);
-double			ft_intersect_plane(t_data *data,
+double			intersect_plane(t_data *data,
 					t_vector3 *dirvec, t_plane *plane);
-int				ft_trace_sphere(t_data *data,
+int				trace_sphere(t_data *data,
 					t_vector3 *distvec, t_pair_double *steprange);
-int				ft_trace_plane(t_data *data,
+int				trace_plane(t_data *data,
 					t_vector3 *dirvec, t_pair_double *steprange);
-int				ft_trace_square(t_data *data,
+int				trace_square(t_data *data,
 					t_vector3 *dirvec, t_pair_double *steprange);
+
+int				trace(t_data *data,
+					t_vector3 *dirvec, t_pair_double *range);
 #endif

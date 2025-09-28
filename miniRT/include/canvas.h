@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/01 23:23:39 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/06 20:58:25 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,24 @@
 
 #include "linop.h"
 #include "light.h"
+#include "libft.h"
 
 # define COLOR_BACKGROUND 0x0
 
-typedef struct	s_screen
+# define LABEL_SPHERE	"sp" 
+# define LABEL_PLANE	"pl"
+# define LABEL_SQUARE	"sq"
+# define LABEL_CYLINDER	"cy"
+# define LABEL_TRIANGLE	"tr"
+
+typedef struct		s_screen
 {
 	int			width;
 	int			height;
 	char*		title;
 }				t_screen;
 
-typedef struct	s_viewport
+typedef struct		s_viewport
 {
 	double		width;
 	double		height;
@@ -44,7 +51,7 @@ typedef struct		s_sphere
 	int				color;
 	double			diameter;
 	t_vector3		center;
-	struct s_sphere	*next;
+	char			*label;
 }					t_sphere;
 
 typedef struct		s_plane
@@ -52,7 +59,7 @@ typedef struct		s_plane
 	int				color;
 	t_vector3		center;
 	t_vector3		orient;
-	struct s_plane	*next;
+	char			*label;
 }					t_plane;
 
 typedef struct		s_square
@@ -61,17 +68,17 @@ typedef struct		s_square
 	double			size;
 	t_vector3		center;
 	t_vector3		orient;
-	struct s_square	*next;
+	char*			label;
 }					t_square;
 
-typedef struct			s_cylinder
+typedef struct		s_cylinder
 {
 	int					color;
 	double				diameter;
 	double				height;
 	t_vector3			center;
 	t_vector3			orient;
-	struct s_cylinder	*next; 
+	char*				label;
 }						t_cylinder;
 
 typedef struct			s_triangle
@@ -80,19 +87,11 @@ typedef struct			s_triangle
 	t_vector3			y;
 	t_vector3			z;
 	int					color;
-	struct s_triangle	*next;
+	char				*label;
 }						t_triangle;
 
-typedef struct	s_figure
-{
-	t_sphere	*sphere;
-	t_plane		*plane;
-	t_square	*square;
-	t_cylinder	*cylinder;
-	t_triangle	*triangle;
-}				t_figure;
 
-
+typedef	t_list				t_figure;
 typedef struct s_ambience	t_ambience;
 typedef struct s_light		t_light;
 /*
@@ -119,12 +118,12 @@ typedef	struct s_data
 
 /*
 *
-* ft_putpixel - function which put color defined by color param
+* putpixel - function which put color defined by color param
 * into canvas pointed by x and y. Convertation from canvas to screen is done
 * automatically.
 *
 */
-void		ft_putpixel(t_data *data, int x, int y, int color);
+void		putpixel(t_data *data, int x, int y, int color);
 
 /*
 *
@@ -132,6 +131,6 @@ void		ft_putpixel(t_data *data, int x, int y, int color);
 *
 */
 t_viewport	calc_viewport(t_data *data);
-t_vector3	ft_conv_to_viewport(t_data *data, int x, int y);
+t_vector3	conv_to_viewport(t_data *data, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/06 00:06:22 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/06 21:02:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,9 @@ int main(void)
 	t_sphere		sphere2;
 	t_plane			plane;
 	t_square		square;
-	t_figure		figures;
+	t_figure		figure1;
+	t_figure		figure2;
+	t_figure		figure3;
 	t_viewport		viewport;
 	t_pair_double	stepsrange;
 	t_light			lights;
@@ -229,34 +231,37 @@ int main(void)
 
 	data.viewport = &viewport;
 
-	sphere2 = (t_sphere) {.color = 0x00ff00,
+	sphere2 = (t_sphere) {
+						.label = LABEL_SPHERE,
+						.color = 0x00ff00,
 						.diameter = 2,
-						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 10},
-						.next = NULL};
+						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 10}};
 
-	sphere = (t_sphere) {.color = 0xffffff,
+	sphere = (t_sphere) {
+						.label = LABEL_SPHERE,
+						.color = 0xffffff,
 						.diameter = 5,
-						.center = (t_vector3) {.x = 0, .y = 0, .z = 15},
-						.next = &sphere2};
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 15}};
 
-	plane = (t_plane) {.color = 0xff00ff,
+	plane = (t_plane) {
+						.label = LABEL_PLANE,
+						.color = 0xff00ff,
 						.center = (t_vector3) {.x = 0, .y = 0, .z = 6},
 						.orient = (t_vector3) {.x = 0,
 												.y = 5/sqrt(50),
-												.z = 5/sqrt(50)},
-						.next = NULL};
+												.z = 5/sqrt(50)}};
 
-	square = (t_square) {.color = 0xff0000,
+	square = (t_square) {
+						.label = LABEL_SQUARE,
+						.color = 0xff0000,
 						.center = (t_vector3) {.x = 0, .y = 2, .z = 20},
 						.orient = (t_vector3) {.x = 0, .y = .0, .z = 1},
-						.size = 8.0,
-						.next = NULL};
+						.size = 8.0};
+	
+	figure3 = (t_figure) {.content = &sphere2, .next = NULL};
+	figure2 = (t_figure) {.content = &plane, .next = &figure3};
+	figure1 = (t_figure) {.content = &sphere, .next = &figure2};
 
-	figures = (t_figure) {.sphere = &sphere,
-							.plane = &plane,
-							.cylinder = NULL,
-							.triangle = NULL,
-							.square = &square};
 	data.figures = &figures;
 
 	stepsrange = (t_pair_double) {.first = 1.0, .second = INFINITY};
@@ -284,10 +289,7 @@ int main(void)
 	calc_viewport_test(&data);
 	/* END TEST */
 
-	// (void) render_plane(&data, &stepsrange);
-	(void) render_sphere;
-	(void) render_plane;
-	render_square(&data, &stepsrange);
+	render(&data, &steprange);
 
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	ft_bind_hooks(&data);

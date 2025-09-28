@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:29:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/01 21:35:48 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/06 20:49:41 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_viewport	calc_viewport(t_data *data)
 	return (viewport);
 }
 
-t_vector3	ft_conv_to_viewport(t_data *data, int x, int y)
+t_vector3	conv_to_viewport(t_data *data, int x, int y)
 {
 	t_vector3	dirvec;
 
@@ -36,7 +36,7 @@ t_vector3	ft_conv_to_viewport(t_data *data, int x, int y)
 	return (dirvec);
 }
 
-void	ft_putpixel(t_data *data, int x, int y, int color)
+void	putpixel(t_data *data, int x, int y, int color)
 {
 	char    *dest;
 	int		screen_x;

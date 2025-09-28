@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/06 00:06:20 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/06 21:36:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 #include <stdio.h>
 
-/* double			ft_intersect_triangle(t_data *data, */
+/* double			intersect_triangle(t_data *data, */
 /* 					t_vector3 *dirvec, t_triangle *triangle) */
 /* { */
 /* } */
 
-double			ft_intersect_plane(t_data *data,
+double			intersect_plane(t_data *data,
 					t_vector3 *dirvec, t_plane *plane)
 {
 	t_vector3	pl_cam_vec;
@@ -40,7 +40,7 @@ double			ft_intersect_plane(t_data *data,
 	return (step);
 }
 
-double			ft_intersect_square(t_data *data,
+double			intersect_square(t_data *data,
 					t_vector3 *dirvec, t_square *square)
 {
 	t_vector3	pl_cam_vec;
@@ -62,7 +62,7 @@ double			ft_intersect_square(t_data *data,
 	return (step);
 }
 
-t_pair_double	ft_intersect_sphere(t_data *data, t_vector3 *dirvec, t_sphere *sphere)
+t_pair_double	intersect_sphere(t_data *data, t_vector3 *dirvec, t_sphere *sphere)
 {
 	double			radius;
 	t_vector3		sp_cam_vec;
@@ -92,7 +92,7 @@ static t_pair_double_int	_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_do
 
 	pair.first = INFINITY;
 	pair.second = FALSE;
-	step = ft_intersect_plane(data, dirvec, data->figures->plane);
+	step = intersect_plane(data, dirvec, data->figures->plane);
 	if (step >= steprange->first && step <= steprange->second && step < pair.first)
 	{
 		pair.first = step;
@@ -101,7 +101,7 @@ static t_pair_double_int	_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_do
 	return (pair);
 }
 
-int	ft_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+int	_t_plane(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 {
 	t_vector3			closest_point;
 	t_vector3			t_mult_dirvec;
@@ -123,14 +123,14 @@ static double	_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *step
 	double	step;
 	double	closest_step;
 
-	step = ft_intersect_square(data, dirvec, data->figures->square);
+	step = intersect_square(data, dirvec, data->figures->square);
 	closest_step = INFINITY;
 	if (step >= steprange->first && step <= steprange->second && step < closest_step)
 		closest_step = step; 
 	return (closest_step);
 }
 
-int	ft_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+int	_t_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 {
 	t_vector3			closest_point;
 	t_vector3			t_mult_dirvec;
@@ -196,7 +196,8 @@ int	ft_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	return (COLOR_BACKGROUND);
 }
 
-int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+int	_t_sphere(t_data *data,
+		t_vector3 *dirvec, t_pair_double *steprange)
 {
 	double 			closest_step;
 	short int		intersected;
@@ -208,7 +209,7 @@ int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 
 	closest_step = INFINITY;
 	intersected = FALSE;
-	steps = ft_intersect_sphere(data, dirvec, data->figures->sphere);
+	steps = intersect_sphere(data, dirvec, data->figures->sphere);
 	if (steps.first >= steprange->first && steps.first <= steprange->second
 		&& steps.first < closest_step)
 	{
@@ -231,4 +232,74 @@ int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	color = data->figures->sphere->color;
 	color = light(data, &closest_point, &orient, color);
 	return (color);
+}
+
+int	_shade_sphere(t_data *data,
+		t_sphere *sphere, t_vector3 *dirvec, double t)
+{
+	int	color;
+	t_vector3	t_mult_dirvec;
+	t_vector3	p_hit;
+
+	t_mult_dirvec = cmultvec3(t, dirvec);
+	p_hit = sumvec3(&data->cam->center, &t_mult_dirvec);
+	orient = calc_sphere_orient(&p_hit, figure->content);
+	color = light(data, &p_hit, &orient, figure->content->color);
+
+}
+
+int	_shade_square(t_data *data,
+		t_square *square, t_vector3 *dirvec, double t)
+{
+	/* TODO */
+}
+
+int _shade_plane(t_data *data,
+		t_plane *plane, t_vector3 *dirvec, double t)
+{
+	/* TODO */
+}
+
+int	shade(t_data *data,
+		t_figure *figure, t_vector3 *dirvec, , double t)
+{
+	int	color;
+
+	color = COLOR_BACKGROUND;
+	if (ft_strcmp(figure->content->label, LABEL_SPHERE) == 0)
+		color = _shade_sphere(data,	figure->content, dirvec, t); 
+	else if (ft_strcmp(figure->content->label, LABEL_PLANE) == 0)
+		color = _shade_plane(data, figure->content, dirvec, t);
+	else if (ft_strcmp(figure->content->label, LABEL_SQUARE) == 0)
+		color = _shade_square(data, figure->content, dirvec, t);
+	return (color);
+}
+
+
+int	trace(t_data *data,
+		t_vector3 *dirvec, t_pair_double *range)
+{
+	double			t;
+	double			min_t;
+	t_figure		curr;
+	t_figure		figure;
+
+	curr = data->figures;
+	t_min = INFINITY;
+	while (curr)
+	{
+		if (ft_strcmp(curr->content->label, LABEL_SPHERE) == 0)
+			t = _t_sphere(data, dirvec, curr->content);
+		else if (ft_strcmp(curr->content->label, LABEL_PLANE) == 0)
+			t = _t_plane(data, dirvec, curr->content);
+		else if (ft_strcmp(curr->content->label, LABEL_SQUARE) == 0)
+			t = _t_square(data, dirvec, curr->content);
+		if (t >= range.first && t <= range.second && t < min_t)
+		{
+			min_t = t;
+			figure = curr;
+		}
+		 curr = curr->next;
+	}
+	return (_shade(t_data *data, t_vector3 *dirvec, figure));
 }
