@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:42:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 07:10:33 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 21:58:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ char			*skip_spaces_str(char *str);
 void			mlx_reset_image(t_data *data);
 t_camera		*get_cam(t_data *data, short position);
 t_vector3		look_at(t_data *data, t_camera *cam, t_vector3 *dirvec);
+double			intersected_planar(t_vector3 *p0, t_vector3 *dirvec,
+					t_vector3 *center, t_vector3 *orient);
 
 #endif

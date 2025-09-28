@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:28:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 17:08:00 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 21:54:51 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,82 +20,60 @@
 
 double	intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane)
 {
-	double		t;
-	t_vector3	co;
-	double		denom;
+	double	t;
 
-	t = INFINITY;
-	co = diffvec3(&plane->center, p0);
-	denom = dot3(dirvec, &plane->orient);
-	if (ft_fgt(fabs(denom), 0))
-	{
-		t = dot3(&co, &plane->orient) / denom;
-		if (ft_fgt(t, 0) || ft_fequal(t, 0))
-			return (t);
-	}
-	return (INFINITY);
+	t = intersected_planar(p0, dirvec, &plane->center, &plane->orient);
+	if (isinf(t))
+		return (INFINITY);
+	return (t);
 }
 
 double	intersect_square(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 			t_square *square)
 {
 	double		t;
-	t_vector3	co;
-	double		denom;
-	t_vector3	*vertices;
 	t_vector3	p_hit;
-	short		check;
+	t_vector3	*vertices;
+	double		check;
 
-	t = INFINITY;
+	vertices = NULL;
 	check = FALSE;
-	denom = dot3(dirvec, &square->orient);
-	if (ft_fgt(fabs(denom), 0))
-	{
-		co = diffvec3(&square->center, p0);
-		t = dot3(&co, &square->orient) / denom;
-		p_hit = calc_ray_point(p0, dirvec, t);
-		vertices = gen_square_vertices(square);
-		if (!vertices)
-			ft_pexitfree(ERROR_ERRNO, errno, data);
-		check = is_polygon_point(&p_hit, vertices, &square->orient, 4); 
-		if (check == -1)
-			ft_pexitfree(ERROR_ERRNO, errno, data);
-		if (check == TRUE)
-		{
-			free(vertices);
-			return (t);
-		}
-	}
+	t = intersected_planar(p0, dirvec, &square->center, &square->orient);
+	if (isinf(t))
+		return (INFINITY);
+	p_hit = calc_ray_point(p0, dirvec, t);
+	vertices = gen_square_vertices(square);
+	if (!vertices)
+		ft_pexitfree(ERROR_ERRNO, errno, data);
+	check = is_polygon_point(&p_hit, vertices, &square->orient, 4);
+	free(vertices);
+	if (check == -1)
+		ft_pexitfree(ERROR_ERRNO, errno, data);
+	if (check)
+		return (t);
 	return (INFINITY);
 }
 
-double	intersect_triangle(t_vector3 *p0, t_vector3 *dirvec,
+double	intersect_triangle(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 			t_triangle *triangle)
 {
 	double		t;
-	t_vector3	co;
-	t_vector3	orient;
-	double		denom;
 	t_vector3	p_hit;
 	short		check;
+	t_vector3	orient;
 
-	t = INFINITY;
 	orient = calc_triangle_orient(triangle);
-	denom = dot3(dirvec, &orient);
-	if (ft_fgt(fabs(denom), 0))
-	{
-		co = diffvec3(&triangle->x, p0);
-		t = dot3(&co, &orient) / denom;
-		p_hit = calc_ray_point(p0, dirvec, t);
-		check = is_polygon_point(&p_hit,
-					(t_vector3[]){triangle->x, triangle->y, triangle->z},
-					&orient, 3);
-		/* if (check == -1) */
-		/* 	/1* TODO *1/ */
-		/* 	ft_pexitfree(ERROR_ERRNO, errno, data); */
-		if (check)
-			return (t);
-	}
+	t = intersected_planar(p0, dirvec, &(triangle->x), &orient);
+	if (isinf(t))
+		return (INFINITY);
+	p_hit = calc_ray_point(p0, dirvec, t);
+	check = is_polygon_point(&p_hit,
+			(t_vector3[]){triangle->x, triangle->y, triangle->z},
+			&orient, 3);
+	if (check == -1)
+		ft_pexitfree(ERROR_ERRNO, errno, data);
+	if (check)
+		return (t);
 	return (INFINITY);
 }
 

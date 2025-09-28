@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 07:09:35 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 17:20:56 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/05 00:20:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,55 @@
 #include <errno.h>
 #include <stdio.h>
 
-static double	**get_rot_matrix(t_data *data, t_vector3 *right, t_vector3 *up,
-					t_camera *cam)
+static void	free_rot_matrix(double **rot, size_t sz)
 {
-	double **rot;
+	size_t	i;	
 
-	rot = malloc(sizeof(double*) * 3);
+	i = 0;
+	while (i < sz)
+		free(rot[i++]);
+	free(rot);
+}
+
+static double	**build_rot_matrix(t_data *data)
+{
+	double	**rot;
+	size_t	size;
+	size_t	i;
+
+	size = 3;
+	i = 0;
+	rot = malloc(sizeof(double *) * size);
 	if (!rot)
 		ft_pexitfree(ERROR_ERRNO, errno, data);
-	rot[0] = malloc(sizeof(double) * 3);
-	rot[1] = malloc(sizeof(double) * 3);
-	rot[2] = malloc(sizeof(double) * 3);
-	if (!(rot[0] && rot[1] && rot[2]))
-		ft_pexitfree(ERROR_ERRNO, errno, data);
-	/* rot[0][0] = right->x; */
-	/* rot[1][0] = right->y; */
-	/* rot[2][0] = right->z; */
-	/* rot[0][1] = up->x; */
-	/* rot[1][1] = up->y; */
-	/* rot[2][1] = up->z; */
-	/* rot[0][2] = cam->orient.x; */
-	/* rot[1][2] = cam->orient.y; */
-	/* rot[2][2] = cam->orient.z; */
+	while (i < size)
+	{
+		rot[i] = malloc(sizeof(double) * size);
+		if (!rot[i])
+		{
+			free_rot_matrix(rot, i);
+			ft_pexitfree(ERROR_ERRNO, errno, data);
+		}
+		++i;
+	}
+	return (rot);
+}
 
+static double	**get_rot_matrix(t_data *data, t_vector3 *right, t_vector3 *up,
+					t_vector3 *forward)
+{
+	double	**rot;
+
+	rot = build_rot_matrix(data);
 	rot[0][0] = right->x;
-	rot[0][1] = right->y;
-	rot[0][2] = right->z;
-	rot[1][0] = up->x;
+	rot[1][0] = right->y;
+	rot[2][0] = right->z;
+	rot[0][1] = up->x;
 	rot[1][1] = up->y;
-	rot[1][2] = up->z;
-	rot[2][0] = cam->orient.x;
-	rot[2][1] = cam->orient.y;
-	rot[2][2] = cam->orient.z;
+	rot[2][1] = up->z;
+	rot[0][2] = forward->x;
+	rot[1][2] = forward->y;
+	rot[2][2] = forward->z;
 	return (rot);
 }
 
@@ -57,29 +74,26 @@ t_vector3	look_at(t_data *data, t_camera *cam, t_vector3 *dirvec)
 	t_vector3	tmp;
 	t_vector3	right;
 	t_vector3	up;
-	t_vector3	rot_dirvec;
+	t_vector3	rotdir;
 	double		**rot;
 
 	tmp = (t_vector3){.x = 0, .y = 100, .z = 0};
-	if (!iscollinvec3(&tmp, &cam->orient))
+	if (!iscollinvec3(&tmp, &(cam->orient)))
 	{
-		right = cross3(&tmp, &cam->orient);
-		up = cross3(&cam->orient, &right);
+		right = cross3(&tmp, &(cam->orient));
+		up = cross3(&(cam->orient), &right);
 	}
 	else
 	{
-		/* TODO check this presizely */
 		tmp = (t_vector3){.x = 100, .y = 0, .z = 0};
-		up = cross3(&tmp, &cam->orient);
-		right = cross3(&up, &cam->orient);
+		up = cross3(&(cam->orient), &tmp);
+		right = cross3(&up, &(cam->orient));
 	}
 	up = normvec3(&up);
 	right = normvec3(&right);
-	rot = get_rot_matrix(data, &right, &up, cam);
-	rot_dirvec = mat33multvec3(rot, dirvec);
-	free(rot[0]);
-	free(rot[1]);
-	free(rot[2]);
-	free(rot);
-	return (rot_dirvec);
+	rot = get_rot_matrix(data, &right, &up, &(cam->orient));
+	rotdir = mat33multvec3(rot, dirvec);
+	rotdir = normvec3(&rotdir);
+	free_rot_matrix(rot, 3);
+	return (rotdir);
 }

@@ -39,6 +39,7 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
 		src/rt/utils/mlx_reset_image.c \
 		src/rt/utils/get_cam.c \
 		src/rt/utils/look_at.c \
+		src/rt/utils/intersect_planar.c \
         src/parsing/parse.c \
         src/parsing/errors.c \
         src/parsing/cleanup.c \
@@ -101,7 +102,7 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): mlx libft | $(OBJS)
+$(NAME): mlx libft $(OBJS)
 	mv $(MLX_DYLIB) $(DYLIB)
 	$(CC) $(CFLAGS) -L. -lmlx -L$(LIBFT_DIR) -lft -framework OpenGL -framework AppKit $(OBJS) -o $(NAME)
 

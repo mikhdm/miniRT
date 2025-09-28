@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 06:17:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 06:26:53 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 22:40:32 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_vector3	mat33multvec3(double *mat[3], t_vector3 *vec)
 {
 	double	tmp[3];
 
-	tmp[0] = vec->x * mat[0][0] + vec->y * mat[1][0] + vec->z * mat[2][0];
-	tmp[1] = vec->x * mat[0][1] + vec->y * mat[1][1] + vec->z * mat[1][2];
+	tmp[0] = vec->x * mat[0][0] + vec->y * mat[0][1] + vec->z * mat[0][2];
+	tmp[1] = vec->x * mat[1][0] + vec->y * mat[1][1] + vec->z * mat[1][2];
 	tmp[2] = vec->x * mat[2][0] + vec->y * mat[2][1] + vec->z * mat[2][2];
 	return ((t_vector3){.x = tmp[0], .y = tmp[1], .z = tmp[2]});
 }

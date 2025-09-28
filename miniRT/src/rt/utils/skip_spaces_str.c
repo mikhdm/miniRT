@@ -6,13 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 19:02:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/23 19:03:34 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 21:55:42 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *skip_spaces_str(char *str)
+char	*skip_spaces_str(char *str)
 {
 	while (*str && ft_isspace(*str))
 		++str;

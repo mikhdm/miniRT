@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isdir.c                                            :+:      :+:    :+:   */
+/*   intersect_planar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 21:56:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 21:57:09 by rmander          ###   ########.fr       */
+/*   Created: 2021/06/04 20:45:02 by rmander           #+#    #+#             */
+/*   Updated: 2021/06/04 21:41:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "canvas.h"
+#include "linop.h"
 #include "libft.h"
-#include <unistd.h>
+#include <math.h>
 
-short	isdir(int fildes)
+double	intersected_planar(t_vector3 *p0, t_vector3 *dirvec, t_vector3 *center,
+			t_vector3 *orient)
 {
-	char	buff[1];
-	ssize_t	rval;
+	double		t;
+	t_vector3	co;
+	double		denom;
 
-	rval = read(fildes, buff, 0);
-	if (rval == -1)
+	t = INFINITY;
+	co = diffvec3(center, p0);
+	denom = dot3(dirvec, orient);
+	if (ft_fgt(fabs(denom), 0))
 	{
-		close(fildes);
-		return (TRUE);
+		t = dot3(&co, orient) / denom;
+		if (ft_fgt(t, 0) || ft_fequal(t, 0))
+			return (t);
 	}
-	return (FALSE);
+	return (INFINITY);
 }

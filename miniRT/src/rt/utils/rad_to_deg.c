@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rad_to_deg.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
+/*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:00:03 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 21:00:24 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 21:56:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
-double rad_to_deg(double rad)
+double	rad_to_deg(double rad)
 {
 	return (rad * 180 * pow(M_PI, -1));
 }

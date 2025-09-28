@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 07:05:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 21:47:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double	intersect(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 		t = intersect_square(data, p0, dirvec, (t_square *)figure->content);
 	else if (ft_strncmp(figure->label, LABEL_TRIANGLE,
 			ft_strlen(LABEL_TRIANGLE)) == 0)
-		t = intersect_triangle(p0, dirvec, (t_triangle *)figure->content);
+		t = intersect_triangle(data, p0, dirvec, (t_triangle *)figure->content);
 	else if (ft_strncmp(figure->label, LABEL_CYLINDER,
 			ft_strlen(LABEL_CYLINDER)) == 0)
 		t = intersect_cylinder(p0, dirvec, (t_cylinder *)figure->content);

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:24:49 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 07:05:26 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 21:46:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "utils.h"
 
 double	intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane);
-double	intersect_triangle(t_vector3 *p0, t_vector3 *dirvec,
+double	intersect_triangle(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 			t_triangle *triangle);
 double	intersect_square(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 			t_square *square);
