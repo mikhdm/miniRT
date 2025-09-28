@@ -21,15 +21,15 @@
 static	void	set_color(t_data *data, char **strs, char **strs_rgb,
 					t_sphere **sphere)
 {
-	int	argb;
+	int	rgba;
 
-	argb = COLOR_BACKGROUND;
-	if (!serialize_rgb(strs_rgb, &argb))
+	rgba = COLOR_BACKGROUND;
+	if (!serialize_rgb(strs_rgb, &rgba))
 	{
 		ft_strsfree(strs_rgb);
 		serialize_error(ERROR_INVALID_SPHERE, 255, data, strs);
 	}
-	(*sphere)->color = argb;
+	(*sphere)->color = rgba;
 	ft_strsfree(strs_rgb);
 	strs_rgb = NULL;
 }

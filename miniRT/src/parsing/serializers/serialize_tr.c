@@ -32,15 +32,15 @@ static void	set_point(t_data *data, char **strs, char **strs_point,
 static void	set_color(t_data *data, char **strs, char **strs_rgb,
 						 t_triangle **triangle)
 {
-	int		argb;
+	int		rgba;
 
-	argb = COLOR_BACKGROUND;
-	if (!serialize_rgb(strs_rgb, &argb))
+	rgba = COLOR_BACKGROUND;
+	if (!serialize_rgb(strs_rgb, &rgba))
 	{
 		ft_strsfree(strs_rgb);
 		serialize_error(ERROR_INVALID_TRIANGLE, 255, data, strs);
 	}
-	(*triangle)->color = argb;
+	(*triangle)->color = rgba;
 	ft_strsfree(strs_rgb);
 	strs_rgb = NULL;
 }

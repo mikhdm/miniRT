@@ -13,27 +13,27 @@
 #include "color.h"
 #include <math.h>
 
-int	a_component(int argb)
+int	r_component(int rgba)
 {
-	return ((argb & (0xff << 24)) >> 24);
+	return ((rgba >> 24) & 0xff);
 }
 
-int	r_component(int argb)
+int	g_component(int rgba)
 {
-	return ((argb & (0xff << 16)) >> 16);
+	return ((rgba >> 16) & 0xff);
 }
 
-int	g_component(int argb)
+int	b_component(int rgba)
 {
-	return ((argb & (0xff << 8)) >> 8);
+	return ((rgba >> 8) & 0xff);
 }
 
-int	b_component(int argb)
+int	a_component(int rgba)
 {
-	return (argb & 0xff);
+	return (rgba & 0xff);
 }
 
-int	argb_color(int a, int r, int g, int b)
+int	rgba_color(int r, int g, int b, int a)
 {
-	return (a << 24 | r << 16 | g << 8 | b);
+	return (r << 24 | g << 16 | b << 8 | a);
 }

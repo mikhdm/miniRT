@@ -17,17 +17,17 @@
 #include <stddef.h>
 
 void	serialize_cy_rgb(t_data *data, char **strs, char **strs_rgb,
-			   t_cylinder **cylinder)
+               t_cylinder **cylinder)
 {
-	int		argb;
+    int		rgba;
 
-	argb = COLOR_BACKGROUND;
-	if (!serialize_rgb(strs_rgb, &argb))
-	{
-		ft_strsfree(strs_rgb);
-		serialize_error(ERROR_INVALID_CYLINDER, 255, data, strs);
-	}
-	(*cylinder)->color = argb;
-	ft_strsfree(strs_rgb);
-	strs_rgb = NULL;
+    rgba = COLOR_BACKGROUND;
+    if (!serialize_rgb(strs_rgb, &rgba))
+    {
+        ft_strsfree(strs_rgb);
+        serialize_error(ERROR_INVALID_CYLINDER, 255, data, strs);
+    }
+    (*cylinder)->color = rgba;
+    ft_strsfree(strs_rgb);
+    strs_rgb = NULL;
 }

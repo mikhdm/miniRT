@@ -14,14 +14,14 @@
 #include "libft.h"
 #include <stddef.h>
 
-int	*serialize_rgb(char **strs_rgb, int *argb)
+int	*serialize_rgb(char **strs_rgb, int *rgba)
 {
 	size_t	strslen;
 
 	strslen = ft_strslen(strs_rgb);
 	if (strslen != 3)
 		return (NULL);
-	if (!valid_rgb((const char **)strs_rgb, strslen, argb))
+	if (!valid_rgb((const char **)strs_rgb, strslen, rgba))
 		return (NULL);
-	return (argb);
+	return (rgba);
 }

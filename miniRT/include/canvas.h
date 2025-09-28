@@ -16,7 +16,7 @@
 # include "linop.h"
 # include "libft.h"
 
-# define COLOR_BACKGROUND 0x2dc3fa
+# define COLOR_BACKGROUND 0x0
 # define COLOR_BLACK 0x0
 
 # define LABEL_SPHERE		"sp"

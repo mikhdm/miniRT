@@ -21,10 +21,10 @@ static int	calc_d_light(t_light *spot, t_vector3 *orient,
 {
 	int	color;
 
-	color = linargb(spot->color);
-	color = cmultargb(color, spot->brightness);
-	color = multargb(color, scolor);
-	color = cmultargb(color, fmax(0.0, dot3(orient, lightvec)));
+	color = linrgba(spot->color);
+	color = cmultrgba(color, spot->brightness);
+	color = multrgba(color, scolor);
+	color = cmultrgba(color, fmax(0.0, dot3(orient, lightvec)));
 	return (color);
 }
 
@@ -32,9 +32,9 @@ static int	ambient_light(t_data *data, int const scolor)
 {
 	int	acolor;
 
-	acolor = linargb(data->ambience->color);
-	acolor = cmultargb(acolor, data->ambience->intensity);
-	return (multargb(acolor, scolor));
+	acolor = linrgba(data->ambience->color);
+	acolor = cmultrgba(acolor, data->ambience->intensity);
+	return (multrgba(acolor, scolor));
 }
 
 static int	diffuse_light(t_data *data,
@@ -61,7 +61,7 @@ static int	diffuse_light(t_data *data,
 			continue ;
 		}
 		lightvec = normvec3(&lightvec);
-		color = addargb(color, calc_d_light(curr, orient, &lightvec, scolor));
+		color = addrgba(color, calc_d_light(curr, orient, &lightvec, scolor));
 		curr = curr->next;
 	}
 	return (color);
@@ -74,8 +74,8 @@ int	light(t_data *data,
 	int	diffuse_color;
 	int	surface_color;
 
-	surface_color = linargb(scolor);
+	surface_color = linrgba(scolor);
 	ambient_color = ambient_light(data, surface_color);
 	diffuse_color = diffuse_light(data, point, orient, surface_color);
-	return (gammargb(addargb(ambient_color, diffuse_color)));
+	return (gammrgba(addrgba(ambient_color, diffuse_color)));
 }

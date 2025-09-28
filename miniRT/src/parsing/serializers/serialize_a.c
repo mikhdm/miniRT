@@ -21,21 +21,21 @@
 static void	set_color(t_data *data, char **strs, char **strsrgb)
 {
 	size_t	strslen;
-	int		argb;
+	int		rgba;
 
-	argb = COLOR_BACKGROUND;
+	rgba = COLOR_BACKGROUND;
 	strslen = ft_strslen(strsrgb);
 	if (strslen != 3)
 	{
 		ft_strsfree(strsrgb);
 		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
 	}
-	if (!valid_rgb((const char **)strsrgb, strslen, &argb))
+	if (!valid_rgb((const char **)strsrgb, strslen, &rgba))
 	{
 		ft_strsfree(strsrgb);
 		serialize_error(ERROR_INVALID_AMBIENCE, 255, data, strs);
 	}
-	data->ambience->color = argb;
+	data->ambience->color =rgba;
 }
 
 static void	set_ambience(t_data *data, char **strs)

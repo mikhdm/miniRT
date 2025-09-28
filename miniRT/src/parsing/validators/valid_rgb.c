@@ -16,10 +16,10 @@
 
 /*
  *
- * valid_rgb - sets into argb correct color parsed from strs_rgb if valid.
+ * valid_rgb - sets into rgba correct color parsed from strs_rgb if valid.
  *
  */
-short	valid_rgb(const char **strs_rgb, size_t strslen, int *argb)
+short	valid_rgb(const char **strs_rgb, size_t strslen, int *rgba)
 {
 	const char	*str = NULL;
 	size_t		i;
@@ -44,6 +44,6 @@ short	valid_rgb(const char **strs_rgb, size_t strslen, int *argb)
 		|| (g < 0 || g > 255)
 		|| (b < 0 || b > 255))
 		return (FALSE);
-	*argb = argb_color(0, r, g, b);
+	*rgba = rgba_color(r, g, b, 255);
 	return (TRUE);
 }

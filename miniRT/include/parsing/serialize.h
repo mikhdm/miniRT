@@ -29,7 +29,7 @@ t_data		*serialize_cy(t_data *data, char **strs);
 t_data		*serialize_pl(t_data *data, char **strs);
 t_data		*serialize_tr(t_data *data, char **strs);
 t_data		*serialize_sq(t_data *data, char **strs);
-int			*serialize_rgb(char **strs_rgb, int *argb);
+int			*serialize_rgb(char **strs_rgb, int *rgba);
 void		lst_figure_append(t_figure **head, t_figure *new);
 void		serialize_cy_rgb(t_data *data, char **strs, char **strs_rgb,
 				t_cylinder **cylinder);

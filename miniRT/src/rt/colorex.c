@@ -13,72 +13,72 @@
 #include "color.h"
 #include <math.h>
 
-int	addargb(int argb_left, int argb_right)
+int	addrgba(int rgba_left, int rgba_right)
 {
-	int	a;
-	int	r;
-	int	g;
-	int	b;
+    int	a;
+    int	r;
+    int	g;
+    int	b;
 
-	a = (a_component(argb_left) + a_component(argb_right)) / 2;
-	r = (r_component(argb_left) + r_component(argb_right)) / 2;
-	g = (g_component(argb_left) + g_component(argb_right)) / 2;
-	b = (b_component(argb_left) + b_component(argb_right)) / 2;
-	return (argb_color(a, r, g, b));
+    a = (a_component(rgba_left) + a_component(rgba_right)) / 2;
+    r = (r_component(rgba_left) + r_component(rgba_right)) / 2;
+    g = (g_component(rgba_left) + g_component(rgba_right)) / 2;
+    b = (b_component(rgba_left) + b_component(rgba_right)) / 2;
+    return (rgba_color(r, g, b, a));
 }
 
-int	multargb(int argb_left, int argb_right)
+int	multrgba(int rgba_left, int rgba_right)
 {
-	int	a;
-	int	r;
-	int	g;
-	int	b;
+    int	r;
+    int	g;
+    int	b;
+    int	a;
 
-	a = (a_component(argb_left) * a_component(argb_right)) / 255;
-	r = (r_component(argb_left) * r_component(argb_right)) / 255;
-	g = (g_component(argb_left) * g_component(argb_right)) / 255;
-	b = (b_component(argb_left) * b_component(argb_right)) / 255;
-	return (argb_color(a, r, g, b));
+    r = (r_component(rgba_left) * r_component(rgba_right)) / 255;
+    g = (g_component(rgba_left) * g_component(rgba_right)) / 255;
+    b = (b_component(rgba_left) * b_component(rgba_right)) / 255;
+    a = (a_component(rgba_left) * a_component(rgba_right)) / 255;
+    return (rgba_color(r, g, b, a));
 }
 
-int	cmultargb(int argb, double const value)
+int	cmultrgba(int rgba, double const value)
 {
-	int	a;
-	int	r;
-	int	g;
-	int	b;
+    int	a;
+    int	r;
+    int	g;
+    int	b;
 
-	a = (int)(a_component(argb) * value);
-	r = (int)(r_component(argb) * value);
-	g = (int)(g_component(argb) * value);
-	b = (int)(b_component(argb) * value);
-	return (argb_color(a, r, g, b));
+    r = (int)(r_component(rgba) * value);
+    g = (int)(g_component(rgba) * value);
+    b = (int)(b_component(rgba) * value);
+    a = (int)(a_component(rgba) * value);
+    return (rgba_color(r, g, b, a));
 }
 
-int	linargb(int argb)
+int	linrgba(int rgba)
 {
-	int	a;
-	int	r;
-	int	g;
-	int	b;
+    int	r;
+    int	g;
+    int	b;
+    int	a;
 
-	a = (int)(pow(a_component(argb) / 255.0, GAMMA_COEF) * 255);
-	r = (int)(pow(r_component(argb) / 255.0, GAMMA_COEF) * 255);
-	g = (int)(pow(g_component(argb) / 255.0, GAMMA_COEF) * 255);
-	b = (int)(pow(b_component(argb) / 255.0, GAMMA_COEF) * 255);
-	return (argb_color(a, r, g, b));
+    r = (int)(pow(r_component(rgba) / 255.0, GAMMA_COEF) * 255);
+    g = (int)(pow(g_component(rgba) / 255.0, GAMMA_COEF) * 255);
+    b = (int)(pow(b_component(rgba) / 255.0, GAMMA_COEF) * 255);
+    a = (int)(pow(a_component(rgba) / 255.0, GAMMA_COEF) * 255);
+    return (rgba_color(r, g, b, a));
 }
 
-int	gammargb(int argb)
+int	gammrgba(int rgba)
 {
-	int	a;
-	int	r;
-	int	g;
-	int	b;
+    int	a;
+    int	r;
+    int	g;
+    int	b;
 
-	a = (int)(pow(a_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255);
-	r = (int)(pow(r_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255);
-	g = (int)(pow(g_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255);
-	b = (int)(pow(b_component(argb) / 255.0, GAMMA_REVERSE_COEF) * 255);
-	return (argb_color(a, r, g, b));
+    r = (int)(pow(r_component(rgba) / 255.0, GAMMA_REVERSE_COEF) * 255);
+    g = (int)(pow(g_component(rgba) / 255.0, GAMMA_REVERSE_COEF) * 255);
+    b = (int)(pow(b_component(rgba) / 255.0, GAMMA_REVERSE_COEF) * 255);
+    a = (int)(pow(a_component(rgba) / 255.0, GAMMA_REVERSE_COEF) * 255);
+    return (rgba_color(r, g, b, a));
 }

@@ -16,15 +16,15 @@
 # define GAMMA_COEF 2.2
 # define GAMMA_REVERSE_COEF 0.4545
 
-int		a_component(int argb);
-int		r_component(int argb);
-int		g_component(int argb);
-int		b_component(int argb);
-int		argb_color(int a, int r, int g, int b);
-int		linargb(int argb);
-int		gammargb(int argb);
-int		addargb(int argb_left, int argb_right);
-int		multargb(int argb_left, int argb_right);
-int		cmultargb(int argb, double value);
+int		a_component(int rgba);
+int		r_component(int rgba);
+int		g_component(int rgba);
+int		b_component(int rgba);
+int		rgba_color(int r, int g, int b, int a);
+int		linrgba(int rgba);
+int		gammrgba(int rgba);
+int		addrgba(int rgba_left, int rgba_right);
+int		multrgba(int rgba_left, int rgba_right);
+int		cmultrgba(int rgba, double value);
 
 #endif
