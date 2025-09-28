@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 05:18:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/27 02:03:52 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/27 17:17:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,20 @@ static double   ft_atof_infnan(char *str)
 	return (value);
 }
 
-static double   ft_atof_basic(char **string, short neg)
+static double   ft_atof_basic(char **string, short neg, long i)
 {
 	double  value;
-	long    i;
 	char    *str;
 
 	str = *string;
 	value = ft_atoi(str);
-	if (neg)
+	if (neg || (*str == '+'))
 		++str;
 	while (*str && *str != '.' && *str != 'e' && ft_isdigit(*str))
 		++str;
 	if (*str == '.')
 	{
 		++str;
-		i = 0;
 		while (*str && (*str != 'e') && ft_isdigit(*str))
 		{
 			--i;
@@ -116,7 +114,7 @@ double  ft_atof(const char *str)
 	}
 	if (*strl == '-')
 		neg = TRUE;
-	value = ft_atof_basic(&strl, neg);
+	value = ft_atof_basic(&strl, neg, 0);
 	value = ft_atof_exp(&strl, value, neg);
 	free(strp);
 	return (value);

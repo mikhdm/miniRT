@@ -6,18 +6,18 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:02:29 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/24 04:30:58 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/27 08:16:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void ft_strsfree(char **strs)
+void	ft_strsfree(char **strs)
 {
-	char **s;
+	char	**s;
 
 	s = strs;
-	while(*s)
+	while (*s)
 		free(*s++);
 	free(strs);
 }

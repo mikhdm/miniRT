@@ -6,15 +6,15 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 00:30:23 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/27 00:31:43 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/27 08:03:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strupper(char **str)
+char	*ft_strupper(char **str)
 {
-	char *strp;
+	char	*strp;
 
 	strp = *str;
 	while (*strp)

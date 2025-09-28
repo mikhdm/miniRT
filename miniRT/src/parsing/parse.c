@@ -9,7 +9,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
-static t_data *initialize(t_data *data)
+static t_data	*initialize(t_data *data)
 {
 	*data = (t_data) {.bpp = 0, .length = 0, .endian = 0,
 				   .addr = NULL, .mlx = NULL, .window = NULL,
@@ -21,8 +21,8 @@ static t_data *initialize(t_data *data)
 
 static t_data *build(int const fildes)
 {
-	t_data  *data;
-	char    *line;
+	t_data	*data;
+	char	*line;
 
 	data = NULL;
 	line = NULL;

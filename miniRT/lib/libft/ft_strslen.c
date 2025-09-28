@@ -6,15 +6,15 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 02:29:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/24 02:31:38 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/27 08:16:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-size_t  ft_strslen(char **strs)
+size_t	ft_strslen(char **strs)
 {
-	size_t  cnt;
+	size_t	cnt;
 
 	cnt = 0;
 	while (*strs)
