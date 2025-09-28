@@ -29,6 +29,7 @@ src/rt/utils/mlx_reset_image.c
 src/rt/utils/get_cam.c
 src/rt/utils/look_at.c
 src/rt/utils/intersect_planar.c
+src/rt/utils/one_of.c
 src/rt/canvas.c
 src/rt/color.c
 src/rt/colorex.c

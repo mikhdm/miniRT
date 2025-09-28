@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:29:05 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 05:30:24 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/07 04:58:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef t_data *(*t_serialize_func)(t_data *, char **);
 
-t_data		*serialize(t_data *data, char *line);
+t_data		*serialize(t_data *data, char *line, char **initial);
 void		serialize_error(int code, int status, t_data *data, char **strs);
 t_data		*serialize_r(t_data *data, char **strs);
 t_data		*serialize_a(t_data *data, char **strs);

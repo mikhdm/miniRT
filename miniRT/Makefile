@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#   Updated: 2021/06/03 14:36:56 by rmander          ###   ########.fr       # #
+#   Updated: 2021/06/07 04:29:46 by rmander          ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
 		src/rt/utils/get_cam.c \
 		src/rt/utils/look_at.c \
 		src/rt/utils/intersect_planar.c \
+		src/rt/utils/one_of.c \
         src/parsing/parse.c \
         src/parsing/errors.c \
         src/parsing/cleanup.c \

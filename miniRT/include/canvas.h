@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 07:10:51 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/07 04:29:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define LABEL_CAMERA		"c"
 # define LABEL_AMBIENCE		"A"
 # define LABEL_RESOLUTION	"R"
+
+# define NUM_LABELS			9
 
 # define DO_SCREENSHOT      1
 # define DO_WINDOW          2
