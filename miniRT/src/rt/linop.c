@@ -6,10 +6,11 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:31:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/21 04:38:36 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/23 17:02:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "rt.h"
 #include "linop.h"
 
@@ -54,4 +55,9 @@ t_vector3	cmultvec3(double const value, t_vector3 *vector)
 	cmultvec.y = value * vector->y;
 	cmultvec.z = value * vector->z;
 	return (cmultvec);
+}
+
+double		hypot3(double x, double y, double z)
+{
+	return (sqrt(x*x + y*y + z*z));
 }

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/19 00:57:28 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/23 16:52:24 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ typedef struct s_screen
 	int 	height;
 	char*	title;
 }	t_screen;
+
+
+/*
+*
+* t_plane - structure to store projection plane parameters
+*
+*/
+typedef struct s_viewport
+{
+	double	width;
+	double	height;
+}	t_viewport;
 
 /*
 *
@@ -54,6 +66,7 @@ typedef	struct s_meta
 	void		*window;
 	void		*img;
 	t_screen	*screen;
+	t_viewport	*viewport;
 	t_camera	*cam;
 }	t_meta;
 
@@ -65,6 +78,13 @@ typedef	struct s_meta
 *
 */
 void		ft_putpixel(t_meta *meta, int x, int y, int color);
+
+/*
+*
+*	calc_viewport - calculates width & height of a viewport.
+*
+*/
+t_viewport	calc_viewport(t_meta *meta);
 t_vector3	ft_conv_to_viewport(t_meta *meta, int x, int y);
 
 #endif

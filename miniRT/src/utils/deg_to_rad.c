@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   deg_to_rad.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/18 20:42:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/23 15:28:39 by rmander          ###   ########.fr       */
+/*   Created: 2021/04/23 15:24:55 by rmander           #+#    #+#             */
+/*   Updated: 2021/04/23 15:28:42 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <math.h>
 
-typedef struct t_pair_double
+double	deg_to_rad(double deg)
 {
-	double first;
-	double second;
-}	t_pair_double;
+	return (deg * M_PI * pow(180, -1));
+}
 
-t_pair_double	calc_quad_equation(double a, double b, double c);
-double			deg_to_rad(double deg);
-
-// TODO check for nessecity
-double			rad_to_deg(double rad);
-void			ft_swap_double(double *left, double *right);
-
-#endif
+double rad_to_deg(double rad)
+{
+	return (rad * 180 * pow(M_PI, -1));
+}
