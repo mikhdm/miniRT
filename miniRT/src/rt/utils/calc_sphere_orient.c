@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_sphere_orient.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
+/*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 19:59:23 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/27 03:24:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 16:20:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calc_cylinder_orient.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/04 16:17:16 by rmander           #+#    #+#             */
+/*   Updated: 2021/06/04 16:18:16 by rmander          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "canvas.h"
 #include "linop.h"
 #include "utils.h"
@@ -8,14 +20,14 @@
 * lookup at point p_hit.
 *
 */
-t_vector3   calc_cylinder_orient(t_cylinder *cylinder,
-								 t_vector3 *p0, t_vector3 *dirvec, double t)
+t_vector3	calc_cylinder_orient(t_cylinder *cylinder,
+				t_vector3 *p0, t_vector3 *dirvec, double t)
 {
-	double      m;
-	t_vector3   p_hit;
-	t_vector3   co;
-	t_vector3   p_orient;
-	t_vector3   axis_point;
+	double		m;
+	t_vector3	p_hit;
+	t_vector3	co;
+	t_vector3	p_orient;
+	t_vector3	axis_point;
 
 	p_hit = calc_ray_point(p0, dirvec, t);
 	co = diffvec3(p0, &cylinder->center);

@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calc_triangle_orient.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/04 16:20:59 by rmander           #+#    #+#             */
+/*   Updated: 2021/06/04 16:21:14 by rmander          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "canvas.h"
 #include "linop.h"
 
-t_vector3   calc_triangle_orient(t_triangle *triangle)
+t_vector3	calc_triangle_orient(t_triangle *triangle)
 {
-	t_vector3   p1p2_vec;
-	t_vector3   p1p3_vec;
-	t_vector3   orient;
+	t_vector3	p1p2_vec;
+	t_vector3	p1p3_vec;
+	t_vector3	orient;
 
 	p1p2_vec = diffvec3(&triangle->y, &triangle->x);
 	p1p3_vec = diffvec3(&triangle->z, &triangle->x);

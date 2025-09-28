@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 01:11:03 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 04:43:49 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 16:20:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 static t_pair_double	calc_discriminant_zero(double a, double b, double c)
 {
-	t_pair_double values;
+	t_pair_double	values;
 
-	values = (t_pair_double) {.first = INFINITY, .second = INFINITY};
+	values = (t_pair_double){.first = INFINITY, .second = INFINITY};
 	if (ft_fequal(a, 0) && !ft_fequal(b, 0))
 		values.first = -c / b;
 	else
@@ -32,8 +32,8 @@ t_pair_double	calc_quad_equation(double a, double b, double c)
 	double			discriminant;
 	t_pair_double	values;
 	double			q;
-	
-	values = (t_pair_double) {.first = INFINITY, .second = INFINITY};
+
+	values = (t_pair_double){.first = INFINITY, .second = INFINITY};
 	discriminant = b * b - 4 * a * c;
 	if (ft_flt(discriminant, 0))
 		return (values);

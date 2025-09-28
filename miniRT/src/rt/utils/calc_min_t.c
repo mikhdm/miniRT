@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calc_min_t.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/04 16:18:48 by rmander           #+#    #+#             */
+/*   Updated: 2021/06/04 16:19:00 by rmander          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 #include <math.h>
 
-double calc_min_t(t_pair_double values)
+double	calc_min_t(t_pair_double values)
 {
 	if (values.first > values.second)
 		swap_double(&values.first, &values.second);

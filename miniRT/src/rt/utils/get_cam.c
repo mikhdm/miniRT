@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 14:45:37 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 02:32:44 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 16:23:19 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_camera	*get_last(t_data *data)
 		return (NULL);
 	while (curr->next)
 		curr = curr->next;
-	return curr;
+	return (curr);
 }
 
 static t_camera	*get_active_cam(t_data *data, t_camera **prev)
@@ -44,8 +44,8 @@ static t_camera	*get_active_cam(t_data *data, t_camera **prev)
 
 t_camera	*get_cam(t_data *data, short position)
 {
-	t_camera *cam;
-	t_camera *prev;
+	t_camera	*cam;
+	t_camera	*prev;
 
 	if (!data->cam)
 		return (NULL);
@@ -65,5 +65,5 @@ t_camera	*get_cam(t_data *data, short position)
 			cam = prev;
 	}
 	cam->active = TRUE;
-	return cam;
+	return (cam);
 }

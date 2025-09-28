@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:28:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/04 07:29:04 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 16:43:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ double	intersect_square(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 	double		denom;
 	t_vector3	*vertices;
 	t_vector3	p_hit;
+	short		check;
 
 	t = INFINITY;
+	check = FALSE;
 	denom = dot3(dirvec, &square->orient);
 	if (ft_fgt(fabs(denom), 0))
 	{
@@ -55,7 +57,10 @@ double	intersect_square(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 		vertices = gen_square_vertices(square);
 		if (!vertices)
 			ft_pexitfree(ERROR_ERRNO, errno, data);
-		if (is_polygon_point(&p_hit, vertices, &square->orient, 4))
+		check = is_polygon_point(&p_hit, vertices, &square->orient, 4); 
+		if (check == -1)
+			ft_pexitfree(ERROR_ERRNO, errno, data);
+		if (check == TRUE)
 		{
 			free(vertices);
 			return (t);
@@ -72,6 +77,7 @@ double	intersect_triangle(t_vector3 *p0, t_vector3 *dirvec,
 	t_vector3	orient;
 	double		denom;
 	t_vector3	p_hit;
+	short		check;
 
 	t = INFINITY;
 	orient = calc_triangle_orient(triangle);
@@ -81,9 +87,13 @@ double	intersect_triangle(t_vector3 *p0, t_vector3 *dirvec,
 		co = diffvec3(&triangle->x, p0);
 		t = dot3(&co, &orient) / denom;
 		p_hit = calc_ray_point(p0, dirvec, t);
-		if (is_polygon_point(&p_hit,
-				(t_vector3[]){triangle->x, triangle->y, triangle->z},
-			&orient, 3))
+		check = is_polygon_point(&p_hit,
+					(t_vector3[]){triangle->x, triangle->y, triangle->z},
+					&orient, 3);
+		/* if (check == -1) */
+		/* 	/1* TODO *1/ */
+		/* 	ft_pexitfree(ERROR_ERRNO, errno, data); */
+		if (check)
 			return (t);
 	}
 	return (INFINITY);
