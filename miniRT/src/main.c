@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/14 00:06:58 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/14 00:12:59 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(void)
 	if (!meta) {
 		return (errno);
 	}
-	ft_initmeta(meta);
+	ft_defaults_meta(meta);
 
 	meta->mlx = mlx_init();
 	meta->window = mlx_new_window(meta->mlx, 800, 600, "Super Mega Ray Tracer Ever :)");

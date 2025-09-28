@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 22:50:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/13 22:52:31 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/14 00:12:48 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdlib.h>
 
-void	ft_initmeta(t_meta *meta) {
+void	ft_defaults_meta(t_meta *meta) {
 	meta->mlx = NULL;
 	meta->window = NULL;
 	meta->img = NULL;
