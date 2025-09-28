@@ -13,72 +13,73 @@
 #include "canvas.h"
 #include "linop.h"
 #include "utils.h"
+#include <stdio.h>
 #include <math.h>
+#include <errno.h>
 
 double  intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane)
 {
 	t_vector3	co;
-	t_vector3   orient;
-	double		denominator;
+	double		denom;
 	double		t;
 
 	t = INFINITY;
-	orient = plane->orient;
 	co = diffvec3(&plane->center, p0);
-	denominator = dot3(dirvec, &orient);
-	/* TODO check this twice */
-	if (denominator < 0.0)
-	{
-		orient = cmultvec3(-1, &orient);
-		denominator = -denominator;
-	}
-	if (denominator > 1e-6)
-		t = dot3(&co, &orient) / denominator;
+	denom = dot3(dirvec, &plane->orient);
+	if (fabs(denom) > 1e-6)
+		t = dot3(&co, &plane->orient) / denom;
 	return (t);
 }
 
 double  intersect_square(t_vector3 *p0, t_vector3 *dirvec, t_square *square)
 {
-	t_vector3	pl_cam_vec;
-	t_vector3	orient;
-	double		denominator;
+	t_vector3	co;
+	double		denom;
 	double		t;
+	t_vector3	*vertices;
+	t_vector3	p_hit;
 
 	t = INFINITY;
-	orient = square->orient;
-	denominator = dot3(dirvec, &orient);
-	/* TODO check this twice */
-	if (denominator < 0.0)
-	{
-		orient = cmultvec3(-1, &orient);
-		denominator = -denominator;
-	}
-	pl_cam_vec = diffvec3(&square->center, p0);
-	if (denominator > 1e-6)
-		t = dot3(&pl_cam_vec, &orient) / denominator;
-	return (t);
+	denom = dot3(dirvec, &square->orient);
+	co = diffvec3(&square->center, p0);
+	if (fabs(denom) > 1e-6)
+		t = dot3(&co, &square->orient) / denom;
+
+	p_hit = calc_ray_point(p0, dirvec, t);
+	vertices = gen_square_vertices(square);
+	if (!vertices)
+		exit(ENOMEM);
+	if (is_polygon_point(&p_hit, vertices, &square->orient, 4))
+		return (t);
+	return (INFINITY);
 }
 
 double  intersect_triangle(t_vector3 *p0, t_vector3 *dirvec, t_triangle *triangle)
 {
 	t_vector3   orient;
-	t_vector3	pl_cam_vec;
-	double		denominator;
+	t_vector3	co;
+	double		denom;
 	double		t;
 
-	pl_cam_vec = diffvec3(&triangle->x, p0);
-	orient = calc_triangle_orient(triangle);
 	t = INFINITY;
-	denominator = dot3(dirvec, &orient);
-	/* TODO check this twice */
-	if (denominator < 0.0)
+	orient = calc_triangle_orient(triangle);
+	denom = dot3(dirvec, &orient);
+	co = diffvec3(&triangle->x, p0);
+	if (fabs(denom) > 1e-6)
+		t = dot3(&co, &orient) / denom;
+
+	t_vector3   vertices[3];
+	t_vector3   p_hit;
+	vertices[0] = triangle->x;
+	vertices[1] = triangle->y;
+	vertices[2] = triangle->z;
+	if (!isinf(t))
 	{
-		orient = cmultvec3(-1, &orient);
-		denominator = -denominator;
+		p_hit = calc_ray_point(p0, dirvec, t);
+		if (is_polygon_point(&p_hit, vertices, &orient, 3))
+			return (t);
 	}
-	if (denominator > 1e-6)
-		t = dot3(&pl_cam_vec, &orient) / denominator;
-	return (t);
+	return (INFINITY);
 }
 
  double intersect_sphere(t_vector3 *p0, t_vector3 *dirvec, t_sphere *sphere)

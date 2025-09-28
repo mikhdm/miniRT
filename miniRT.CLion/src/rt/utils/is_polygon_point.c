@@ -16,6 +16,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <math.h>
 
 static t_vector3	*is_polygon_point_crosses(t_vector3 *p_vertex_vecs,
 										   size_t size)
@@ -37,24 +38,35 @@ static t_vector3	*is_polygon_point_crosses(t_vector3 *p_vertex_vecs,
 static short int	is_polygon_point_check(t_vector3 *cross_vecs,
 						size_t size, t_vector3 *orient)
 {
-	double	check;
-	size_t	i;
-	
+	double      *checks;
+	size_t      i;
+	t_vector3   diffvec;
+	int         sign;
+	short int   flag;
+
 	i = 0;
-	check = dot3(&cross_vecs[i++], orient);
-	if (check >= 0)
+	flag = TRUE;
+	checks = malloc(sizeof(double) * size);
+	while (i < size)
+	{
+		diffvec = diffvec3(&cross_vecs[i], orient);
+		checks[i] = dot3(&cross_vecs[i], orient) / hypotvec3(&diffvec);
+		++i;
+	}
+	i = 0;
+	sign = signbit((float)checks[i++]);
+	if (sign)
 	{
 		while (i < size)
-			if (dot3(&cross_vecs[i++], orient) < 0)
-				return (FALSE);
+			if (!signbit((float) checks[i++]))
+				flag = FALSE;
 	}
-	else if (check < 0)
-	{
+	else
 		while (i < size)
-			if (dot3(&cross_vecs[i++], orient) > 0)
-				return (FALSE);
-	}
-	return (TRUE);
+			if (signbit((float)checks[i++]))
+				flag = FALSE;
+	free(checks);
+	return (flag);
 }
 
 short int	is_polygon_point(t_vector3 *p_hit,

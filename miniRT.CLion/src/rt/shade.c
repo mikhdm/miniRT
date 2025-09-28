@@ -61,7 +61,6 @@ int	shade_square(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 		exit(ENOMEM);
 	if (is_polygon_point(&p_hit, vertices, &square->orient, 4))
 		return (light(data, &p_hit, &square->orient, color));
-	free(vertices);
 	return (COLOR_BACKGROUND);
 }
 
