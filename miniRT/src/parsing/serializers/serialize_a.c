@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:58:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/30 19:25:07 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/31 05:08:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,46 +36,41 @@ static void	set_color(t_data *data, char **strs, char **strsrgb)
 		serialize_error(ERROR_INVALID_AMBIENCE, 255, data, strs);
 	}
 	data->ambience->color = argb;
-	ft_strsfree(strsrgb);
 }
 
-static void	set_ambience(t_data *data, char **strs, t_ambience **ambience)
+static void	set_ambience(t_data *data, char **strs)
 {
 	size_t		strslen;
 	char		**strsrgb;
 
 	strslen = ft_strslen(strs);
-	data->ambience = *ambience;
-	if (strslen != 2)
+	if (strslen != 3)
 		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
-	if (!ft_isfloatable(strs[0]))
+	if (!ft_isfloatable(strs[1]))
 		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
-	data->ambience->intensity = ft_atof(strs[0]);
+	data->ambience->intensity = ft_atof(strs[1]);
 	if (ft_flt(data->ambience->intensity, 0)
 		|| ft_fgt(data->ambience->intensity, 1))
 		serialize_error(ERROR_INVALID_AMBIENCE, 255, data, strs);
-	strsrgb = ft_split_any(strs[1], ',');
+	strsrgb = ft_split_any(strs[2], ',');
 	if (!strsrgb)
 		serialize_error(ERROR_ERRNO, errno, data, strs);
 	set_color(data, strs, strsrgb);
+	ft_strsfree(strsrgb);
 }
 
-t_data	*serialize_a(t_data *data, char const *line)
+t_data	*serialize_a(t_data *data, char const *line, char **strs)
 {
-	char		**strs;
 	t_ambience	*ambience;
 
-	if (data->ambience)
-		serialize_error(ERROR_DUPLICATE_AMBIENCE, 255, data, NULL);
 	line += ft_strlen(LABEL_AMBIENCE);
 	if (!ft_isspace(*line))
-		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, NULL);
-	strs = ft_splitf(line, &ft_isspace);
-	if (!strs)
-		serialize_error(ERROR_ERRNO, errno, data, NULL);
+		serialize_error(ERROR_SYNTAX_AMBIENCE, 255, data, strs);
+	if (data->ambience)
+		serialize_error(ERROR_DUPLICATE_AMBIENCE, 255, data, strs);
 	if (!alloca_to((void **)&ambience, sizeof(t_ambience)))
 		serialize_error(ERROR_ERRNO, errno, data, strs);
-	set_ambience(data, strs, &ambience);
-	ft_strsfree(strs);
+	data->ambience = ambience;
+	set_ambience(data, strs);
 	return (data);
 }

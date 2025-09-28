@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fequal.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/29 21:48:21 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/29 21:49:12 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/31 04:34:12 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/31 04:35:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <float.h>
-#include <math.h>
-
-short	ft_fequal(double left, double right)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (fabs(left - right) < DBL_EPSILON)
-		return (TRUE);
-	return (FALSE);
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			break ;
+		++s1;
+		++s2;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

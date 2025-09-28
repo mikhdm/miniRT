@@ -106,6 +106,7 @@ lib/libft/ft_strlcpy.c
 lib/libft/ft_strlen.c
 lib/libft/ft_strlen_until.c
 lib/libft/ft_strmapi.c
+lib/libft/ft_strcmp.c
 lib/libft/ft_strncmp.c
 lib/libft/ft_strnstr.c
 lib/libft/ft_strrchr.c

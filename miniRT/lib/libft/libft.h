@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:07:35 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/30 16:13:23 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/31 04:35:42 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *haystack,
 						const char *needle,
 						size_t len);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
 double				ft_atof(const char *str);
@@ -91,9 +92,9 @@ void				ft_putnbr_fd(int n, int fd);
 ssize_t				ft_max(ssize_t left, ssize_t right);
 ssize_t				ft_min(ssize_t left, ssize_t right);
 short				ft_isfloatable(const char *str);
-short 				ft_fequal(double left, double right);
-short 				ft_flt(double left, double right);
-short 				ft_fgt(double left, double right);
+short				ft_fequal(double left, double right);
+short				ft_flt(double left, double right);
+short				ft_fgt(double left, double right);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);

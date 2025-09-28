@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:59:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 02:25:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/31 05:11:33 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,37 +84,31 @@ static void set_camera(t_data *data, char **strs)
 		serialize_error(ERROR_ERRNO, errno, data, strs);
 	cam->next = NULL;
 	lst_cam_append(data->cam, cam);
-	strs_point = ft_split_any(strs[0], ',');
+	strs_point = ft_split_any(strs[1], ',');
 	if (!strs_point)
 		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
 	set_point(data, strs, strs_point, &cam);
-	strs_orient = ft_split_any(strs[1], ',');
+	strs_orient = ft_split_any(strs[2], ',');
 	if (!strs_orient)
 		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
 	set_orient(data, strs, strs_orient, &cam);
-	str_fov = strs[2];
+	str_fov = strs[3];
 	while (*str_fov)
 		if (!ft_isdigit(*str_fov++))
 			serialize_error(ERROR_INVALID_CAMERA, 255, data, strs);
-	cam->fov = ft_atoi(strs[2]);
+	cam->fov = ft_atoi(strs[3]);
 }
 
-t_data  *serialize_c(t_data *data, char const *line)
+t_data  *serialize_c(t_data *data, char const *line, char **strs)
 {
-	char		**strs;
 	size_t		strslen;
 
-	strs = NULL;
 	line += ft_strlen(LABEL_CAMERA);
 	if (!ft_isspace(*line))
-		ft_pexitfree(ERROR_SYNTAX_CAMERA, 255, data);
-	strs = ft_splitf(line, &ft_isspace);
-	if (!strs)
-		ft_pexitfree(ERROR_ERRNO, errno, data);
+		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
 	strslen = ft_strslen(strs);
-	if (strslen != 3)
+	if (strslen != 4)
 		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
 	set_camera(data, strs);
-	ft_strsfree(strs);
 	return (data);
 }

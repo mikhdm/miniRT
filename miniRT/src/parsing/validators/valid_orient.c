@@ -33,5 +33,7 @@ short valid_orient(const char **strs_orient, size_t strslen, t_vector3 *orient)
 	orient->x = ft_atof(strs_orient[0]);
 	orient->y = ft_atof(strs_orient[1]);
 	orient->z = ft_atof(strs_orient[2]);
+	if (!ft_fequal(hypotvec3(orient), 1))
+		return (FALSE);
 	return (TRUE);
 }
