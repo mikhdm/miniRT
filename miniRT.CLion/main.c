@@ -70,7 +70,7 @@ int main(void)
 
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
 
-	cam = (t_camera) {.center = (t_vector3) {.x = 5, .y = 10, .z = 20},
+	cam = (t_camera) {.center = (t_vector3) {.x = 2, .y = 10, .z = 15},
 					.orient = (t_vector3) {.x = -1/sqrt(6), .y = -1/sqrt(6), .z = -2/sqrt(6)},
 					.viewport = NULL,
 					.fov = 90};
@@ -148,9 +148,7 @@ int main(void)
 	data.figures = &figure1;
 
 
-
-
-	parse(path);
+	// parse(path);
 
 
 	init(&data);
