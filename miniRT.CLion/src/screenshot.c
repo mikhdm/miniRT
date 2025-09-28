@@ -1,6 +1,5 @@
 #include "canvas.h"
 #include "errors.h"
-#include "color.h"
 #include "utils.h"
 #include "libft.h"
 #include <unistd.h>
