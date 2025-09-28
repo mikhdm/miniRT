@@ -12,7 +12,7 @@
 
 #include "canvas.h"
 #include "utils.h"
-#include "serialize.h"
+#include "parsing/serialize.h"
 #include "parsing/errors.h"
 #include "parsing/validate.h"
 #include "libft.h"

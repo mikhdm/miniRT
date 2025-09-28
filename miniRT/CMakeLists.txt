@@ -46,6 +46,10 @@ src/parsing/serializers/serialize_cy.c
 src/parsing/serializers/serialize_pl.c
 src/parsing/serializers/serialize_tr.c
 src/parsing/serializers/serialize_sq.c
+src/parsing/serializers/helpers/serialize_point.c
+src/parsing/serializers/helpers/serialize_orient.c
+src/parsing/serializers/helpers/serialize_rgb.c
+src/parsing/serializers/helpers/lst_figure_append.c
 src/parsing/validate.c
 src/parsing/validators/valid_rgb.c
 src/parsing/validators/valid_orient.c

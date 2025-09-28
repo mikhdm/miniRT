@@ -26,6 +26,11 @@ void    ft_perror(int code)
 						    "Duplicate ambience",
 						    "Invalid camera values",
 						    "Invalid light values",
+						    "Invalid sphere values",
+						    "Invalid cylinder values",
+						    "Invalid plane values",
+						    "Invalid triangle values",
+						    "Invalid square values",
 						    };
 	int	size;
 

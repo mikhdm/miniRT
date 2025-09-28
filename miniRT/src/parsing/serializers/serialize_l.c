@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:01:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 23:29:29 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/01 06:37:42 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "utils.h"
 #include "parsing/serialize.h"
 #include "parsing/errors.h"
-#include "parsing/validate.h"
 #include "libft.h"
 #include <stddef.h>
 #include <errno.h>
@@ -32,30 +31,6 @@ static void	lst_light_append(t_light **head, t_light *new)
 			curr = &((*curr)->next);
 		(*curr)->next = new;
 	}
-}
-
-static t_vector3	*serialize_point(char **strs_point, t_vector3 *point)
-{
-	size_t strslen;
-
-	strslen = ft_strslen(strs_point);
-	if (strslen != 3)
-		return (NULL);
-	if (!valid_point3((const char **)strs_point, strslen, point))
-		return (NULL);
-	return (point);
-}
-
-static int	*serialize_rgb(char **strs_rgb, int *argb)
-{
-	size_t	strslen;
-
-	strslen = ft_strslen(strs_rgb);
-	if (strslen != 3)
-		return (NULL);
-	if (!valid_rgb((const char **)strs_rgb, strslen, argb))
-		return (NULL);
-	return (argb);
 }
 
 static void	set_color(t_data *data, char **strs, char **strs_rgb,

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serialize_rgb.c                                    :+:      :+:    :+:   */
+/*   lst_figure_append.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/01 06:37:05 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 06:37:42 by rmander          ###   ########.fr       */
+/*   Created: 2021/06/01 07:09:04 by rmander           #+#    #+#             */
+/*   Updated: 2021/06/01 07:09:04 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing/validate.h"
-#include "libft.h"
-#include <stddef.h>
+#include "canvas.h"
 
-int	*serialize_rgb(char **strs_rgb, int *argb)
+void	lst_figure_append(t_figure **head, t_figure *new)
 {
-	size_t	strslen;
+	t_figure	**curr;
 
-	strslen = ft_strslen(strs_rgb);
-	if (strslen != 3)
-		return (NULL);
-	if (!valid_rgb((const char **)strs_rgb, strslen, argb))
-		return (NULL);
-	return (argb);
+	curr = head;
+	if (!*curr)
+		*curr = new;
+	else
+	{
+		while ((*curr)->next)
+			curr = &((*curr)->next);
+		(*curr)->next = new;
+	}
 }
