@@ -25,6 +25,7 @@ void    ft_perror(int code)
 						    "Invalid ambience values",
 						    "Duplicate ambience",
 						    "Invalid camera values",
+						    "Invalid light values",
 						    };
 	int	size;
 

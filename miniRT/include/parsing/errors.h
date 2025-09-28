@@ -39,6 +39,7 @@ typedef enum e_error
 	ERROR_INVALID_AMBIENCE,
 	ERROR_DUPLICATE_AMBIENCE,
 	ERROR_INVALID_CAMERA,
+	ERROR_INVALID_LIGHT,
 }   t_error;
 
 void    ft_perror(int code);

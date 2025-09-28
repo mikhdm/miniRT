@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:59:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 07:05:59 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/31 07:06:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ static void	set_camera(t_data *data, char **strs, t_camera *cam)
 	lst_cam_append(&(data->cam), cam);
 	strs_point = ft_split_any(strs[1], ',');
 	if (!strs_point)
-		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
+		serialize_error(ERROR_ERRNO, errno, data, strs);
 	set_point(data, strs, strs_point, &cam);
 	strs_orient = ft_split_any(strs[2], ',');
 	if (!strs_orient)
-		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
+		serialize_error(ERROR_ERRNO, errno, data, strs);
 	set_orient(data, strs, strs_orient, &cam);
 	str_fov = strs[3];
 	if (!ft_isfloatable(str_fov))
