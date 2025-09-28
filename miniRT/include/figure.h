@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:35:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/17 03:27:04 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/17 21:29:57 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_plane
 	double 		y;
 	double 		z;
 	int			color;
-	t_vector3d	orient;
+	t_vector3	orient;
 }	t_plane;
 
 typedef struct s_square
@@ -40,7 +40,7 @@ typedef struct s_square
 	double		z;
 	double		size;
 	int			color;
-	t_vector3d	orient;
+	t_vector3	orient;
 }	t_square;
 
 typedef struct s_cylinder
@@ -51,14 +51,14 @@ typedef struct s_cylinder
 	double		d;
 	double		height;
 	int			color;
-	t_vector3d	orient;
+	t_vector3	orient;
 }	t_cylinder;
 
 typedef struct s_triangle
 {
-	t_vector3d	x;
-	t_vector3d	y;
-	t_vector3d	z;
+	t_vector3	x;
+	t_vector3	y;
+	t_vector3	z;
 	int			color;
 }	t_triangle;
 
