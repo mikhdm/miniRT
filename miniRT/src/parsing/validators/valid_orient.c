@@ -36,5 +36,8 @@ short	valid_orient(const char **strs_orient, size_t strslen, t_vector3 *orient)
 		|| ft_flt(orient->y, -1) || ft_fgt(orient->y, 1)
 		|| ft_flt(orient->z, -1) || ft_fgt(orient->z, 1))
 		return (FALSE);
+	*orient = normvec3(orient);
+	if (!ft_fequal(hypotvec3(orient), 1))
+		return (FALSE);
 	return (TRUE);
 }

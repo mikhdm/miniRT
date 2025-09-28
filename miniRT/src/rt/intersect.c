@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:28:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/17 17:48:38 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 04:12:55 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane)
 	t = INFINITY;
 	co = diffvec3(&plane->center, p0);
 	denom = dot3(dirvec, &plane->orient);
-	if (fabs(denom)> 1e-6)
+	if (fabs(denom) > 1e-6)
 		t = dot3(&co, &plane->orient) / denom;
 	return (t);
 }

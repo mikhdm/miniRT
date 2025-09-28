@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 18:14:04 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/03 12:07:05 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 03:12:40 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -29,38 +29,23 @@
 
 void    ft_perror(int code)
 {
-	const char *errors[] = {"Empty path",
-							"Scene is not provided",
-						    "Screenshot param is incorrect",
-						    "Incorrect number of arguments",
-						    "Incorrect scene extension",
-						    "Incorrect resolution line syntax",
-						    "Incorrect ambience line syntax",
-						    "Incorrect camera line syntax",
-						    "Incorrect light line syntax",
-						    "Incorrect sphere line syntax",
-						    "Incorrect cylinder line syntax",
-						    "Incorrect plane line syntax",
-						    "Incorrect triangle line syntax",
-						    "Incorrect square line syntax",
-						    "Invalid resolution values",
-						    "Duplicate resolution",
-						    "Invalid ambience values",
-						    "Duplicate ambience",
-						    "Invalid camera values",
-						    "Invalid light values",
-						    "Invalid sphere values",
-						    "Invalid cylinder values",
-						    "Invalid plane values",
-						    "Invalid triangle values",
-						    "Invalid square values",
-							"Resolution is not set",
-							"Ambience is not set",
-							"Cameras are not set"};
-	int	size;
+	const char *errors[] = {"Empty path", "Scene is not provided",
+		 "Screenshot param is incorrect", "Incorrect number of arguments",
+		 "Incorrect scene extension", "Incorrect resolution line syntax",
+		 "Incorrect ambience line syntax", "Incorrect camera line syntax",
+		 "Incorrect light line syntax", "Incorrect sphere line syntax",
+		 "Incorrect cylinder line syntax", "Incorrect plane line syntax",
+		 "Incorrect triangle line syntax", "Incorrect square line syntax",
+		 "Invalid resolution values", "Duplicate resolution",
+		 "Invalid ambience values", "Duplicate ambience",
+		 "Invalid camera values","Invalid light values",
+		"Invalid sphere values", "Invalid cylinder values",
+		"Invalid plane values", "Invalid triangle values",
+		"Invalid square values", "Resolution is not set", "Ambience is not set",
+		"Cameras are not set", "Incorrect syntax"};
 
-	size = sizeof(errors) / sizeof(*errors);
-	if ((code != ERROR_ERRNO) && (code < 0 || code >= size))
+	if ((code != ERROR_ERRNO)
+		&& (code < 0 || code >= (sizeof(errors) / sizeof(*errors))))
 		return ;
 	ft_putstr_fd(ERROR_HEADER, STDERR);
 	if (code == ERROR_ERRNO)
@@ -68,8 +53,7 @@ void    ft_perror(int code)
 		perror(NULL);
 		return ;
 	}
-	ft_putstr_fd((char *)errors[code], STDERR);
-	ft_putchar_fd('\n', STDERR);
+	ft_putendl_fd((char *)errors[code], STDERR);
 }
 
 void ft_pexit(int code, int status)

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 14:32:33 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/03 15:31:14 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 02:37:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 void	mlx_reset_image(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->img);
+	if (!data->mlx)
+		return ;
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
 	data->img = NULL;
 	data->addr = NULL;
 	data->img = mlx_new_image(

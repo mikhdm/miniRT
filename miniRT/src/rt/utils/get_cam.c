@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/03 14:45:37 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/03 16:16:16 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 02:32:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,42 @@
 #include "utils.h"
 #include <stddef.h>
 
-t_camera	*get_cam(t_data *data, short position)
+static t_camera	*get_last(t_data *data)
+{
+	t_camera	*curr;
+
+	curr = data->cam;
+	if (!curr)
+		return (NULL);
+	while (curr->next)
+		curr = curr->next;
+	return curr;
+}
+
+static t_camera	*get_active_cam(t_data *data, t_camera **prev)
 {
 	t_camera	*cam;
-	t_camera	*prev;
 
-	if (!data->cam)
-		return (NULL);
 	cam = data->cam;
-	prev = data->cam;
+	*prev = data->cam;
 	while (cam)
 	{
 		if (cam->active)
 			break ;
-		prev = cam;
+		*prev = cam;
 		cam = cam->next;
 	}
-	if (!cam)
-		return (data->cam);
+	return (cam);
+}
+
+t_camera	*get_cam(t_data *data, short position)
+{
+	t_camera *cam;
+	t_camera *prev;
+
+	if (!data->cam)
+		return (NULL);
+	cam = get_active_cam(data, &prev);
 	cam->active = FALSE;
 	if (position == POS_CAM_NEXT)
 	{
@@ -40,8 +58,12 @@ t_camera	*get_cam(t_data *data, short position)
 			cam = data->cam;
 	}
 	if (position == POS_CAM_PREV)
-		cam = prev;
-		// TODO go back correctly if cam == data->cam
+	{
+		if (cam == data->cam)
+			cam = get_last(data);
+		else
+			cam = prev;
+	}
 	cam->active = TRUE;
-	return (cam);
+	return cam;
 }

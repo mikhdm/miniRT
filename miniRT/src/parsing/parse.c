@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 23:44:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/02 23:23:47 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 03:29:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static t_data	*refine(t_data *data)
 {
 	t_camera	*cam;
 
+	if (!data->screen)
+		ft_pexitfree(ERROR_EMPTY_RESOLUTION, 255, data);
+	if (!data->ambience)
+		ft_pexitfree(ERROR_EMPTY_AMBIENCE, 255, data);
+	if (!data->cam)
+		ft_pexitfree(ERROR_EMPTY_CAMERA, 255, data);
 	cam = data->cam;
 	while (cam)
 	{
@@ -33,12 +39,6 @@ static t_data	*refine(t_data *data)
 		*(cam->viewport) = calc_viewport(data, cam);
 		cam = cam->next;
 	}
-	if (!data->screen)
-		ft_pexitfree(ERROR_EMPTY_RESOLUTION, 255, data);
-	if (!data->ambience)
-		ft_pexitfree(ERROR_EMPTY_AMBIENCE, 255, data);
-	if (!data->cam)
-		ft_pexitfree(ERROR_EMPTY_CAMERA, 255, data);
 	return (data);
 }
 
@@ -62,7 +62,7 @@ static t_data	*populate(t_data *data)
 	while (get_next_line(data->fildes, &line) != SIG_EOF)
 	{
 		start = skip_spaces_str(line);
-		if (*start)
+		if (*start && *start != '#')
 			data = serialize(data, start);
 		free(line);
 		line = NULL;

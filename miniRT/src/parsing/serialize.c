@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:28:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 21:55:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 03:20:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 #include "parsing/errors.h"
 #include "parsing/serialize.h"
 #include <errno.h>
+
+short	one_of(char *value, char const **strs)
+{
+	while (*strs)
+	{
+		if (ft_strcmp(value, *strs++) == 0)
+			return (TRUE);
+	}
+	return (FALSE);
+}
 
 static t_data	*loop(t_data *data, char *line,
 					const char **label, const t_serialize_func func[])
@@ -35,6 +45,8 @@ static t_data	*loop(t_data *data, char *line,
 			data = (*func)(data, line, strs);
 			set = TRUE;
 		}
+		if (!one_of(strs[0], label))
+			serialize_error(ERROR_SYNTAX, 255, data, strs);
 		ft_strsfree(strs);
 		strs = NULL;
 		++label;
@@ -47,10 +59,11 @@ t_data  *serialize(t_data *data, char *line)
 {
 	const char *label[] = {LABEL_RESOLUTION, LABEL_AMBIENCE, LABEL_CAMERA,
 						   LABEL_LIGHT, LABEL_SPHERE, LABEL_CYLINDER,
-						   LABEL_PLANE, LABEL_TRIANGLE, LABEL_SQUARE};
+						   LABEL_PLANE, LABEL_TRIANGLE, LABEL_SQUARE, NULL};
 	const t_serialize_func func[] = {&serialize_r, &serialize_a, &serialize_c,
 								  &serialize_l, &serialize_sp, &serialize_cy,
-								  &serialize_pl, &serialize_tr, &serialize_sq};
+								  &serialize_pl, &serialize_tr, &serialize_sq,
+								  NULL};
 
 	data = loop(data, line, label, func);
 	return (data);

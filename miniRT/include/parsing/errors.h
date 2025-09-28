@@ -48,6 +48,7 @@ typedef enum e_error
 	ERROR_EMPTY_RESOLUTION,
 	ERROR_EMPTY_AMBIENCE,
 	ERROR_EMPTY_CAMERA,
+	ERROR_SYNTAX
 }   t_error;
 
 void    ft_perror(int code);

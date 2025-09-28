@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:35:30 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 05:06:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/04 03:52:10 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ t_data	*serialize_r(t_data *data, char const *line, char **strs)
 		serialize_error(ERROR_DUPLICATE_RESOLUTION, 255, data, strs);
 	mlx_get_screen_size(data->mlx, (int *)&max_w, (int *)&max_h);
 	set_screen(data, strs, (int *)&w, (int *)&h);
+	if (data->screen->width < 1 || data->screen->height < 1)
+		serialize_error(ERROR_INVALID_RESOLUTION, 255, data, strs);
 	if ((size_t)data->screen->width > max_w)
 		data->screen->width = (int)max_w;
 	if ((size_t)data->screen->height > max_h)
