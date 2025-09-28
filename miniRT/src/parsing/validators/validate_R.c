@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serialize_pl.c                                     :+:      :+:    :+:   */
+/*   validate_R.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 04:01:58 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/24 04:02:20 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/24 14:06:33 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/24 14:09:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "canvas.h"
-
-t_data  *serialize_pl(t_data *data, char const *line)
+static void validate_R(error)
 {
-	(void)line;
+	(void)error;
+}
+
+
+t_data  *validate_R(t_data *data)
+{
+	/* TODO add check for w = 0 or h = 0 */
 	return (data);
 }

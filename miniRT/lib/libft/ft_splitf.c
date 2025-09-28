@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 20:28:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/23 20:48:24 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/24 02:07:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stddef.h>
 
-static size_t	ft_splitf_strslen(char const *str, short (*f)(char))
+static size_t	ft_splitf_strslen(char const *str, int (*f)(int))
 {
 	size_t	cnt;
 	int		flag;
@@ -35,7 +35,7 @@ static size_t	ft_splitf_strslen(char const *str, short (*f)(char))
 	return (cnt);
 }
 
-static size_t	ft_splitf_strlen(char const *str, short (*f)(char))
+static size_t	ft_splitf_strlen(char const *str, int (*f)(int))
 {
 	size_t	cnt;
 
@@ -48,7 +48,7 @@ static size_t	ft_splitf_strlen(char const *str, short (*f)(char))
 	return (cnt);
 }
 
-static char	*ft_splitf_strdup(char const *str, short (*f)(char))
+static char	*ft_splitf_strdup(char const *str, int (*f)(int))
 {
 	char	*s;
 	char	*start;
@@ -70,7 +70,7 @@ static void	ft_splitf_free(char **strs, size_t cnt)
 	free(strs);
 }
 
-char	**ft_splitf(char const *s, short (*f)(char))
+char	**ft_splitf(char const *s, int (*f)(int))
 {
 	size_t	i;
 	char	**strs;

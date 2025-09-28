@@ -22,18 +22,6 @@ static long	ft_pow(long n, long power)
 	return (res);
 }
 
-static int	ft_isspace(int c)
-{
-	if (c == '\t'
-		|| c == '\n'
-		|| c == '\v'
-		|| c == '\f'
-		|| c == '\r'
-		|| c == ' ')
-		return (TRUE);
-	return (FALSE);
-}
-
 static long	ft_negate(long value, int neg)
 {
 	if (neg)

@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/24 02:50:53 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/24 02:51:00 by rmander          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ERRORS_H
 # define ERRORS_H
 
+#include "canvas.h"
+
 # define ERROR_HEADER   "ERROR\n"
-# define ERROR_ERRNO    -1
+# define ERROR_ERRNO    (-1)
 
 typedef enum e_error
 {
@@ -24,5 +38,6 @@ typedef enum e_error
 
 void    ft_perror(int code);
 void    ft_pexit(int code, int status);
+void    ft_pexitfree(int code, int status, t_data *data);
 
 #endif

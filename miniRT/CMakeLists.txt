@@ -87,6 +87,8 @@ lib/libft/ft_putnbr_fd.c
 lib/libft/ft_putstr_fd.c
 lib/libft/ft_split.c
 lib/libft/ft_splitf.c
+lib/libft/ft_strslen.c
+lib/libft/ft_strsfree.c
 lib/libft/ft_strchr.c
 lib/libft/ft_strdup.c
 lib/libft/ft_strjoin.c

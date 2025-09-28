@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serialize_pl.c                                     :+:      :+:    :+:   */
+/*   ft_strsfree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 04:01:58 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/24 04:02:20 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/24 03:02:29 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/24 04:30:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "canvas.h"
+#include <stdlib.h>
 
-t_data  *serialize_pl(t_data *data, char const *line)
+void ft_strsfree(char **strs)
 {
-	(void)line;
-	return (data);
+	char **s;
+
+	s = strs;
+	while(*s)
+		free(*s++);
+	free(strs);
 }

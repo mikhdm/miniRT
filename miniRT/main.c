@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/21 20:04:31 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/24 02:56:06 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-void test(t_data *data);
 
 static short    check(int argc, char **argv)
 {
@@ -76,6 +74,7 @@ int main(int argc, char **argv)
 		mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
 		bind_hooks(data);
 		mlx_loop(data->mlx);
+		/* TODO cleanup */
 	}
 	return (0);
 }

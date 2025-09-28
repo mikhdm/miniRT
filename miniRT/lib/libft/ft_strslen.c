@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   serialize_pl.c                                     :+:      :+:    :+:   */
+/*   ft_strslen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 04:01:58 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/24 04:02:20 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/24 02:29:22 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/24 02:31:38 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "canvas.h"
+#include <stddef.h>
 
-t_data  *serialize_pl(t_data *data, char const *line)
+size_t  ft_strslen(char **strs)
 {
-	(void)line;
-	return (data);
+	size_t  cnt;
+
+	cnt = 0;
+	while (*strs)
+	{
+		++strs;
+		++cnt;
+	}
+	return (cnt);
 }

@@ -1,4 +1,5 @@
 #include "parsing/errors.h"
+#include "parsing/parse.h"
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,4 +39,11 @@ void ft_pexit(int code, int status)
 {
 	ft_perror(code);
 	exit(status);
+}
+
+void ft_pexitfree(int code, int status, t_data *data)
+{
+	if (data)
+		cleanup(data);
+	ft_pexit(code, status);
 }

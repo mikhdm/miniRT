@@ -1,6 +1,5 @@
 #include "canvas.h"
 #include "utils.h"
-#include "libft.h"
 #include "parsing/errors.h"
 #include "parsing/parse.h"
 #include "parsing/serialize.h"
@@ -9,6 +8,16 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <stdlib.h>
+
+static t_data *initialize(t_data *data)
+{
+	*data = (t_data) {.bpp = 0, .length = 0, .endian = 0,
+				   .addr = NULL, .mlx = NULL, .window = NULL,
+				   .img = NULL, .fildes = -1, .screen = NULL,
+				   .cam = NULL, .light = NULL, .ambience = NULL,
+				   .figures = NULL};
+	return (data);
+}
 
 static t_data *build(int const fildes)
 {
@@ -22,6 +31,7 @@ static t_data *build(int const fildes)
 		close(fildes);
 		exit(ENOMEM);
 	}
+	data = initialize(data);
 	data->fildes = fildes;
 	/* READING, VALIDATION AND SERIALIZATION */
 	while (get_next_line(fildes, &line) != SIG_EOF)
@@ -149,6 +159,11 @@ t_data *parse(char const *path)
 
 void cleanup(t_data *data)
 {
-	/* TODO cleanup all data */
+	if (!data)
+		return ;
+	if (data->screen)
+		free(data->screen);
+	/* TODO */
+	close(data->fildes);
 	free(data);
 }
