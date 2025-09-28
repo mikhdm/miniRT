@@ -12,7 +12,7 @@
 
 NAME = miniRT
 CC = clang
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -O3 -MMD
+CFLAGS = -Wall -Wextra -Werror -O3 -MMD
 
 LIBFT_DIR = ./lib/libft
 LIBMLX42_DIR = ./lib/MLX42

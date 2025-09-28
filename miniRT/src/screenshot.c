@@ -14,11 +14,13 @@
 #include "parsing/errors.h"
 #include "utils.h"
 #include "libft.h"
+#include "color.h"
+
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
 #include "MLX42/MLX42.h"
-
+#include <stdio.h>
 /*
  *
  * data which are more than 1 byte size is stored in little-endian.
@@ -30,7 +32,7 @@ static void	set_bitmapfileheader(t_data *data, unsigned char header[14])
 	unsigned int	offset;
 
 	offset = 54;
-	size = (data->screen->width * data->screen->height * (data->bpp / 8)
+	size = (data->screen->width * data->screen->height * (data->bpp)
 			+ (int)offset);
 	ft_memset(header, 0, 14);
 	header[0] = 0x42;
@@ -55,26 +57,30 @@ static void	set_bitmapinfoheader(t_data *data, unsigned char header[40])
 	header[10] = data->screen->height >> 16;
 	header[11] = data->screen->height >> 24;
 	header[12] = 1;
-	header[14] = data->bpp;
+	header[14] = data->bpp * 8;
 }
 
 static void	put_image_line(t_data *data, int fd, ssize_t i, unsigned char *line)
 {
 	ssize_t			j;
-	unsigned int	color;
 	ssize_t			nbytes;
+	mlx_image_t 	*img;
+	size_t			idx;
+	size_t			step;
 
-	j = 0;
-	nbytes = data->screen->width * (data->bpp / 8);
+	img = (mlx_image_t *)data->img;
+	nbytes = data->screen->width * data->bpp;
 	ft_bzero(line, nbytes);
-	while (j < data->screen->width * (data->bpp / 8))
+	for (j = 0; j < data->screen->width; j++)
 	{
-		mlx_image_t *img = (mlx_image_t *)data->img;
-		color = *(unsigned int *)((img->pixels + (i * img->width + j)));
-		line[j] = color;
-		line[j + 1] = color >> 8;
-		line[j + 2] = color >> 16;
-		j += 4;
+		idx = (i * img->width + j) * data->bpp;
+		step = j * data->bpp; 
+
+		// BMP expects BGRA order
+		line[step + 0] = img->pixels[idx + 2];
+		line[step + 1] = img->pixels[idx + 1];
+		line[step + 2] = img->pixels[idx + 0];
+		line[step + 3] = img->pixels[idx + 3];
 	}
 	write(fd, line, nbytes);
 }
@@ -85,7 +91,7 @@ static void	put_image(t_data *data, int fd)
 	ssize_t			nbytes;
 	unsigned char	*line;
 
-	nbytes = data->screen->width * (data->bpp / 8);
+	nbytes = data->screen->width * data->bpp;
 	if (!alloca_to((void **)&line, nbytes))
 	{
 		close(fd);
@@ -106,6 +112,7 @@ void	screenshot(t_data *data, char const *filename)
 
 	set_bitmapfileheader(data, BITMAPFILEHEADER);
 	set_bitmapinfoheader(data, BITMAPINFOHEADER);
+
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	if (fd == -1)
 		ft_pexitfree(ERROR_ERRNO, errno, data);
