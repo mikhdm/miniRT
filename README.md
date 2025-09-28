@@ -105,4 +105,4 @@ To switch between multiple cameras, use the left and right arrow keys.
 
 - [Ray Tracing in One Weekend](https://raytracing.github.io/).
 
-*Huge thanks to everyone from [42](https://42.fr) Moscow who provided scenes for the project!*
+*Huge thanks to everyone from 42 Moscow who provided scenes for the project!*
