@@ -16,20 +16,6 @@
 #include "utils.h"
 #include "MLX42/MLX42.h"
 
-void	putpixel(t_data *data, int x, int y, int color)
-{
-	uint8_t	*dest;
-	int		screen_x;
-	int		screen_y;
-
-	mlx_image_t *img = (mlx_image_t *)data->img;
-
-	screen_x = data->screen->width / 2 + x;
-	screen_y = data->screen->height / 2 - y;
-	dest = (img->pixels
-			+ (screen_y * img->width + screen_x * (data->bpp / 8)));
-	*(unsigned int *)dest = color;
-}
 
 void	render(t_data *data, t_camera *cam, t_pair_double *range)
 {
@@ -40,20 +26,16 @@ void	render(t_data *data, t_camera *cam, t_pair_double *range)
 
 	if (!cam)
 		return ;
-	y = data->screen->height / 2;
-	while (y > -data->screen->height / 2)
-	{
-		x = -data->screen->width / 2;
-		while (x < data->screen->width / 2)
-		{
-			dirvec = canvas_to_viewport(data, cam, x, y);
+	y = 0;
+	while (y < data->screen->height) {
+		x = 0;
+		while (x < data->screen->width) {
+			dirvec = canvas_to_viewport(data, cam, x - data->screen->width / 2, data->screen->width / 2 - y);
 			dirvec = look_at(data, cam, &dirvec);
 			color = trace(data, &cam->center, &dirvec, range);
-			// putpixel(data, x, y, color);
-			mlx_put_pixel(data->img, data->screen->width / 2 + x,
-				data->screen->height / 2 - y, color);
-			++x;
+	 		mlx_put_pixel(data->img, x, y, color);
+			x++;
 		}
-		--y;
+		y++;
 	}
 }
