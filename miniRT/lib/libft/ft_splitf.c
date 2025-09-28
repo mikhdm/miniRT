@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_splita.c                                        :+:      :+:    :+:   */
+/*   ft_splitf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 20:28:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/23 20:31:19 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/23 20:42:38 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	ft_split_free(char **strs, size_t cnt)
 	free(strs);
 }
 
-char	**ft_splita(char const *s, char c)
+char	**ft_splitf(char const *s, char c, short (*f)(char))
 {
 	size_t	i;
 	char	**strs;
