@@ -93,5 +93,4 @@ int shade_cylinder(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 
 	cylinder = (t_cylinder *)pair_figure_t->figure->content;
 	return (cylinder->color);
-
 }

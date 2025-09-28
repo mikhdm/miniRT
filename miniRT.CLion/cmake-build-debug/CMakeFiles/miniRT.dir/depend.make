@@ -35,6 +35,8 @@ CMakeFiles/miniRT.dir/src/rt/intersect.c.o: ../src/rt/intersect.c
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/canvas.h
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/color.h
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/linop.h
+CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/rayop.h
+CMakeFiles/miniRT.dir/src/rt/light.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../lib/libft/libft.h
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../src/rt/light.c
 

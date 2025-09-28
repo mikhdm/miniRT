@@ -23,11 +23,21 @@
 * 	on a figure depending on dirvec, t param, and figure. 
 *
 */
-int     shade(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
-				t_pair_figure_double *pair_figure_t);
-int     trace(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
-			  t_pair_double *range);
-double  intersect(t_vector3 *p0, t_vector3 *dirvec, t_figure *figure);
+int                     shade(t_data *data,
+							  t_vector3 *p0,
+							  t_vector3 *dirvec,
+							  t_pair_figure_double *pair_figure_t);
+int                     trace(t_data *data,
+							  t_vector3 *p0,
+							  t_vector3 *dirvec,
+							  t_pair_double *range);
+t_pair_figure_double    intersect_closest(t_data *data,
+										  t_vector3 *p0,
+										  t_vector3 *dirvec,
+										  t_pair_double *range);
+double                  intersect(t_vector3 *p0,
+								  t_vector3 *dirvec,
+								  t_figure *figure);
 /*
 *
 * light - calculates intensity of light at point on a surface

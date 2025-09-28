@@ -79,7 +79,7 @@ int main(void)
 					.center = (t_vector3) {.x = -2, .y = 2, .z = 10},
 					.next = NULL};
 	lights = (t_light) {.brightness = 1.0, .color = 0xffffff,
-		.center = (t_vector3) {.x = 0, .y = 3, .z = 2},
+		.center = (t_vector3) {.x = 2, .y = 3, .z = 2},
 		.next = NULL};
 
 	data.light = &lights;
@@ -92,12 +92,12 @@ int main(void)
 	sphere2 = (t_sphere) {
 						.color = 0x0000cc,
 						.diameter = 2,
-						.center = (t_vector3) {.x = -1, .y = -1, .z = 10}};
+						.center = (t_vector3) {.x = -1, .y = 0, .z = 10}};
 
 	sphere = (t_sphere) {
 						.color = 0xffff00,
 						.diameter = 2,
-						.center = (t_vector3) {.x = 1, .y = -1, .z = 11}};
+						.center = (t_vector3) {.x = 1, .y = 0, .z = 11}};
 
 	plane = (t_plane) {
 						.color = 0xffffff,

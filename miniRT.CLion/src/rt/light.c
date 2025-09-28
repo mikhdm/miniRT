@@ -13,6 +13,7 @@
 #include "color.h"
 #include "canvas.h"
 #include "linop.h"
+#include "rayop.h"
 #include <math.h>
 
 /*
@@ -72,9 +73,19 @@ int light(t_data *data,
 	int ambient_color;
 	int	diffuse_color;
 	int surface_color;
+	t_vector3   light_vec;
+	t_pair_double    range_t;
+	t_pair_figure_double pair_figure_t;
 
 	surface_color = linargb(scolor);
 	ambient_color = ambient_light(data->ambience, surface_color);
+	range_t = (t_pair_double){.first = 1e-1, .second = 1};
+	light_vec = diffvec3(&data->light->center, point);
+
+	pair_figure_t = intersect_closest(data, point, &light_vec, &range_t);
+	if (!pair_figure_t.figure)
+		return (gammargb(ambient_color));
+
 	diffuse_color = diffuse_light(data->light, point, orient, surface_color);
 	return (gammargb(addargb(ambient_color, diffuse_color)));
 }

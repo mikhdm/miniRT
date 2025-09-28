@@ -12,13 +12,11 @@ linop.h
 libft.h
 ../include/libft.h
 
-../include/event.h
-canvas.h
-../include/canvas.h
+../include/color.h
 
 ../include/linop.h
 
-../include/render.h
+../include/rayop.h
 canvas.h
 ../include/canvas.h
 linop.h
@@ -36,19 +34,15 @@ linop.h
 stdlib.h
 -
 
-../lib/mlx/mlx.h
-
-/Users/rmander/Dev/42/miniRT/miniRT.CLion/main.c
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/src/rt/light.c
+color.h
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/src/rt/color.h
 canvas.h
-/Users/rmander/Dev/42/miniRT/miniRT.CLion/canvas.h
-event.h
-/Users/rmander/Dev/42/miniRT/miniRT.CLion/event.h
-render.h
-/Users/rmander/Dev/42/miniRT/miniRT.CLion/render.h
-mlx.h
-/Users/rmander/Dev/42/miniRT/miniRT.CLion/mlx.h
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/src/rt/canvas.h
+linop.h
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/src/rt/linop.h
+rayop.h
+/Users/rmander/Dev/42/miniRT/miniRT.CLion/src/rt/rayop.h
 math.h
--
-stddef.h
 -
 

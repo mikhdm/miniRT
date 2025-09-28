@@ -36,6 +36,8 @@ CMakeFiles/miniRT.dir/src/rt/light.c.o
  ../include/canvas.h
  ../include/color.h
  ../include/linop.h
+ ../include/rayop.h
+ ../include/utils.h
  ../lib/libft/libft.h
  /Users/rmander/Dev/42/miniRT/miniRT.CLion/src/rt/light.c
 CMakeFiles/miniRT.dir/src/rt/linop.c.o
