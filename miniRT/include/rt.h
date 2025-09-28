@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/18 20:38:39 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/19 00:57:28 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ typedef struct s_screen
 */
 typedef struct s_camera
 {
-	double x;
-	double y;
-	double z;
 	double fov;
+	t_vector3 center;
 	t_vector3 orient;
 }	t_camera;
 

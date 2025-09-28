@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:35:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/18 18:17:51 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/19 00:56:41 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,32 @@
 
 typedef struct s_sphere
 {
-	double 	x;
-	double 	y;
-	double 	z;
-	double 	d;
-	int		color;
+	int			color;
+	double		diameter;
+	t_vector3	center;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	double 		x;
-	double 		y;
-	double 		z;
 	int			color;
+	t_vector3	center;
 	t_vector3	orient;
 }	t_plane;
 
 typedef struct s_square
 {
-	double		x;
-	double		y;
-	double		z;
-	double		size;
 	int			color;
+	double		size;
+	t_vector3	center;
 	t_vector3	orient;
 }	t_square;
 
 typedef struct s_cylinder
 {
-	double		x;
-	double		y;
-	double		z;
-	double		d;
-	double		height;
 	int			color;
+	double		diameter;
+	double		height;
+	t_vector3	center;
 	t_vector3	orient;
 }	t_cylinder;
 

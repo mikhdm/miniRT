@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 02:29:22 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/18 20:26:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/19 02:34:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_vector3	ft_conv_to_viewport(t_meta *meta, int x, int y)
 	plane = (t_vector3) {.x = .0, .y = .0, .z = .0};
 	plane.x = x * 1.0;
 	plane.y = y * 1.0;
-	plane.z = 0.0;
+	plane.z = 1.0;
 	return (plane);
 }
 

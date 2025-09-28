@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/18 20:42:04 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/19 02:36:55 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,21 @@ void	linop_test(void)
 }
 /* END TESTFUNC */
 
+/* TESTFUNC */
+void	quad_equation_test()
+{
+	t_pair_double vals1 = calc_quad_equation(1, 2, 1);
+	printf("x^2 + 2*x + 1 = 0 : x1 = %f, x2 = %f\n", vals1.first, vals1.second);
+
+	/* inf test */
+	t_pair_double vals2 = calc_quad_equation(1, 2, 3);
+	printf("x^2 + 2*x + 3 = 0 : x1 = %f, x2 = %f\n", vals2.first, vals2.second);
+
+	t_pair_double vals3 = calc_quad_equation(1, 2, -3);
+	printf("x^2 + 2*x - 3 = 0 : x1 = %f, x2 = %f\n", vals3.first, vals3.second);
+}
+/* END TESTFUNC */
+
 
 int main(void)
 {
@@ -70,14 +85,18 @@ int main(void)
 	t_screen 	screen; 
 	t_camera	cam;
 	t_vector3	*plane;
+	t_sphere	sphere;
 	
 	plane = NULL;
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
-	cam = (t_camera) {.x = .0, .y = .0, .z = .0,
+	cam = (t_camera) {.center = (t_vector3) {.x = .0, .y = .0, .z = .0},
 					.orient = (t_vector3) {.x = 0, .y = 0, .z = 1}};
 	meta = (t_meta) {.mlx = NULL, .window = NULL, .img = NULL,
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam};
+	sphere = (t_sphere) {.color = 0xff0000,
+						.diameter = 4,
+						.center = (t_vector3) {.x = 5, .y = 5, .z = 10}};
 	ft_init(&meta);
 	
 	/* LOG */
@@ -88,15 +107,25 @@ int main(void)
 	/* TEST */
 	linop_test();
 	/* END TEST */
+
+	/* TEST */
+	quad_equation_test();
+	/* END TEST */
 	
-	int x = - meta.screen->width / 2;
+	int x = -1 * meta.screen->width / 2;
 	int y;
-	while (x < meta.screen->width / 2)
+	int	color;
+	t_vector3 distvec;
+	t_pair_double stepsrange = {.first = 1, .second = INFINITY};
+	while (x < meta.screen->width / 2 - 1)
 	{
-		y = - meta.screen->height / 2;
+		y = -1 * meta.screen->height / 2;
 		while (y < meta.screen->height / 2)
 		{
-
+			distvec = ft_conv_to_viewport(&meta, x, y);
+			printf("distvec: (%f, %f, %f)\n", distvec.x, distvec.y, distvec.z);
+			color = ft_trace_sphere(&meta, &distvec, &sphere, &stepsrange); 
+			ft_putpixel(&meta, x, y, color);
 			++y;
 		}
 		++x;
