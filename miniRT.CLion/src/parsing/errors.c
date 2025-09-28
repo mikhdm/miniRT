@@ -7,13 +7,13 @@ void    ft_perror(unsigned code)
 	const char *errors[] = {"Empty path",
 						    "Scene is not provided",
 						    "Screenshot param is incorrect",
-						    "Too much arguments",
+						    "Incorrect number of arguments",
 						    "Incorrect resolution",
 						    "Incorrect ambient light"};
 
 	if ((code != ERROR_ERRNO) && (code < 0 || code >= sizeof(errors) / sizeof(*errors)))
 		return ;
-	ft_putstr_fd(ERROR_HEADER, STDOUT);
+	ft_putstr_fd(ERROR_HEADER, STDERR);
 	if (code == ERROR_ERRNO)
 	{
 		perror(NULL);

@@ -27,6 +27,7 @@ add_executable(miniRT
         src/rt/utils/calc_cylinder_orient.c
         src/rt/utils/calc_faceted_orient.c
         src/rt/utils/imax.c
+        src/rt/utils/isdir.c
         src/rt/canvas.c
         src/rt/color.c
         src/rt/event.c

@@ -50,5 +50,6 @@ t_vector3       calc_cylinder_orient(t_cylinder *cylinder,
 									 double t);
 t_vector3       calc_faceted_orient(t_vector3 *dirvec, t_vector3 *orient);
 ssize_t         imax(ssize_t left, ssize_t right);
+short           isdir(int fildes);
 
 #endif

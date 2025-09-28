@@ -20,7 +20,7 @@
 #include <math.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include <errno.h>
+#include <stdio.h>
 
 static void init(t_data *data, short windowed)
 {
@@ -44,22 +44,27 @@ static void init(t_data *data, short windowed)
 
 static short    processing(int argc, char **argv)
 {
+	if (argc == 1)
+	{
+		ft_perror(ERROR_PATH_PARAM_EMPTY);
+		exit(255);
+	}
 	if (argc == 2)
 		return (DO_WINDOW);
 	if (argc == 3)
 	{
 		if (ft_strncmp(argv[2], ARGV_SCREENSHOT,
 		               imax((ssize_t)ft_strlen(argv[2]),
-		                    (ssize_t)ft_strlen(ARGV_SCREENSHOT)) != 0))
+		                    (ssize_t)ft_strlen(ARGV_SCREENSHOT))) != 0)
 		{
 			ft_perror(ERROR_SCREENSHOT_PARAM_WRONG);
-			exit(-1);
+			exit(255);
 		}
 		else
 			return (DO_SCREENSHOT);
 	}
-	ft_perror(ERROR_PATH_PARAM_EMPTY);
-	exit(-1);
+	ft_perror(ERROR_NUM_ARGS_WRONG);
+	exit(255);
 }
 
 int main(int argc, char **argv)

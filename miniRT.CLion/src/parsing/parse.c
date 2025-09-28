@@ -9,7 +9,7 @@
 
 #include <math.h>
 
-static t_data *buildata(int const fildes)
+static t_data *build(int const fildes)
 {
 	t_data  *data;
 
@@ -21,109 +21,84 @@ static t_data *buildata(int const fildes)
 	}
 
 	/* TODO */
-	/* FROM MAIN */
+	/* MOCK DATA */
 
-	t_screen		screen;
-	t_camera		cam;
-	t_sphere		sphere;
-	t_sphere		sphere2;
-	t_plane			plane;
-	t_square		square;
-	t_triangle      triangle;
-	t_cylinder      cylinder;
-	t_cylinder      cylinder2;
-	t_figure		figure1;
-	t_figure		figure2;
-	t_figure		figure3;
-	t_figure		figure4;
-	t_figure		figure5;
-	t_figure        figure6;
-	t_pair_double	range;
-	t_light			lights;
-	t_light			light2;
-	t_light         light3;
-	t_ambience		ambience;
-	t_viewport      viewport;
+	t_screen		*screen;
+	screen = malloc(sizeof(t_screen));
+	screen->width = 1024;
+	screen->height = 768;
+	screen->title = "miniRT";
 
-	screen = (t_screen) {.width = 1024, .height = 768, .title = "miniRT"};
+	data->screen = screen;
 
-	cam = (t_camera) {.center = (t_vector3) {.x = 5, .y = 10, .z = 20},
-			.orient = (t_vector3) {.x = -1/sqrt(6), .y = -1/sqrt(6), .z = -2/sqrt(6)},
-			.viewport = NULL,
-			.fov = 90};
+	t_camera		*cam;
+	cam = malloc(sizeof(t_camera));
+	cam->center.x = 5;
+	cam->center.y = 10;
+	cam->center.z = 20;
+	cam->orient.x = -1/sqrt(6);
+	cam->orient.y = -1/sqrt(6);
+	cam->orient.z = -2/sqrt(6);
+	cam->fov = 90;
 
-	*data = (t_data) {.mlx = NULL, .window = NULL, .img = NULL,
-			.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
-			.screen = &screen, .cam = &cam};
+	t_viewport      *viewport;
+	viewport = malloc(sizeof(t_viewport));
+	*viewport = calc_viewport(data, cam);
+	cam->viewport = viewport;
+	cam->next = NULL;
 
-	ambience = (t_ambience) {.intensity = 0.2, .color = 0xffffff};
-	light3 = (t_light) {.brightness = 1.0, .color = 0xffffff,
-			.center = (t_vector3) {.x = 0, .y = 1, .z = 0},
-			.next = NULL};
-	light2 = (t_light) {.brightness = 1.0, .color = 0xffffff,
-			.center = (t_vector3) {.x = -1.5, .y = 2, .z = 3},
-			.next = &light3};
-	lights = (t_light) {.brightness = 1.0, .color = 0xffffff,
-			.center = (t_vector3) {.x = 0, .y = 10, .z = 5},
-			.next = NULL};
+	data->cam = cam;
 
-	data->light = &lights;
-	data->ambience = &ambience;
-	viewport = calc_viewport(data, data->cam);
-	data->cam->viewport = &viewport;
+	t_ambience		*ambience;
 
-	sphere2 = (t_sphere) {
-			.color = 0xaa0000,
-			.diameter = 2,
-			.center = (t_vector3) {.x = -1, .y = -0.5, .z = 11}};
+	ambience = malloc(sizeof(t_ambience));
+	ambience->color = 0xffffff;
+	ambience->intensity = 0.2;
+	data->ambience = ambience;
 
-	sphere = (t_sphere) {
-			.color = 0xcc0000,
-			.diameter = 6,
-			.center = (t_vector3) {.x = 0, .y = 0, .z = 2}};
+	t_light			*light;
 
-	plane = (t_plane) {
-			.color = 0xffff00,
-			.center = (t_vector3) {.x = 0, .y = -1, .z = 0},
-			.orient = (t_vector3) {.x = 0,
-					.y = 1,
-					.z = 0}};
+	light = malloc(sizeof(t_light));
+	light->brightness = 1.0;
+	light->color = 0xffff00;
+	light->center = (t_vector3) {.x = 0, .y = 10, .z = 5};
+	light->next = NULL;
+	data->light = light;
 
-	square = (t_square) {
-			.color = 0x0000ff,
-			.center = (t_vector3) {.x = 0, .y = 0, .z = 0},
-			.orient = (t_vector3) {.x = 0, .y = -1, .z = 0},
-			.size = 10.0};
-	cylinder = (t_cylinder) {
-			.color = 0xff0000,
-			.center = (t_vector3) {.x = 0, .y = 2, .z = 5},
-			.orient = (t_vector3) {.x = 1, .y = 0, .z = 0},
-			.diameter = 3,
-			.height = 7.0};
+	t_plane			*plane;
+	plane = malloc(sizeof(t_plane));
+	plane->center = (t_vector3) {.x = 0, .y = -1, .z = 0};
+	plane->color = 0xffffff;
+	plane->orient = (t_vector3) {.x = 0, .y = 1, .z = 0};
 
-	cylinder2 = (t_cylinder) {
-			.color = 0x00ffff,
-			.center = (t_vector3) {.x = 0, .y = 1, .z = 5},
-			.orient = (t_vector3) {.x = 0, .y = 1, .z = 0},
-			.diameter = 3,
-			.height = 7.0};
+	t_figure		*figure2;
+	figure2 = malloc(sizeof(t_figure));
+	figure2->content = plane;
+	figure2->label = LABEL_PLANE;
+	figure2->next = NULL;
 
-	triangle = (t_triangle) {
-			.color = 0xffff00,
-			.x = (t_vector3) {.x = 0, .y = 20, .z = 0},
-			.y = (t_vector3) {.x = 0, .y = 0, .z = 0},
-			.z = (t_vector3) {.x = 0, .y = 10, .z = 20}
-	};
+	t_sphere		*sphere;
+	sphere = malloc(sizeof(t_sphere));
+	sphere->center = (t_vector3) {.x = 0, .y = 0, .z = 2};
+	sphere->color = 0xcc0000;
+	sphere->diameter = 6;
 
-	figure6 = (t_figure) {.content = &cylinder2, .next = NULL, .label = LABEL_CYLINDER};
-	figure5 = (t_figure) {.content = &plane, .next = &figure6, .label = LABEL_PLANE};
-//	figure4 = (t_figure) {.content = &triangle, .next = &figure5, .label = LABEL_TRIANGLE};
-//	figure3 = (t_figure) {.content = &plane, .next = &figure4, .label = LABEL_PLANE};
-//
-//	figure2 = (t_figure) {.content = &sphere2, .next = &figure3, .label = LABEL_SPHERE};
-	figure1 = (t_figure) {.content = &cylinder, .next = &figure5, .label=LABEL_CYLINDER};
-	data->figures = &figure1;
-	/* END MAIN */
+	t_figure    *figure1;
+	figure1 = malloc(sizeof(t_figure));
+	figure1->content = sphere;
+	figure1->label = LABEL_SPHERE;
+	figure1->next = figure2;
+
+	data->figures = figure1;
+	data->mlx = NULL;
+	data->window = NULL;
+	data->img = NULL;
+	data->addr = NULL;
+	data->bpp = 0;
+	data->length = 0;
+	data->endian = 0;
+
+	/* END MOCK */
 
 	return (data);
 }
@@ -133,15 +108,16 @@ t_data *parse(char const *path)
 	int     fd;
 	t_data  *data;
 
+	data = NULL;
 	if (!path)
 		ft_perror(ERROR_PATH_EMPTY);
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	if (isdir(fd) || (fd == -1))
 	{
 		ft_perror(ERROR_ERRNO);
 		exit(errno);
 	}
-	data = buildata(fd);
+	data = build(fd);
 	close(fd);
 	return (data);
 }
