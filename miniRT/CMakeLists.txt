@@ -4,8 +4,43 @@ project(miniRT)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_SOURCE_DIR cmake.build)
+set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -L.. -lmlx -framework OpenGL -framework AppKit")
  
-include_directories(include lib/libft lib/mlx)
+include_directories(include lib/libft lib/libft/get_next_line lib/mlx)
+
+add_executable(miniRT
+src/rt/utils/calc_quad_equation.c
+src/rt/utils/calc_ray_point.c
+src/rt/utils/calc_sphere_orient.c
+src/rt/utils/deg_to_rad.c
+src/rt/utils/rad_to_deg.c
+src/rt/utils/swap_double.c
+src/rt/utils/gen_square_vertices.c
+src/rt/utils/alloca_to.c
+src/rt/utils/is_polygon_point.c
+src/rt/utils/calc_min_t.c
+src/rt/utils/calc_cylinder_min_t.c
+src/rt/utils/calc_triangle_orient.c
+src/rt/utils/calc_cylinder_orient.c
+src/rt/utils/calc_faceted_orient.c
+src/rt/utils/imax.c
+src/rt/utils/isdir.c
+src/rt/canvas.c
+src/rt/color.c
+src/rt/event.c
+src/rt/intersect.c
+src/rt/light.c
+src/rt/linop.c
+src/rt/rayop.c
+src/rt/render.c
+src/rt/shade.c
+src/parsing/parse.c
+src/parsing/errors.c
+src/parsing/serialize.c
+src/parsing/validate.c
+src/screenshot.c
+src/tests.c
+main.c)
 
 add_library(ft STATIC
 lib/libft/ft_atoi.c
@@ -54,43 +89,9 @@ lib/libft/ft_strtrim.c
 lib/libft/ft_substr.c
 lib/libft/ft_tolower.c
 lib/libft/ft_toupper.c
-# lib/libft/get_next_line/get_next_line.c
-# lib/libft/get_next_line/get_next_line_utils.c
+lib/libft/get_next_line/get_next_line.c
+lib/libft/get_next_line/get_next_line_utils.c
 )
 
-add_executable(miniRT
-        src/rt/utils/calc_quad_equation.c
-        src/rt/utils/calc_ray_point.c
-        src/rt/utils/calc_sphere_orient.c
-        src/rt/utils/deg_to_rad.c
-        src/rt/utils/rad_to_deg.c
-        src/rt/utils/swap_double.c
-        src/rt/utils/gen_square_vertices.c
-        src/rt/utils/alloca_to.c
-        src/rt/utils/is_polygon_point.c
-        src/rt/utils/calc_min_t.c
-        src/rt/utils/calc_cylinder_min_t.c
-        src/rt/utils/calc_triangle_orient.c
-        src/rt/utils/calc_cylinder_orient.c
-        src/rt/utils/calc_faceted_orient.c
-        src/rt/utils/imax.c
-        src/rt/utils/isdir.c
-        src/rt/canvas.c
-        src/rt/color.c
-        src/rt/event.c
-        src/rt/intersect.c
-        src/rt/light.c
-        src/rt/linop.c
-        src/rt/rayop.c
-        src/rt/render.c
-        src/rt/shade.c
-        src/parsing/parse.c
-        src/parsing/errors.c
-        src/parsing/serialize.c
-        src/parsing/validate.c
-        src/screenshot.c
-        src/tests.c
-        main.c)
-
-target_link_libraries(miniRT ./libmlx.dylib)
-target_link_libraries(miniRT ${CMAKE_SOURCE_DIR}/libft.a)
+find_library(LIB_FT ft ${CMAKE_SOURCE_DIR})
+target_link_libraries(miniRT LINK_PUBLIC ${LIB_FT})

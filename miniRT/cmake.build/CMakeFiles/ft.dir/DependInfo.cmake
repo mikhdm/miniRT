@@ -50,6 +50,8 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/ft_substr.c" "/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/ft.dir/lib/libft/ft_substr.c.o"
   "/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/ft_tolower.c" "/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/ft.dir/lib/libft/ft_tolower.c.o"
   "/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/ft_toupper.c" "/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/ft.dir/lib/libft/ft_toupper.c.o"
+  "/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line.c" "/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o"
+  "/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line_utils.c" "/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
@@ -57,6 +59,7 @@ set(CMAKE_C_COMPILER_ID "AppleClang")
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../include"
   "../lib/libft"
+  "../lib/libft/get_next_line"
   "../lib/mlx"
   )
 

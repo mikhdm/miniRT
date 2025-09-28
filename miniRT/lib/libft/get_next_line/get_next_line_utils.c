@@ -6,12 +6,25 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 04:03:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/01/22 03:46:00 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/21 23:15:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "get_next_line.h"
+#include <stdlib.h>
+
+static t_data	*ft_newnode(t_vars *v, t_data **data)
+{
+	v->node = *data;
+	*data = malloc(sizeof(t_data));
+	if (!*data)
+		return (NULL);
+	(*data)->part = v->part;
+	(*data)->fd = v->fd;
+	(*data)->next = v->node;
+	v->node = *data;
+	return (v->node);
+}
 
 size_t	ft_strlen_until(const char *s, const char sym)
 {
@@ -31,8 +44,8 @@ char	*ft_strdup_until(const char *s1, const char sym)
 	char	*dup;
 	char	*d;
 
-	dup = NULL;
-	if (!(dup = malloc((ft_strlen_until(s1, sym) + 1) * sizeof(char))))
+	dup = malloc((ft_strlen_until(s1, sym) + 1) * sizeof(char));
+	if (!dup)
 		return (NULL);
 	d = dup;
 	while (*s1 && *s1 != sym)
@@ -41,52 +54,47 @@ char	*ft_strdup_until(const char *s1, const char sym)
 	return (d);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_exit(t_data **data, t_vars *v, char **line, int signal)
 {
-	char	*buf;
-	size_t	s1_size;
-	size_t	s2_size;
-	size_t	n;
+	t_data	**curr;
+	t_data	*tmp;
 
-	buf = NULL;
-	n = 0;
-	s1_size = ft_strlen_until(s1, '\0');
-	s2_size = ft_strlen_until(s2, '\0');
-	if (!(buf = malloc((s1_size + s2_size + 1) * sizeof(char))))
-		return (NULL);
-	n = s1_size;
-	while (n--)
-		*buf++ = *s1++;
-	n = s2_size;
-	while (n--)
-		*buf++ = *s2++;
-	*buf = '\0';
-	buf -= s1_size + s2_size;
-	return (buf);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
+	curr = data;
+	tmp = NULL;
+	if (v->tmp)
+		free(v->tmp);
+	while ((*curr) && (*curr)->fd != v->fd)
+		curr = &(*curr)->next;
+	tmp = *curr;
+	if (tmp)
 	{
-		if (*s == (char)c)
-			return ((char*)s);
-		++s;
+		*curr = (*curr)->next;
+		free(tmp->part);
+		free(tmp);
+		tmp = NULL;
 	}
-	if (*s == (char)c)
-		return ((char*)s);
-	return (NULL);
+	if (line && *line && (signal == SIG_ERROR))
+	{
+		free(*line);
+		*line = NULL;
+	}
+	return (signal);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+t_data	*ft_setnode(t_vars *v, t_data **data, char **line)
 {
-	size_t	srcsize;
-
-	srcsize = ft_strlen_until(src, '\0');
-	if (!dst || !dstsize)
-		return (srcsize);
-	while (--dstsize && *src)
-		*dst++ = *src++;
-	*dst = '\0';
-	return (srcsize);
+	v->node = *data;
+	while (v->node && (v->node->fd != v->fd))
+		v->node = v->node->next;
+	if (!v->node)
+		return (ft_newnode(v, data));
+	v->tmp = *line;
+	*line = ft_strjoin(v->node->part, *line);
+	if (!*line)
+		return (NULL);
+	free(v->tmp);
+	free(v->node->part);
+	v->tmp = NULL;
+	v->node->part = v->part;
+	return (v->node);
 }

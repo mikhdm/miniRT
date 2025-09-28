@@ -4,7 +4,7 @@
 # compile C with /usr/bin/gcc
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/rmander/Dev/42/miniRT/miniRT/include -I/Users/rmander/Dev/42/miniRT/miniRT/lib/libft -I/Users/rmander/Dev/42/miniRT/miniRT/lib/mlx
+C_INCLUDES = -I/Users/rmander/Dev/42/miniRT/miniRT/include -I/Users/rmander/Dev/42/miniRT/miniRT/lib/libft -I/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line -I/Users/rmander/Dev/42/miniRT/miniRT/lib/mlx
 
-C_FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
+C_FLAGS =  -L.. -lmlx -framework OpenGL -framework AppKit -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.14 -std=gnu99
 

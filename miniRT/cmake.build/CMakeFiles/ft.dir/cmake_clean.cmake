@@ -45,6 +45,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ft.dir/lib/libft/ft_substr.c.o"
   "CMakeFiles/ft.dir/lib/libft/ft_tolower.c.o"
   "CMakeFiles/ft.dir/lib/libft/ft_toupper.c.o"
+  "CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o"
+  "CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o"
   "libft.a"
   "libft.pdb"
 )

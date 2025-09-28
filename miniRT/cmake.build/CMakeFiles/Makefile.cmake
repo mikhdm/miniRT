@@ -47,6 +47,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/miniRT.dir/DependInfo.cmake"
   "CMakeFiles/ft.dir/DependInfo.cmake"
+  "CMakeFiles/miniRT.dir/DependInfo.cmake"
   )

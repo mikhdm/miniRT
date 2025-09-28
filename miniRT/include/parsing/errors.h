@@ -10,10 +10,12 @@ typedef enum e_error
 	ERROR_PATH_PARAM_EMPTY,
 	ERROR_SCREENSHOT_PARAM_WRONG,
 	ERROR_NUM_ARGS_WRONG,
+	ERROR_SCENE_EXT_WRONG,
 	ERROR_DATA_RESOLUTION,
 	ERROR_DATA_AMBIENCE
 }   t_error;
 
 void    ft_perror(int code);
+void    ft_pexit(int code, int status);
 
 #endif

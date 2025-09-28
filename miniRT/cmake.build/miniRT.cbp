@@ -37,42 +37,6 @@
 					<DistClean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="miniRT">
-				<Option output="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/miniRT" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/include"/>
-					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft"/>
-					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/mlx"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 miniRT"/>
-					<CompileFile command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="miniRT/fast">
-				<Option output="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/miniRT" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/include"/>
-					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft"/>
-					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/mlx"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 miniRT/fast"/>
-					<CompileFile command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="ft">
 				<Option output="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/libft.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build"/>
@@ -82,6 +46,7 @@
 				<Compiler>
 					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/include"/>
 					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft"/>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line"/>
 					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/mlx"/>
 				</Compiler>
 				<MakeCommands>
@@ -100,10 +65,49 @@
 				<Compiler>
 					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/include"/>
 					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft"/>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line"/>
 					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/mlx"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 ft/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="miniRT">
+				<Option output="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/miniRT" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/include"/>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft"/>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line"/>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/mlx"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 miniRT"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="miniRT/fast">
+				<Option output="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/miniRT" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/rmander/Dev/42/miniRT/miniRT/cmake.build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/include"/>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft"/>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line"/>
+					<Add directory="/Users/rmander/Dev/42/miniRT/miniRT/lib/mlx"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 miniRT/fast"/>
 					<CompileFile command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -f &quot;/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/Makefile&quot;  VERBOSE=1 clean"/>
@@ -246,6 +250,15 @@
 			<Option target="ft"/>
 		</Unit>
 		<Unit filename="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/ft_toupper.c">
+			<Option target="ft"/>
+		</Unit>
+		<Unit filename="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line.c">
+			<Option target="ft"/>
+		</Unit>
+		<Unit filename="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line.h">
+			<Option target="ft"/>
+		</Unit>
+		<Unit filename="/Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line_utils.c">
 			<Option target="ft"/>
 		</Unit>
 		<Unit filename="/Users/rmander/Dev/42/miniRT/miniRT/main.c">

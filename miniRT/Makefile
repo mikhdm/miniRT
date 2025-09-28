@@ -55,6 +55,7 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
 		
 INCLUDES = 	./lib/mlx/mlx.h \
 			./lib/libft/libft.h \
+			./lib/libft/get_next_line.h \
 			./include/utils.h \
 		   	./include/canvas.h \
 		   	./include/color.h \

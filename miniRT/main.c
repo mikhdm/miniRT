@@ -24,48 +24,28 @@
 
 void test(t_data *data);
 
-static void init(t_data *data, short windowed)
+static short    check(int argc, char **argv)
 {
-	data->mlx = mlx_init();
-	data->img = mlx_new_image(
-							data->mlx,
-							data->screen->width,
-							data->screen->height); 
-	data->addr = mlx_get_data_addr(
-							data->img,
-							&data->bpp,
-							&data->length,
-							&data->endian);
-	if (windowed)
-		data->window = mlx_new_window(
-				data->mlx,
-				data->screen->width,
-				data->screen->height,
-				data->screen->title);
-}
+	char *p;
 
-static short    processing(int argc, char **argv)
-{
+	p = NULL;
 	if (argc == 1)
+		ft_pexit(ERROR_PATH_PARAM_EMPTY, 255);
+	if (argc == 2 || argc == 3)
 	{
-		ft_perror(ERROR_PATH_PARAM_EMPTY);
-		exit(255);
-	}
-	if (argc == 2)
-		return (DO_WINDOW);
-	if (argc == 3)
-	{
-		// TODO check error on incorrect file path first
-		// TODO check .rt extension
-		if (ft_strncmp(argv[2], ARGV_SCREENSHOT,
-		               imax((ssize_t)ft_strlen(argv[2]),
-		                    (ssize_t)ft_strlen(ARGV_SCREENSHOT))) != 0)
+		p = ft_strrchr(argv[1], '.');
+		if ((!p) || (ft_strncmp(p, ".rt", imax((ssize_t)ft_strlen(p), 3)) != 0))
+			ft_pexit(ERROR_SCENE_EXT_WRONG, 255);
+		if (argc == 3)
 		{
-			ft_perror(ERROR_SCREENSHOT_PARAM_WRONG);
-			exit(255);
+			if (ft_strncmp(argv[2], ARGV_SCREENSHOT,
+			               imax((ssize_t) ft_strlen(argv[2]),
+			                    (ssize_t) ft_strlen(ARGV_SCREENSHOT))) != 0)
+				ft_pexit(ERROR_SCREENSHOT_PARAM_WRONG, 255);
+			else
+				return (DO_SCREENSHOT);
 		}
-		else
-			return (DO_SCREENSHOT);
+		return (DO_WINDOW);
 	}
 	ft_perror(ERROR_NUM_ARGS_WRONG);
 	exit(255);
@@ -73,16 +53,18 @@ static short    processing(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	t_data      *data;
-	short       status;
+	t_data          *data;
+	t_pair_double   range;
+	short           status;
 
 	data = NULL;
-	status = processing(argc, argv);
+	status = check(argc, argv);
+	range = (t_pair_double){.first = 1.0, .second = INFINITY};
 	if (status == DO_SCREENSHOT)
 	{
 		data = parse(argv[1]);
 		init(data, FALSE);
-		render(data, data->cam, &((t_pair_double){.first = 1.0, .second = INFINITY}));
+		render(data, data->cam, &range);
 		screenshot(data, "screenshot.bmp");
 		cleanup(data);
 	}
@@ -90,12 +72,8 @@ int main(int argc, char **argv)
 	{
 		data = parse(argv[1]);
 		init(data, TRUE);
-		test(data);
-		render(data, data->cam,
-		       &((t_pair_double){.first = 1.0, .second = INFINITY}));
-		mlx_put_image_to_window(data->mlx,
-						        data->window,
-						        data->img, 0, 0);
+		render(data, data->cam, &range);
+		mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
 		bind_hooks(data);
 		mlx_loop(data->mlx);
 	}

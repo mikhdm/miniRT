@@ -43,6 +43,7 @@ set(CMAKE_C_COMPILER_ID "AppleClang")
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../include"
   "../lib/libft"
+  "../lib/libft/get_next_line"
   "../lib/mlx"
   )
 

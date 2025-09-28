@@ -85,7 +85,7 @@ static void put(t_data *data,
 	int     fd;
 	ssize_t status;
 
-	fd = open(filename, O_WRONLY | O_CREAT);
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	if (fd == -1)
 	{
 		ft_perror(ERROR_ERRNO);

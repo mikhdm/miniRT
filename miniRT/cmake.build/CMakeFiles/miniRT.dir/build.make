@@ -563,6 +563,7 @@ miniRT: CMakeFiles/miniRT.dir/src/screenshot.c.o
 miniRT: CMakeFiles/miniRT.dir/src/tests.c.o
 miniRT: CMakeFiles/miniRT.dir/main.c.o
 miniRT: CMakeFiles/miniRT.dir/build.make
+miniRT: libft.a
 miniRT: CMakeFiles/miniRT.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Linking C executable miniRT"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/miniRT.dir/link.txt --verbose=$(VERBOSE)

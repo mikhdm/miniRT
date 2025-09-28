@@ -1,6 +1,7 @@
 #include "parsing/errors.h"
 #include "libft.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void    ft_perror(int code)
 {
@@ -8,6 +9,7 @@ void    ft_perror(int code)
 						    "Scene is not provided",
 						    "Screenshot param is incorrect",
 						    "Incorrect number of arguments",
+						    "Incorrect scene extension",
 						    "Incorrect resolution",
 						    "Incorrect ambient light"};
 	int	size;
@@ -23,4 +25,10 @@ void    ft_perror(int code)
 	}
 	ft_putstr_fd((char *)errors[code], STDERR);
 	ft_putchar_fd('\n', STDERR);
+}
+
+void ft_pexit(int code, int status)
+{
+	ft_perror(code);
+	exit(status);
 }

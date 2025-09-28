@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 01:19:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/01/22 03:45:47 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/21 23:10:02 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int					get_next_line(int fd, char **line);
 
 char				*ft_strdup_until(const char *s1, const char sym);
 size_t				ft_strlen_until(const char *s, const char sym);
-char				*ft_strjoin(char const *s1, char const *s2);
-char				*ft_strchr(const char *s, int c);
-size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
-
+int					ft_exit(t_data **data, t_vars *v, char **line, int signal);
+t_data				*ft_setnode(t_vars *v, t_data **data, char **line);
 #endif

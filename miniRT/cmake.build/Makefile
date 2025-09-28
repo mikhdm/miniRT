@@ -130,19 +130,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named miniRT
-
-# Build rule for target.
-miniRT: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 miniRT
-.PHONY : miniRT
-
-# fast build rule for target.
-miniRT/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/build
-.PHONY : miniRT/fast
-
-#=============================================================================
 # Target rules for targets named ft
 
 # Build rule for target.
@@ -154,6 +141,19 @@ ft: cmake_check_build_system
 ft/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft.dir/build.make CMakeFiles/ft.dir/build
 .PHONY : ft/fast
+
+#=============================================================================
+# Target rules for targets named miniRT
+
+# Build rule for target.
+miniRT: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 miniRT
+.PHONY : miniRT
+
+# fast build rule for target.
+miniRT/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/build
+.PHONY : miniRT/fast
 
 lib/libft/ft_atoi.o: lib/libft/ft_atoi.c.o
 
@@ -1397,6 +1397,60 @@ lib/libft/ft_toupper.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft.dir/build.make CMakeFiles/ft.dir/lib/libft/ft_toupper.c.s
 .PHONY : lib/libft/ft_toupper.c.s
 
+lib/libft/get_next_line/get_next_line.o: lib/libft/get_next_line/get_next_line.c.o
+
+.PHONY : lib/libft/get_next_line/get_next_line.o
+
+# target to build an object file
+lib/libft/get_next_line/get_next_line.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft.dir/build.make CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o
+.PHONY : lib/libft/get_next_line/get_next_line.c.o
+
+lib/libft/get_next_line/get_next_line.i: lib/libft/get_next_line/get_next_line.c.i
+
+.PHONY : lib/libft/get_next_line/get_next_line.i
+
+# target to preprocess a source file
+lib/libft/get_next_line/get_next_line.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft.dir/build.make CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.i
+.PHONY : lib/libft/get_next_line/get_next_line.c.i
+
+lib/libft/get_next_line/get_next_line.s: lib/libft/get_next_line/get_next_line.c.s
+
+.PHONY : lib/libft/get_next_line/get_next_line.s
+
+# target to generate assembly for a file
+lib/libft/get_next_line/get_next_line.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft.dir/build.make CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.s
+.PHONY : lib/libft/get_next_line/get_next_line.c.s
+
+lib/libft/get_next_line/get_next_line_utils.o: lib/libft/get_next_line/get_next_line_utils.c.o
+
+.PHONY : lib/libft/get_next_line/get_next_line_utils.o
+
+# target to build an object file
+lib/libft/get_next_line/get_next_line_utils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft.dir/build.make CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o
+.PHONY : lib/libft/get_next_line/get_next_line_utils.c.o
+
+lib/libft/get_next_line/get_next_line_utils.i: lib/libft/get_next_line/get_next_line_utils.c.i
+
+.PHONY : lib/libft/get_next_line/get_next_line_utils.i
+
+# target to preprocess a source file
+lib/libft/get_next_line/get_next_line_utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft.dir/build.make CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.i
+.PHONY : lib/libft/get_next_line/get_next_line_utils.c.i
+
+lib/libft/get_next_line/get_next_line_utils.s: lib/libft/get_next_line/get_next_line_utils.c.s
+
+.PHONY : lib/libft/get_next_line/get_next_line_utils.s
+
+# target to generate assembly for a file
+lib/libft/get_next_line/get_next_line_utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft.dir/build.make CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.s
+.PHONY : lib/libft/get_next_line/get_next_line_utils.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -2409,6 +2463,12 @@ help:
 	@echo "... lib/libft/ft_toupper.o"
 	@echo "... lib/libft/ft_toupper.i"
 	@echo "... lib/libft/ft_toupper.s"
+	@echo "... lib/libft/get_next_line/get_next_line.o"
+	@echo "... lib/libft/get_next_line/get_next_line.i"
+	@echo "... lib/libft/get_next_line/get_next_line.s"
+	@echo "... lib/libft/get_next_line/get_next_line_utils.o"
+	@echo "... lib/libft/get_next_line/get_next_line_utils.i"
+	@echo "... lib/libft/get_next_line/get_next_line_utils.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

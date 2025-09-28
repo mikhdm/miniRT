@@ -33,6 +33,7 @@ CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../include/canvas.h
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../include/linop.h
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../include/utils.h
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../lib/libft/libft.h
+CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../lib/mlx/mlx.h
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../src/rt/canvas.c
 
 CMakeFiles/miniRT.dir/src/rt/color.c.o: ../include/color.h

@@ -6,95 +6,43 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 01:19:40 by rmander           #+#    #+#             */
-/*   Updated: 2021/01/23 21:26:30 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/21 23:39:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
+#include "libft.h"
 #include <unistd.h>
 #include <stdlib.h>
-#include "get_next_line.h"
 
-static int		ft_exit(t_data **data, t_vars *v, char **line, int signal)
+static char	*ft_read_rawline(t_vars *v, char **rawline)
 {
-	t_data	**curr;
-	t_data	*tmp;
-
-	curr = data;
-	tmp = NULL;
-	if (v->tmp)
-		free(v->tmp);
-	while ((*curr) && (*curr)->fd != v->fd)
-		curr = &(*curr)->next;
-	tmp = *curr;
-	if (tmp)
-	{
-		*curr = (*curr)->next;
-		free(tmp->part);
-		free(tmp);
-		tmp = NULL;
-	}
-	if (line && *line && (signal == SIG_ERROR))
-	{
-		free(*line);
-		*line = NULL;
-	}
-	return (signal);
-}
-
-static char		*ft_read_raw_line(t_vars *v)
-{
-	char	*raw_line;
 	size_t	i;
 
 	i = 0;
-	if (!(v->buff = malloc((BUFFER_SIZE + 1) * sizeof(char))))
-		return (NULL);
-	raw_line = v->buff;
-	*raw_line = '\0';
-	while (((v->length = read(v->fd, v->buff, BUFFER_SIZE)) > 0))
+	while (TRUE)
 	{
+		v->length = read(v->fd, v->buff, BUFFER_SIZE);
+		if (v->length <= 0)
+			break ;
 		i += v->length;
 		v->buff[v->length] = '\0';
-		if ((v->endl = ft_strchr(v->buff, '\n')))
+		ft_strchr(v->buff, '\n');
+		if (v->endl)
 			break ;
-		v->tmp = raw_line;
-		if (!(v->buff = malloc((i + BUFFER_SIZE + 1) * sizeof(char))))
+		v->tmp = *rawline;
+		v->buff = malloc((i + BUFFER_SIZE + 1) * sizeof(char));
+		if (v->buff)
 			return (NULL);
-		raw_line = v->buff;
+		*rawline = v->buff;
 		ft_strlcpy(v->buff, v->tmp, i + BUFFER_SIZE + 1);
 		v->buff += i;
 		free(v->tmp);
 	}
-	return (raw_line);
+	return (*rawline);
 }
 
-static t_data	*ft_set_node(t_vars *v, t_data **data, char **line)
-{
-	v->node = *data;
-	while (v->node && (v->node->fd != v->fd))
-		v->node = v->node->next;
-	if (!v->node)
-	{
-		v->node = *data;
-		if (!(*data = malloc(sizeof(t_data))))
-			return (NULL);
-		(*data)->part = v->part;
-		(*data)->fd = v->fd;
-		(*data)->next = v->node;
-		v->node = *data;
-		return (v->node);
-	}
-	v->tmp = *line;
-	if (!(*line = ft_strjoin(v->node->part, *line)))
-		return (NULL);
-	free(v->tmp);
-	free(v->node->part);
-	v->tmp = NULL;
-	v->node->part = v->part;
-	return (v->node);
-}
-
-static char		*ft_get_part_line(t_vars *v, t_data **data)
+static char		*ft_get_partline(t_vars *v, t_data **data)
 {
 	char	*part;
 
@@ -116,6 +64,38 @@ static char		*ft_get_part_line(t_vars *v, t_data **data)
 	return (part);
 }
 
+static char		*ft_read(t_vars *v)
+{
+	char	*rawline;
+	size_t	i;
+
+	i = 0;
+	if (!(v->buff = malloc((BUFFER_SIZE + 1) * sizeof(char))))
+		return (NULL);
+	rawline = v->buff;
+	*rawline = '\0';
+	return (ft_read_rawline(v, &rawline));
+}
+
+static	int		post_read_handle(t_vars *v, t_data **data, char **line)
+{
+	if (v->endl)
+	{
+		v->part = ft_strdup_until(v->endl + 1, '\0'); 
+		if (!v->part)
+			return (ft_exit(data, v, *line, SIG_ERROR));
+	}
+	free(v->tmp);
+	v->tmp = NULL;
+	if (v->length == READ_ERROR)
+		return (ft_exit(data, v, *line, SIG_ERROR));
+	if (!(ft_setnode(v, data, *line)))
+		return (ft_exit(data, v, *line, SIG_ERROR));
+	if (v.length == READ_EOF)
+		return (ft_exit(data, v, *line, SIG_EOF));
+	return (SIG_OK);
+}
+
 int				get_next_line(int fd, char **line)
 {
 	static t_data	*data = NULL;
@@ -125,22 +105,15 @@ int				get_next_line(int fd, char **line)
 		.part=NULL, .endl=NULL, .tmp=NULL, .node=NULL};
 	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
 		return (ft_exit(&data, &v, line, SIG_ERROR));
-	if ((*line = ft_get_part_line(&v, &data)))
+	*line = ft_get_partline(&v, &data);
+	if (*line)
 		return (SIG_OK);
-	if (!(*line = ft_read_raw_line(&v)))
+	*line = ft_read(&v);
+	if (!*line)
 		return (ft_exit(&data, &v, line, SIG_ERROR));
 	v.tmp = *line;
-	if (!(*line = ft_strdup_until(v.tmp, '\n')))
+	*line = ft_strdup_until(v.tmp, '\n');
+	if (!*line)
 		return (ft_exit(&data, &v, line, SIG_ERROR));
-	if (v.endl && !(v.part = ft_strdup_until(v.endl + 1, '\0')))
-		return (ft_exit(&data, &v, line, SIG_ERROR));
-	free(v.tmp);
-	v.tmp = NULL;
-	if (v.length == READ_ERROR)
-		return (ft_exit(&data, &v, line, SIG_ERROR));
-	if (!(ft_set_node(&v, &data, line)))
-		return (ft_exit(&data, &v, line, SIG_ERROR));
-	if (v.length == READ_EOF)
-		return (ft_exit(&data, &v, line, SIG_EOF));
-	return (SIG_OK);
+	return (ft_post_processing(&v, &data));
 }

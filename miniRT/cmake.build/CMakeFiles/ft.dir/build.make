@@ -674,6 +674,32 @@ CMakeFiles/ft.dir/lib/libft/ft_toupper.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ft.dir/lib/libft/ft_toupper.c.s"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rmander/Dev/42/miniRT/miniRT/lib/libft/ft_toupper.c -o CMakeFiles/ft.dir/lib/libft/ft_toupper.c.s
 
+CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o: CMakeFiles/ft.dir/flags.make
+CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o: ../lib/libft/get_next_line/get_next_line.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o -c /Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line.c
+
+CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line.c > CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.i
+
+CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line.c -o CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.s
+
+CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o: CMakeFiles/ft.dir/flags.make
+CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o: ../lib/libft/get_next_line/get_next_line_utils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o -c /Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line_utils.c
+
+CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line_utils.c > CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.i
+
+CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rmander/Dev/42/miniRT/miniRT/lib/libft/get_next_line/get_next_line_utils.c -o CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.s
+
 # Object files for target ft
 ft_OBJECTS = \
 "CMakeFiles/ft.dir/lib/libft/ft_atoi.c.o" \
@@ -721,7 +747,9 @@ ft_OBJECTS = \
 "CMakeFiles/ft.dir/lib/libft/ft_strtrim.c.o" \
 "CMakeFiles/ft.dir/lib/libft/ft_substr.c.o" \
 "CMakeFiles/ft.dir/lib/libft/ft_tolower.c.o" \
-"CMakeFiles/ft.dir/lib/libft/ft_toupper.c.o"
+"CMakeFiles/ft.dir/lib/libft/ft_toupper.c.o" \
+"CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o" \
+"CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o"
 
 # External object files for target ft
 ft_EXTERNAL_OBJECTS =
@@ -772,9 +800,11 @@ libft.a: CMakeFiles/ft.dir/lib/libft/ft_strtrim.c.o
 libft.a: CMakeFiles/ft.dir/lib/libft/ft_substr.c.o
 libft.a: CMakeFiles/ft.dir/lib/libft/ft_tolower.c.o
 libft.a: CMakeFiles/ft.dir/lib/libft/ft_toupper.c.o
+libft.a: CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line.c.o
+libft.a: CMakeFiles/ft.dir/lib/libft/get_next_line/get_next_line_utils.c.o
 libft.a: CMakeFiles/ft.dir/build.make
 libft.a: CMakeFiles/ft.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Linking C static library libft.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Linking C static library libft.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/ft.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ft.dir/link.txt --verbose=$(VERBOSE)
 

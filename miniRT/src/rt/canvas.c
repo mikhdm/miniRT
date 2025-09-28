@@ -13,6 +13,7 @@
 #include "canvas.h"
 #include "linop.h"
 #include "utils.h"
+#include "mlx.h"
 #include <math.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -89,6 +90,26 @@ t_vector3   look_at(t_camera *cam, t_vector3 *dirvec)
 	rot_dirvec = mat33multvec3(rot, dirvec);
 	free(*rot);
 	return (rot_dirvec);
+}
+
+void    init(t_data *data, short windowed)
+{
+	data->mlx = mlx_init();
+	data->img = mlx_new_image(
+			data->mlx,
+			data->screen->width,
+			data->screen->height);
+	data->addr = mlx_get_data_addr(
+			data->img,
+			&data->bpp,
+			&data->length,
+			&data->endian);
+	if (windowed)
+		data->window = mlx_new_window(
+				data->mlx,
+				data->screen->width,
+				data->screen->height,
+				data->screen->title);
 }
 
 void	putpixel(t_data *data, int x, int y, int color)
