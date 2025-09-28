@@ -6,13 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 20:12:16 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/07 20:53:19 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 17:50:51 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isupper(int c)
+int	ft_isupper(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (TRUE);

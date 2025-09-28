@@ -6,20 +6,20 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 21:04:50 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/13 21:06:53 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:01:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isspace(int c)
+int	ft_isspace(int c)
 {
-	if (c == '\t' ||
-		c == '\n' ||
-		c == '\v' ||
-		c == '\f' ||
-		c == '\r' ||
-		c == ' ')
+	if (c == '\t'
+		|| c == '\n'
+		|| c == '\v'
+		|| c == '\f'
+		|| c == '\r'
+		|| c == ' ')
 		return (TRUE);
 	return (FALSE);
 }

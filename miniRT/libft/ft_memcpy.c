@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:58:40 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/13 20:52:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:31:37 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		return (NULL);
 	d = dst;
 	while (n--)
-		*d++ = *(unsigned char*)src++;
+		*d++ = *(unsigned char *)src++;
 	return (dst);
 }

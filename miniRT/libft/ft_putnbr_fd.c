@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 23:02:46 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/13 19:15:41 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:24:30 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft.h"
 
-static void		ft_putpnbr_fd(unsigned int n, int fd, char neg)
+static void	ft_putpnbr_fd(unsigned int n, int fd, char neg)
 {
 	char	d;
 
@@ -28,7 +28,7 @@ static void		ft_putpnbr_fd(unsigned int n, int fd, char neg)
 	write(fd, &d, sizeof(char));
 }
 
-void			ft_putnbr_check_and_modif(int *n, char *neg, char *min)
+void	ft_putnbr_check_and_modif(int *n, char *neg, char *min)
 {
 	if (*n < 0)
 	{
@@ -42,7 +42,7 @@ void			ft_putnbr_check_and_modif(int *n, char *neg, char *min)
 	}
 }
 
-void			ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	char	d;
 	char	neg;

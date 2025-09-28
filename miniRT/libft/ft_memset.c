@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:06:49 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/13 20:49:20 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:24:48 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	*ft_memset(void *b, int c, size_t len)
 
 	s = b;
 	while (len--)
-		*(unsigned char*)b++ = (unsigned char)c;
+		*(unsigned char *)b++ = (unsigned char)c;
 	return (s);
 }

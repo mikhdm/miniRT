@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 02:20:50 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/20 02:17:13 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:18:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	buf = NULL;
 	s1size = ft_strlen(s1);
 	s2size = ft_strlen(s2);
-	if (!(buf = malloc(sizeof(char) * (s1size + s2size + 1))))
+	buf = malloc(sizeof(char) * (s1size + s2size + 1));
+	if (!buf)
 		return (NULL);
 	buf = ft_memcpy(buf, s1, s1size);
 	buf += s1size;

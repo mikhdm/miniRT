@@ -6,13 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 20:11:42 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/07 20:50:33 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:01:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_islower(int c)
+int	ft_islower(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (TRUE);

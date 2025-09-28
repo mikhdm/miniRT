@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 18:09:56 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/20 00:18:01 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 17:51:28 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_islower(int c)
 	return (FALSE);
 }
 
-int			ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	return (ft_islower(c) || ft_isupper(c));
 }

@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 23:39:17 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/15 18:08:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:03:10 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-static char			ft_itoa_check_and_modif(int *n)
+static char	ft_itoa_check_and_modif(int *n)
 {
 	char	flags;
 
@@ -41,7 +41,7 @@ static short int	ft_ismin(char flags)
 	return ((flags & (1 << 2)) == (1 << 2));
 }
 
-static size_t		ft_itoa_strlen(int n, char flags)
+static size_t	ft_itoa_strlen(int n, char flags)
 {
 	size_t	size;
 
@@ -56,7 +56,7 @@ static size_t		ft_itoa_strlen(int n, char flags)
 	return (size);
 }
 
-char				*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	size_t		size;
 	char		*nbr;
@@ -66,8 +66,8 @@ char				*ft_itoa(int n)
 		return (ft_strdup("0"));
 	flags = ft_itoa_check_and_modif(&n);
 	size = ft_itoa_strlen(n, flags);
-	nbr = NULL;
-	if (!(nbr = malloc(sizeof(char) * (size + 1))))
+	nbr = malloc(sizeof(char) * (size + 1));
+	if (!nbr)
 		return (NULL);
 	nbr[size--] = '\0';
 	if (ft_ismin(flags))

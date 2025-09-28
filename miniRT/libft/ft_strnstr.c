@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:06:16 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/13 18:52:22 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:10:26 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static char	*ft_strstr(
 
 	while (haystack != end)
 	{
-		str = (char*)haystack;
-		key = (char*)needle;
+		str = (char *)haystack;
+		key = (char *)needle;
 		while ((str != end) && *key)
 		{
 			if (*str != *key)
@@ -33,25 +33,28 @@ static char	*ft_strstr(
 			++key;
 		}
 		if (!*key)
-			return ((char*)haystack);
+			return ((char *)haystack);
 		++haystack;
 	}
 	return (NULL);
 }
 
-char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	char	*end;
 	size_t	hsize;
 	char	*substr;
 
 	if (!*needle)
-		return ((char*)haystack);
+		return ((char *)haystack);
 	if (!len)
 		return (NULL);
 	hsize = ft_strlen(haystack);
-	end = (char*)((len < hsize) ? (haystack + len) : (haystack + hsize));
-	if ((substr = ft_strstr(haystack, needle, end)))
+	end = (char *)(haystack + hsize);
+	if (len < hsize)
+		end = (char *)(haystack + len);
+	substr = ft_strstr(haystack, needle, end);
+	if (substr)
 		return (substr);
 	return (NULL);
 }

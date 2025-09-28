@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:07:35 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/21 02:17:06 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:38:26 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define IN 0
 # define OUT 1
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -41,8 +41,8 @@ size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *haystack,
-								const char *needle,
-								size_t len);
+						const char *needle,
+						size_t len);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
@@ -74,7 +74,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst,
-								void *(*f)(void *),
-								void (*del)(void *));
+						void *(*f)(void *),
+						void (*del)(void *));
 
 #endif

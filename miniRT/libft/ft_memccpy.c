@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:58:10 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/13 20:50:21 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:34:23 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	d = dst;
 	while (n--)
 	{
-		*d = *(unsigned char*)src;
+		*d = *(unsigned char *)src;
 		if (*d == (unsigned char)c)
 			return (++d);
 		++d;

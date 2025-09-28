@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 00:45:30 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/20 00:08:42 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 17:40:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,24 @@ static long	ft_pow(long n, long power)
 
 static int	ft_isspace(int c)
 {
-	if (c == '\t' ||
-		c == '\n' ||
-		c == '\v' ||
-		c == '\f' ||
-		c == '\r' ||
-		c == ' ')
+	if (c == '\t'
+		|| c == '\n'
+		|| c == '\v'
+		|| c == '\f'
+		|| c == '\r'
+		|| c == ' ')
 		return (TRUE);
 	return (FALSE);
 }
 
-int			ft_atoi(const char *str)
+static long	ft_negate(long value, int neg)
+{
+	if (neg)
+		value *= (-1);
+	return (value);
+}
+
+int	ft_atoi(const char *str)
 {
 	long		result;
 	const char	*end;
@@ -59,5 +66,5 @@ int			ft_atoi(const char *str)
 	end--;
 	while (i < count)
 		result += (*end-- - '0') * ft_pow(10, i++);
-	return ((int)((neg) ? result * (-1) : result));
+	return ((int)ft_negate(result, neg));
 }

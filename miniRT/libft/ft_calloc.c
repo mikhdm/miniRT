@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 22:24:31 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/15 18:06:50 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 17:43:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*data;
 
-	data = NULL;
-	if (!(data = malloc(count * size)))
+	data = malloc(count * size);
+	if (!data)
 		return (NULL);
 	return (ft_memset(data, 0, count * size));
 }

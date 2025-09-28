@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 20:07:42 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/20 00:12:40 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:03:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_isupper(int c)
 	return (FALSE);
 }
 
-int			ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if (ft_isupper(c))
 		c = c + 32;

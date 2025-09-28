@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 21:46:20 by rmander           #+#    #+#             */
-/*   Updated: 2020/11/21 02:51:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/11 18:23:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ static size_t	ft_split_strlen(char const *str, char c)
 	return (cnt);
 }
 
-static char		*ft_split_strdup(char const *str, char c)
+static char	*ft_split_strdup(char const *str, char c)
 {
 	char	*s;
 	char	*start;
 
-	if (!(s = malloc(sizeof(char) * (ft_split_strlen(str, c) + 1))))
+	s = malloc(sizeof(char) * (ft_split_strlen(str, c) + 1));
+	if (!s)
 		return (NULL);
 	start = s;
 	while (*str && (*str != c))
@@ -62,27 +63,28 @@ static char		*ft_split_strdup(char const *str, char c)
 	return (start);
 }
 
-static void		ft_split_free(char **strs, size_t cnt)
+static void	ft_split_free(char **strs, size_t cnt)
 {
 	while (cnt--)
 		free(strs[cnt]);
 	free(strs);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	size_t	i;
 	char	**strs;
 
 	i = 0;
-	strs = NULL;
-	if (!(strs = malloc(sizeof(char*) * (ft_split_strslen(s, c) + 1))))
+	strs = malloc(sizeof(char *) * (ft_split_strslen(s, c) + 1));
+	if (!strs)
 		return (NULL);
 	while (*s)
 	{
 		if (*s != c)
 		{
-			if (!(strs[i++] = ft_split_strdup(s, c)))
+			strs[i] = ft_split_strdup(s, c);
+			if (!strs[i++])
 			{
 				ft_split_free(strs, i);
 				return (NULL);
