@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 20:42:05 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 20:49:34 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,14 @@ void		ft_putpixel(t_meta *meta, int x, int y, int color);
 */
 t_viewport	calc_viewport(t_meta *meta);
 t_vector3	ft_conv_to_viewport(t_meta *meta, int x, int y);
+
+/*
+*
+* light - calculates intensity of light at point on a surface
+* with orientation vector orient.
+*
+*/
+double	light(t_meta *meta,
+			t_vector3 *point, t_vector3 *orient);
 
 #endif

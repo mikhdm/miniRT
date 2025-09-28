@@ -6,13 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 19:59:23 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 20:01:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 20:53:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "linop.h"
 #include "figure.h"
+#include "linop.h"
 
 t_vector3	calc_sphere_orient(t_vector3 *point, t_sphere *sphere)
 {

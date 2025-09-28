@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/25 20:04:20 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/25 20:52:20 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_trace_sphere(
 	t_vector3		closest_point;
 	t_vector3		orient;
 	t_pair_double	steps;
+	t_vector3		cmult_dirvec;
 
 	closest_step = INFINITY;
 	intersected = FALSE;
@@ -68,8 +69,9 @@ int	ft_trace_sphere(
 	}
 	if (intersected == FALSE)
 		return (0x0);
-	closest_point = sumvec3(&meta->cam->center,
-						cmultvec3((double const)closest_step, dirvec));
+
+	cmult_dirvec = cmultvec3((double const)closest_step, dirvec); 
+	closest_point = sumvec3(&meta->cam->center, &cmult_dirvec);
 	orient = calc_sphere_orient(&closest_point, sphere);
 	return (sphere->color * light(meta, &closest_point, &orient));
 }
