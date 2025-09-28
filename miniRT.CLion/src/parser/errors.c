@@ -2,11 +2,11 @@
 #include "libft.h"
 #include <stdio.h>
 
-void error(char const *message)
+void ft_perror(char const *message)
 {
-	ft_putstr_fd(ERROR_HEADER, STDOUT)
+	ft_putstr_fd(ERROR_HEADER, STDOUT);
 	if (message)
-	{
-		ft_putstr_fd(message, STDERR);
-	}
+		ft_putstr_fd((char *)message, STDERR);
+	else
+		perror(NULL);
 }
