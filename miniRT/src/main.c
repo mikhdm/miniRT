@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/28 00:03:23 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/29 00:14:42 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,9 +178,9 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
 	
-	ambience = (t_ambience) {.intensity = 0.4, .color = 0xd1d1d1};
-	lights = (t_light) {.brightness = 0.5, .color = 0xd2d2d2,
-		.center = (t_vector3) {.x = 5, .y = 10, .z = 3},
+	ambience = (t_ambience) {.intensity = 0.1, .color = 0xd1d1d1};
+	lights = (t_light) {.brightness = 0.9, .color = 0xffffff,
+		.center = (t_vector3) {.x = 0, .y = 10, .z = 1},
 		.next = NULL
 	};
 
@@ -196,12 +196,12 @@ int main(void)
 						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 10},
 						.next = NULL};
 
-	sphere = (t_sphere) {.color = 0x00ee00,
+	sphere = (t_sphere) {.color = 0x0000ff,
 						.diameter = 5,
-						.center = (t_vector3) {.x = 0, .y = 1, .z = 10},
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 15},
 						.next = &sphere2};
 
-	plane = (t_plane) {.color = 0xffff00,
+	plane = (t_plane) {.color = 0xcccccc,
 						.center = (t_vector3) {.x = 0, .y = 0, .z = 2},
 						.orient = (t_vector3) {.x = 0,
 												.y = 5/sqrt(50),
@@ -240,8 +240,8 @@ int main(void)
 	calc_viewport_test(&data);
 	/* END TEST */
 
-	render_plane(&data, &stepsrange);
-	(void) render_sphere;
+	(void) render_plane;
+	render_sphere(&data, &stepsrange);
 
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	ft_bind_hooks(&data);

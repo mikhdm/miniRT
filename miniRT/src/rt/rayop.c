@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/28 00:03:24 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/29 00:14:48 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,10 @@ int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	closest_point = sumvec3(&data->cam->center, &cmult_dirvec);
 	orient = calc_sphere_orient(&closest_point, data->figures->sphere);
 
-	int color = data->figures->sphere->color; 
-	double l = light(data, &closest_point, &orient);
-
-	int a = a_component(color) * l;
-	int r = r_component(color) * l;
-	int g = g_component(color) * l;
-	int b = b_component(color) * l;
-	
-	return (argb_color(a, r, g, b));
+	int color = data->figures->sphere->color;
+	// TODO
+	// take intensity * pointlight color + ambient intensity * ambient light color
+	double intensity = light(data, &closest_point, &orient);
+	color = blendargb(color, cmultargb(data->light->color, intensity));
+	return (color);
 }

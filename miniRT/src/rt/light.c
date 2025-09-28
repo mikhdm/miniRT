@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:13:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/27 23:47:49 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/29 00:14:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ double	light(t_data *data,
 
 	head = data->light;
 	intensity = .0;
-	if (data->ambience)
-		intensity += data->ambience->intensity;
+	/* if (data->ambience) */
+	/* 	intensity += data->ambience->intensity; */
 	while (head)
 	{
 		/* TODO how to handle inner light */
