@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/30 04:27:24 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/30 05:28:33 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,13 @@ int	ft_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	/* 	return (0x0); */
 
 	/* square condition */
-	/* t_vector3 plane_vec = diffvec3(&closest_point, &data->figures->plane->center); */
-	/* double plane_vec_length = hypotvec3(&plane_vec); */
+	double const	side = 10;
+	t_vector3		plane_vec = diffvec3(&closest_point, &data->figures->plane->center);
+	t_vector3		point_bottom = (t_vector3) {
+									.x = data->figures->plane->center.x,
+									.y = data->figures->plane->center.y + side / 2,
+									.z = data->figures->plane->center.z,
+									};
 	/* double side = 12.0; */
 	/* if (plane_vec_length*(side/2) > pow(2, 0.5) * side) */
 	/* 	return (0x0); */
