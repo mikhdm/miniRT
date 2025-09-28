@@ -6,12 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:31:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/03 22:43:19 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/04 22:36:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "linop.h"
+#include "libft.h"
 #include <math.h>
 
 double	dot3(t_vector3 *left, t_vector3 *right)
@@ -29,9 +30,9 @@ t_vector3	cross3(t_vector3 *left, t_vector3 *right)
 	t_vector3	crossvec;
 
 	crossvec = (t_vector3) {.x = .0, .y = .0, .z = .0};
-	crossvec.x = left->y * right->z - left->z * right->y;
-	crossvec.y = right->x * left->z - left->x * right->z;
-	crossvec.z = left->x * right->y - right->x * left->y;
+	crossvec.x = fma(left->y, right->z, -left->z * right->y);
+	crossvec.y = fma(right->x, left->z, -left->x * right->z);
+	crossvec.z = fma(left->x, right->y, -right->x * left->y);
 	return (crossvec);
 }
 
@@ -79,4 +80,18 @@ t_vector3	normvec3(t_vector3 *vec)
 
 	length = hypotvec3(vec);
 	return (cmultvec3(pow(length, -1), vec));
+}
+
+short int	iscollinvec3(t_vector3 *left, t_vector3 *right)
+{
+	short int	collinear;
+	t_vector3	crossvec;
+
+	collinear = FALSE;
+	crossvec = cross3(left, right);
+	if (fabs(crossvec.x - 0.0) < 1e-14 &&
+		fabs(crossvec.y - 0.0) < 1e-14 &&
+		fabs(crossvec.z - 0.0) < 1e-14)
+		collinear = TRUE;
+	return (collinear);
 }

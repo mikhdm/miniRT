@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/03 22:52:33 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/04 22:39:48 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,19 @@ int	ft_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
 	t_mult_dirvec = cmultvec3(pair.first, dirvec);
 	closest_point = sumvec3(&data->cam->center, &t_mult_dirvec);
 	
-	/* TODO add hit square point detection*/
+	/* TODO add hit square point detection */
+
+	t_vector3	rand_vec;
+	t_vector3	cross_rand_orient_vec;
+
+	rand_vec = (t_vector3) {.x = 1, .y = 0, .z = 0};
+	if (iscollinvec3(&rand_vec, &data->figures->square->orient)) 
+		rand_vec = (t_vector3) {.x = 0, .y = 1, .z = 0};
+
+	cross_rand_orient_vec = cross3(&rand_vec, data->figures->square->orient);
+	cross_rand_orient_vec = normvec3(&cross_rand_orient_vec);
+
+	/* TODO calc all vectors for square (2 and 2 opposite) */
 
 	color = light(data, &closest_point, &data->figures->square->orient, color);
 	return (color);

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/03 23:36:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/04 22:39:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ static void	render_plane(t_data *data, t_pair_double *stepsrange)
 /* TESTFUNC */
 void	linop_test(void)
 {
-	t_vector3 vec1 = (t_vector3) {.x = 4.0, .y = 1.0, .z = 1.0};
-	t_vector3 vec2 = (t_vector3) {.x = -1.0, .y = 2.0, .z = 20.0};
+	t_vector3 vec1 = (t_vector3) {.x = 4.0, .y = 0.0, .z = 0.0};
+	t_vector3 vec2 = (t_vector3) {.x = -4.0, .y = 0.0, .z = 0.0};
 
 	t_vector3 vec3 = diffvec3(&vec1, &vec2);
 	printf("difference: (%f, %f, %f) - (%f, %f, %f) = (%f, %f, %f)\n",
@@ -142,6 +142,10 @@ void	linop_test(void)
 	printf("cross: (%f, %f, %f) x (%f, %f, %f) = (%f, %f, %f), length: || %f ||\n",
 			vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z,
 			vec6.x, vec6.y, vec6.z, hypotvec3(&vec6));
+
+	printf("is collinear vectors: (%f, %f, %f) and (%f, %f, %f) ? %d \n",
+			vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z,
+			iscollinvec3(&vec1, &vec2));
 }
 /* END TESTFUNC */
 
