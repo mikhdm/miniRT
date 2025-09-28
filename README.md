@@ -83,7 +83,21 @@ cmake --build build -j4 # or do make -C build -j4
 
 ### How to use?
 
-Use
+To render the scene:
+
+```bash
+./miniRT <scene configuration file>
+```
+
+To make a screenshot in BMP:
+
+```bash
+./miniRT <scene filepath> --save
+```
+
+Screenshot will be saved at the root under `screenshot.bmp`.
+
+To navigate between multiple cameras use left and right arrows.
 
 ### References
 
