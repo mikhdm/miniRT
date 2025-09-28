@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/30 04:37:39 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/30 04:47:04 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ int main(void)
 	t_viewport		viewport;
 	t_pair_double	stepsrange;
 	t_light			lights;
+	t_light			light2;
 	t_ambience		ambience;
 	
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
@@ -178,11 +179,15 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
 	
-	ambience = (t_ambience) {.intensity = 0.2, .color = 0xcc0000};
-	lights = (t_light) {.brightness = 0.8, .color = 0xffaa00,
-		.center = (t_vector3) {.x = 0, .y = 20, .z = -5},
-		.next = NULL
-	};
+	ambience = (t_ambience) {.intensity = 0.2, .color = 0x000000};
+	
+	light2 = (t_light) {.brightness = 1.0, .color = 0xdddd00,
+					.center = (t_vector3) {.x = 0, .y = 5, .z = -2},
+					.next = NULL};
+
+	lights = (t_light) {.brightness = 1.0, .color = 0x00ffff,
+		.center = (t_vector3) {.x = 0, .y = 0, .z = -2},
+		.next = &light2};
 
 	data.light = &lights;
 	data.ambience = &ambience;
@@ -196,7 +201,7 @@ int main(void)
 						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 10},
 						.next = NULL};
 
-	sphere = (t_sphere) {.color = 0xffff00,
+	sphere = (t_sphere) {.color = 0xffffff,
 						.diameter = 5,
 						.center = (t_vector3) {.x = 0, .y = 0, .z = 15},
 						.next = &sphere2};
