@@ -6,99 +6,96 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/14 18:50:25 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/14 21:47:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "shade.h"
 #include "linop.h"
-#include "light.h"
 #include "intersect.h"
 #include "utils.h"
 #include "libft.h"
 #include <math.h>
 
-double	intersect(t_data *data,
-			t_vector3 *dirvec, t_figure *figure)
+double   intersect(t_vector3 *p0, t_vector3 *dirvec, t_figure *figure)
 {
 	double	t;
 
 	t = INFINITY;
-	if (ft_strncmp(
-			((t_sphere*)(figure->content))->label, LABEL_SPHERE,
-			ft_strlen(LABEL_SPHERE)) == 0)
-		t = intersect_sphere(data, dirvec, figure->content);
-	else if (ft_strncmp(
-			((t_plane *)(figure->content))->label, LABEL_PLANE,
-			ft_strlen(LABEL_PLANE)) == 0)
-		t = intersect_plane(data, dirvec, figure->content);
-	else if (ft_strncmp(
-			((t_square *)(figure->content))->label, LABEL_SQUARE,
-			ft_strlen(LABEL_SQUARE)) == 0)
-		t = intersect_square(data, dirvec, figure->content);
-	else if (ft_strncmp(
-			((t_triangle *)(figure->content))->label, LABEL_TRIANGLE,
-			ft_strlen(LABEL_TRIANGLE)) == 0)
-		t = intersect_triangle(data, dirvec, figure->content);
-	else if (ft_strncmp(
-			((t_cylinder *)(figure->content))->label, LABEL_CYLINDER,
-			ft_strlen(LABEL_CYLINDER)) == 0)
-		t = intersect_cylinder(data, dirvec, figure->content);
+	if (ft_strncmp(figure->label, LABEL_SPHERE, ft_strlen(LABEL_SPHERE)) == 0)
+		t = intersect_sphere(p0, dirvec, (t_sphere *)figure->content);
+	else if (ft_strncmp(figure->label, LABEL_PLANE,
+					 ft_strlen(LABEL_PLANE)) == 0)
+		t = intersect_plane(p0, dirvec, (t_plane *)figure->content);
+	else if (ft_strncmp(figure->label, LABEL_SQUARE,
+					 ft_strlen(LABEL_SQUARE)) == 0)
+		t = intersect_square(p0, dirvec, (t_square *)figure->content);
+	else if (ft_strncmp(figure->label, LABEL_TRIANGLE,
+					 ft_strlen(LABEL_TRIANGLE)) == 0)
+		t = intersect_triangle(p0, dirvec, (t_triangle *)figure->content);
+	else if (ft_strncmp(figure->label, LABEL_CYLINDER,
+					 ft_strlen(LABEL_CYLINDER)) == 0)
+		t = intersect_cylinder(p0, dirvec, (t_cylinder *)figure->content);
 	return (t);
 }
 
-int	shade(t_data *data,
-		t_figure *figure, t_vector3 *dirvec, double t)
+t_pair_figure_double    intersect_closest(t_data *data, t_vector3 *p0,
+									   t_vector3 *dirvec, t_pair_double *range)
 {
-	int	color;
-
-	color = COLOR_BACKGROUND;
-	if (ft_strncmp(
-			((t_sphere*)(figure->content))->label, LABEL_SPHERE,
-			ft_strlen(LABEL_SPHERE)) == 0)
-		color = shade_sphere(data, figure->content, dirvec, t);
-	else if (ft_strncmp(
-			((t_plane*)(figure->content))->label, LABEL_PLANE,
-			ft_strlen(LABEL_PLANE)) == 0)
-		color = shade_plane(data, figure->content, dirvec, t);
-	else if (ft_strncmp(
-			((t_square*)(figure->content))->label, LABEL_SQUARE,
-			ft_strlen(LABEL_SQUARE)) == 0)
-		color = shade_square(data, figure->content, dirvec, t);
-	else if (ft_strncmp(
-			((t_triangle*)(figure->content))->label, LABEL_TRIANGLE,
-			ft_strlen(LABEL_TRIANGLE)) == 0)
-		color = shade_triangle(data, figure->content, dirvec, t);
-	else if (ft_strncmp(
-			((t_cylinder*)(figure->content))->label, LABEL_CYLINDER,
-			ft_strlen(LABEL_CYLINDER)) == 0)
-		color = shade_cylinder(data, figure->content, dirvec, t);
-	return (color);
-}
-
-
-int	trace(t_data *data,
-		t_vector3 *dirvec, t_pair_double *range)
-{
-	double			t;
-	double			min_t;
-	t_figure		*curr;
-	t_figure		figure;
+	double                  t;
+	t_pair_figure_double    pair_figure_t;
+	t_figure                *curr;
 
 	curr = data->figures;
-	min_t = INFINITY;
+	pair_figure_t = (t_pair_figure_double) {.figure = NULL, .t = INFINITY};
 	while (curr)
 	{
-		t = intersect(data, dirvec, curr);
-		if (t >= range->first && t <= range->second && t < min_t)
+		t = intersect(p0, dirvec, curr);
+		if (t >= range->first && t <= range->second && t < pair_figure_t.t)
 		{
-			min_t = t;
-			figure = *curr;
+			pair_figure_t.t = t;
+			pair_figure_t.figure = curr;
 		}
 		curr = curr->next;
 	}
-	if (!isinf(min_t))
+	if (!pair_figure_t.figure)
+		return ((t_pair_figure_double) {.figure = NULL, .t = INFINITY});
+	return (pair_figure_t);
+}
+
+int	shade(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
+			t_pair_figure_double *pair_figure_t)
+{
+	int         color;
+	t_figure    *figure;
+
+	color = COLOR_BACKGROUND;
+	figure = pair_figure_t->figure;
+	if (ft_strncmp(figure->label, LABEL_SPHERE,
+				ft_strlen(LABEL_SPHERE)) == 0)
+		color = shade_sphere(data, p0, dirvec, pair_figure_t);
+	else if (ft_strncmp(figure->label, LABEL_PLANE,
+					 ft_strlen(LABEL_PLANE)) == 0)
+		color = shade_plane(data, p0, dirvec, pair_figure_t);
+	else if (ft_strncmp(figure->label, LABEL_SQUARE,
+					 ft_strlen(LABEL_SQUARE)) == 0)
+		color = shade_square(data, p0, dirvec, pair_figure_t);
+	else if (ft_strncmp(figure->label, LABEL_TRIANGLE,
+					 ft_strlen(LABEL_TRIANGLE)) == 0)
+		color = shade_triangle(data, p0, dirvec, pair_figure_t);
+	else if (ft_strncmp(figure->label, LABEL_CYLINDER,
+					 ft_strlen(LABEL_CYLINDER)) == 0)
+		color = shade_cylinder(data, p0, dirvec, pair_figure_t);
+	return (color);
+}
+
+int	trace(t_data* data, t_vector3 *p0, t_vector3 *dirvec, t_pair_double *range)
+{
+	t_pair_figure_double    pair_figure_t;
+
+	pair_figure_t = intersect_closest(data, p0, dirvec, range);
+	if (isinf(pair_figure_t.t))
 		return (COLOR_BACKGROUND);
-	return (shade(data, &figure, dirvec, min_t));
+	return (shade(data, p0, dirvec, &pair_figure_t));
 }

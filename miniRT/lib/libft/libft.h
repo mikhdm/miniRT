@@ -21,6 +21,9 @@
 # define INT_MAX 2147483647
 # define IN 0
 # define OUT 1
+# define STDOUT 0
+# define STDIN 1
+# define STDERR 2
 
 typedef struct s_list
 {

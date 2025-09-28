@@ -6,12 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 18:01:38 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/14 18:42:46 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/14 22:41:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "linop.h"
+#include "intersect.h"
 #include "utils.h"
 #include <stdio.h>
 
@@ -71,7 +72,7 @@ static void	test_calc_viewport(t_data *data)
 {
 	t_viewport	viewport;
 
-	viewport = calc_viewport(data);
+	viewport = calc_viewport(data, data->cam);
 	printf("projection plane width = %f, height = %f\n", viewport.width, viewport.height);
 }
 
@@ -84,45 +85,77 @@ static void	test_gen_square_vertices(t_square *square)
 	printf("square: size: %f, orient: (%f, %f, %f), center: (%f, %f, %f) \n",
 			square->size, square->orient.x, square->orient.y, square->orient.z,
 			square->center.x, square->center.y, square->center.z);
-
-	printf("P1: (%f, %f, %f), P2: (%f, %f, %f), P3: (%f, %f, %f), P4: (%f, %f, %f)",
+	printf("P1: (%f, %f, %f), P2: (%f, %f, %f), P3: (%f, %f, %f), P4: (%f, %f, %f)\n",
 			vertices[0].x, vertices[0].y, vertices[0].z,
 			vertices[1].x, vertices[1].y, vertices[1].z,
 			vertices[2].x, vertices[2].y, vertices[2].z,
-			vertices[3].x, vertices[3].y, vertices[3].z
-	);
-
+			vertices[3].x, vertices[3].y, vertices[3].z);
 	vec[0] = diffvec3(&vertices[1], &vertices[0]);
 	vec[1] = diffvec3(&vertices[2], &vertices[1]);
 	vec[2] = diffvec3(&vertices[3], &vertices[2]);
 	vec[3] = diffvec3(&vertices[0], &vertices[3]);
-	printf("|| P2 - P1 || = %f, || P3 - P2 || = %f, || P4 - P3 || = %f, || P1 - P4 || = %f", 
+	printf("|| P2 - P1 || = %f, || P3 - P2 || = %f, || P4 - P3 || = %f, || P1 - P4 || = %f\n",
 			hypotvec3(&vec[0]),
 			hypotvec3(&vec[1]),
 			hypotvec3(&vec[2]),
 			hypotvec3(&vec[3]));
 }
 
+static void test_alloca_to()
+{
+	t_vector3   *vec3;
+	if (!alloca_to((void**)&vec3, sizeof(t_vector3) * 3))
+		return ;
+	vec3[0].x = 1;
+	vec3[0].y = 2;
+	vec3[0].z = 3;
+
+	vec3[1].x = 1;
+	vec3[1].y = 2;
+	vec3[1].z = 3;
+
+	vec3[2].x = 1;
+	vec3[2].y = 2;
+	vec3[2].z = 3;
+	printf("alloca_to test: (%f, %f, %f), (%f, %f, %f), (%f, %f, %f)\n",
+		vec3[0].x, vec3[0].y, vec3[0].z,
+		vec3[1].x, vec3[1].y, vec3[1].z,
+		vec3[2].x, vec3[2].y, vec3[2].z);
+	free(vec3);
+}
+
+static void test_is_polygon_point(t_data *data, t_square *square)
+{
+	t_vector3   p_hit;
+	double      t;
+	t_vector3   dirvec;
+	t_vector3   *vertices;
+
+	vertices = gen_square_vertices(square);
+	dirvec = canvas_to_viewport(data, data->cam, -1000, 300);
+	t = intersect_square(&data->cam->center, &dirvec, square);
+	p_hit = calc_ray_point(&data->cam->center, &dirvec, t);
+	printf ("is polygon point test: (%f, %f, %f) ? %d, ",
+		 p_hit.x, p_hit.y, p_hit.z,
+		 is_polygon_point(&p_hit, vertices, &square->orient, 4));
+}
 
 void test(t_data *data)
 {
 	/* LOG */
 	printf("bpp: %d;\nline length: %d;\nendian: %d;\n",
-		data->bpp, data->length, data->endian); 
+		data->bpp, data->length, data->endian);
 	/* END LOG */
 
-	t_square square = {.center = (t_vector3) {.x = 0, .y = 0, .z = 3},
+	t_square square = {.center = (t_vector3) {.x = 0, .y = 0, .z = 20},
 						.color = 0xff0000,
 						.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
-						.label = LABEL_SQUARE,
 						.size = 10.0};
-
-	(void) square;
 	test_linop();
 	test_quad_equation();
 	test_deg_to_rad();
-	// test_calc_viewport(data);
-	(void) test_calc_viewport;
-	(void) test_gen_square_vertices;
-	// test_gen_square_vertices(&square);
+	test_calc_viewport(data);
+	test_gen_square_vertices(&square);
+	test_alloca_to();
+	test_is_polygon_point(data, &square);
 }

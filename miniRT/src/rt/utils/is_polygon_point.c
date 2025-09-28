@@ -6,25 +6,24 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 23:20:02 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/12 23:22:44 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/14 22:44:22 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "canvas.h"
 #include "linop.h"
+#include "utils.h"
 #include "libft.h"
 #include <stddef.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <math.h>
 
-static t_vector3	*_is_polygon_point_cross_vecs(
-						t_vector3 *p_vertex_vecs, size_t size)
+static t_vector3	*crosses(t_vector3 *p_vertex_vecs, size_t size)
 {
 	size_t		i;
 	t_vector3	*vecs;
 
-	vecs = malloc(sizeof(t_vector3) * size);
-	if (!vecs)
+	if (!alloca_to((void**)&vecs, sizeof(t_vector3) * size))
 		return (NULL);
 	i = 0;
 	while (i < size)
@@ -33,30 +32,50 @@ static t_vector3	*_is_polygon_point_cross_vecs(
 		++i;
 	}
 	return (vecs);
-
 }
 
-static short int	_is_polygon_point(t_vector3 *cross_vecs,
+static short    signcheck(double *checks, size_t size)
+{
+	size_t      i;
+	short       sign;
+	short       flag;
+
+	i = 0;
+	flag = TRUE;
+	sign = signbit(checks[i++]);
+	if (sign)
+	{
+		while (i < size)
+			if (!signbit(checks[i++]))
+				flag = FALSE;
+	}
+	else
+		while (i < size)
+			if (signbit(checks[i++]))
+				flag = FALSE;
+	return (flag);
+}
+
+static short    pointcheck(t_vector3 *cross_vecs,
 						size_t size, t_vector3 *orient)
 {
-	double	check;
-	size_t	i;
-	
+	double          *checks;
+	size_t          i;
+	t_vector3       diffvec;
+	short int       flag;
+
 	i = 0;
-	check = dot3(&cross_vecs[i++], orient);
-	if (check > 0)
+	flag = TRUE;
+	checks = malloc(sizeof(double) * size);
+	while (i < size)
 	{
-		while (i < size)
-			if (dot3(&cross_vecs[i++], orient) < 0)
-				return (FALSE);
+		diffvec = diffvec3(&cross_vecs[i], orient);
+		checks[i] = dot3(&cross_vecs[i], orient) / hypotvec3(&diffvec);
+		++i;
 	}
-	else if (check < 0)
-	{
-		while (i < size)
-			if (dot3(&cross_vecs[i++], orient) > 0)
-				return (FALSE);
-	}
-	return (TRUE);
+	flag = signcheck(checks, size);
+	free(checks);
+	return (flag);
 }
 
 short int	is_polygon_point(t_vector3 *p_hit,
@@ -67,25 +86,22 @@ short int	is_polygon_point(t_vector3 *p_hit,
 	size_t		i;
 	short int	check;
 
-	/* TODO check */
-
 	check = FALSE;
-	p_vertex_vecs = malloc(sizeof(t_vector3) * size);
-	if (!p_vertex_vecs)
-		return (FALSE);
+	if (!alloca_to((void**)&p_vertex_vecs, sizeof(t_vector3) * size))
+		exit(ENOMEM);
 	i = 0;
 	while (i < size)
 	{
 		p_vertex_vecs[i] = diffvec3(&vertices[i], p_hit);
 		++i;
 	}
-	cross_vecs = _is_polygon_point_cross_vecs(p_vertex_vecs, size);
+	cross_vecs = crosses(p_vertex_vecs, size);
 	if (!cross_vecs)
 	{
 		free(p_vertex_vecs);
-		return (FALSE);
+		exit(ENOMEM);
 	}
-	check = _is_polygon_point(cross_vecs, size, orient);
+	check = pointcheck(cross_vecs, size, orient);
 	free(p_vertex_vecs);
 	free(cross_vecs);
 	return (check);

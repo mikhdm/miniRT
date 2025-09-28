@@ -6,76 +6,76 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 17:13:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/06 00:06:51 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/14 19:52:28 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "light.h"
 #include "color.h"
 #include "canvas.h"
 #include "linop.h"
-#include "libft.h"
+#include "rayop.h"
 #include <math.h>
-#include <stdlib.h>
 
-/*
-*
-* ambient_light - calculates ambient light for a surface with scolor.
-*
-*/
-static int	_ambient_light(t_ambience *ambience, int const scolor)
+static int calc_diffuse_light(t_light *spot, t_vector3 *orient,
+							  t_vector3 *lightvec, int const scolor)
+{
+	int         color;
+
+	color = linargb(spot->color);
+	color = cmultargb(color, spot->brightness);
+	color = multargb(color, scolor);
+	color = cmultargb(color, fmax(0.0, dot3(orient, lightvec)));
+	return (color);
+}
+
+static int    ambient_light(t_data *data, int const scolor)
 {
 	int	acolor;
 
-	acolor = cmultargb(linargb(ambience->color), ambience->intensity);
+	acolor = linargb(data->ambience->color);
+	acolor = cmultargb(acolor, data->ambience->intensity);
 	return (multargb(acolor, scolor));
 }
 
-static int _calc_diffuse_light(t_light *light,
-				int const scolor, double const dot)
+static int	diffuse_light(t_data *data,
+						 t_vector3 *point, t_vector3 *orient, int const scolor)
 {
-	t_light		*curr;
-	int 		currcolor;
-	int			lightcolor;
+	int                     color;
+	t_light                 *curr;
+	t_vector3               p_shadow;
+	t_pair_figure_double    pair_figure_t;
+	t_vector3               lightvec;
 
-	curr = light;
-	lightcolor = 0;
+	curr = data->light;
+	color = COLOR_BLACK;
 	while (curr)
 	{
-		currcolor = cmultargb(linargb(curr->color), curr->brightness);
-		currcolor = multargb(scolor, currcolor);
-		currcolor = cmultargb(currcolor, dot);
-		lightcolor = addargb(lightcolor, currcolor);
+		lightvec = diffvec3(&curr->center, point);
+		p_shadow = cmultvec3(1e-3, &lightvec);
+		p_shadow = sumvec3(point, &p_shadow);
+		pair_figure_t = intersect_closest(data, &p_shadow, &lightvec,
+									&((t_pair_double){1e-3, 1}));
+		if (pair_figure_t.figure)
+		{
+			curr = curr->next;
+			continue ;
+		}
+		lightvec = normvec3(&lightvec);
+		color = addargb(color, calc_diffuse_light(curr, orient, &lightvec, scolor));
 		curr = curr->next;
 	}
-	return (lightcolor);
-
-}
-
-static int	_diffuse_light(t_light *light,
-		t_vector3 *point,
-		t_vector3 *orient,
-		int const scolor)
-{
-	double		dot;
-	double		denom;
-	t_vector3	lightvec;
-	
-	lightvec = diffvec3(&light->center, point);
-	dot = dot3(orient, &lightvec);
-	if (dot3(orient, &lightvec) < 0.0)
-		dot = -1.0 * dot;
-	denom = hypotvec3(&lightvec) * hypotvec3(orient);
-	return (_calc_diffuse_light(light, scolor, dot / denom));
+	return (color);
 }
 
 int light(t_data *data,
 		t_vector3 *point, t_vector3 *orient, int const scolor)
 {
 	int ambient_color;
-	int	diffuse_color;
-	
-	ambient_color = _ambient_light(data->ambience, linargb(scolor));
-	diffuse_color = _diffuse_light(data->light, point, orient, linargb(scolor));
+	int diffuse_color;
+	int surface_color;
+
+	surface_color = linargb(scolor);
+	ambient_color = ambient_light(data, surface_color);
+	diffuse_color = diffuse_light(data, point, orient, surface_color);
 	return (gammargb(addargb(ambient_color, diffuse_color)));
 }

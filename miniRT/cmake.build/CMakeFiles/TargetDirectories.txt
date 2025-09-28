@@ -1,0 +1,4 @@
+/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/rebuild_cache.dir
+/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/edit_cache.dir
+/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/miniRT.dir
+/Users/rmander/Dev/42/miniRT/miniRT/cmake.build/CMakeFiles/ft.dir

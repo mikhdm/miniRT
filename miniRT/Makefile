@@ -6,30 +6,70 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/05/13 23:48:08 by rmander          ###   ########.fr        #
+#    Updated: 2021/05/21 19:37:10 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I./include -I./lib/libft -I./lib/mlx 
-LIB_DIR = ./lib
-MLX_DIR = ./lib/mlx
+
 LIBFT_DIR = ./lib/libft
+
+MLX_DIR = ./lib/mlx
 MLX_DYLIB = ./lib/mlx/libmlx.dylib 
 DYLIB = ./libmlx.dylib
-SRCS =  ./src/rt/utils/calc_quad_equation.c ./src/rt/utils/swap_double.c \
-		./src/rt/utils/deg_to_rad.c ./src/rt/utils/rad_to_deg.c \
-		./src/rt/utils/calc_ray_point.c ./src/rt/utils/calc_sphere_orient.c \
-		./src/rt/utils/gen_square_vertices.c ./src/rt/utils/is_polygon_point.c \
-		./src/rt/linop.c ./src/rt/event.c ./src/rt/rayop.c \
-		./src/rt/color.c ./src/rt/light.c ./src/rt/canvas.c \
-		./src/rt/intersect.c ./src/rt/shade.c ./src/rt/render.c \
-		./src/tests.c ./src/main.c
-INCLUDES = .lib/mlx/mlx.h ./lib/libft/libft.h \
-		   ./include/canvas.h ./include/utils.h ./include/event.h \
-		   ./include/color.h ./include/linop.h ./include/rayop.h ./include/light.h \
-		   ./include/intersect.h ./include/shade.h ./include/render.h \
+
+SRCS =  src/rt/utils/calc_quad_equation.c \
+        src/rt/utils/calc_ray_point.c \
+        src/rt/utils/calc_sphere_orient.c \
+        src/rt/utils/deg_to_rad.c \
+        src/rt/utils/rad_to_deg.c \
+        src/rt/utils/swap_double.c \
+        src/rt/utils/gen_square_vertices.c \
+        src/rt/utils/alloca_to.c \
+        src/rt/utils/is_polygon_point.c \
+        src/rt/utils/calc_min_t.c \
+        src/rt/utils/calc_cylinder_min_t.c \
+        src/rt/utils/calc_triangle_orient.c \
+        src/rt/utils/calc_cylinder_orient.c \
+        src/rt/utils/calc_faceted_orient.c \
+        src/rt/utils/imax.c \
+        src/rt/utils/isdir.c \
+        src/rt/canvas.c \
+        src/rt/color.c \
+        src/rt/event.c \
+        src/rt/intersect.c \
+        src/rt/light.c \
+        src/rt/linop.c \
+        src/rt/rayop.c \
+        src/rt/render.c \
+        src/rt/shade.c \
+        src/parsing/parse.c \
+        src/parsing/errors.c \
+        src/parsing/serialize.c \
+        src/parsing/validate.c \
+        src/screenshot.c \
+        src/tests.c \
+        main.c
+		
+INCLUDES = 	./lib/mlx/mlx.h \
+			./lib/libft/libft.h \
+			./include/utils.h \
+		   	./include/canvas.h \
+		   	./include/color.h \
+			./include/event.h \
+		   	./include/intersect.h \
+			./include/linop.h \
+			./include/rayop.h \
+			./include/render.h \
+			./include/screenshot.h \
+			./include/shade.h \
+			./include/light.h \
+			./include/parsing/errors.h \
+			./include/parsing/parse.h \
+			./include/parsing/serialize.h \
+			./include/parsing/validate.h
 		   
 OBJS = $(SRCS:.c=.o)
 

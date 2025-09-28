@@ -6,17 +6,18 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:27:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/13 23:48:52 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/14 19:53:32 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "linop.h"
+#include "utils.h"
 #include <stddef.h>
 #include <stdlib.h>
 #include <math.h>
 
-static void	_set_square_vectors(t_square *square, t_vector3 *sq_vecs)
+static void	set_square_vectors(t_square *square, t_vector3 *sq_vecs)
 {
 	t_vector3	rand_vec;
 
@@ -38,9 +39,9 @@ t_vector3	*gen_square_vertices(t_square *square)
 	size_t		i;
 
 	vertices = malloc(sizeof(t_vector3) * 4);
-	if (!vertices)
+	if (!alloca_to((void**)&vertices, sizeof(t_vector3) * 4))
 		return (NULL);
-	_set_square_vectors(square, sq_vecs);
+	set_square_vectors(square, sq_vecs);
 	i = 0;
 	while (i < 4)
 	{
