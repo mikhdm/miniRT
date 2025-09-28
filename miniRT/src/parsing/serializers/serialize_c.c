@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 03:59:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 07:02:18 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/31 07:05:59 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,10 @@ static void	set_camera(t_data *data, char **strs, t_camera *cam)
 		serialize_error(ERROR_SYNTAX_CAMERA, 255, data, strs);
 	set_orient(data, strs, strs_orient, &cam);
 	str_fov = strs[3];
-	while (*str_fov)
-		if (!ft_isdigit(*str_fov++))
-			serialize_error(ERROR_INVALID_CAMERA, 255, data, strs);
-	cam->fov = ft_atoi(strs[3]);
-	if ((cam->fov < 0) || (cam->fov > 180))
+	if (!ft_isfloatable(str_fov))
+		serialize_error(ERROR_INVALID_CAMERA, 255, data, strs);
+	cam->fov = ft_atof(str_fov);
+	if (ft_flt(cam->fov, 0) || ft_fgt(cam->fov, 180))
 		serialize_error(ERROR_INVALID_CAMERA, 255, data, strs);
 }
 
