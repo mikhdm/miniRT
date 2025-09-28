@@ -1829,6 +1829,33 @@ src/rt/utils/calc_sphere_orient.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.s
 .PHONY : src/rt/utils/calc_sphere_orient.c.s
 
+src/rt/utils/calc_triangle_orient.o: src/rt/utils/calc_triangle_orient.c.o
+
+.PHONY : src/rt/utils/calc_triangle_orient.o
+
+# target to build an object file
+src/rt/utils/calc_triangle_orient.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o
+.PHONY : src/rt/utils/calc_triangle_orient.c.o
+
+src/rt/utils/calc_triangle_orient.i: src/rt/utils/calc_triangle_orient.c.i
+
+.PHONY : src/rt/utils/calc_triangle_orient.i
+
+# target to preprocess a source file
+src/rt/utils/calc_triangle_orient.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.i
+.PHONY : src/rt/utils/calc_triangle_orient.c.i
+
+src/rt/utils/calc_triangle_orient.s: src/rt/utils/calc_triangle_orient.c.s
+
+.PHONY : src/rt/utils/calc_triangle_orient.s
+
+# target to generate assembly for a file
+src/rt/utils/calc_triangle_orient.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.s
+.PHONY : src/rt/utils/calc_triangle_orient.c.s
+
 src/rt/utils/deg_to_rad.o: src/rt/utils/deg_to_rad.c.o
 
 .PHONY : src/rt/utils/deg_to_rad.o
@@ -2187,6 +2214,9 @@ help:
 	@echo "... src/rt/utils/calc_sphere_orient.o"
 	@echo "... src/rt/utils/calc_sphere_orient.i"
 	@echo "... src/rt/utils/calc_sphere_orient.s"
+	@echo "... src/rt/utils/calc_triangle_orient.o"
+	@echo "... src/rt/utils/calc_triangle_orient.i"
+	@echo "... src/rt/utils/calc_triangle_orient.s"
 	@echo "... src/rt/utils/deg_to_rad.o"
 	@echo "... src/rt/utils/deg_to_rad.i"
 	@echo "... src/rt/utils/deg_to_rad.s"

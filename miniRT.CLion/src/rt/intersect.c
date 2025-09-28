@@ -43,7 +43,7 @@ double			intersect_square(t_data *data,
 	orient = square->orient;
 	denominator = dot3(dirvec, &orient);
 	/* TODO maybe not */
-	if (denominator < 0.0) 
+	if (denominator < 0.0)
 	{
 		orient = cmultvec3(-1, &orient);
 		denominator = -denominator;
@@ -57,11 +57,24 @@ double			intersect_square(t_data *data,
 double			intersect_triangle(t_data *data,
 							t_vector3 *dirvec, t_triangle *triangle)
 {
-	/* TODO */
-	(void)data;
-	(void)dirvec;
-	(void)triangle;
-	return (1);
+	t_vector3   orient;
+	t_vector3	pl_cam_vec;
+	double		denominator;
+	double		t;
+
+	pl_cam_vec = diffvec3(&triangle->x, &data->cam->center);
+	orient = calc_triangle_orient(triangle);
+	t = INFINITY;
+	denominator = dot3(dirvec, &orient);
+	/* TODO maybe not */
+	if (denominator < 0.0)
+	{
+		orient = cmultvec3(-1, &orient);
+		denominator = -denominator;
+	}
+	if (denominator > 1e-6)
+		t = dot3(&pl_cam_vec, &orient) / denominator;
+	return (t);
 }
 
  double	intersect_sphere(t_data *data,

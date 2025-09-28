@@ -219,9 +219,22 @@ CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_cylinder_min_t.c -o CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.s
 
+CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o: CMakeFiles/miniRT.dir/flags.make
+CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o: ../src/rt/utils/calc_triangle_orient.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_triangle_orient.c
+
+CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_triangle_orient.c > CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.i
+
+CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_triangle_orient.c -o CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.s
+
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o: ../src/rt/canvas.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/miniRT.dir/src/rt/canvas.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/miniRT.dir/src/rt/canvas.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/canvas.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/canvas.c
 
 CMakeFiles/miniRT.dir/src/rt/canvas.c.i: cmake_force
@@ -234,7 +247,7 @@ CMakeFiles/miniRT.dir/src/rt/canvas.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/rt/color.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/color.c.o: ../src/rt/color.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/miniRT.dir/src/rt/color.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/miniRT.dir/src/rt/color.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/color.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/color.c
 
 CMakeFiles/miniRT.dir/src/rt/color.c.i: cmake_force
@@ -247,7 +260,7 @@ CMakeFiles/miniRT.dir/src/rt/color.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/rt/event.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/event.c.o: ../src/rt/event.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/miniRT.dir/src/rt/event.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/miniRT.dir/src/rt/event.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/event.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/event.c
 
 CMakeFiles/miniRT.dir/src/rt/event.c.i: cmake_force
@@ -260,7 +273,7 @@ CMakeFiles/miniRT.dir/src/rt/event.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/rt/intersect.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/intersect.c.o: ../src/rt/intersect.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/miniRT.dir/src/rt/intersect.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/miniRT.dir/src/rt/intersect.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/intersect.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/intersect.c
 
 CMakeFiles/miniRT.dir/src/rt/intersect.c.i: cmake_force
@@ -273,7 +286,7 @@ CMakeFiles/miniRT.dir/src/rt/intersect.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/rt/light.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/light.c.o: ../src/rt/light.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/miniRT.dir/src/rt/light.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/miniRT.dir/src/rt/light.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/light.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/light.c
 
 CMakeFiles/miniRT.dir/src/rt/light.c.i: cmake_force
@@ -286,7 +299,7 @@ CMakeFiles/miniRT.dir/src/rt/light.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/rt/linop.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/linop.c.o: ../src/rt/linop.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/miniRT.dir/src/rt/linop.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/miniRT.dir/src/rt/linop.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/linop.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/linop.c
 
 CMakeFiles/miniRT.dir/src/rt/linop.c.i: cmake_force
@@ -299,7 +312,7 @@ CMakeFiles/miniRT.dir/src/rt/linop.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o: ../src/rt/rayop.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/miniRT.dir/src/rt/rayop.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/miniRT.dir/src/rt/rayop.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/rayop.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/rayop.c
 
 CMakeFiles/miniRT.dir/src/rt/rayop.c.i: cmake_force
@@ -312,7 +325,7 @@ CMakeFiles/miniRT.dir/src/rt/rayop.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/rt/render.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/render.c.o: ../src/rt/render.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/miniRT.dir/src/rt/render.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/miniRT.dir/src/rt/render.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/render.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/render.c
 
 CMakeFiles/miniRT.dir/src/rt/render.c.i: cmake_force
@@ -325,7 +338,7 @@ CMakeFiles/miniRT.dir/src/rt/render.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/rt/shade.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/rt/shade.c.o: ../src/rt/shade.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/miniRT.dir/src/rt/shade.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/miniRT.dir/src/rt/shade.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/rt/shade.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/shade.c
 
 CMakeFiles/miniRT.dir/src/rt/shade.c.i: cmake_force
@@ -338,7 +351,7 @@ CMakeFiles/miniRT.dir/src/rt/shade.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/src/tests.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/src/tests.c.o: ../src/tests.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/miniRT.dir/src/tests.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/miniRT.dir/src/tests.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/src/tests.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/tests.c
 
 CMakeFiles/miniRT.dir/src/tests.c.i: cmake_force
@@ -351,7 +364,7 @@ CMakeFiles/miniRT.dir/src/tests.c.s: cmake_force
 
 CMakeFiles/miniRT.dir/main.c.o: CMakeFiles/miniRT.dir/flags.make
 CMakeFiles/miniRT.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/miniRT.dir/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/miniRT.dir/main.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/miniRT.dir/main.c.o -c /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/main.c
 
 CMakeFiles/miniRT.dir/main.c.i: cmake_force
@@ -375,6 +388,7 @@ miniRT_OBJECTS = \
 "CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o" \
 "CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.o" \
 "CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.o" \
+"CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o" \
 "CMakeFiles/miniRT.dir/src/rt/canvas.c.o" \
 "CMakeFiles/miniRT.dir/src/rt/color.c.o" \
 "CMakeFiles/miniRT.dir/src/rt/event.c.o" \
@@ -401,6 +415,7 @@ miniRT: CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.o
 miniRT: CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o
 miniRT: CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.o
 miniRT: CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.o
+miniRT: CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o
 miniRT: CMakeFiles/miniRT.dir/src/rt/canvas.c.o
 miniRT: CMakeFiles/miniRT.dir/src/rt/color.c.o
 miniRT: CMakeFiles/miniRT.dir/src/rt/event.c.o
@@ -415,7 +430,7 @@ miniRT: CMakeFiles/miniRT.dir/main.c.o
 miniRT: CMakeFiles/miniRT.dir/build.make
 miniRT: libft.a
 miniRT: CMakeFiles/miniRT.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking C executable miniRT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking C executable miniRT"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/miniRT.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

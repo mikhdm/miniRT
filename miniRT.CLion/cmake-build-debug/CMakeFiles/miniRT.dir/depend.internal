@@ -97,6 +97,11 @@ CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o
  ../include/utils.h
  ../lib/libft/libft.h
  /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_sphere_orient.c
+CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o
+ ../include/canvas.h
+ ../include/linop.h
+ ../lib/libft/libft.h
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_triangle_orient.c
 CMakeFiles/miniRT.dir/src/rt/utils/deg_to_rad.c.o
  /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/deg_to_rad.c
 CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o

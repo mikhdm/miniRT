@@ -22,6 +22,7 @@ add_executable(miniRT
         src/rt/utils/is_polygon_point.c
         src/rt/utils/calc_min_t.c
         src/rt/utils/calc_cylinder_min_t.c
+        src/rt/utils/calc_triangle_orient.c
         src/rt/canvas.c
         src/rt/color.c
         src/rt/event.c

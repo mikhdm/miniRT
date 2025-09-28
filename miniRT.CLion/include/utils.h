@@ -43,5 +43,6 @@ double          calc_cylinder_min_t(t_data *data,
 									t_pair_double const *values_t,
                                     t_vector3 *dirvec,
                                     t_cylinder *cylinder);
+t_vector3       calc_triangle_orient(t_triangle *triangle);
 
 #endif

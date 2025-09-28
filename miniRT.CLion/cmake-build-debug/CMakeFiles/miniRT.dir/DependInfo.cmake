@@ -20,6 +20,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_quad_equation.c" "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o"
   "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_ray_point.c" "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o"
   "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_sphere_orient.c" "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o"
+  "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_triangle_orient.c" "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o"
   "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/deg_to_rad.c" "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/deg_to_rad.c.o"
   "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/gen_square_vertices.c" "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o"
   "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/is_polygon_point.c" "/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o"

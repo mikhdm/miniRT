@@ -62,11 +62,19 @@ int	shade_square(t_data *data,
 int	shade_triangle(t_data *data,
 		t_triangle *triangle, t_vector3 *dirvec, double t)
 {
-	/* TODO */
-	(void)data;
-	(void)triangle;
-	(void)dirvec;
-	(void)t;
+	int         color;
+	t_vector3   vertices[3];
+	t_vector3   p_hit;
+	t_vector3   orient;
+
+	color = triangle->color;
+	p_hit = calc_ray_point(data, dirvec, t);
+	orient = calc_triangle_orient(triangle);
+	vertices[0] = triangle->x;
+	vertices[1] = triangle->y;
+	vertices[2] = triangle->z;
+	if (is_polygon_point(&p_hit, vertices, &orient, 3))
+		return (light(data, &p_hit, &orient, color));
 	return (COLOR_BACKGROUND);
 }
 

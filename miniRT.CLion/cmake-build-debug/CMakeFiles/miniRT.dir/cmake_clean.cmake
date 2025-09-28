@@ -15,6 +15,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/calc_triangle_orient.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/deg_to_rad.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o"

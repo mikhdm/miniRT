@@ -320,6 +320,9 @@
 		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_sphere_orient.c">
 			<Option target="miniRT"/>
 		</Unit>
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_triangle_orient.c">
+			<Option target="miniRT"/>
+		</Unit>
 		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/deg_to_rad.c">
 			<Option target="miniRT"/>
 		</Unit>

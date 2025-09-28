@@ -47,6 +47,7 @@ int main(void)
 	t_sphere		sphere2;
 	t_plane			plane;
 	t_square		square;
+	t_triangle      triangle;
 	t_cylinder      cylinder;
 	t_figure		figure1;
 	t_figure		figure2;
@@ -71,13 +72,13 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
 	
-	ambience = (t_ambience) {.intensity = 0.5, .color = 0xffff00};
+	ambience = (t_ambience) {.intensity = 0.1, .color = 0xffffff};
 	
 	light2 = (t_light) {.brightness = 1.0, .color = 0xffff00,
 					.center = (t_vector3) {.x = -2, .y = 2, .z = 10},
 					.next = NULL};
-	lights = (t_light) {.brightness = 1.0, .color = 0xff00ff,
-		.center = (t_vector3) {.x = 10, .y = 0, .z = 2},
+	lights = (t_light) {.brightness = 0.5, .color = 0xffffff,
+		.center = (t_vector3) {.x = 0, .y = 0, .z = 25},
 		.next = NULL};
 
 	(void) light2;
@@ -117,14 +118,14 @@ int main(void)
 						.orient = (t_vector3) {.x = 1/sqrt(2), .y = 1/sqrt(2), .z = 0},
 						.diameter = 3,
 						.height = 4.0};
+	triangle = (t_triangle) {
+						.color = 0xffffff,
+						.x = (t_vector3) {.x = -10, .y = 0, .z = 30},
+						.y = (t_vector3) {.x = 10, .y = 0, .z = 30},
+						.z = (t_vector3) {.x = 0, .y = 10, .z = 30}
+	};
 	
-	// figure3 = (t_figure) {.content = &sphere2, .next = &figure4, .label=LABEL_SPHERE};
-	// figure4 = (t_figure) {.content = &square, .next = NULL, .label=LABEL_SQUARE};
-	(void) figure3;
-	(void) figure4;
-	(void) labels;
-	figure1 = (t_figure) {.content = &cylinder, .next = NULL, .label=LABEL_CYLINDER};
-	// figure2 = (t_figure) {.content = &plane, .next = NULL, .label=LABEL_PLANE};
+	figure1 = (t_figure) {.content = &triangle, .next = NULL, .label=LABEL_TRIANGLE};
 	data.figures = &figure1;
 	init(&data);
 	test(&data);

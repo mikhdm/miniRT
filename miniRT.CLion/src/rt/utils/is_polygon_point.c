@@ -42,7 +42,7 @@ static short int	is_polygon_point_check(t_vector3 *cross_vecs,
 	
 	i = 0;
 	check = dot3(&cross_vecs[i++], orient);
-	if (check > 0)
+	if (check >= 0)
 	{
 		while (i < size)
 			if (dot3(&cross_vecs[i++], orient) < 0)
