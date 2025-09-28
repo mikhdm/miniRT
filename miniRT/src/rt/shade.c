@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:16:08 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/10 22:37:38 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/12 22:31:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,9 @@ int shade_cylinder(t_data *data,
 */
 
 #include "libft.h"
+#include "linop.h"
 #include <stddef.h>
 #include <stdlib.h>
-
-t_vector3 const	*gen_square_vertices(t_square *square)
-{
-	/* TODO */
-}
 
 static t_vector3	*_is_polygon_point_cross_vecs(t_vector3 *p_vertex_vecs, size_t size)
 {
