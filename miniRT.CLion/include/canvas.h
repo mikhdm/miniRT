@@ -63,6 +63,7 @@ typedef struct 		s_camera
 	double 			fov;
 	t_vector3 		center;
 	t_vector3 		orient;
+	t_viewport      *viewport;
 	struct s_camera	*next;
 }					t_camera;
 
@@ -128,7 +129,6 @@ typedef	struct s_data
 	void		*window;
 	void		*img;
 	t_screen	*screen;
-	t_viewport	*viewport;
 	t_camera	*cam;
 	t_light		*light;
 	t_ambience	*ambience;
@@ -149,7 +149,7 @@ void		putpixel(t_data *data, int x, int y, int color);
 *	calc_viewport - calculates width & height of a viewport.
 *
 */
-t_viewport	calc_viewport(t_data *data);
-t_vector3	conv_to_viewport(t_data *data, int x, int y);
+t_viewport	calc_viewport(t_data *data, t_camera *cam);
+t_vector3	conv_to_viewport(t_data *data, t_camera *cam, int x, int y);
 
 #endif

@@ -28,7 +28,7 @@ void	render(t_data *data, t_vector3 *p0, t_pair_double *range)
 		x = -data->screen->width / 2;
 		while (x < data->screen->width / 2)
 		{
-			dirvec = conv_to_viewport(data, x, y);
+			dirvec = conv_to_viewport(data, data->cam, x, y);
 			color = trace(data, p0, &dirvec, range);
 			putpixel(data, x, y, color);
 			++x;

@@ -15,23 +15,23 @@
 #include "utils.h"
 #include <math.h>
 
-t_viewport	calc_viewport(t_data *data)
+t_viewport	calc_viewport(t_data *data, t_camera *cam)
 {
 	double		fov_radian;
 	t_viewport	viewport;
 
-	fov_radian = deg_to_rad(data->cam->fov / 2);
+	fov_radian = deg_to_rad(cam->fov * pow (2, -1));
 	viewport.width = 2 * tan(fov_radian);
-	viewport.height = data->screen->height * (viewport.width / data->screen->width);
+	viewport.height = data->screen->height * (viewport.width * pow(data->screen->width, -1));
 	return (viewport);
 }
 
-t_vector3	conv_to_viewport(t_data *data, int x, int y)
+t_vector3	conv_to_viewport(t_data *data, t_camera *cam, int x, int y)
 {
 	t_vector3	dirvec;
 
-	dirvec.x = x * (data->viewport->width / data->screen->width);
-	dirvec.y = y * (data->viewport->height / data->screen->height);
+	dirvec.x = x * (cam->viewport->width * pow(data->screen->width, -1));
+	dirvec.y = y * (cam->viewport->height * pow(data->screen->height, -1));
 	dirvec.z = 1.0;
 	return (dirvec);
 }
