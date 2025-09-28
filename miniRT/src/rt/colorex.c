@@ -15,15 +15,15 @@
 
 int	addrgba(int rgba_left, int rgba_right)
 {
-    int	a;
     int	r;
     int	g;
     int	b;
+    int	a;
 
-    a = (a_component(rgba_left) + a_component(rgba_right)) / 2;
     r = (r_component(rgba_left) + r_component(rgba_right)) / 2;
     g = (g_component(rgba_left) + g_component(rgba_right)) / 2;
     b = (b_component(rgba_left) + b_component(rgba_right)) / 2;
+    a = (a_component(rgba_left) + a_component(rgba_right)) / 2;
     return (rgba_color(r, g, b, a));
 }
 
@@ -43,10 +43,10 @@ int	multrgba(int rgba_left, int rgba_right)
 
 int	cmultrgba(int rgba, double const value)
 {
-    int	a;
     int	r;
     int	g;
     int	b;
+    int	a;
 
     r = (int)(r_component(rgba) * value);
     g = (int)(g_component(rgba) * value);
@@ -71,10 +71,10 @@ int	linrgba(int rgba)
 
 int	gammrgba(int rgba)
 {
-    int	a;
     int	r;
     int	g;
     int	b;
+    int a;
 
     r = (int)(pow(r_component(rgba) / 255.0, GAMMA_REVERSE_COEF) * 255);
     g = (int)(pow(g_component(rgba) / 255.0, GAMMA_REVERSE_COEF) * 255);

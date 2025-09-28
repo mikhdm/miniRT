@@ -81,6 +81,7 @@ void	init(t_data *data, short headless)
         data->screen->height,
         data->screen->title,
         true);
+    // MLX42 library defines BPP as *bytes* per pixel as sizeof(int32_t)
     data->bpp = BPP;
     data->img = mlx_new_image(
             data->mlx,
