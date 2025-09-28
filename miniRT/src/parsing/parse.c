@@ -59,7 +59,7 @@ static t_data	*build(int const fildes)
 	t_data	*data;
 
 	data = NULL;
-	if (!alloca_to((void**)&data, sizeof(t_data)))
+	if (!alloca_to((void **)&data, sizeof(t_data)))
 	{
 		close(fildes);
 		ft_pexit(ERROR_ERRNO, errno);
