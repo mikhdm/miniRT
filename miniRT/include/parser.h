@@ -6,8 +6,11 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:53 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/03 23:49:02 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/17 01:58:26 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PARSER_H
+# define PARSER_H
 
+#endif
