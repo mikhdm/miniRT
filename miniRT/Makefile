@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/04/23 23:31:58 by rmander          ###   ########.fr        #
+#    Updated: 2021/04/24 18:22:51 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ all: $(NAME)
 
 $(NAME): mlx libft | $(OBJS)
 	mv $(MLX_DYLIB) $(DYLIB)
-	$(CC) -lmlx -L$(LIBFT_DIR) -lft -framework OpenGL -framework AppKit $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) -lmlx -L$(LIBFT_DIR) -lft -framework OpenGL -framework AppKit $(OBJS) -o $(NAME)
 
 mlx:
 	$(MAKE) -j1 -C $(MLX_DIR) all

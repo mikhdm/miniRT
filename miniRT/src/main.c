@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/23 21:38:39 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/24 18:40:30 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int main(void)
 		}
 		++x;
 	}
-	
+
 	mlx_hook(meta.window,
 		X11_DESTROY_NOTIFY, MASK_NO_EVENT, ft_hook_close, &meta);
 	mlx_hook(meta.window,
