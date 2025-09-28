@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 05:18:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/23 05:21:15 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/24 23:55:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,17 @@
 double  ft_atof(const char *str)
 {
 	long double value;
-	value = INFINITY;
 
-	/* TODO */
+	short	neg;
+
+	neg = FALSE;
+	value = 0.0;
+	while (ft_isspace(*str))
+		++str;
+	if (*str == '-')
+		neg = TRUE;
+
+
 
 	return ((double)value);
 }
