@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:22:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 21:15:27 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/27 22:44:03 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ double		hypotvec3(t_vector3 *vec);
 t_vector3	diffvec3(t_vector3 *left, t_vector3 *right);
 t_vector3	sumvec3(t_vector3 *left, t_vector3 *right);
 t_vector3	cmultvec3(double const value, t_vector3 *vector);
+t_vector3	normvec3(t_vector3 *vec);
 
 #endif 

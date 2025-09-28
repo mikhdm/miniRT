@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 17:31:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/27 03:33:17 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/27 22:44:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,12 @@ t_vector3	cmultvec3(double const value, t_vector3 *vector)
 double		hypotvec3(t_vector3 *vec)
 {
 	return (sqrt(dot3(vec, vec)));
+}
+
+t_vector3	normvec3(t_vector3 *vec)
+{
+	double	length;
+
+	length = hypotvec3(vec);
+	return (cmultvec3(pow(length, -1), vec));
 }

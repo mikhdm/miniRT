@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/27 04:49:04 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/28 00:03:24 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@
 
 #include <stdio.h>
 
+double			ft_intersect_plane(t_data *data,
+					t_vector3 *dirvec, t_plane *plane)
+{
+	t_vector3	pl_cam_vec;
+	double		denominator;
+	double		step;
+
+	step = INFINITY;
+	pl_cam_vec = diffvec3(&plane->center, &data->cam->center);
+	denominator = dot3(dirvec, &plane->orient);
+	if (denominator > 1e-6)
+		step = dot3(&pl_cam_vec, &plane->orient) / denominator;
+	return (step);
+}
+
 t_pair_double	ft_intersect_sphere(t_data *data, t_vector3 *dirvec, t_sphere *sphere)
 {
 	double			radius;
@@ -27,6 +42,7 @@ t_pair_double	ft_intersect_sphere(t_data *data, t_vector3 *dirvec, t_sphere *sph
 	t_pair_double	values;
 	
 	radius = sphere->diameter / 2;
+	// TODO try normalize sp_cam_vec
 	sp_cam_vec = diffvec3(&data->cam->center, &sphere->center);
 
 	values = calc_quad_equation(
@@ -34,6 +50,49 @@ t_pair_double	ft_intersect_sphere(t_data *data, t_vector3 *dirvec, t_sphere *sph
 			2 * dot3(dirvec, &sp_cam_vec),
 			dot3(&sp_cam_vec, &sp_cam_vec) - pow(radius, 2));
 	return (values);
+}
+
+int	ft_trace_plane(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+{
+	double			closest_step;
+	t_vector3		closest_point;
+	t_vector3		cmult_dirvec;
+	double			step;
+	short int		intersected;
+	int				color;
+
+	closest_step = INFINITY;
+	intersected = FALSE;
+	step = ft_intersect_plane(data, dirvec, data->figures->plane);
+	if (step >= steprange->first && step <= steprange->second
+		&& step < closest_step)
+	{
+		closest_step = step;
+		intersected = TRUE;
+	}
+	if (intersected == FALSE)
+		return (0x0);
+	
+	color = data->figures->plane->color;
+	cmult_dirvec = cmultvec3(closest_step, dirvec);
+	closest_point = sumvec3(&data->cam->center, &cmult_dirvec);
+
+	// TODO disk condition
+	t_vector3 plane_vec = diffvec3(&closest_point, &data->figures->plane->center);
+	double plane_vec_length = hypotvec3(&plane_vec);
+	double radius = 0.6;
+	if (plane_vec_length > radius * radius)
+		return (0x0);
+
+	double l = light(data, &closest_point, &data->figures->plane->orient);
+	printf("light: %f\n", l);
+
+	int a = a_component(color) * l;
+	int r = r_component(color) * l;
+	int g = g_component(color) * l;
+	int b = b_component(color) * l;
+	
+	return (argb_color(a, r, g, b));
 }
 
 int	ft_trace_sphere(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/27 12:41:01 by rmander          ###   ########.fr       */
+/*   Updated: 2021/04/28 00:03:23 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	ft_init(t_data *data)
 static void	ft_bind_hooks(t_data *data)
 {
 	mlx_hook(data->window,
-		X11_DESTROY_NOTIFY, MASK_NO_EVENT, ft_hook_close, &data);
+		X11_DESTROY_NOTIFY, MASK_NO_EVENT, &ft_hook_close, &data);
 	mlx_hook(data->window,
-		X11_KEY_PRESS, MASK_NO_EVENT, ft_hook_keypress, &data);
+		X11_KEY_PRESS, MASK_NO_EVENT, &ft_hook_keypress, &data);
 }
 
 static void render_sphere(t_data *data, t_pair_double *stepsrange)
@@ -65,8 +65,29 @@ static void render_sphere(t_data *data, t_pair_double *stepsrange)
 		{
 			dirvec = ft_conv_to_viewport(data, x, y);
 			color = ft_trace_sphere(data, &dirvec, stepsrange);
-			if (color < 0)
-				printf("%d\n", color);
+			ft_putpixel(data, x, y, color);
+			++x;
+		}
+		++y;
+	}
+}
+
+static void	render_plane(t_data *data, t_pair_double *stepsrange)
+{
+	int				x;
+	int				y;
+	int				color;
+	t_vector3		dirvec;
+
+	// TODO check zero inclusion due to canvas coordinate system
+	y = -data->screen->height / 2 + 1;
+	while (y < data->screen->height / 2)
+	{
+		x = -data->screen->width / 2;
+		while (x < data->screen->width / 2)
+		{
+			dirvec = ft_conv_to_viewport(data, x, y);
+			color = ft_trace_plane(data, &dirvec, stepsrange);
 			ft_putpixel(data, x, y, color);
 			++x;
 		}
@@ -140,6 +161,7 @@ int main(void)
 	t_camera		cam;
 	t_sphere		sphere;
 	t_sphere		sphere2;
+	t_plane			plane;
 	t_figure		figures;
 	t_viewport		viewport;
 	t_pair_double	stepsrange;
@@ -156,9 +178,9 @@ int main(void)
 					.addr = NULL, .bpp = 0, .length = 0, .endian = 0,
 					.screen = &screen, .cam = &cam, .viewport = NULL};
 	
-	ambience = (t_ambience) {.intensity = 0.2, .color = 0xd1d1d1};
-	lights = (t_light) {.brightness = 0.8, .color = 0xd2d2d2,
-		.center = (t_vector3) {.x = 0, .y = 0, .z = 2},
+	ambience = (t_ambience) {.intensity = 0.4, .color = 0xd1d1d1};
+	lights = (t_light) {.brightness = 0.5, .color = 0xd2d2d2,
+		.center = (t_vector3) {.x = 5, .y = 10, .z = 3},
 		.next = NULL
 	};
 
@@ -174,13 +196,20 @@ int main(void)
 						.center = (t_vector3) {.x = 0, .y = 0.5, .z = 10},
 						.next = NULL};
 
-	sphere = (t_sphere) {.color = 0xcc0000,
-						.diameter = 4,
+	sphere = (t_sphere) {.color = 0x00ee00,
+						.diameter = 5,
 						.center = (t_vector3) {.x = 0, .y = 1, .z = 10},
 						.next = &sphere2};
 
+	plane = (t_plane) {.color = 0xffff00,
+						.center = (t_vector3) {.x = 0, .y = 0, .z = 2},
+						.orient = (t_vector3) {.x = 0,
+												.y = 5/sqrt(50),
+												.z = 5/sqrt(50)},
+						.next = NULL};
+
 	figures = (t_figure) {.sphere = &sphere,
-							.plane = NULL,
+							.plane = &plane,
 							.cylinder = NULL,
 							.triangle = NULL,
 							.square = NULL};
@@ -211,8 +240,9 @@ int main(void)
 	calc_viewport_test(&data);
 	/* END TEST */
 
-	render_sphere(&data, &stepsrange);
-	
+	render_plane(&data, &stepsrange);
+	(void) render_sphere;
+
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
 	ft_bind_hooks(&data);
 	mlx_loop(data.mlx);
