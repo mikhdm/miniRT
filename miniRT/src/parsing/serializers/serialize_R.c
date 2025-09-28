@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:35:30 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 18:12:08 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/28 22:09:27 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ static void set_screen(t_data *data, char **strs, int *w, int *h)
 	screen = NULL;
 	str = NULL;
 	if (!alloca_to((void**)&screen, sizeof(t_screen)))
-		serialize_exitfree(ERROR_ERRNO, errno, data, strs);
+		serialize_error(ERROR_ERRNO, errno, data, strs);
 	strslen = ft_strslen(strs);
 	if (strslen != 2)
-		serialize_exitfree(ERROR_SYNTAX_RESOLUTION, 255, data, strs);
+		serialize_error(ERROR_SYNTAX_RESOLUTION, 255, data, strs);
 	i = 0;
 	while (i < strslen)
 	{
 		str = strs[i++];
 		while (*str)
 			if (!ft_isdigit(*str++))
-				serialize_exitfree(ERROR_SYNTAX_RESOLUTION, 255, data, strs);
+				serialize_error(ERROR_SYNTAX_RESOLUTION, 255, data, strs);
 	}
 	*w = ft_atoi(strs[0]);
 	*h = ft_atoi(strs[1]);
@@ -61,10 +61,10 @@ t_data    *serialize_R(t_data *data, char const *line)
 	mlx_get_screen_size(data->mlx, (int *)&max_w, (int *)&max_h);
 	line += ft_strlen(LABEL_RESOLUTION);
 	if (!ft_isspace(*line))
-		serialize_exitfree(ERROR_SYNTAX_RESOLUTION, 255, data, NULL);
+		serialize_error(ERROR_SYNTAX_RESOLUTION, 255, data, NULL);
 	strs = ft_splitf(line, &ft_isspace);
 	if (!strs)
-		serialize_exitfree(ERROR_ERRNO, errno, data, NULL);
+		serialize_error(ERROR_ERRNO, errno, data, NULL);
 	set_screen(data, strs, (int*)&w, (int*)&h);
 	if ((size_t)data->screen->width > max_w)
 		data->screen->width = (int)max_w;

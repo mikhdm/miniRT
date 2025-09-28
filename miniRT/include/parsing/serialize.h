@@ -18,7 +18,7 @@
 typedef t_data *(*t_serialize_func)(t_data *, char const *);
 
 t_data  *serialize(t_data *data, char *line);
-void	serialize_exitfree(int code, int status, t_data *data, char **strs);
+void	serialize_error(int code, int status, t_data *data, char **strs);
 
 t_data  *serialize_R(t_data *data, char const *line);
 t_data  *serialize_A(t_data *data, char const *line);

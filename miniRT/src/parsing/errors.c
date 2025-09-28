@@ -19,7 +19,9 @@ void    ft_perror(int code)
 						    "Incorrect cylinder line syntax",
 						    "Incorrect plane line syntax",
 						    "Incorrect triangle line syntax",
-						    "Incorrect square line syntax"};
+						    "Incorrect square line syntax",
+						    "Invalid resolution values",
+						    "Invalid ambience values"};
 	int	size;
 
 	size = sizeof(errors) / sizeof(*errors);

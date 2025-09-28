@@ -6,7 +6,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_SOURCE_DIR cmake.build)
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -L.. -lmlx -framework OpenGL -framework AppKit")
  
-include_directories(include lib/libft lib/libft/get_next_line lib/mlx)
+include_directories(include include/parsing lib/libft lib/libft/get_next_line lib/mlx)
 
 add_executable(miniRT
 src/rt/utils/calc_quad_equation.c
@@ -47,6 +47,8 @@ src/parsing/serializers/serialize_pl.c
 src/parsing/serializers/serialize_tr.c
 src/parsing/serializers/serialize_sq.c
 src/parsing/validate.c
+src/parsing/validators/valid_rgb.c
+src/parsing/validators/valid_orient.c
 src/screenshot.c
 src/tests.c
 main.c)

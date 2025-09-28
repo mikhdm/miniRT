@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#   Updated: 2021/05/23 18:28:00 by rmander          ###   ########.fr       # #
+#   Updated: 2021/05/28 20:26:04 by rmander          ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,8 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
 		src/parsing/serializers/serialize_tr.c \
 		src/parsing/serializers/serialize_sq.c \
         src/parsing/validate.c \
+        src/parsing/validators/valid_rgb.c \
+        src/parsing/validators/valid_orient.c \
         src/rt/canvas.c \
         src/rt/color.c \
         src/rt/event.c \

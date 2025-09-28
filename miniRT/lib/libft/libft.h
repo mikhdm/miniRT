@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:07:35 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/28 20:12:18 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/28 20:39:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 ssize_t				ft_max(ssize_t left, ssize_t right);
 ssize_t				ft_min(ssize_t left, ssize_t right);
+short				ft_isfloatable(const char *str);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);

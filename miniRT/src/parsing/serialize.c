@@ -37,7 +37,7 @@ t_data  *serialize(t_data *data, char *line)
 	return (data);
 }
 
-void serialize_exitfree(int code, int status, t_data *data, char **strs)
+void serialize_error(int code, int status, t_data *data, char **strs)
 {
 	if (strs)
 		ft_strsfree(strs);
