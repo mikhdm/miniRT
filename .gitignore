@@ -4,5 +4,4 @@
 compile_commands.json
 build/
 .cache/
-cmake-build-debug/
-cmake-build-debug/*
+cmake-build-debug
