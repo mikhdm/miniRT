@@ -38,6 +38,11 @@ static void	init(t_data *data)
 
 void test(t_data *data);
 
+t_data *parse()
+{
+	t_data  data;
+}
+
 int main(void)
 {
 	t_data			data;
@@ -141,6 +146,13 @@ int main(void)
 //	figure2 = (t_figure) {.content = &sphere2, .next = &figure3, .label = LABEL_SPHERE};
 	figure1 = (t_figure) {.content = &cylinder, .next = &figure5, .label=LABEL_CYLINDER};
 	data.figures = &figure1;
+
+
+
+
+	parse(path);
+
+
 	init(&data);
 	test(&data);
 	range = (t_pair_double) {.first = 1.0, .second = INFINITY};
