@@ -17,7 +17,7 @@ This is an example of scene configuration file with the description with every p
 # Resolution of the window settings: R <width> <height>
 R   800        600
 
-# Ambience lighting: A <lighting ratio> <color: RGB in [0,255] for each channel>
+# Ambience lighting: A <lighting ratio in [0.0,1.0]> <color: RGB in [0,255] for each channel>
 A   0.5        255,0,0
 
 # Camera(s): c <position coordinates: X,Y,Z> <orientation vector: X,Y,Z in [-1,1]> <horizontal FOV (field of view) in [0,180]>
