@@ -131,6 +131,7 @@ typedef	struct s_data
 	void		*mlx;
 	void		*window;
 	void		*img;
+	int         fildes;
 	t_screen	*screen;
 	t_camera	*cam;
 	t_light		*light;

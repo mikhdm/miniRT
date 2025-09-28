@@ -10,8 +10,15 @@ void    ft_perror(int code)
 						    "Screenshot param is incorrect",
 						    "Incorrect number of arguments",
 						    "Incorrect scene extension",
-						    "Incorrect resolution",
-						    "Incorrect ambient light"};
+						    "Incorrect resolution line syntax",
+						    "Incorrect ambience line syntax",
+						    "Incorrect camera line syntax",
+						    "Incorrect light line syntax",
+						    "Incorrect sphere line syntax",
+						    "Incorrect cylinder line syntax",
+						    "Incorrect plane line syntax",
+						    "Incorrect triangle line syntax",
+						    "Incorrect square line syntax"};
 	int	size;
 
 	size = sizeof(errors) / sizeof(*errors);

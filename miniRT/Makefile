@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/05/21 19:37:10 by rmander          ###   ########.fr        #
+#   Updated: 2021/05/23 18:28:00 by rmander          ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,20 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
         src/rt/utils/calc_faceted_orient.c \
         src/rt/utils/imax.c \
         src/rt/utils/isdir.c \
+        src/rt/utils/skip_spaces_str.c \
+        src/parsing/parse.c \
+        src/parsing/errors.c \
+        src/parsing/serialize.c \
+        src/parsing/serializers/serialize_R.c \
+        src/parsing/serializers/serialize_A.c \
+		src/parsing/serializers/serialize_c.c \
+		src/parsing/serializers/serialize_l.c \
+		src/parsing/serializers/serialize_sp.c \
+		src/parsing/serializers/serialize_cy.c \
+		src/parsing/serializers/serialize_pl.c \
+		src/parsing/serializers/serialize_tr.c \
+		src/parsing/serializers/serialize_sq.c \
+        src/parsing/validate.c \
         src/rt/canvas.c \
         src/rt/color.c \
         src/rt/event.c \
@@ -45,10 +59,6 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
         src/rt/rayop.c \
         src/rt/render.c \
         src/rt/shade.c \
-        src/parsing/parse.c \
-        src/parsing/errors.c \
-        src/parsing/serialize.c \
-        src/parsing/validate.c \
         src/screenshot.c \
         src/tests.c \
         main.c

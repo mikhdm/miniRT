@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:42:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/14 22:28:43 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/23 19:03:54 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ t_vector3       calc_cylinder_orient(t_cylinder *cylinder,
 t_vector3       calc_faceted_orient(t_vector3 *dirvec, t_vector3 *orient);
 ssize_t         imax(ssize_t left, ssize_t right);
 short           isdir(int fildes);
+char      *skip_spaces_str(char *str);
 
 #endif

@@ -25,6 +25,7 @@ src/rt/utils/calc_cylinder_orient.c
 src/rt/utils/calc_faceted_orient.c
 src/rt/utils/imax.c
 src/rt/utils/isdir.c
+src/rt/utils/skip_spaces_str.c
 src/rt/canvas.c
 src/rt/color.c
 src/rt/event.c
@@ -37,6 +38,15 @@ src/rt/shade.c
 src/parsing/parse.c
 src/parsing/errors.c
 src/parsing/serialize.c
+src/parsing/serializers/serialize_R.c
+src/parsing/serializers/serialize_A.c
+src/parsing/serializers/serialize_c.c
+src/parsing/serializers/serialize_l.c
+src/parsing/serializers/serialize_sp.c
+src/parsing/serializers/serialize_cy.c
+src/parsing/serializers/serialize_pl.c
+src/parsing/serializers/serialize_tr.c
+src/parsing/serializers/serialize_sq.c
 src/parsing/validate.c
 src/screenshot.c
 src/tests.c
@@ -76,6 +86,7 @@ lib/libft/ft_putendl_fd.c
 lib/libft/ft_putnbr_fd.c
 lib/libft/ft_putstr_fd.c
 lib/libft/ft_split.c
+lib/libft/ft_splita.c
 lib/libft/ft_strchr.c
 lib/libft/ft_strdup.c
 lib/libft/ft_strjoin.c

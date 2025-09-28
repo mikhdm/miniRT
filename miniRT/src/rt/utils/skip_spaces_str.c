@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   skip_spaces_str.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/23 16:04:42 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/23 16:04:42 by rmander          ###   ########.fr       */
+/*   Created: 2021/05/23 19:02:45 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/23 19:03:34 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+char *skip_spaces_str(char *str)
 {
-	if (c == '\t'
-		|| c == '\n'
-		|| c == '\v'
-		|| c == '\f'
-		|| c == '\r'
-		|| c == ' ')
-		return (TRUE);
-	return (FALSE);
+	while (*str && ft_isspace(*str))
+		++str;
+	return (str);
 }
