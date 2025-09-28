@@ -22,7 +22,7 @@ t_data  *serialize(t_data *data, char *line)
 	const char *label[] = {LABEL_RESOLUTION, LABEL_AMBIENCE, LABEL_CAMERA,
 						   LABEL_LIGHT, LABEL_SPHERE, LABEL_CYLINDER,
 						   LABEL_PLANE, LABEL_TRIANGLE, LABEL_SQUARE};
-	const t_serialize_func func[] = {&serialize_R, &serialize_A, &serialize_c,
+	const t_serialize_func func[] = {&serialize_r, &serialize_a, &serialize_c,
 								  &serialize_l, &serialize_sp, &serialize_cy,
 								  &serialize_pl, &serialize_tr, &serialize_sq};
 
