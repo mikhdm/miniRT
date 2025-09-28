@@ -68,6 +68,7 @@ SRCS =  src/rt/utils/calc_quad_equation.c \
         src/rt/intersect.c \
         src/rt/light.c \
         src/rt/linop.c \
+        src/rt/linopex.c \
         src/rt/rayop.c \
         src/rt/render.c \
         src/rt/shade.c \
