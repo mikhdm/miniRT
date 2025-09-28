@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:42:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/12 22:31:21 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/12 23:23:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_vector3		calc_sphere_orient(t_vector3 *point, t_sphere *sphere);
 t_vector3		calc_ray_point(t_data *data, t_vector3 *dirvec, double t);
 t_vector3		gen_square_vertices(t_square *square);
 double			deg_to_rad(double deg);
+short int		is_polygon_point(t_vector3 *p_hit,
+					t_vector3 *vertices, t_vector3 *orient, size_t size);
 
 // TODO check for nessecity
 double			rad_to_deg(double rad);

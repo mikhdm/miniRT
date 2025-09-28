@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 18:01:38 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/09 18:21:45 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/12 23:19:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,24 @@ static void	test_calc_viewport(t_data *data)
 	printf("projection plane width = %f, height = %f\n", viewport.width, viewport.height);
 }
 
+static void	test_gen_square_vertices(t_square *square)
+{
+	t_vector3 vertices[4];
+	vertices = gen_square_vertices(square);
+
+	printf("P1: (%f, %f, %f), P2: (%f, %f, %f), P3: (%f, %f, %f), P4: (%f, %f, %f)",
+			vertices[0].x, vertices[0].y, vertices[0].z,
+			vertices[1].x, vertices[1].y, vertices[1].z,
+			vertices[2].x, vertices[2].y, vertices[2].z,
+			vertices[3].x, vertices[3].y, vertices[3].z
+	);
+}
+
 void test(t_data *data)
 {
 	test_linop();
 	test_quad_equation();
 	test_deg_to_rad();
 	test_calc_viewport(data);
+	test_gen_square_vertices(t_square *square);
 }

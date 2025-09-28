@@ -22,4 +22,5 @@ add_executable(miniRT
 	src/rt/utils/calc_ray_point.c
 	src/rt/utils/calc_sphere_orient.c
 	src/rt/utils/deg_to_rad.c
-	src/rt/utils/gen_square_vertices.c)
+	src/rt/utils/gen_square_vertices.c
+	src/rt/utils/is_polygon_point.c)
