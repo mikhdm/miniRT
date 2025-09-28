@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 04:00:25 by rmander           #+#    #+#             */
-/*   Updated: 2021/06/01 20:14:30 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/01 21:15:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "parsing/errors.h"
 #include "parsing/serialize.h"
+#include <math.h>
 #include <errno.h>
 
 static void	set_orient(t_data *data, char **strs, char **strs_orient,
@@ -76,7 +77,9 @@ static void set_cylinder(t_data *data, char **strs, t_cylinder *cylinder)
 		serialize_error(ERROR_SYNTAX_CYLINDER, 255, data, strs);
 	cylinder->diameter = ft_atof(strs[3]);
 	cylinder->height = ft_atof(strs[4]);
-	if (ft_flt(cylinder->diameter, 0) || ft_flt(cylinder->height, 0))
+	if (ft_flt(cylinder->diameter, 0) || ft_flt(cylinder->height, 0)
+		|| isinf(cylinder->diameter) || isnan(cylinder->diameter)
+		|| isinf(cylinder->height) || isinf(cylinder->height))
 		serialize_error(ERROR_INVALID_CYLINDER, 255, data, strs);
 	strs_rgb = ft_split_any(strs[5], ',');
 	if (!strs_rgb)
@@ -97,7 +100,7 @@ t_data  *serialize_cy(t_data *data, char const *line, char **strs)
 		serialize_error(ERROR_SYNTAX_CYLINDER, 255, data, strs);
 	cylinder = NULL;
 	if (!(alloca_to((void **)&cylinder, sizeof(t_cylinder))))
-		serialize_error(ERROR_ERRNO, 255, data, strs);
+		serialize_error(ERROR_ERRNO, errno, data, strs);
 	set_cylinder(data, strs, cylinder);
 	return (data);
 }

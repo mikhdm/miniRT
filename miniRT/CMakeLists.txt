@@ -51,6 +51,7 @@ src/parsing/serializers/helpers/serialize_orient.c
 src/parsing/serializers/helpers/serialize_rgb.c
 src/parsing/serializers/helpers/lst_figure_append.c
 src/parsing/serializers/helpers/serialize_cy_rgb.c
+src/parsing/serializers/helpers/serialize_sq_rgb.c
 src/parsing/validate.c
 src/parsing/validators/valid_rgb.c
 src/parsing/validators/valid_orient.c

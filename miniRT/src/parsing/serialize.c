@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:28:45 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/31 06:28:25 by rmander          ###   ########.fr       */
+/*   Updated: 2021/06/01 21:55:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,26 @@
 static t_data	*loop(t_data *data, char *line,
 					const char **label, const t_serialize_func func[])
 {
-	size_t  i;
 	short 	set;
 	char	**strs;
 
-	i = 0;
 	strs = NULL;
 	set = FALSE;
-	while (i < sizeof(label) && !set)
+	while (*label && !set)
 	{
 		if (*line)
 			strs = ft_splitf(line, &ft_isspace);
 		if (!strs)
 			ft_pexitfree(ERROR_ERRNO, errno, data);
-		if (ft_strcmp(strs[0], label[i]) == 0)
+		if (ft_strcmp(strs[0], *label) == 0)
 		{
-			data = (*func[i])(data, line, strs);
+			data = (*func)(data, line, strs);
 			set = TRUE;
 		}
 		ft_strsfree(strs);
 		strs = NULL;
-		++i;
+		++label;
+		++func;
 	}
 	return (data);
 }
