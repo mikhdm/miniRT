@@ -29,7 +29,7 @@ static void	lst_cam_append(t_camera **head, t_camera *new)
 	else
 	{
 		while ((*curr)->next)
-			curr = &((*head)->next);
+			curr = &((*curr)->next);
 		(*curr)->next = new;
 	}
 }

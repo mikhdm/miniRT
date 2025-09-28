@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/31 23:44:54 by rmander           #+#    #+#             */
+/*   Updated: 2021/05/31 23:47:06 by rmander          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "canvas.h"
 #include "utils.h"
 #include "parsing/errors.h"
@@ -19,13 +31,34 @@ static t_data	*initialize(t_data *data)
 	return (data);
 }
 
+static t_data	*populate(t_data *data)
+{
+	char	*line;
+	char	*start;
+
+	line = NULL;
+	start = NULL;
+	while (get_next_line(data->fildes, &line) != SIG_EOF)
+	{
+		start = skip_spaces_str(line);
+		if (*start)
+			data = serialize(data, start);
+		free(line);
+		line = NULL;
+		start = NULL;
+	}
+	free(line);
+	line = NULL;
+	start = NULL;
+	close(data->fildes);
+	return (data);
+}
+
 static t_data	*build(int const fildes)
 {
 	t_data	*data;
-	char	*line;
 
 	data = NULL;
-	line = NULL;
 	if (!alloca_to((void**)&data, sizeof(t_data)))
 	{
 		close(fildes);
@@ -33,18 +66,7 @@ static t_data	*build(int const fildes)
 	}
 	data = initialize(data);
 	data->fildes = fildes;
-	while (get_next_line(fildes, &line) != SIG_EOF)
-	{
-		line = skip_spaces_str(line);
-		if (!line)
-			continue ;
-		data = serialize(data, line);
-		free(line);
-		line = NULL;
-	}
-	free(line);
-	line = NULL;
-	close(fildes);
+	data = populate(data);
 
 	/* TODO post validation */
 
