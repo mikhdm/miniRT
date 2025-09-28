@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:28:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/10 22:37:36 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/13 23:38:10 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,14 @@ double	intersect_sphere(t_data *data,
 	t_vector3		sp_cam_vec;
 	t_pair_double	values;
 	
-	t = INFINITY;
 	radius = sphere->diameter / 2;
 	sp_cam_vec = diffvec3(&data->cam->center, &sphere->center);
 	values = calc_quad_equation(
 			dot3(dirvec, dirvec),
 			2 * dot3(dirvec, &sp_cam_vec),
 			dot3(&sp_cam_vec, &sp_cam_vec) - pow(radius, 2));
-	t = fmin(values.first, values.second);
 	if (values.first > values.second)
-		ft_swap_double(&values.first, &values.second);
+		swap_double(&values.first, &values.second);
 	if (values.first < 0)
 		values.first = values.second;
 		if (values.first < 0)

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:42:14 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/12 23:23:18 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/13 23:39:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ typedef struct s_pair_double_int
 t_pair_double	calc_quad_equation(double a, double b, double c);
 t_vector3		calc_sphere_orient(t_vector3 *point, t_sphere *sphere);
 t_vector3		calc_ray_point(t_data *data, t_vector3 *dirvec, double t);
-t_vector3		gen_square_vertices(t_square *square);
+t_vector3		*gen_square_vertices(t_square *square);
 double			deg_to_rad(double deg);
 short int		is_polygon_point(t_vector3 *p_hit,
 					t_vector3 *vertices, t_vector3 *orient, size_t size);
 
 // TODO check for nessecity
 double			rad_to_deg(double rad);
-void			ft_swap_double(double *left, double *right);
+void			swap_double(double *left, double *right);
 
 #endif

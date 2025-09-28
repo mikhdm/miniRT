@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/04 03:29:07 by rmander           #+#    #+#              #
-#    Updated: 2021/04/27 03:58:55 by rmander          ###   ########.fr        #
+#    Updated: 2021/05/13 23:48:08 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,16 +18,19 @@ MLX_DIR = ./lib/mlx
 LIBFT_DIR = ./lib/libft
 MLX_DYLIB = ./lib/mlx/libmlx.dylib 
 DYLIB = ./libmlx.dylib
-SRCS =  ./src/rt/utils/calc_quad_equation.c ./src/rt/utils/ft_swap_double.c \
+SRCS =  ./src/rt/utils/calc_quad_equation.c ./src/rt/utils/swap_double.c \
 		./src/rt/utils/deg_to_rad.c ./src/rt/utils/rad_to_deg.c \
-		./src/rt/utils/calc_sphere_orient.c \
+		./src/rt/utils/calc_ray_point.c ./src/rt/utils/calc_sphere_orient.c \
+		./src/rt/utils/gen_square_vertices.c ./src/rt/utils/is_polygon_point.c \
 		./src/rt/linop.c ./src/rt/event.c ./src/rt/rayop.c \
 		./src/rt/color.c ./src/rt/light.c ./src/rt/canvas.c \
-		./src/main.c
-INCLUDES = ./mlx/mlx.h \
+		./src/rt/intersect.c ./src/rt/shade.c ./src/rt/render.c \
+		./src/tests.c ./src/main.c
+INCLUDES = .lib/mlx/mlx.h ./lib/libft/libft.h \
 		   ./include/canvas.h ./include/utils.h ./include/event.h \
-		   ./include/linop.h ./include/rayop.h \
-		   ./include/light.h ./include/color.h
+		   ./include/color.h ./include/linop.h ./include/rayop.h ./include/light.h \
+		   ./include/intersect.h ./include/shade.h ./include/render.h \
+		   
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

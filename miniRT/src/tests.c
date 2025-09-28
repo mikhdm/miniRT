@@ -6,13 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 18:01:38 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/12 23:19:07 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/13 23:48:43 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "linop.h"
 #include "utils.h"
+#include <stdio.h>
 
 static void	test_linop(void)
 {
@@ -76,8 +77,13 @@ static void	test_calc_viewport(t_data *data)
 
 static void	test_gen_square_vertices(t_square *square)
 {
-	t_vector3 vertices[4];
+	t_vector3 *vertices;
+	t_vector3 vec[4];
 	vertices = gen_square_vertices(square);
+
+	printf("square: size: %f, orient: (%f, %f, %f), center: (%f, %f, %f) \n",
+			square->size, square->orient.x, square->orient.y, square->orient.z,
+			square->center.x, square->center.y, square->center.z);
 
 	printf("P1: (%f, %f, %f), P2: (%f, %f, %f), P3: (%f, %f, %f), P4: (%f, %f, %f)",
 			vertices[0].x, vertices[0].y, vertices[0].z,
@@ -85,13 +91,35 @@ static void	test_gen_square_vertices(t_square *square)
 			vertices[2].x, vertices[2].y, vertices[2].z,
 			vertices[3].x, vertices[3].y, vertices[3].z
 	);
+
+	vec[0] = diffvec3(&vertices[1], &vertices[0]);
+	vec[1] = diffvec3(&vertices[2], &vertices[1]);
+	vec[2] = diffvec3(&vertices[3], &vertices[2]);
+	vec[3] = diffvec3(&vertices[0], &vertices[3]);
+	printf("|| P2 - P1 || = %f, || P3 - P2 || = %f, || P4 - P3 || = %f, || P1 - P4 || = %f", 
+			hypotvec3(&vec[0]),
+			hypotvec3(&vec[1]),
+			hypotvec3(&vec[2]),
+			hypotvec3(&vec[3]));
 }
+
 
 void test(t_data *data)
 {
+	/* LOG */
+	printf("bpp: %d;\nline length: %d;\nendian: %d;\n",
+		data->bpp, data->length, data->endian); 
+	/* END LOG */
+
+	t_square square = {.center = (t_vector3) {.x = 0, .y = 0, .z = 3},
+						.color = 0xff0000,
+						.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
+						.label = LABEL_SQUARE,
+						.size = 10.0};
+
 	test_linop();
 	test_quad_equation();
 	test_deg_to_rad();
 	test_calc_viewport(data);
-	test_gen_square_vertices(t_square *square);
+	test_gen_square_vertices(&square);
 }

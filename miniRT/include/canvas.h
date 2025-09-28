@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:48:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/06 20:58:25 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/13 23:48:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@
 
 # define COLOR_BACKGROUND 0x0
 
-# define LABEL_SPHERE	"sp" 
-# define LABEL_PLANE	"pl"
-# define LABEL_SQUARE	"sq"
-# define LABEL_CYLINDER	"cy"
-# define LABEL_TRIANGLE	"tr"
+# define LABEL_SPHERE		"sp"
+# define LABEL_PLANE		"pl"
+# define LABEL_SQUARE		"sq"
+# define LABEL_CYLINDER		"cy"
+# define LABEL_TRIANGLE		"tr"
+# define LABEL_LIGHT		"l"
+# define LABEL_CAMERA		"c"
+# define LABEL_AMBIENCE		"A"
+# define LABEL_RESOLUTION	"R"
+
+# define NUM_LABELS		9
 
 typedef struct		s_screen
 {
@@ -108,6 +114,7 @@ typedef	struct s_data
 	void		*mlx;
 	void		*window;
 	void		*img;
+	char const	**labels;
 	t_screen	*screen;
 	t_viewport	*viewport;
 	t_camera	*cam;

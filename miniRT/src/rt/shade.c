@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:16:08 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/12 23:27:13 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/13 23:48:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ int	shade_sphere(t_data *data,
 {
 	int	color;
 	t_vector3	p_hit;
-
+	t_vector3	orient;
+	
+	color = sphere->color;
 	p_hit = calc_ray_point(data, dirvec, t);
 	orient = calc_sphere_orient(&p_hit, sphere);
-	color = light(data, &p_hit, &orient, sphere->color);
-	return (color);
+	return (light(data, &p_hit, &orient, color));
 }
 
 int shade_plane(t_data *data,
@@ -32,10 +33,10 @@ int shade_plane(t_data *data,
 {
 	int			color;
 	t_vector3	p_hit;
-
+	
+	color = plane->color;
 	p_hit = calc_ray_point(data, dirvec, t);
-	color = light(data, &p_hit, &plane->orient, color);
-	return (color);
+	return (light(data, &p_hit, &plane->orient, color));
 }
 
 int	shade_square(t_data *data,
@@ -43,7 +44,7 @@ int	shade_square(t_data *data,
 {
 	int	color;
 	t_vector3	p_hit;
-	t_vector3	vertices[4];
+	t_vector3	*vertices;
 
 	color = square->color; 
 	p_hit = calc_ray_point(data, dirvec, t);
@@ -74,5 +75,5 @@ int shade_cylinder(t_data *data,
 	(void)cylinder;
 	(void)dirvec;
 	(void)t;
-	return (0x0);
+	return (COLOR_BACKGROUND);
 }

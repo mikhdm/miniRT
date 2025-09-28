@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/12 23:23:12 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/13 23:48:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,15 @@ int main(void)
 	t_figure		figure2;
 	t_figure		figure3;
 	t_viewport		viewport;
-	t_pair_double	stepsrange;
+	t_pair_double	range;
 	t_light			lights;
 	t_light			light2;
 	t_ambience		ambience;
+	const char		*labels[NUM_LABELS + 1] = {LABEL_SPHERE, LABEL_PLANE, LABEL_SQUARE, LABEL_CYLINDER,
+													LABEL_TRIANGLE, LABEL_CAMERA, LABEL_LIGHT, LABEL_LIGHT
+													LABEL_AMBIENCE, NULL};
+
+	(void)labels;
 	
 	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
 
@@ -116,16 +121,12 @@ int main(void)
 	
 	figure3 = (t_figure) {.content = &sphere2, .next = NULL};
 	figure2 = (t_figure) {.content = &plane, .next = &figure3};
-	figure1 = (t_figure) {.content = &sphere, .next = &figure2};
+	(void)figure2;
+	figure1 = (t_figure) {.content = &sphere, .next = NULL};
 
-	data.figures = &figures;
+	data.figures = &figure1;
 
 	init(&data);
-	
-	/* LOG */
-	printf("bpp: %d;\nline length: %d;\nendian: %d;\n",
-		data.bpp, data.length, data.endian); 
-	/* END LOG */
 	test(&data);
 
 	range = (t_pair_double) {.first = 1.0, .second = INFINITY};
