@@ -39,5 +39,9 @@ double			rad_to_deg(double rad);
 void			swap_double(double *left, double *right);
 short int       alloca_to(void **ptr, size_t size);
 double          calc_min_t(t_pair_double values);
+double          calc_cylinder_min_t(t_data *data,
+									t_pair_double const *values_t,
+                                    t_vector3 *dirvec,
+                                    t_cylinder *cylinder);
 
 #endif

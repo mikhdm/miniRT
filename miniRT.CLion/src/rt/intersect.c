@@ -94,29 +94,5 @@ double  intersect_cylinder(t_data *data,
 	2 * (dot3(&co, dirvec) -
 			dot3(dirvec, &cylinder->orient) * dot3(&co, &cylinder->orient)),
 	dot3(&co, &co) - pow(dot3(&co, &cylinder->orient), 2.0) - pow(radius, 2.0));
-
-	t_vector3 p_hit;
-	double t_hit;
-	t_vector3 axis_vec;
-	t_vector3 p_hit_vec;
-	double p_hit_proj_len;
-
-	p_hit_proj_len = INFINITY;
-	t_hit = INFINITY;
-	if (isinf(values_t.first) && isinf(values_t.second))
-		return (INFINITY);
-	else if (!isinf(values_t.first) && isinf(values_t.second))
-		t_hit = values_t.first;
-	else if (isinf(values_t.first) && !isinf(values_t.second))
-		t_hit = values_t.second;
-	else if (!isinf(values_t.first) && !isinf(values_t.second))
-		t_hit = fmin(values_t.first, values_t.second);
-
-	p_hit = calc_ray_point(data, dirvec, t_hit);
-	p_hit_vec = diffvec3(&p_hit, &cylinder->center);
-	axis_vec = cmultvec3(cylinder->height, &cylinder->orient);
-	p_hit_proj_len = dot3(&p_hit_vec, &axis_vec) / cylinder->height;
-	if (p_hit_proj_len >= -1 && p_hit_proj_len <= 1)
-		return (t_hit);
-	return (INFINITY);
+	return (calc_cylinder_min_t(data, &values_t, dirvec, cylinder));
 }

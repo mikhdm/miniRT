@@ -61,7 +61,7 @@ int main(void)
 													LABEL_TRIANGLE, LABEL_CAMERA, LABEL_LIGHT, LABEL_LIGHT,
 													LABEL_AMBIENCE, NULL};
 
-	screen = (t_screen) {.width = 1280, .height = 1024, .title = "miniRT"};
+	screen = (t_screen) {.width = 800, .height = 600, .title = "miniRT"};
 
 	cam = (t_camera) {.center = (t_vector3) {.x = .0, .y = .0, .z = 0.0},
 					.orient = (t_vector3) {.x = 0, .y = 0, .z = 1},
@@ -114,9 +114,9 @@ int main(void)
 	cylinder = (t_cylinder) {
 						.color = 0xcc0000,
 						.center = (t_vector3) {.x = 0, .y = 0, .z = 10},
-						.orient = (t_vector3) {.x = 0, .y = 1, .z = 0},
+						.orient = (t_vector3) {.x = 1/sqrt(2), .y = 1/sqrt(2), .z = 0},
 						.diameter = 3,
-						.height = 10.0};
+						.height = 4.0};
 	
 	// figure3 = (t_figure) {.content = &sphere2, .next = &figure4, .label=LABEL_SPHERE};
 	// figure4 = (t_figure) {.content = &square, .next = NULL, .label=LABEL_SQUARE};

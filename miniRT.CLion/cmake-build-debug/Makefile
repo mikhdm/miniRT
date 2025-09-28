@@ -67,10 +67,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/rmander/Desktop/miniRT
+CMAKE_SOURCE_DIR = /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/rmander/Desktop/miniRT/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles /Users/rmander/Desktop/miniRT/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmander/Desktop/miniRT/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -1694,6 +1694,33 @@ src/rt/utils/alloca_to.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.s
 .PHONY : src/rt/utils/alloca_to.c.s
 
+src/rt/utils/calc_cylinder_min_t.o: src/rt/utils/calc_cylinder_min_t.c.o
+
+.PHONY : src/rt/utils/calc_cylinder_min_t.o
+
+# target to build an object file
+src/rt/utils/calc_cylinder_min_t.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.o
+.PHONY : src/rt/utils/calc_cylinder_min_t.c.o
+
+src/rt/utils/calc_cylinder_min_t.i: src/rt/utils/calc_cylinder_min_t.c.i
+
+.PHONY : src/rt/utils/calc_cylinder_min_t.i
+
+# target to preprocess a source file
+src/rt/utils/calc_cylinder_min_t.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.i
+.PHONY : src/rt/utils/calc_cylinder_min_t.c.i
+
+src/rt/utils/calc_cylinder_min_t.s: src/rt/utils/calc_cylinder_min_t.c.s
+
+.PHONY : src/rt/utils/calc_cylinder_min_t.s
+
+# target to generate assembly for a file
+src/rt/utils/calc_cylinder_min_t.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniRT.dir/build.make CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.s
+.PHONY : src/rt/utils/calc_cylinder_min_t.c.s
+
 src/rt/utils/calc_min_t.o: src/rt/utils/calc_min_t.c.o
 
 .PHONY : src/rt/utils/calc_min_t.o
@@ -2145,6 +2172,9 @@ help:
 	@echo "... src/rt/utils/alloca_to.o"
 	@echo "... src/rt/utils/alloca_to.i"
 	@echo "... src/rt/utils/alloca_to.s"
+	@echo "... src/rt/utils/calc_cylinder_min_t.o"
+	@echo "... src/rt/utils/calc_cylinder_min_t.i"
+	@echo "... src/rt/utils/calc_cylinder_min_t.s"
 	@echo "... src/rt/utils/calc_min_t.o"
 	@echo "... src/rt/utils/calc_min_t.i"
 	@echo "... src/rt/utils/calc_min_t.s"

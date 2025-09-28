@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/miniRT.dir/src/rt/render.c.o"
   "CMakeFiles/miniRT.dir/src/rt/shade.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.o"
+  "CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o"
   "CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o"

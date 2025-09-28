@@ -8,334 +8,337 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/rmander/Desktop/miniRT/cmake-build-debug"/>
+				<Option working_dir="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/rmander/Desktop/miniRT/cmake-build-debug"/>
+				<Option working_dir="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/rmander/Desktop/miniRT/cmake-build-debug"/>
+				<Option working_dir="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ft">
-				<Option output="/Users/rmander/Desktop/miniRT/cmake-build-debug/libft.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/rmander/Desktop/miniRT/cmake-build-debug"/>
+				<Option output="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/libft.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/rmander/Desktop/miniRT/include"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/libft"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/mlx"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/libft/get_next_line"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/include"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/mlx"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/get_next_line"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ft/fast">
-				<Option output="/Users/rmander/Desktop/miniRT/cmake-build-debug/libft.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/rmander/Desktop/miniRT/cmake-build-debug"/>
+				<Option output="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/libft.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/rmander/Desktop/miniRT/include"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/libft"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/mlx"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/libft/get_next_line"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/include"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/mlx"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/get_next_line"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="miniRT">
-				<Option output="/Users/rmander/Desktop/miniRT/cmake-build-debug/miniRT" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/rmander/Desktop/miniRT/cmake-build-debug"/>
+				<Option output="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/miniRT" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/rmander/Desktop/miniRT/include"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/libft"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/mlx"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/libft/get_next_line"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/include"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/mlx"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/get_next_line"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 miniRT"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 miniRT"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="miniRT/fast">
-				<Option output="/Users/rmander/Desktop/miniRT/cmake-build-debug/miniRT" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/rmander/Desktop/miniRT/cmake-build-debug"/>
+				<Option output="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/miniRT" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/rmander/Desktop/miniRT/include"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/libft"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/mlx"/>
-					<Add directory="/Users/rmander/Desktop/miniRT/lib/libft/get_next_line"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/include"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/mlx"/>
+					<Add directory="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/get_next_line"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 miniRT/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rmander/Desktop/miniRT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 miniRT/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_atoi.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_atoi.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_bzero.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_bzero.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_calloc.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_calloc.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_isalnum.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_isalnum.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_isalpha.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_isalpha.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_isascii.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_isascii.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_isdigit.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_isdigit.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_islower.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_islower.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_isprint.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_isprint.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_isspace.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_isspace.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_isupper.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_isupper.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_itoa.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_itoa.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstadd_back.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstadd_back.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstadd_front.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstadd_front.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstclear.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstclear.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstdelone.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstdelone.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstiter.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstiter.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstlast.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstlast.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstmap.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstmap.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstnew.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstnew.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_lstsize.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_lstsize.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_memccpy.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_memccpy.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_memchr.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_memchr.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_memcmp.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_memcmp.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_memcpy.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_memcpy.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_memmove.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_memmove.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_memset.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_memset.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_putchar_fd.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_putchar_fd.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_putendl_fd.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_putendl_fd.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_putnbr_fd.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_putnbr_fd.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_putstr_fd.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_putstr_fd.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_split.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_split.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strchr.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strchr.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strdup.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strdup.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strjoin.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strjoin.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strlcat.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strlcat.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strlcpy.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strlcpy.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strlen.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strlen.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strmapi.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strmapi.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strncmp.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strncmp.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strnstr.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strnstr.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strrchr.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strrchr.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_strtrim.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_strtrim.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_substr.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_substr.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_tolower.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_tolower.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/lib/libft/ft_toupper.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/lib/libft/ft_toupper.c">
 			<Option target="ft"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/main.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/main.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/canvas.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/canvas.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/color.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/color.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/event.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/event.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/intersect.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/intersect.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/light.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/light.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/linop.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/linop.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/rayop.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/rayop.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/render.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/render.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/shade.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/shade.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/alloca_to.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/alloca_to.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/calc_min_t.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_cylinder_min_t.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/calc_quad_equation.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_min_t.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/calc_ray_point.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_quad_equation.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/calc_sphere_orient.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_ray_point.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/deg_to_rad.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_sphere_orient.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/gen_square_vertices.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/deg_to_rad.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/is_polygon_point.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/gen_square_vertices.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/rad_to_deg.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/is_polygon_point.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/rt/utils/swap_double.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/rad_to_deg.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/src/tests.c">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/swap_double.c">
 			<Option target="miniRT"/>
 		</Unit>
-		<Unit filename="/Users/rmander/Desktop/miniRT/CMakeLists.txt">
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/tests.c">
+			<Option target="miniRT"/>
+		</Unit>
+		<Unit filename="/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

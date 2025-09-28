@@ -73,9 +73,5 @@ int	shade_triangle(t_data *data,
 int shade_cylinder(t_data *data,
 		t_cylinder *cylinder, t_vector3 *dirvec, double t)
 {
-	/* TODO */
-	(void)data;
-	(void)dirvec;
-	(void)t;
 	return (cylinder->color);
 }

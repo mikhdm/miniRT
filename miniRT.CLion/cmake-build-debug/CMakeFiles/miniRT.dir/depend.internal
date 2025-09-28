@@ -9,39 +9,39 @@ CMakeFiles/miniRT.dir/main.c.o
  ../include/utils.h
  ../lib/libft/libft.h
  ../lib/mlx/mlx.h
- /Users/rmander/Desktop/miniRT/main.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/main.c
 CMakeFiles/miniRT.dir/src/rt/canvas.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/canvas.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/canvas.c
 CMakeFiles/miniRT.dir/src/rt/color.c.o
  ../include/color.h
- /Users/rmander/Desktop/miniRT/src/rt/color.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/color.c
 CMakeFiles/miniRT.dir/src/rt/event.c.o
  ../include/canvas.h
  ../include/event.h
  ../include/linop.h
  ../lib/libft/libft.h
  ../lib/mlx/mlx.h
- /Users/rmander/Desktop/miniRT/src/rt/event.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/event.c
 CMakeFiles/miniRT.dir/src/rt/intersect.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/intersect.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/intersect.c
 CMakeFiles/miniRT.dir/src/rt/light.c.o
  ../include/canvas.h
  ../include/color.h
  ../include/linop.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/light.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/light.c
 CMakeFiles/miniRT.dir/src/rt/linop.c.o
  ../include/linop.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/linop.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/linop.c
 CMakeFiles/miniRT.dir/src/rt/rayop.c.o
  ../include/canvas.h
  ../include/intersect.h
@@ -49,70 +49,76 @@ CMakeFiles/miniRT.dir/src/rt/rayop.c.o
  ../include/shade.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/rayop.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/rayop.c
 CMakeFiles/miniRT.dir/src/rt/render.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/rayop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/render.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/render.c
 CMakeFiles/miniRT.dir/src/rt/shade.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/rayop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/shade.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/shade.c
 CMakeFiles/miniRT.dir/src/rt/utils/alloca_to.c.o
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/utils/alloca_to.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/alloca_to.c
+CMakeFiles/miniRT.dir/src/rt/utils/calc_cylinder_min_t.c.o
+ ../include/canvas.h
+ ../include/linop.h
+ ../include/utils.h
+ ../lib/libft/libft.h
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_cylinder_min_t.c
 CMakeFiles/miniRT.dir/src/rt/utils/calc_min_t.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/utils/calc_min_t.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_min_t.c
 CMakeFiles/miniRT.dir/src/rt/utils/calc_quad_equation.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/utils/calc_quad_equation.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_quad_equation.c
 CMakeFiles/miniRT.dir/src/rt/utils/calc_ray_point.c.o
  ../include/canvas.h
  ../include/linop.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/utils/calc_ray_point.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_ray_point.c
 CMakeFiles/miniRT.dir/src/rt/utils/calc_sphere_orient.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/rayop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/utils/calc_sphere_orient.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/calc_sphere_orient.c
 CMakeFiles/miniRT.dir/src/rt/utils/deg_to_rad.c.o
- /Users/rmander/Desktop/miniRT/src/rt/utils/deg_to_rad.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/deg_to_rad.c
 CMakeFiles/miniRT.dir/src/rt/utils/gen_square_vertices.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/utils/gen_square_vertices.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/gen_square_vertices.c
 CMakeFiles/miniRT.dir/src/rt/utils/is_polygon_point.c.o
  ../include/canvas.h
  ../include/linop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/rt/utils/is_polygon_point.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/is_polygon_point.c
 CMakeFiles/miniRT.dir/src/rt/utils/rad_to_deg.c.o
- /Users/rmander/Desktop/miniRT/src/rt/utils/rad_to_deg.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/rad_to_deg.c
 CMakeFiles/miniRT.dir/src/rt/utils/swap_double.c.o
- /Users/rmander/Desktop/miniRT/src/rt/utils/swap_double.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/rt/utils/swap_double.c
 CMakeFiles/miniRT.dir/src/tests.c.o
  ../include/canvas.h
  ../include/intersect.h
  ../include/linop.h
  ../include/utils.h
  ../lib/libft/libft.h
- /Users/rmander/Desktop/miniRT/src/tests.c
+ /Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/src/tests.c

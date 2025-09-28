@@ -12,7 +12,17 @@ linop.h
 libft.h
 ../include/libft.h
 
+../include/event.h
+canvas.h
+../include/canvas.h
+
 ../include/linop.h
+
+../include/render.h
+canvas.h
+../include/canvas.h
+utils.h
+../include/utils.h
 
 ../include/utils.h
 canvas.h
@@ -24,15 +34,19 @@ linop.h
 stdlib.h
 -
 
-/Users/rmander/Desktop/miniRT/src/rt/intersect.c
+../lib/mlx/mlx.h
+
+/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/main.c
 canvas.h
-/Users/rmander/Desktop/miniRT/src/rt/canvas.h
-linop.h
-/Users/rmander/Desktop/miniRT/src/rt/linop.h
-utils.h
-/Users/rmander/Desktop/miniRT/src/rt/utils.h
+/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/canvas.h
+event.h
+/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/event.h
+render.h
+/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/render.h
+mlx.h
+/Users/mikhaylenko/Dev/42/miniRT/miniRT.CLion/mlx.h
 math.h
 -
-stdio.h
+stddef.h
 -
 
