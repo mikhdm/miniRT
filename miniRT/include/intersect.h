@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:24:49 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/08 23:30:36 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 18:56:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double			intersect_square(t_data *data,
 					t_vector3 *dirvec, t_square *square);
 double			intersect_cylinder(t_data *data,
 					t_vector3 *dirvec, t_cylinder *cylinder);
-t_pair_double	intersect_sphere(t_data *data,
+double			intersect_sphere(t_data *data,
 					t_vector3 *dirvec, t_sphere *sphere);
 
 #endif 

@@ -6,18 +6,16 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 20:26:17 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/08 23:52:01 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 18:33:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
+#include "trace.h"
+#include "shade.h"
 #include "linop.h"
 #include "light.h"
 #include "utils.h"
-#include "color.h"
-#include "intersect.h"
-#include "trace.h"
-#include "shade.h"
 #include "libft.h"
 #include <math.h>
 
@@ -26,15 +24,15 @@ static double	_t(t_data *data,
 			t_vector3 *dirvec, t_figure *figure)
 {
 	if (ft_strcmp(figure->content->label, LABEL_SPHERE) == 0)
-		t = _t_sphere(data, dirvec, figure->content);
+		t = trace_sphere(data, dirvec, figure->content);
 	else if (ft_strcmp(figure->content->label, LABEL_PLANE) == 0)
-		t = _t_plane(data, dirvec, figure->content);
+		t = trace_plane(data, dirvec, figure->content);
 	else if (ft_strcmp(figure->content->label, LABEL_SQUARE) == 0)
-		t = _t_square(data, dirvec, figure->content);
+		t = trace_square(data, dirvec, figure->content);
 	else if (ft_strcmp(figure->content->label, LABEL_TRIANGLE) == 0)
-		t = _t_triangle(data, dirvec, figure->content);
+		t = trace_triangle(data, dirvec, figure->content);
 	else if (ft_strcmp(figure->content->label, LABEL_CYLINDER) == 0)
-		t = _t_cylinder(data, dirvec, figure->content);
+		t = trace_cylinder(data, dirvec, figure->content);
 	return (t);
 }
 
@@ -45,15 +43,15 @@ int	shade(t_data *data,
 
 	color = COLOR_BACKGROUND;
 	if (ft_strcmp(figure->content->label, LABEL_SPHERE) == 0)
-		color = _shade_sphere(data,	figure->content, dirvec, t);
+		color = shade_sphere(data, figure->content, dirvec, t);
 	else if (ft_strcmp(figure->content->label, LABEL_PLANE) == 0)
-		color = _shade_plane(data, figure->content, dirvec, t);
+		color = shade_plane(data, figure->content, dirvec, t);
 	else if (ft_strcmp(figure->content->label, LABEL_SQUARE) == 0)
-		color = _shade_square(data, figure->content, dirvec, t);
+		color = shade_square(data, figure->content, dirvec, t);
 	else if (ft_strcmp(figure->content->label, LABEL_TRIANGLE) == 0)
-		color = _shade_triangle(data, figure->content, dirvec, t);
+		color = shade_triangle(data, figure->content, dirvec, t);
 	else if (ft_strcmp(figure->content->label, LABEL_CYLINDER) == 0)
-		color = _shade_cylinder(data, figure->content, dirvec, t);
+		color = shade_cylinder(data, figure->content, dirvec, t);
 	return (color);
 }
 
@@ -78,5 +76,5 @@ int	trace(t_data *data,
 		}
 		curr = curr->next;
 	}
-	return (shade(t_data *data, t_vector3 *dirvec, figure, min_t));
+	return (shade(data, dirvec, figure, min_t));
 }

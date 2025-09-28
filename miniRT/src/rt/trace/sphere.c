@@ -6,13 +6,16 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:38:19 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/08 23:39:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 17:46:21 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
+static int	_trace(t_data *data,
+				t_vector3 *dirvec, t_pair_double *range)
+
 int	trace_sphere(t_data *data,
-		t_vector3 *dirvec, t_pair_double *steprange)
+		t_vector3 *dirvec, t_pair_double *range)
 {
 	double 			closest_step;
 	short int		intersected;

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:20:33 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/27 04:40:56 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 18:08:02 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-int	ft_hook_close(int keycode, t_data *data)
+static int	hook_close(int keycode, t_data *data)
 {
 	(void) keycode;
 	(void) data;
 	exit(0);
 }
 
-int ft_hook_keypress(int keycode, t_data *data)
+static int	hook_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESC)
 	{
@@ -32,4 +32,12 @@ int ft_hook_keypress(int keycode, t_data *data)
 		exit(0);
 	}
 	return (keycode);
+}
+
+void	bind_hooks(t_data *data)
+{
+	mlx_hook(data->window,
+		X11_DESTROY_NOTIFY, MASK_NO_EVENT, &hook_close, &data);
+	mlx_hook(data->window,
+		X11_KEY_PRESS, MASK_NO_EVENT, &hook_keypress, &data);
 }

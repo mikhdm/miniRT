@@ -6,28 +6,32 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:37:35 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/08 23:39:12 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 17:54:14 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
+#include "intersect.h"
 #include "linop.h"
-#include "libft.h"
+#include "light.h"
+#include "utils.h"
 
-static double	_trace_square(t_data *data, t_vector3 *dirvec, t_pair_double *steprange)
+static double	_trace(t_data *data,
+					t_vector3 *dirvec, t_pair_double *range)
 {
 	double	step;
 	double	closest_step;
 
 	step = intersect_square(data, dirvec, data->figures->square);
 	closest_step = INFINITY;
-	if (step >= steprange->first && step <= steprange->second && step < closest_step)
+	if (step >= range->first && step <= range->second &&
+		step < closest_step)
 		closest_step = step; 
 	return (closest_step);
 }
 
 int	trace_square(t_data *data,
-		t_vector3 *dirvec, t_pair_double *steprange)
+		t_vector3 *dirvec, t_pair_double *range)
 {
 	t_vector3			closest_point;
 	t_vector3			t_mult_dirvec;
@@ -37,7 +41,7 @@ int	trace_square(t_data *data,
 
 	color = data->figures->square->color;
 	orient = data->figures->square->orient; 
-	step = _trace_square(data, dirvec, steprange);
+	step = _trace(data, dirvec, range);
 	if (isinf(step))
 		return (COLOR_BACKGROUND);
 	t_mult_dirvec = cmultvec3(step, dirvec);

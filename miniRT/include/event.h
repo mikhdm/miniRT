@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:30:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/04/26 21:13:42 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 18:07:40 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef enum e_key {
 	KEY_ESC = 53,
 }	t_key;
 
-int	ft_hook_close(int keycode, t_data *data);
-int	ft_hook_keypress(int keycode, t_data *data);
+void	bind_hooks(t_data *data);
 
 #endif

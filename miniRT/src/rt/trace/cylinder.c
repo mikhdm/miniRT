@@ -13,12 +13,15 @@
 
 #include "canvas.h"
 #include "linop.h"
-#include "libft.h"
-
+#include "utils.h"
 
 int	trace_cylinder(t_data *data,
 		t_vector3 *dirvec, t_pair_double *range)
 {
 	/* TODO */
+	(void)data;
+	(void)dirvec;
+	(void)range;
+	return (1);
 }
 

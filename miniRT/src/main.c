@@ -6,23 +6,20 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 23:37:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/08 23:51:41 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 18:26:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
-#include "linop.h"
-#include "rayop.h" 
+#include "light.h"
 #include "event.h"
-#include "color.h"
-#include "utils.h"
+#include "render.h"
 #include "mlx.h"
-#include <stdlib.h>
 #include <math.h>
-
+#include <stddef.h>
 #include <stdio.h>
 
-static void	ft_init(t_data *data)
+static void	init(t_data *data)
 {
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(
@@ -41,148 +38,7 @@ static void	ft_init(t_data *data)
 							&data->endian);
 }
 
-static void	ft_bind_hooks(t_data *data)
-{
-	mlx_hook(data->window,
-		X11_DESTROY_NOTIFY, MASK_NO_EVENT, &ft_hook_close, &data);
-	mlx_hook(data->window,
-		X11_KEY_PRESS, MASK_NO_EVENT, &ft_hook_keypress, &data);
-}
-
-static void render_sphere(t_data *data, t_pair_double *stepsrange)
-{
-	int				x;
-	int				y;
-	int				color;
-	t_vector3		dirvec;
-
-	// TODO check zero inclusion due to canvas coordinate system
-	y = -data->screen->height / 2 + 1;
-	while (y < data->screen->height / 2)
-	{
-		x = -data->screen->width / 2;
-		while (x < data->screen->width / 2)
-		{
-			dirvec = ft_conv_to_viewport(data, x, y);
-			color = ft_trace_sphere(data, &dirvec, stepsrange);
-			ft_putpixel(data, x, y, color);
-			++x;
-		}
-		++y;
-	}
-}
-
-static void	render_plane(t_data *data, t_pair_double *stepsrange)
-{
-	int				x;
-	int				y;
-	int				color;
-	t_vector3		dirvec;
-
-	y = -data->screen->height / 2 + 1;
-	while (y < data->screen->height / 2)
-	{
-		x = -data->screen->width / 2;
-		while (x < data->screen->width / 2)
-		{
-			dirvec = ft_conv_to_viewport(data, x, y);
-			color = ft_trace_plane(data, &dirvec, stepsrange);
-			ft_putpixel(data, x, y, color);
-			++x;
-		}
-		++y;
-	}
-}
-
-static void	render_square(t_data *data, t_pair_double *stepsrange)
-{
-	int				x;
-	int				y;
-	int				color;
-	t_vector3		dirvec;
-
-	y = data->screen->height / 2;
-	while (y > -data->screen->height / 2)
-	{
-		x = -data->screen->width / 2;
-		while (x < data->screen->width / 2)
-		{
-			dirvec = ft_conv_to_viewport(data, x, y);
-			color = ft_trace_square(data, &dirvec, stepsrange);
-			ft_putpixel(data, x, y, color);
-			++x;
-		}
-		--y;
-	}
-}
-
-/* TESTFUNC */
-void	linop_test(void)
-{
-	t_vector3 vec1 = (t_vector3) {.x = 4.0, .y = 0.0, .z = 0.0};
-	t_vector3 vec2 = (t_vector3) {.x = -4.0, .y = 0.0, .z = 0.0};
-
-	t_vector3 vec3 = diffvec3(&vec1, &vec2);
-	printf("difference: (%f, %f, %f) - (%f, %f, %f) = (%f, %f, %f)\n",
-		vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z, vec3.x, vec3.y, vec3.z);
-
-	double scalar = dot3(&vec1, &vec2);
-	printf("dot: <(%f, %f, %f), (%f, %f, %f)> = %f\n",
-		vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z, scalar);
-
-	t_vector3 vec4 = sumvec3(&vec1, &vec2);
-	printf("sum: (%f, %f, %f) + (%f, %f, %f) = (%f, %f, %f)\n",
-		vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z, vec4.x, vec4.y, vec4.z);
-	
-	t_vector3 vec5 = cmultvec3(scalar, &vec1);
-	printf("mult by constant: %f * (%f, %f, %f) = (%f, %f, %f) \n",
-		scalar, vec1.x, vec1.y, vec1.z, vec5.x, vec5.y, vec5.z);
-	
-	t_vector3 vec6 = cross3(&vec1, &vec2);
-	printf("cross: (%f, %f, %f) x (%f, %f, %f) = (%f, %f, %f), length: || %f ||\n",
-			vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z,
-			vec6.x, vec6.y, vec6.z, hypotvec3(&vec6));
-
-	printf("is collinear vectors: (%f, %f, %f) and (%f, %f, %f) ? %d \n",
-			vec1.x, vec1.y, vec1.z, vec2.x, vec2.y, vec2.z,
-			iscollinvec3(&vec1, &vec2));
-}
-/* END TESTFUNC */
-
-/* TESTFUNC */
-void	quad_equation_test(void)
-{
-	t_pair_double vals1 = calc_quad_equation(1, 2, 1);
-	printf("x^2 + 2*x + 1 = 0 : x1 = %f, x2 = %f\n", vals1.first, vals1.second);
-
-	/* inf test */
-	t_pair_double vals2 = calc_quad_equation(1, 2, 3);
-	printf("x^2 + 2*x + 3 = 0 : x1 = %f, x2 = %f\n", vals2.first, vals2.second);
-
-	t_pair_double vals3 = calc_quad_equation(1, 2, -3);
-	printf("x^2 + 2*x - 3 = 0 : x1 = %f, x2 = %f\n", vals3.first, vals3.second);
-}
-/* END TESTFUNC */
-
-/* TESTFUNC */
-void	deg_to_rad_test(void)
-{
-	double deg = 180;
-	double deg2 = 90;
-	printf("%f degrees in radians = %f\n", deg, deg_to_rad(deg)); 
-	printf("%f degrees in radians = %f\n", deg2, deg_to_rad(deg2)); 
-}
-/* END TESTFUNC */
-
-/* TESTFUNC */
-void	calc_viewport_test(t_data *data)
-{
-	t_viewport	viewport;
-
-	viewport = calc_viewport(data);
-	printf("projection plane width = %f, height = %f\n", viewport.width, viewport.height);
-}
-/* END TESTFUNC */
+void test(t_data *data);
 
 int main(void)
 {
@@ -264,35 +120,18 @@ int main(void)
 
 	data.figures = &figures;
 
-	stepsrange = (t_pair_double) {.first = 1.0, .second = INFINITY};
-
-	ft_init(&data);
+	init(&data);
 	
 	/* LOG */
 	printf("bpp: %d;\nline length: %d;\nendian: %d;\n",
 		data.bpp, data.length, data.endian); 
 	/* END LOG */
+	test(&data);
 
-	/* TEST */
-	linop_test();
-	/* END TEST */
-
-	/* TEST */
-	quad_equation_test();
-	/* END TEST */
-
-	/* TEST */
-	deg_to_rad_test();
-	/* END TEST */
-
-	/* TEST */
-	calc_viewport_test(&data);
-	/* END TEST */
-
-	render(&data, &steprange);
-
+	range = (t_pair_double) {.first = 1.0, .second = INFINITY};
+	render(&data, &range);
 	mlx_put_image_to_window(data.mlx, data.window, data.img, 0, 0);
-	ft_bind_hooks(&data);
+	bind_hooks(&data);
 	mlx_loop(data.mlx);
 	return (0);
 }

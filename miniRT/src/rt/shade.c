@@ -6,13 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:16:08 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/08 23:51:59 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/09 18:31:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "linop.h"
-#include "libft.h"
+#include "light.h"
 
 
 int	shade_sphere(t_data *data,
@@ -29,14 +29,37 @@ int	shade_sphere(t_data *data,
 
 }
 
+int	shade_triangle(t_data *data,
+		t_triangle *triangle, t_vector3 *dirvec, double t)
+{
+	/* TODO */	
+	(void)data;
+	(void)triangle;
+	(void)dirvec;
+	(void)t;
+	return (1);
+}
+
 int	shade_square(t_data *data,
 		t_square *square, t_vector3 *dirvec, double t)
 {
-	/* TODO */
+
 }
 
 int shade_plane(t_data *data,
 		t_plane *plane, t_vector3 *dirvec, double t)
 {
-	/* TODO */
+
+}
+
+int shade_cylinder(t_data *data,
+		t_cylinder *cylinder, t_vector3 *dirvec, double t)
+{
+	/* TODO */	
+	(void)data;
+	(void)cylinder;
+	(void)dirvec;
+	(void)t;
+	return (1);
+
 }
