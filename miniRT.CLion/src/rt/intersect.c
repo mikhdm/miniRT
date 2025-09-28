@@ -6,22 +6,21 @@
 /*   By: rmander <rmander@student.21-school.ru      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:28:15 by rmander           #+#    #+#             */
-/*   Updated: 2021/05/14 21:05:01 by rmander          ###   ########.fr       */
+/*   Updated: 2021/05/17 17:48:38 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 #include "linop.h"
 #include "utils.h"
-#include <stdio.h>
 #include <math.h>
 #include <errno.h>
 
-double  intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane)
+double	intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane)
 {
+	double		t;
 	t_vector3	co;
 	double		denom;
-	double		t;
 
 	t = INFINITY;
 	co = diffvec3(&plane->center, p0);
@@ -31,58 +30,57 @@ double  intersect_plane(t_vector3 *p0, t_vector3 *dirvec, t_plane *plane)
 	return (t);
 }
 
-double  intersect_square(t_vector3 *p0, t_vector3 *dirvec, t_square *square)
+double	intersect_square(t_vector3 *p0, t_vector3 *dirvec, t_square *square)
 {
+	double		t;
 	t_vector3	co;
 	double		denom;
-	double		t;
 	t_vector3	*vertices;
 	t_vector3	p_hit;
 
 	t = INFINITY;
 	denom = dot3(dirvec, &square->orient);
-	co = diffvec3(&square->center, p0);
 	if (fabs(denom) > 1e-6)
+	{
+		co = diffvec3(&square->center, p0);
 		t = dot3(&co, &square->orient) / denom;
-
-	p_hit = calc_ray_point(p0, dirvec, t);
-	vertices = gen_square_vertices(square);
-	if (!vertices)
-		exit(ENOMEM);
-	if (is_polygon_point(&p_hit, vertices, &square->orient, 4))
-		return (t);
+		p_hit = calc_ray_point(p0, dirvec, t);
+		vertices = gen_square_vertices(square);
+		if (!vertices)
+			exit(ENOMEM);
+		if (is_polygon_point(&p_hit, vertices, &square->orient, 4))
+		{
+			free(vertices);
+			return (t);
+		}
+	}
 	return (INFINITY);
 }
 
-double  intersect_triangle(t_vector3 *p0, t_vector3 *dirvec, t_triangle *triangle)
+double	intersect_triangle(t_vector3 *p0, t_vector3 *dirvec, t_triangle *triangle)
 {
-	t_vector3   orient;
-	t_vector3	co;
-	double		denom;
 	double		t;
+	t_vector3	co;
+	t_vector3   orient;
+	double		denom;
+	t_vector3   p_hit;
 
 	t = INFINITY;
 	orient = calc_triangle_orient(triangle);
 	denom = dot3(dirvec, &orient);
-	co = diffvec3(&triangle->x, p0);
 	if (fabs(denom) > 1e-6)
-		t = dot3(&co, &orient) / denom;
-
-	t_vector3   vertices[3];
-	t_vector3   p_hit;
-	vertices[0] = triangle->x;
-	vertices[1] = triangle->y;
-	vertices[2] = triangle->z;
-	if (!isinf(t))
 	{
+		co = diffvec3(&triangle->x, p0);
+		t = dot3(&co, &orient) / denom;
 		p_hit = calc_ray_point(p0, dirvec, t);
-		if (is_polygon_point(&p_hit, vertices, &orient, 3))
+		if (is_polygon_point(&p_hit,
+		(t_vector3[]){triangle->x, triangle->y, triangle->z}, &orient, 3))
 			return (t);
 	}
 	return (INFINITY);
 }
 
- double intersect_sphere(t_vector3 *p0, t_vector3 *dirvec, t_sphere *sphere)
+double	intersect_sphere(t_vector3 *p0, t_vector3 *dirvec, t_sphere *sphere)
 {
 	double			radius;
 	t_vector3		co;
@@ -97,7 +95,7 @@ double  intersect_triangle(t_vector3 *p0, t_vector3 *dirvec, t_triangle *triangl
 	return (calc_min_t(values));
 }
 
-double  intersect_cylinder(t_vector3 *p0, t_vector3 *dirvec, t_cylinder *cylinder)
+double	intersect_cylinder(t_vector3 *p0, t_vector3 *dirvec, t_cylinder *cylinder)
 {
 	double          radius;
 	t_vector3       co;

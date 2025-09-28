@@ -18,8 +18,7 @@
 #include <errno.h>
 #include <math.h>
 
-static t_vector3	*is_polygon_point_crosses(t_vector3 *p_vertex_vecs,
-										   size_t size)
+static t_vector3	*crosses(t_vector3 *p_vertex_vecs, size_t size)
 {
 	size_t		i;
 	t_vector3	*vecs;
@@ -35,14 +34,35 @@ static t_vector3	*is_polygon_point_crosses(t_vector3 *p_vertex_vecs,
 	return (vecs);
 }
 
-static short int	is_polygon_point_check(t_vector3 *cross_vecs,
+static short    signcheck(double *checks, size_t size)
+{
+	size_t      i;
+	short       sign;
+	short       flag;
+
+	i = 0;
+	flag = TRUE;
+	sign = signbit(checks[i++]);
+	if (sign)
+	{
+		while (i < size)
+			if (!signbit(checks[i++]))
+				flag = FALSE;
+	}
+	else
+		while (i < size)
+			if (signbit(checks[i++]))
+				flag = FALSE;
+	return (flag);
+}
+
+static short    pointcheck(t_vector3 *cross_vecs,
 						size_t size, t_vector3 *orient)
 {
-	double      *checks;
-	size_t      i;
-	t_vector3   diffvec;
-	int         sign;
-	short int   flag;
+	double          *checks;
+	size_t          i;
+	t_vector3       diffvec;
+	short int       flag;
 
 	i = 0;
 	flag = TRUE;
@@ -53,18 +73,7 @@ static short int	is_polygon_point_check(t_vector3 *cross_vecs,
 		checks[i] = dot3(&cross_vecs[i], orient) / hypotvec3(&diffvec);
 		++i;
 	}
-	i = 0;
-	sign = signbit((float)checks[i++]);
-	if (sign)
-	{
-		while (i < size)
-			if (!signbit((float) checks[i++]))
-				flag = FALSE;
-	}
-	else
-		while (i < size)
-			if (signbit((float)checks[i++]))
-				flag = FALSE;
+	flag = signcheck(checks, size);
 	free(checks);
 	return (flag);
 }
@@ -86,13 +95,13 @@ short int	is_polygon_point(t_vector3 *p_hit,
 		p_vertex_vecs[i] = diffvec3(&vertices[i], p_hit);
 		++i;
 	}
-	cross_vecs = is_polygon_point_crosses(p_vertex_vecs, size);
+	cross_vecs = crosses(p_vertex_vecs, size);
 	if (!cross_vecs)
 	{
 		free(p_vertex_vecs);
 		exit(ENOMEM);
 	}
-	check = is_polygon_point_check(cross_vecs, size, orient);
+	check = pointcheck(cross_vecs, size, orient);
 	free(p_vertex_vecs);
 	free(cross_vecs);
 	return (check);

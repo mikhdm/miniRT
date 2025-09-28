@@ -90,7 +90,6 @@ int	shade(t_data *data, t_vector3 *p0, t_vector3 *dirvec,
 	return (color);
 }
 
-
 int	trace(t_data* data, t_vector3 *p0, t_vector3 *dirvec, t_pair_double *range)
 {
 	t_pair_figure_double    pair_figure_t;

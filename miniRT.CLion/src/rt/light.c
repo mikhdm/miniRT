@@ -27,11 +27,7 @@ static int calc_diffuse_light(t_light *spot,
 	color = cmultargb(color, dot);
 	return (color);
 }
-/*
-*
-* ambient_light - calculates ambient light for a surface with scolor.
-*
-*/
+
 static int    ambient_light(t_data *data, int const scolor)
 {
 	int	acolor;
@@ -76,9 +72,9 @@ static int	diffuse_light(t_data *data,
 int light(t_data *data,
 		t_vector3 *point, t_vector3 *orient, int const scolor)
 {
-	int                     ambient_color;
-	int                     diffuse_color;
-	int                     surface_color;
+	int ambient_color;
+	int diffuse_color;
+	int surface_color;
 
 	surface_color = linargb(scolor);
 	ambient_color = ambient_light(data, surface_color);
